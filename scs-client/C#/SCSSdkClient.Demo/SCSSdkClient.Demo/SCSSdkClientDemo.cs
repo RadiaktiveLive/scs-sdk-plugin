@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Configuration;
+//using System.Configuration;
 using System.Drawing;
 using System.Windows.Forms;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using SCSSdkClient.Object;
 using System.Net.Http;
@@ -11,6 +12,7 @@ using System.Text;
 using static SCSSdkClient.Object.SCSTelemetry;
 using static SCSSdkClient.Demo.SCSSdkClientDemo;
 using static SCSSdkClient.Demo.CustomSettingsSection;
+using System.IO;
 
 namespace SCSSdkClient.Demo {
 
@@ -23,12 +25,12 @@ namespace SCSSdkClient.Demo {
         public SCSSdkTelemetry Telemetry;
 
         ///
-        public const string StreamerbotUrl = "http://127.0.0.1:7474/DoAction";
+        //public const string StreamerbotUrl = "http://127.0.0.1:7474/DoAction";
         ///
-        public const string TestActionId = "034beca8-9461-4514-b00b-3d116bab78e4";
+        //public const string TestActionId = "034beca8-9461-4514-b00b-3d116bab78e4";
         ///
-        public const string TestActionName = "Test";
-        
+        //public const string TestActionName = "Test";
+        /*
         ///
         public ActionInfo JobInfoSBAction = new ActionInfo { id = "2fb96e1d-c7db-424d-8082-4208c74b6868", name = "JobStarted" };
         ///
@@ -45,9 +47,10 @@ namespace SCSSdkClient.Demo {
         public ActionInfo TrainEventSBAction = new ActionInfo { id = "4f24d6ab-0712-482e-80c0-4ace8a693a4b", name = "TrainEvent" };
         ///
         public ActionInfo RefuelEventSBAction = new ActionInfo { id = "b63b68cd-5a3a-46f8-a08f-ef276c84e500", name = "RefuelEvent" };
-        
-/*
-        public ActionInfo JobInfoSBAction;
+        */
+        public string StreamerbotUrl;
+
+        public ActionInfo JobStartedSBAction;
         public ActionInfo FerryEventSBAction;
         public ActionInfo FinedEventSBAction;
         public ActionInfo JobCancelledSBAction;
@@ -55,7 +58,7 @@ namespace SCSSdkClient.Demo {
         public ActionInfo TollgateEventSBAction;
         public ActionInfo TrainEventSBAction;
         public ActionInfo RefuelEventSBAction;
-*/
+
         private static readonly HttpClient client = new HttpClient();
 
         private float fuel;
@@ -63,7 +66,7 @@ namespace SCSSdkClient.Demo {
 
         /// <inheritdoc />
         public SCSSdkClientDemo() {
-            //readConfigFile();
+            readConfigFile();
             InitializeComponent();
             /*
             var myObject = new MyJsonObject
@@ -406,6 +409,63 @@ namespace SCSSdkClient.Demo {
 
         private void readConfigFile()
         {
+            //MessageBox.Show("1");
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            //MessageBox.Show("2");
+            IConfigurationRoot configuration = builder.Build();
+            //MessageBox.Show("3");
+            /*
+            string name = configuration.GetSection("MySettings:Name").Value;
+            string key1 = configuration.GetSection("MySettings:NestedSettings:Key1").Value;
+            string key2 = configuration.GetSection("MySettings:NestedSettings:Key2").Value;
+            string item1 = configuration.GetSection("MySettings:ArraySettings:0").Value;
+            MessageBox.Show("4");
+            MessageBox.Show("Name: " + name);
+            MessageBox.Show("Key1: " + key1);
+            MessageBox.Show("Key2: " + key2);
+            MessageBox.Show("Item1: " + item1);
+            */
+            string Protocol = configuration.GetSection("Connection:Protocol").Value;
+            string Ip = configuration.GetSection("Connection:Ip").Value;
+            string Port = configuration.GetSection("Connection:Port").Value;
+            string Endpoint = configuration.GetSection("Connection:Endpoint").Value;
+            StreamerbotUrl = Protocol + "://" + Ip + ":" + Port + "/" + Endpoint;
+            //MessageBox.Show("StreamerbotUrl: "+ StreamerbotUrl);
+
+            string JobStartedId = configuration.GetSection("Actions:JobStarted:Id").Value;
+            string JobStartedName = configuration.GetSection("Actions:JobStarted:Name").Value;
+            JobStartedSBAction = new ActionInfo { id = JobStartedId, name = JobStartedName };
+            //MessageBox.Show("JobStartedSBAction: "+ JobStartedSBAction);
+            string JobDeliveredId = configuration.GetSection("Actions:JobDelivered:Id").Value;
+            string JobDeliveredName = configuration.GetSection("Actions:JobDelivered:Name").Value;
+            JobDeliveredSBAction = new ActionInfo { id = JobDeliveredId, name = JobDeliveredName };
+            //MessageBox.Show("JobDeliveredSBAction: " + JobDeliveredSBAction);
+            string JobCancelledId = configuration.GetSection("Actions:JobCancelled:Id").Value;
+            string JobCancelledName = configuration.GetSection("Actions:JobCancelled:Name").Value;
+            JobCancelledSBAction = new ActionInfo { id = JobCancelledId, name = JobCancelledName };
+            //MessageBox.Show("JobCancelledSBAction: " + JobCancelledSBAction);
+            string FinedEventId = configuration.GetSection("Actions:FinedEvent:Id").Value;
+            string FinedEventName = configuration.GetSection("Actions:FinedEvent:Name").Value;
+            FinedEventSBAction = new ActionInfo { id = FinedEventId, name = FinedEventName };
+            //MessageBox.Show("FinedEventSBAction: " + FinedEventSBAction);
+            string TollgateEventId = configuration.GetSection("Actions:TollgateEvent:Id").Value;
+            string TollgateEventName = configuration.GetSection("Actions:TollgateEvent:Name").Value;
+            TollgateEventSBAction = new ActionInfo { id = TollgateEventId, name = TollgateEventName };
+            //MessageBox.Show("TollgateEventSBAction: " + TollgateEventSBAction);
+            string TrainEventId = configuration.GetSection("Actions:TrainEvent:Id").Value;
+            string TrainEventName = configuration.GetSection("Actions:TrainEvent:Name").Value;
+            TrainEventSBAction = new ActionInfo { id = TrainEventId, name = TrainEventName };
+            //MessageBox.Show("TrainEventSBAction: " + TrainEventSBAction);
+            string FerryEventId = configuration.GetSection("Actions:FerryEvent:Id").Value;
+            string FerryEventName = configuration.GetSection("Actions:FerryEvent:Name").Value;
+            FerryEventSBAction = new ActionInfo { id = FerryEventId, name = FerryEventName };
+            //MessageBox.Show("FerryEventSBAction: " + FerryEventSBAction);
+            string RefuelEventId = configuration.GetSection("Actions:RefuelEvent:Id").Value;
+            string RefuelEventName = configuration.GetSection("Actions:RefuelEvent:Name").Value;
+            RefuelEventSBAction = new ActionInfo { id = RefuelEventId, name = RefuelEventName };
+            //MessageBox.Show("RefuelEventSBAction: " + RefuelEventSBAction);
             /*
             try
             {
@@ -545,7 +605,7 @@ namespace SCSSdkClient.Demo {
             //var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
             //var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
             //MessageBox.Show(json, "JobDelivered");
-            var myObject = createMyJsonObject(JobInfoSBAction, "Job", events);
+            var myObject = createMyJsonObject(JobStartedSBAction, "Job", events);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
         }
         private void Cancelled(string events)
