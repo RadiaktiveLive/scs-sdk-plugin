@@ -55,6 +55,7 @@
             this.substances = new System.Windows.Forms.RichTextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.gameplayevent = new System.Windows.Forms.RichTextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.hgf.SuspendLayout();
             this.tabAbout.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -89,6 +90,7 @@
             // 
             // tabAbout
             // 
+            this.tabAbout.Controls.Add(this.button2);
             this.tabAbout.Controls.Add(this.button1);
             this.tabAbout.Controls.Add(this.rtb_fuel);
             this.tabAbout.Controls.Add(this.statusStrip1);
@@ -357,6 +359,15 @@
             this.gameplayevent.TabIndex = 6;
             this.gameplayevent.Text = "";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(609, 22);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(161, 70);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
             // SCSSdkClientDemo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -412,6 +423,7 @@
         private System.Windows.Forms.ToolStripStatusLabel l_updateRate;
         private System.Windows.Forms.RichTextBox rtb_fuel;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }
 

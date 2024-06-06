@@ -131,7 +131,7 @@
     <EmbeddedResource Include="SCSSdkClientDemo.resx">
       <DependentUpon>SCSSdkClientDemo.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="appsettings.json">
+    <None Include="StreamerBotSettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="StreamerBot.config">

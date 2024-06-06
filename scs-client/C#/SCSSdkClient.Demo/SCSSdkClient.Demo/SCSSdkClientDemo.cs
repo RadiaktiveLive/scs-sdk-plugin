@@ -385,7 +385,7 @@ namespace SCSSdkClient.Demo {
             {
                 var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory());
 
-                string jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
+                string jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "StreamerBotSettings.json");
 
                 if (File.Exists(jsonFilePath))
                 {
@@ -393,7 +393,7 @@ namespace SCSSdkClient.Demo {
                 }
                 else
                 {
-                    MessageBox.Show("The file appsettings.json does not exist in the current directory.");
+                    MessageBox.Show("The file StreamerBotSettings.json does not exist in the current directory.");
                     return;
                 }
 
