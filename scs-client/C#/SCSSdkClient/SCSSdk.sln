@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Blend for Visual Studio Version 17
+# Visual Studio Version 17
 VisualStudioVersion = 17.0.31410.414
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SCSSdkClient", "SCSSdkClient.csproj", "{B62F8E57-9D8C-4EA2-90E4-1F6B09DCE468}"

@@ -409,62 +409,132 @@ namespace SCSSdkClient.Demo {
 
         private void readConfigFile()
         {
-            //MessageBox.Show("1");
-            var builder = new ConfigurationBuilder()
+            try
+            {
+                /*
+                var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-            //MessageBox.Show("2");
-            IConfigurationRoot configuration = builder.Build();
-            //MessageBox.Show("3");
-            /*
-            string name = configuration.GetSection("MySettings:Name").Value;
-            string key1 = configuration.GetSection("MySettings:NestedSettings:Key1").Value;
-            string key2 = configuration.GetSection("MySettings:NestedSettings:Key2").Value;
-            string item1 = configuration.GetSection("MySettings:ArraySettings:0").Value;
-            MessageBox.Show("4");
-            MessageBox.Show("Name: " + name);
-            MessageBox.Show("Key1: " + key1);
-            MessageBox.Show("Key2: " + key2);
-            MessageBox.Show("Item1: " + item1);
-            */
-            string Protocol = configuration.GetSection("Connection:Protocol").Value;
-            string Ip = configuration.GetSection("Connection:Ip").Value;
-            string Port = configuration.GetSection("Connection:Port").Value;
-            string Endpoint = configuration.GetSection("Connection:Endpoint").Value;
-            StreamerbotUrl = Protocol + "://" + Ip + ":" + Port + "/" + Endpoint;
-            //MessageBox.Show("StreamerbotUrl: "+ StreamerbotUrl);
+                */
 
-            string JobStartedId = configuration.GetSection("Actions:JobStarted:Id").Value;
-            string JobStartedName = configuration.GetSection("Actions:JobStarted:Name").Value;
-            JobStartedSBAction = new ActionInfo { id = JobStartedId, name = JobStartedName };
-            //MessageBox.Show("JobStartedSBAction: "+ JobStartedSBAction);
-            string JobDeliveredId = configuration.GetSection("Actions:JobDelivered:Id").Value;
-            string JobDeliveredName = configuration.GetSection("Actions:JobDelivered:Name").Value;
-            JobDeliveredSBAction = new ActionInfo { id = JobDeliveredId, name = JobDeliveredName };
-            //MessageBox.Show("JobDeliveredSBAction: " + JobDeliveredSBAction);
-            string JobCancelledId = configuration.GetSection("Actions:JobCancelled:Id").Value;
-            string JobCancelledName = configuration.GetSection("Actions:JobCancelled:Name").Value;
-            JobCancelledSBAction = new ActionInfo { id = JobCancelledId, name = JobCancelledName };
-            //MessageBox.Show("JobCancelledSBAction: " + JobCancelledSBAction);
-            string FinedEventId = configuration.GetSection("Actions:FinedEvent:Id").Value;
-            string FinedEventName = configuration.GetSection("Actions:FinedEvent:Name").Value;
-            FinedEventSBAction = new ActionInfo { id = FinedEventId, name = FinedEventName };
-            //MessageBox.Show("FinedEventSBAction: " + FinedEventSBAction);
-            string TollgateEventId = configuration.GetSection("Actions:TollgateEvent:Id").Value;
-            string TollgateEventName = configuration.GetSection("Actions:TollgateEvent:Name").Value;
-            TollgateEventSBAction = new ActionInfo { id = TollgateEventId, name = TollgateEventName };
-            //MessageBox.Show("TollgateEventSBAction: " + TollgateEventSBAction);
-            string TrainEventId = configuration.GetSection("Actions:TrainEvent:Id").Value;
-            string TrainEventName = configuration.GetSection("Actions:TrainEvent:Name").Value;
-            TrainEventSBAction = new ActionInfo { id = TrainEventId, name = TrainEventName };
-            //MessageBox.Show("TrainEventSBAction: " + TrainEventSBAction);
-            string FerryEventId = configuration.GetSection("Actions:FerryEvent:Id").Value;
-            string FerryEventName = configuration.GetSection("Actions:FerryEvent:Name").Value;
-            FerryEventSBAction = new ActionInfo { id = FerryEventId, name = FerryEventName };
-            //MessageBox.Show("FerryEventSBAction: " + FerryEventSBAction);
-            string RefuelEventId = configuration.GetSection("Actions:RefuelEvent:Id").Value;
-            string RefuelEventName = configuration.GetSection("Actions:RefuelEvent:Name").Value;
-            RefuelEventSBAction = new ActionInfo { id = RefuelEventId, name = RefuelEventName };
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory());
+
+                string jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
+
+                if (File.Exists(jsonFilePath))
+                {
+                    builder.AddJsonFile(jsonFilePath, optional: true, reloadOnChange: false);
+                }
+                else
+                {
+                    Console.WriteLine("The file appsettings.json does not exist in the current directory.");
+                    MessageBox.Show("The file appsettings.json does not exist in the current directory.");
+                    return;
+                }
+
+                IConfigurationRoot configuration = builder.Build();
+                //MessageBox.Show(configuration.GetSection("Connection").Value);
+                string Protocol = configuration.GetSection("Connection:Protocol").Value;
+                string Ip = configuration.GetSection("Connection:Ip").Value;
+                string Port = configuration.GetSection("Connection:Port").Value;
+                string Endpoint = configuration.GetSection("Connection:Endpoint").Value;
+                if (Protocol == null || Ip == null || Port == null || Endpoint == null)
+                {
+                    Console.WriteLine("One or more Connection values are missing.");
+                    MessageBox.Show("One or more Connection values are missing.");
+                    return;
+                }
+                //StreamerbotUrl = Protocol + "://" + Ip + ":" + Port + "/" + Endpoint;
+                //MessageBox.Show("StreamerbotUrl: "+ StreamerbotUrl);
+                var uriBuilder = new UriBuilder(Protocol, Ip, int.Parse(Port), Endpoint);
+                StreamerbotUrl = uriBuilder.ToString();
+                //MessageBox.Show("StreamerbotUrl: " + StreamerbotUrl);
+
+                string JobStartedId = configuration.GetSection("Actions:JobStarted:Id").Value;
+                string JobStartedName = configuration.GetSection("Actions:JobStarted:Name").Value;
+                if (JobStartedId == null || JobStartedName == null)
+                {
+                    Console.WriteLine("JobStarted configuration values are missing.");
+                    MessageBox.Show("JobStarted configuration values are missing.");
+                    return;
+                }
+                JobStartedSBAction = new ActionInfo { id = JobStartedId, name = JobStartedName };
+                //MessageBox.Show("JobStartedSBAction: \n{\n id = " + JobStartedId + ",\n name = " + JobStartedName + "\n}");
+                string JobDeliveredId = configuration.GetSection("Actions:JobDelivered:Id").Value;
+                string JobDeliveredName = configuration.GetSection("Actions:JobDelivered:Name").Value;
+                if (JobDeliveredId == null || JobDeliveredName == null)
+                {
+                    Console.WriteLine("JobDelivered configuration values are missing.");
+                    MessageBox.Show("JobDelivered configuration values are missing.");
+                    return;
+                }
+                JobDeliveredSBAction = new ActionInfo { id = JobDeliveredId, name = JobDeliveredName };
+                //MessageBox.Show("JobDeliveredSBAction: \n{\n id = " + JobDeliveredId + ",\n name = " + JobDeliveredName + "\n}");
+                string JobCancelledId = configuration.GetSection("Actions:JobCancelled:Id").Value;
+                string JobCancelledName = configuration.GetSection("Actions:JobCancelled:Name").Value;
+                if (JobCancelledId == null || JobCancelledName == null)
+                {
+                    Console.WriteLine("JobCancelled configuration values are missing.");
+                    MessageBox.Show("JobCancelled configuration values are missing.");
+                    return;
+                }
+                JobCancelledSBAction = new ActionInfo { id = JobCancelledId, name = JobCancelledName };
+                //MessageBox.Show("JobCancelledSBAction: \n{\n id = " + JobCancelledId + ",\n name = " + JobCancelledName + "\n}");
+                string FinedEventId = configuration.GetSection("Actions:FinedEvent:Id").Value;
+                string FinedEventName = configuration.GetSection("Actions:FinedEvent:Name").Value;
+                if (FinedEventId == null || FinedEventName == null)
+                {
+                    Console.WriteLine("FinedEvent configuration values are missing.");
+                    MessageBox.Show("FinedEvent configuration values are missing.");
+                    return;
+                }
+                FinedEventSBAction = new ActionInfo { id = FinedEventId, name = FinedEventName };
+                //MessageBox.Show("FinedEventSBAction: \n{\n id = " + FinedEventId + ",\n name = " + FinedEventName + "\n}");
+                string TollgateEventId = configuration.GetSection("Actions:TollgateEvent:Id").Value;
+                string TollgateEventName = configuration.GetSection("Actions:TollgateEvent:Name").Value;
+                if (TollgateEventId == null || TollgateEventName == null)
+                {
+                    Console.WriteLine("TollgateEvent configuration values are missing.");
+                    MessageBox.Show("TollgateEvent configuration values are missing.");
+                    return;
+                }
+                TollgateEventSBAction = new ActionInfo { id = TollgateEventId, name = TollgateEventName };
+                //MessageBox.Show("TollgateEventSBAction: \n{\n id = " + TollgateEventId + ",\n name = " + TollgateEventName + "\n}");
+                string TrainEventId = configuration.GetSection("Actions:TrainEvent:Id").Value;
+                string TrainEventName = configuration.GetSection("Actions:TrainEvent:Name").Value;
+                if (TrainEventId == null || TrainEventName == null)
+                {
+                    Console.WriteLine("TrainEvent configuration values are missing.");
+                    MessageBox.Show("TrainEvent configuration values are missing.");
+                    return;
+                }
+                TrainEventSBAction = new ActionInfo { id = TrainEventId, name = TrainEventName };
+                //MessageBox.Show("TrainEventSBAction: \n{\n id = " + TrainEventId + ",\n name = " + TrainEventName + "\n}");
+                string FerryEventId = configuration.GetSection("Actions:FerryEvent:Id").Value;
+                string FerryEventName = configuration.GetSection("Actions:FerryEvent:Name").Value;
+                if (FerryEventId == null || FerryEventName == null)
+                {
+                    Console.WriteLine("FerryEvent configuration values are missing.");
+                    MessageBox.Show("FerryEvent configuration values are missing.");
+                    return;
+                }
+                FerryEventSBAction = new ActionInfo { id = FerryEventId, name = FerryEventName };
+                //MessageBox.Show("FerryEventSBAction: \n{\n id = " + FerryEventId + ",\n name = " + FerryEventName + "\n}");
+                string RefuelEventId = configuration.GetSection("Actions:RefuelEvent:Id").Value;
+                string RefuelEventName = configuration.GetSection("Actions:RefuelEvent:Name").Value;
+                if (RefuelEventId == null || RefuelEventName == null)
+                {
+                    Console.WriteLine("RefuelEvent configuration values are missing.");
+                    MessageBox.Show("RefuelEvent configuration values are missing.");
+                    return;
+                }
+                RefuelEventSBAction = new ActionInfo { id = RefuelEventId, name = RefuelEventName };
+                //MessageBox.Show("RefuelEventSBAction: \n{\n id = " + RefuelEventId + ",\n name = " + RefuelEventName + "\n}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
             //MessageBox.Show("RefuelEventSBAction: " + RefuelEventSBAction);
             /*
             try
@@ -652,51 +722,17 @@ namespace SCSSdkClient.Demo {
         private void button1_Click(object sender, EventArgs e)
         {
             var sleep = 1 * 1000;
-            //TelemetryFerry(null,e);
-            //var jsdo = JsonConvert.DeserializeObject(gameplayevent.Text);
-            //MessageBox.Show(jsdo.FerryEvent);
-            /*
-                        var myObject1 = JsonConvert.DeserializeObject<MyJsonObject2>(gameplayevent.Text);
 
-                        // Access the PayAmount property
-                        //decimal payAmount = myObject.FerryEvent.PayAmount;
-                        var json = JsonConvert.SerializeObject(myObject1.FerryEvent);
-                        MessageBox.Show(json, "Ferry");
-
-                        //json = JsonConvert.SerializeObject(raw);
-
-                        //Task.Delay(2000);
-                        var myObject = new MyJsonObject
-                        {
-                            action = new ActionInfo
-                            {
-                                //id = TestActionId,
-                                //name = TestActionName
-                                id = JobActionId,
-                                name = JobActionName
-                            },
-                            args = new Dictionary<string, string>
-                                {
-                                //{ "Amount", "140" },
-                                //{ "Offence", "red_light" },
-                                //{ "json", "{\"DeliveryTime\":{\"Value\":0,\"Date\":\"0001-01-01T00:00:00Z\"},\"RemainingDeliveryTime\":{\"Value\":0,\"Date\":\"0001-01-01T00:00:00Z\"},\"CargoLoaded\":false,\"SpecialJob\":false,\"Market\":0,\"PlannedDistanceKm\":0,\"CargoValues\":{\"Mass\":0,\"Id\":\"\",\"Name\":\"\",\"UnitCount\":0,\"UnitMass\":0,\"CargoDamage\":0},\"CityDestinationId\":\"\",\"CityDestination\":\"\",\"CompanyDestinationId\":\"\",\"CompanyDestination\":\"\",\"CitySourceId\":\"\",\"CitySource\":\"\",\"CompanySourceId\":\"\",\"CompanySource\":\"\",\"Income\":0}"}
-                                  {"json", json }
-                                }
-                        };
-                        PostJsonDataAsync(myObject);
-             
-            */
-
-            Ferry(gameplayevent.Text);
+            Started(job.Text);
             System.Threading.Thread.Sleep(sleep);
 
-            Fined(gameplayevent.Text);
+            Delivered(gameplayevent.Text);
             System.Threading.Thread.Sleep(sleep);
 
             Cancelled(gameplayevent.Text);
             System.Threading.Thread.Sleep(sleep);
 
-            Delivered(gameplayevent.Text);
+            Fined(gameplayevent.Text);
             System.Threading.Thread.Sleep(sleep);
 
             Tollgate(gameplayevent.Text);
@@ -705,115 +741,11 @@ namespace SCSSdkClient.Demo {
             Train(gameplayevent.Text);
             System.Threading.Thread.Sleep(sleep);
 
+            Ferry(gameplayevent.Text);
+            System.Threading.Thread.Sleep(sleep);
+
             Refuel(gameplayevent.Text);
-            System.Threading.Thread.Sleep(sleep);
-
-            Started(job.Text);
-            /*
-            var myObject1 = new GamePlayEvents();/*
-            myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(gameplayevent.Text);
-            var json = "";
-            json = JsonConvert.SerializeObject(myObject1.FerryEvent);
-            MessageBox.Show(json, "FerryEvent");
-            var myObject = new MyJsonObject();/*
-            var myObject = createMyJsonObject(FerryEventSBAction, "FerryEvent", json);
-            //var args = new Dictionary<string, string> { { "event", "FerryEvent" }, { "json", json } };
-            //myObject = new MyJsonObject {action = FerryEventSBAction, args = args };
-            PostJsonDataAsync(myObject);
-            
-            System.Threading.Thread.Sleep(sleep);
-            //Task.Delay(10000);
-            json = JsonConvert.SerializeObject(myObject1.FinedEvent);
-            MessageBox.Show(json, "FinedEvent");
-            myObject = createMyJsonObject(FinedEventSBAction, "FinedEvent", json);
-            //args = new Dictionary<string, string> { { "event", "FinedEvent" }, { "json", json } };
-            //myObject = new MyJsonObject { action = FinedEventSBAction, args = args };
-            PostJsonDataAsync(myObject);
-
-            System.Threading.Thread.Sleep(sleep);
-            //Task.Delay(10000);
-            json = JsonConvert.SerializeObject(myObject1.JobCancelled);
-            MessageBox.Show(json, "JobCancelled");
-            myObject = createMyJsonObject(JobCancelledSBAction, "JobCancelled", json);
-            //args = new Dictionary<string, string> { { "event", "JobCancelled" }, { "json", json } };
-            //myObject = new MyJsonObject { action = JobCancelledSBAction, args = args };
-            PostJsonDataAsync(myObject);
-
-            System.Threading.Thread.Sleep(sleep);
-            //Task.Delay(10000);
-            json = JsonConvert.SerializeObject(myObject1.JobDelivered);
-            MessageBox.Show(json, "JobDelivered");
-            myObject = createMyJsonObject(JobDeliveredSBAction, "JobDelivered", json);
-            //args = new Dictionary<string, string> { { "event", "JobDelivered" }, { "json", json } };
-            //myObject = new MyJsonObject { action = JobDeliveredSBAction, args = args };
-            PostJsonDataAsync(myObject);
-
-            System.Threading.Thread.Sleep(sleep);
-            //Task.Delay(10000);
-            json = JsonConvert.SerializeObject(myObject1.TollgateEvent);
-            MessageBox.Show(json, "TollgateEvent");
-            myObject = createMyJsonObject(TollgateEventSBAction, "TollgateEvent", json);
-            //args = new Dictionary<string, string> { { "event", "TollgateEvent" }, { "json", json } };
-            //myObject = new MyJsonObject { action = TollgateEventSBAction, args = args };
-            PostJsonDataAsync(myObject);
-
-            System.Threading.Thread.Sleep(sleep);
-            //Task.Delay(10000);
-            json = JsonConvert.SerializeObject(myObject1.TrainEvent);
-            MessageBox.Show(json, "TrainEvent");
-            myObject = createMyJsonObject(TrainEventSBAction, "TrainEvent", json);
-            //args = new Dictionary<string, string> { { "event", "TrainEvent" }, { "json", json } };
-            //myObject = new MyJsonObject { action = TrainEventSBAction, args = args };
-            PostJsonDataAsync(myObject);
-
-            System.Threading.Thread.Sleep(sleep);
-            //Task.Delay(10000);
-            json = JsonConvert.SerializeObject(myObject1.RefuelEvent);
-            MessageBox.Show(json, "RefuelEvent");
-            myObject = createMyJsonObject(RefuelEventSBAction, "RefuelEvent", json);
-            //args = new Dictionary<string, string> { { "event", "RefuelEvent" }, { "json", json } };
-            //myObject = new MyJsonObject { action = RefuelEventSBAction, args = args };
-            PostJsonDataAsync(myObject);
-            */
-
-
-
-
-
-
-
         }
 
-        /*
-        private async Task<String> PostToStreamerbot()
-        {
-            var values = new Dictionary<string, string>
-              {
-                  { "thing1", "hello" },
-                  { "thing2", "world" }
-              };
-        / *
-            var obj = new Dictionary<string, Dictionary<string, string>>
-            {
-                { "action": { "id": "034beca8-9461-4514-b00b-3d116bab78e4","name": "Test"},
-                 "args": { "key", "value"}
-            };
-        * /
-        var data = { "action": { "id": "034beca8-9461-4514-b00b-3d116bab78e4","name": "Test"},"args": { "key", "value"}};
-
-        var json = JsonConvert.SerializeObject(data);
-
-        var json = "{\"action\": {\"id\": \"034beca8-9461-4514-b00b-3d116bab78e4\",\"name\": \"Test\"}," +
-                  "\"args\": {\"key\": \"value\",}};";
-
-
-            var content = new FormUrlEncodedContent(values);
-
-            var response = await client.PostAsync("http://127.0.0.1:7474/DoAction", content);
-
-            var responseString = await response.Content.ReadAsStringAsync();
-
-            return "";
-        }*/
     }
 }
