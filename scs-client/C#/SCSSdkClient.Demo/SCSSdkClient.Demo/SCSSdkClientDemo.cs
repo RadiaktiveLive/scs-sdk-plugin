@@ -1,5 +1,4 @@
 ﻿using System;
-//using System.Configuration;
 using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.Extensions.Configuration;
@@ -11,7 +10,6 @@ using System.Threading.Tasks;
 using System.Text;
 using static SCSSdkClient.Object.SCSTelemetry;
 using static SCSSdkClient.Demo.SCSSdkClientDemo;
-using static SCSSdkClient.Demo.CustomSettingsSection;
 using System.IO;
 
 namespace SCSSdkClient.Demo {
@@ -25,38 +23,22 @@ namespace SCSSdkClient.Demo {
         public SCSSdkTelemetry Telemetry;
 
         ///
-        //public const string StreamerbotUrl = "http://127.0.0.1:7474/DoAction";
-        ///
-        //public const string TestActionId = "034beca8-9461-4514-b00b-3d116bab78e4";
-        ///
-        //public const string TestActionName = "Test";
-        /*
-        ///
-        public ActionInfo JobInfoSBAction = new ActionInfo { id = "2fb96e1d-c7db-424d-8082-4208c74b6868", name = "JobStarted" };
-        ///
-        public ActionInfo FerryEventSBAction = new ActionInfo { id = "5b647f19-a79a-40f3-8d7e-a68152cb7f9a", name = "FerryEvent" };
-        ///
-        public ActionInfo FinedEventSBAction = new ActionInfo { id = "4eca0dfc-3c19-40ae-b6e0-3c936fe71ef7", name = "FinedEvent" };
-        ///
-        public ActionInfo JobCancelledSBAction = new ActionInfo { id = "8eea589f-b513-4499-8602-40b914f8c749", name = "JobCancelled" };
-        ///
-        public ActionInfo JobDeliveredSBAction = new ActionInfo { id = "d9aee73d-c46c-4e7e-99a7-b9dda5c698cc", name = "JobDelivered" };
-        ///
-        public ActionInfo TollgateEventSBAction = new ActionInfo { id = "7196bf3f-b53d-4cc3-8242-6c9f98d02f8c", name = "TollgateEvent" };
-        ///
-        public ActionInfo TrainEventSBAction = new ActionInfo { id = "4f24d6ab-0712-482e-80c0-4ace8a693a4b", name = "TrainEvent" };
-        ///
-        public ActionInfo RefuelEventSBAction = new ActionInfo { id = "b63b68cd-5a3a-46f8-a08f-ef276c84e500", name = "RefuelEvent" };
-        */
         public string StreamerbotUrl;
-
+        ///
         public ActionInfo JobStartedSBAction;
+        ///
         public ActionInfo FerryEventSBAction;
+        ///
         public ActionInfo FinedEventSBAction;
+        ///
         public ActionInfo JobCancelledSBAction;
+        ///
         public ActionInfo JobDeliveredSBAction;
+        ///
         public ActionInfo TollgateEventSBAction;
+        ///
         public ActionInfo TrainEventSBAction;
+        ///
         public ActionInfo RefuelEventSBAction;
 
         private static readonly HttpClient client = new HttpClient();
@@ -241,15 +223,7 @@ namespace SCSSdkClient.Demo {
             //MessageBox.Show("Train");
             Train(gameplayevent.Text);
         }
-        /*
-        public class MyData
-        {
-            public string Action { get; set; }
-                public int Id { get; set; }
-                public string Name { get; set; }
 
-        }
-        */
         ///
         public class MyJsonObject
         {
@@ -288,8 +262,6 @@ namespace SCSSdkClient.Demo {
                 }
             }
         }
-
-
 
         ///
         public class FerryEvent
@@ -411,12 +383,6 @@ namespace SCSSdkClient.Demo {
         {
             try
             {
-                /*
-                var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-                */
-
                 var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory());
 
                 string jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
@@ -427,25 +393,21 @@ namespace SCSSdkClient.Demo {
                 }
                 else
                 {
-                    Console.WriteLine("The file appsettings.json does not exist in the current directory.");
                     MessageBox.Show("The file appsettings.json does not exist in the current directory.");
                     return;
                 }
 
                 IConfigurationRoot configuration = builder.Build();
-                //MessageBox.Show(configuration.GetSection("Connection").Value);
+
                 string Protocol = configuration.GetSection("Connection:Protocol").Value;
                 string Ip = configuration.GetSection("Connection:Ip").Value;
                 string Port = configuration.GetSection("Connection:Port").Value;
                 string Endpoint = configuration.GetSection("Connection:Endpoint").Value;
                 if (Protocol == null || Ip == null || Port == null || Endpoint == null)
                 {
-                    Console.WriteLine("One or more Connection values are missing.");
                     MessageBox.Show("One or more Connection values are missing.");
                     return;
                 }
-                //StreamerbotUrl = Protocol + "://" + Ip + ":" + Port + "/" + Endpoint;
-                //MessageBox.Show("StreamerbotUrl: "+ StreamerbotUrl);
                 var uriBuilder = new UriBuilder(Protocol, Ip, int.Parse(Port), Endpoint);
                 StreamerbotUrl = uriBuilder.ToString();
                 //MessageBox.Show("StreamerbotUrl: " + StreamerbotUrl);
@@ -454,77 +416,76 @@ namespace SCSSdkClient.Demo {
                 string JobStartedName = configuration.GetSection("Actions:JobStarted:Name").Value;
                 if (JobStartedId == null || JobStartedName == null)
                 {
-                    Console.WriteLine("JobStarted configuration values are missing.");
                     MessageBox.Show("JobStarted configuration values are missing.");
                     return;
                 }
                 JobStartedSBAction = new ActionInfo { id = JobStartedId, name = JobStartedName };
                 //MessageBox.Show("JobStartedSBAction: \n{\n id = " + JobStartedId + ",\n name = " + JobStartedName + "\n}");
+
                 string JobDeliveredId = configuration.GetSection("Actions:JobDelivered:Id").Value;
                 string JobDeliveredName = configuration.GetSection("Actions:JobDelivered:Name").Value;
                 if (JobDeliveredId == null || JobDeliveredName == null)
                 {
-                    Console.WriteLine("JobDelivered configuration values are missing.");
                     MessageBox.Show("JobDelivered configuration values are missing.");
                     return;
                 }
                 JobDeliveredSBAction = new ActionInfo { id = JobDeliveredId, name = JobDeliveredName };
                 //MessageBox.Show("JobDeliveredSBAction: \n{\n id = " + JobDeliveredId + ",\n name = " + JobDeliveredName + "\n}");
+
                 string JobCancelledId = configuration.GetSection("Actions:JobCancelled:Id").Value;
                 string JobCancelledName = configuration.GetSection("Actions:JobCancelled:Name").Value;
                 if (JobCancelledId == null || JobCancelledName == null)
                 {
-                    Console.WriteLine("JobCancelled configuration values are missing.");
                     MessageBox.Show("JobCancelled configuration values are missing.");
                     return;
                 }
                 JobCancelledSBAction = new ActionInfo { id = JobCancelledId, name = JobCancelledName };
                 //MessageBox.Show("JobCancelledSBAction: \n{\n id = " + JobCancelledId + ",\n name = " + JobCancelledName + "\n}");
+
                 string FinedEventId = configuration.GetSection("Actions:FinedEvent:Id").Value;
                 string FinedEventName = configuration.GetSection("Actions:FinedEvent:Name").Value;
                 if (FinedEventId == null || FinedEventName == null)
                 {
-                    Console.WriteLine("FinedEvent configuration values are missing.");
                     MessageBox.Show("FinedEvent configuration values are missing.");
                     return;
                 }
                 FinedEventSBAction = new ActionInfo { id = FinedEventId, name = FinedEventName };
                 //MessageBox.Show("FinedEventSBAction: \n{\n id = " + FinedEventId + ",\n name = " + FinedEventName + "\n}");
+
                 string TollgateEventId = configuration.GetSection("Actions:TollgateEvent:Id").Value;
                 string TollgateEventName = configuration.GetSection("Actions:TollgateEvent:Name").Value;
                 if (TollgateEventId == null || TollgateEventName == null)
                 {
-                    Console.WriteLine("TollgateEvent configuration values are missing.");
                     MessageBox.Show("TollgateEvent configuration values are missing.");
                     return;
                 }
                 TollgateEventSBAction = new ActionInfo { id = TollgateEventId, name = TollgateEventName };
                 //MessageBox.Show("TollgateEventSBAction: \n{\n id = " + TollgateEventId + ",\n name = " + TollgateEventName + "\n}");
+
                 string TrainEventId = configuration.GetSection("Actions:TrainEvent:Id").Value;
                 string TrainEventName = configuration.GetSection("Actions:TrainEvent:Name").Value;
                 if (TrainEventId == null || TrainEventName == null)
                 {
-                    Console.WriteLine("TrainEvent configuration values are missing.");
                     MessageBox.Show("TrainEvent configuration values are missing.");
                     return;
                 }
                 TrainEventSBAction = new ActionInfo { id = TrainEventId, name = TrainEventName };
                 //MessageBox.Show("TrainEventSBAction: \n{\n id = " + TrainEventId + ",\n name = " + TrainEventName + "\n}");
+
                 string FerryEventId = configuration.GetSection("Actions:FerryEvent:Id").Value;
                 string FerryEventName = configuration.GetSection("Actions:FerryEvent:Name").Value;
                 if (FerryEventId == null || FerryEventName == null)
                 {
-                    Console.WriteLine("FerryEvent configuration values are missing.");
                     MessageBox.Show("FerryEvent configuration values are missing.");
                     return;
                 }
                 FerryEventSBAction = new ActionInfo { id = FerryEventId, name = FerryEventName };
                 //MessageBox.Show("FerryEventSBAction: \n{\n id = " + FerryEventId + ",\n name = " + FerryEventName + "\n}");
+
                 string RefuelEventId = configuration.GetSection("Actions:RefuelEvent:Id").Value;
                 string RefuelEventName = configuration.GetSection("Actions:RefuelEvent:Name").Value;
                 if (RefuelEventId == null || RefuelEventName == null)
                 {
-                    Console.WriteLine("RefuelEvent configuration values are missing.");
                     MessageBox.Show("RefuelEvent configuration values are missing.");
                     return;
                 }
@@ -533,117 +494,8 @@ namespace SCSSdkClient.Demo {
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                MessageBox.Show($"An error occurred: {ex.Message}");
             }
-            //MessageBox.Show("RefuelEventSBAction: " + RefuelEventSBAction);
-            /*
-            try
-            {
-                var customSettings = ConfigurationManager.GetSection("MyCustomSettings") as CustomSettingsSection;
-
-                if (customSettings != null)
-                {
-                    Console.WriteLine($"API Key: {customSettings.ApiKey}");
-                    Console.WriteLine($"Service URL: {customSettings.ServiceUrl}");
-                }
-            }
-            catch (ConfigurationErrorsException ex)
-            {
-                Console.WriteLine($"Error reading configuration: {ex.Message}");
-            }
-            */
-            //MessageBox.Show("1");
-            /*
-            try
-            {
-                var customSettings = ConfigurationManager.GetSection("JobInfoSBAction") as CustomSettingsSection;
-                //MessageBox.Show("2");
-                //MessageBox.Show(customSettings.ToString());
-                //MessageBox.Show(customSettings.id.ToString());
-                //MessageBox.Show(ConfigurationManager.GetSection("JobInfoSBAction").ToString());
-                MessageBox.Show((customSettings != null).ToString());
-                if (customSettings != null)
-                {
-                    MessageBox.Show("3");
-                    JobInfoSBAction = new ActionInfo { id = customSettings.id, name = customSettings.name};
-                }
-                
-                customSettings = ConfigurationManager.GetSection("FerryEventSBAction") as CustomSettingsSection;
-                if (customSettings != null)
-                {
-                    FerryEventSBAction = new ActionInfo { id = customSettings.id, name = customSettings.name };
-                }
-
-                customSettings = ConfigurationManager.GetSection("FinedEventSBAction") as CustomSettingsSection;
-                if (customSettings != null)
-                {
-                    FinedEventSBAction = new ActionInfo { id = customSettings.id, name = customSettings.name };
-                }
-
-                customSettings = ConfigurationManager.GetSection("JobCancelledSBAction") as CustomSettingsSection;
-                if (customSettings != null)
-                {
-                    JobCancelledSBAction = new ActionInfo { id = customSettings.id, name = customSettings.name };
-                }
-
-                customSettings = ConfigurationManager.GetSection("JobDeliveredSBAction") as CustomSettingsSection;
-                if (customSettings != null)
-                {
-                    JobDeliveredSBAction = new ActionInfo { id = customSettings.id, name = customSettings.name };
-                }
-
-                customSettings = ConfigurationManager.GetSection("TollgateEventSBAction") as CustomSettingsSection;
-                if (customSettings != null)
-                {
-                    TollgateEventSBAction = new ActionInfo { id = customSettings.id, name = customSettings.name };
-                }
-
-                customSettings = ConfigurationManager.GetSection("TrainEventSBAction") as CustomSettingsSection;
-                if (customSettings != null)
-                {
-                    TrainEventSBAction = new ActionInfo { id = customSettings.id, name = customSettings.name };
-                }
-
-                customSettings = ConfigurationManager.GetSection("RefuelEventSBAction") as CustomSettingsSection;
-                if (customSettings != null)
-                {
-                    RefuelEventSBAction = new ActionInfo { id = customSettings.id, name = customSettings.name };
-                }
-
-                /*
-                var config = ConfigurationManager.OpenExeConfiguration("StreamerBot.config");
-                var someKeyValue = config.JobInfoSBAction.Settings["someKey"].Value;
-                * /
-
-                /*
-                // Specify the custom configuration file path
-                var configFileMap = new ExeConfigurationFileMap
-                {
-                    ExeConfigFilename = "StreamerBot.config"
-                };
-
-                // Open the configuration file
-                var config = ConfigurationManager.OpenMappedExeConfiguration(configFileMap, ConfigurationUserLevel.None);
-
-                // Read settings from the custom configuration file
-                var someSetting = config.JobInfoSBAction.Settings["SomeKey"].Value;
-                * /
-                //JobInfoSBAction = new ActionInfo { id = "2fb96e1d-c7db-424d-8082-4208c74b6868", name = "Job" };
-                /*
-                FerryEventSBAction = new ActionInfo { id = "2fb96e1d-c7db-424d-8082-4208c74b6868", name = "Job" };
-                FinedEventSBAction;
-                JobCancelledSBAction;
-                JobDeliveredSBAction;
-                TollgateEventSBAction;
-                TrainEventSBAction;
-                RefuelEventSBAction;
-                * /
-            }
-            catch (ConfigurationErrorsException ex)
-            {
-                //Console.WriteLine($"Error reading configuration: {ex.Message}");
-            }
-    */
         }
 
         private MyJsonObject createMyJsonObject(ActionInfo actionInfo, string title, string json)
@@ -724,6 +576,7 @@ namespace SCSSdkClient.Demo {
             var sleep = 1 * 1000;
 
             Started(job.Text);
+            /*
             System.Threading.Thread.Sleep(sleep);
 
             Delivered(gameplayevent.Text);
@@ -745,6 +598,7 @@ namespace SCSSdkClient.Demo {
             System.Threading.Thread.Sleep(sleep);
 
             Refuel(gameplayevent.Text);
+            */
         }
 
     }

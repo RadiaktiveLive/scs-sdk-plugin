@@ -107,7 +107,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomSettingsSection.cs" />
     <Compile Include="CustomTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
