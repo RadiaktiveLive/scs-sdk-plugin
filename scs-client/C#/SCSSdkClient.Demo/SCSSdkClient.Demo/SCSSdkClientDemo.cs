@@ -25,21 +25,21 @@ namespace SCSSdkClient.Demo {
         ///
         public string StreamerbotUrl;
         ///
-        public ActionInfo JobStartedSBAction;
+        public ActionInfo JobStartedSBAction = new ActionInfo();
         ///
-        public ActionInfo FerryEventSBAction;
+        public ActionInfo FerryEventSBAction = new ActionInfo();
         ///
-        public ActionInfo FinedEventSBAction;
+        public ActionInfo FinedEventSBAction = new ActionInfo();
         ///
-        public ActionInfo JobCancelledSBAction;
+        public ActionInfo JobCancelledSBAction = new ActionInfo();
         ///
-        public ActionInfo JobDeliveredSBAction;
+        public ActionInfo JobDeliveredSBAction = new ActionInfo();
         ///
-        public ActionInfo TollgateEventSBAction;
+        public ActionInfo TollgateEventSBAction = new ActionInfo();
         ///
-        public ActionInfo TrainEventSBAction;
+        public ActionInfo TrainEventSBAction = new ActionInfo();
         ///
-        public ActionInfo RefuelEventSBAction;
+        public ActionInfo RefuelEventSBAction = new ActionInfo();
 
         private static readonly HttpClient client = new HttpClient();
 
@@ -239,6 +239,20 @@ namespace SCSSdkClient.Demo {
             public string id { get; set; }
             ///
             public string name { get; set; }
+
+            /// Constructor
+            public ActionInfo()
+            {
+                this.id = "";
+                this.name = "";
+            }
+
+            /// Constructor
+            public ActionInfo(string id, string name)
+            {
+                this.id = id;
+                this.name = name;
+            }
         }
 
         ///
@@ -419,8 +433,13 @@ namespace SCSSdkClient.Demo {
                     MessageBox.Show("JobStarted configuration values are missing.");
                     //return;
                 }
-                JobStartedSBAction = new ActionInfo { id = JobStartedId, name = JobStartedName };
-                //MessageBox.Show("JobStartedSBAction: \n{\n id = " + JobStartedId + ",\n name = " + JobStartedName + "\n}");
+                else
+                {
+                    //JobStartedSBAction = new ActionInfo { id = JobStartedId, name = JobStartedName };
+                    JobStartedSBAction.id = JobStartedId;
+                    JobStartedSBAction.name = JobStartedName;
+                }
+                //MessageBox.Show("JobStartedSBAction: \n{\n id = \"" + JobStartedSBAction.id + "\",\n name = \"" + JobStartedSBAction.name + "\"\n}");
 
                 string JobDeliveredId = configuration.GetSection("Actions:JobDelivered:Id").Value;
                 string JobDeliveredName = configuration.GetSection("Actions:JobDelivered:Name").Value;
@@ -429,8 +448,13 @@ namespace SCSSdkClient.Demo {
                     MessageBox.Show("JobDelivered configuration values are missing.");
                     //return;
                 }
-                JobDeliveredSBAction = new ActionInfo { id = JobDeliveredId, name = JobDeliveredName };
-                //MessageBox.Show("JobDeliveredSBAction: \n{\n id = " + JobDeliveredId + ",\n name = " + JobDeliveredName + "\n}");
+                else
+                {
+                    //JobDeliveredSBAction = new ActionInfo { id = JobDeliveredId, name = JobDeliveredName };
+                    JobDeliveredSBAction.id = JobDeliveredId;
+                    JobDeliveredSBAction.name = JobDeliveredName;
+                }
+                //MessageBox.Show("JobDeliveredSBAction: \n{\n id = \"" + JobDeliveredSBAction.id + "\",\n name = \"" + JobDeliveredSBAction.name + "\"\n}");
 
                 string JobCancelledId = configuration.GetSection("Actions:JobCancelled:Id").Value;
                 string JobCancelledName = configuration.GetSection("Actions:JobCancelled:Name").Value;
@@ -439,8 +463,13 @@ namespace SCSSdkClient.Demo {
                     MessageBox.Show("JobCancelled configuration values are missing.");
                     //return;
                 }
-                JobCancelledSBAction = new ActionInfo { id = JobCancelledId, name = JobCancelledName };
-                //MessageBox.Show("JobCancelledSBAction: \n{\n id = " + JobCancelledId + ",\n name = " + JobCancelledName + "\n}");
+                else
+                {
+                    //JobCancelledSBAction = new ActionInfo { id = JobCancelledId, name = JobCancelledName };
+                    JobCancelledSBAction.id = JobCancelledId;
+                    JobCancelledSBAction.name = JobCancelledName;
+                }
+                //MessageBox.Show("JobCancelledSBAction: \n{\n id = \"" + JobCancelledSBAction.id + "\",\n name = \"" + JobCancelledSBAction.name + "\"\n}");
 
                 string FinedEventId = configuration.GetSection("Actions:FinedEvent:Id").Value;
                 string FinedEventName = configuration.GetSection("Actions:FinedEvent:Name").Value;
@@ -449,8 +478,13 @@ namespace SCSSdkClient.Demo {
                     MessageBox.Show("FinedEvent configuration values are missing.");
                     //return;
                 }
-                FinedEventSBAction = new ActionInfo { id = FinedEventId, name = FinedEventName };
-                //MessageBox.Show("FinedEventSBAction: \n{\n id = " + FinedEventId + ",\n name = " + FinedEventName + "\n}");
+                else
+                {
+                    //FinedEventSBAction = new ActionInfo { id = FinedEventId, name = FinedEventName };
+                    FinedEventSBAction.id = FinedEventId;
+                    FinedEventSBAction.name = FinedEventName;
+                }
+                //MessageBox.Show("FinedEventSBAction: \n{\n id = \"" + FinedEventSBAction.id + "\",\n name = \"" + FinedEventSBAction.name + "\"\n}");
 
                 string TollgateEventId = configuration.GetSection("Actions:TollgateEvent:Id").Value;
                 string TollgateEventName = configuration.GetSection("Actions:TollgateEvent:Name").Value;
@@ -459,8 +493,13 @@ namespace SCSSdkClient.Demo {
                     MessageBox.Show("TollgateEvent configuration values are missing.");
                     //return;
                 }
-                TollgateEventSBAction = new ActionInfo { id = TollgateEventId, name = TollgateEventName };
-                //MessageBox.Show("TollgateEventSBAction: \n{\n id = " + TollgateEventId + ",\n name = " + TollgateEventName + "\n}");
+                else
+                {
+                    //TollgateEventSBAction = new ActionInfo { id = TollgateEventId, name = TollgateEventName };
+                    TollgateEventSBAction.id = TollgateEventId;
+                    TollgateEventSBAction.name = TollgateEventName;
+                }
+                //MessageBox.Show("TollgateEventSBAction: \n{\n id = \"" + TollgateEventSBAction.id + "\",\n name = \"" + TollgateEventSBAction.name + "\"\n}");
 
                 string TrainEventId = configuration.GetSection("Actions:TrainEvent:Id").Value;
                 string TrainEventName = configuration.GetSection("Actions:TrainEvent:Name").Value;
@@ -469,8 +508,13 @@ namespace SCSSdkClient.Demo {
                     MessageBox.Show("TrainEvent configuration values are missing.");
                     //return;
                 }
-                TrainEventSBAction = new ActionInfo { id = TrainEventId, name = TrainEventName };
-                //MessageBox.Show("TrainEventSBAction: \n{\n id = " + TrainEventId + ",\n name = " + TrainEventName + "\n}");
+                else
+                {
+                    //TrainEventSBAction = new ActionInfo { id = TrainEventId, name = TrainEventName };
+                    TrainEventSBAction.id = TrainEventId;
+                    TrainEventSBAction.name = TrainEventName;
+                }
+                //MessageBox.Show("TrainEventSBAction: \n{\n id = \"" + TrainEventSBAction.id + "\",\n name = \"" + TrainEventSBAction.name + "\"\n}");
 
                 string FerryEventId = configuration.GetSection("Actions:FerryEvent:Id").Value;
                 string FerryEventName = configuration.GetSection("Actions:FerryEvent:Name").Value;
@@ -479,8 +523,13 @@ namespace SCSSdkClient.Demo {
                     MessageBox.Show("FerryEvent configuration values are missing.");
                     //return;
                 }
-                FerryEventSBAction = new ActionInfo { id = FerryEventId, name = FerryEventName };
-                //MessageBox.Show("FerryEventSBAction: \n{\n id = " + FerryEventId + ",\n name = " + FerryEventName + "\n}");
+                else
+                {
+                    //FerryEventSBAction = new ActionInfo { id = FerryEventId, name = FerryEventName };
+                    FerryEventSBAction.id = FerryEventId;
+                    FerryEventSBAction.name = FerryEventName;
+                }
+                //MessageBox.Show("FerryEventSBAction: \n{\n id = \"" + FerryEventSBAction.id + "\",\n name = \"" + FerryEventSBAction.name + "\"\n}");
 
                 string RefuelEventId = configuration.GetSection("Actions:RefuelEvent:Id").Value;
                 string RefuelEventName = configuration.GetSection("Actions:RefuelEvent:Name").Value;
@@ -489,8 +538,13 @@ namespace SCSSdkClient.Demo {
                     MessageBox.Show("RefuelEvent configuration values are missing.");
                     //return;
                 }
-                RefuelEventSBAction = new ActionInfo { id = RefuelEventId, name = RefuelEventName };
-                //MessageBox.Show("RefuelEventSBAction: \n{\n id = " + RefuelEventId + ",\n name = " + RefuelEventName + "\n}");
+                else
+                {
+                    //RefuelEventSBAction = new ActionInfo { id = RefuelEventId, name = RefuelEventName };
+                    RefuelEventSBAction.id = RefuelEventId;
+                    RefuelEventSBAction.name = RefuelEventName;
+                }
+                //MessageBox.Show("RefuelEventSBAction: \n{\n id = \"" + RefuelEventSBAction.id + "\",\n name = \"" + RefuelEventSBAction.name + "\"\n}");
             }
             catch (Exception ex)
             {
