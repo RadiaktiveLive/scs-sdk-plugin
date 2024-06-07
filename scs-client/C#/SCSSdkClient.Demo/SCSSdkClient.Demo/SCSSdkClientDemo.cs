@@ -406,7 +406,7 @@ namespace SCSSdkClient.Demo {
                 if (Protocol == null || Ip == null || Port == null || Endpoint == null)
                 {
                     MessageBox.Show("One or more Connection values are missing.");
-                    return;
+                    //return;
                 }
                 var uriBuilder = new UriBuilder(Protocol, Ip, int.Parse(Port), Endpoint);
                 StreamerbotUrl = uriBuilder.ToString();
@@ -417,7 +417,7 @@ namespace SCSSdkClient.Demo {
                 if (JobStartedId == null || JobStartedName == null)
                 {
                     MessageBox.Show("JobStarted configuration values are missing.");
-                    return;
+                    //return;
                 }
                 JobStartedSBAction = new ActionInfo { id = JobStartedId, name = JobStartedName };
                 //MessageBox.Show("JobStartedSBAction: \n{\n id = " + JobStartedId + ",\n name = " + JobStartedName + "\n}");
@@ -427,7 +427,7 @@ namespace SCSSdkClient.Demo {
                 if (JobDeliveredId == null || JobDeliveredName == null)
                 {
                     MessageBox.Show("JobDelivered configuration values are missing.");
-                    return;
+                    //return;
                 }
                 JobDeliveredSBAction = new ActionInfo { id = JobDeliveredId, name = JobDeliveredName };
                 //MessageBox.Show("JobDeliveredSBAction: \n{\n id = " + JobDeliveredId + ",\n name = " + JobDeliveredName + "\n}");
@@ -437,7 +437,7 @@ namespace SCSSdkClient.Demo {
                 if (JobCancelledId == null || JobCancelledName == null)
                 {
                     MessageBox.Show("JobCancelled configuration values are missing.");
-                    return;
+                    //return;
                 }
                 JobCancelledSBAction = new ActionInfo { id = JobCancelledId, name = JobCancelledName };
                 //MessageBox.Show("JobCancelledSBAction: \n{\n id = " + JobCancelledId + ",\n name = " + JobCancelledName + "\n}");
@@ -447,7 +447,7 @@ namespace SCSSdkClient.Demo {
                 if (FinedEventId == null || FinedEventName == null)
                 {
                     MessageBox.Show("FinedEvent configuration values are missing.");
-                    return;
+                    //return;
                 }
                 FinedEventSBAction = new ActionInfo { id = FinedEventId, name = FinedEventName };
                 //MessageBox.Show("FinedEventSBAction: \n{\n id = " + FinedEventId + ",\n name = " + FinedEventName + "\n}");
@@ -457,7 +457,7 @@ namespace SCSSdkClient.Demo {
                 if (TollgateEventId == null || TollgateEventName == null)
                 {
                     MessageBox.Show("TollgateEvent configuration values are missing.");
-                    return;
+                    //return;
                 }
                 TollgateEventSBAction = new ActionInfo { id = TollgateEventId, name = TollgateEventName };
                 //MessageBox.Show("TollgateEventSBAction: \n{\n id = " + TollgateEventId + ",\n name = " + TollgateEventName + "\n}");
@@ -467,7 +467,7 @@ namespace SCSSdkClient.Demo {
                 if (TrainEventId == null || TrainEventName == null)
                 {
                     MessageBox.Show("TrainEvent configuration values are missing.");
-                    return;
+                    //return;
                 }
                 TrainEventSBAction = new ActionInfo { id = TrainEventId, name = TrainEventName };
                 //MessageBox.Show("TrainEventSBAction: \n{\n id = " + TrainEventId + ",\n name = " + TrainEventName + "\n}");
@@ -477,7 +477,7 @@ namespace SCSSdkClient.Demo {
                 if (FerryEventId == null || FerryEventName == null)
                 {
                     MessageBox.Show("FerryEvent configuration values are missing.");
-                    return;
+                    //return;
                 }
                 FerryEventSBAction = new ActionInfo { id = FerryEventId, name = FerryEventName };
                 //MessageBox.Show("FerryEventSBAction: \n{\n id = " + FerryEventId + ",\n name = " + FerryEventName + "\n}");
@@ -487,7 +487,7 @@ namespace SCSSdkClient.Demo {
                 if (RefuelEventId == null || RefuelEventName == null)
                 {
                     MessageBox.Show("RefuelEvent configuration values are missing.");
-                    return;
+                    //return;
                 }
                 RefuelEventSBAction = new ActionInfo { id = RefuelEventId, name = RefuelEventName };
                 //MessageBox.Show("RefuelEventSBAction: \n{\n id = " + RefuelEventId + ",\n name = " + RefuelEventName + "\n}");
@@ -571,12 +571,14 @@ namespace SCSSdkClient.Demo {
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonTriggerActions_Click(object sender, EventArgs e)
         {
+            contextMenuStripTriggerActions.Show(buttonTriggerActions, new Point(0, buttonTriggerActions.Height)); // Shows the menu strip below the button
+            /*
             var sleep = 1 * 1000;
 
             Started(job.Text);
-            /*
+            
             System.Threading.Thread.Sleep(sleep);
 
             Delivered(gameplayevent.Text);
@@ -600,6 +602,78 @@ namespace SCSSdkClient.Demo {
             Refuel(gameplayevent.Text);
             */
         }
+        /*
+        private void contextMenuStripTriggerActions_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
 
+        }
+        */
+        private void toolStripRunAll_Click(object sender, EventArgs e)
+        {
+            var sleep = 1 * 1000;
+
+            Started(job.Text);
+            System.Threading.Thread.Sleep(sleep);
+
+            Delivered(gameplayevent.Text);
+            System.Threading.Thread.Sleep(sleep);
+
+            Cancelled(gameplayevent.Text);
+            System.Threading.Thread.Sleep(sleep);
+
+            Fined(gameplayevent.Text);
+            System.Threading.Thread.Sleep(sleep);
+
+            Tollgate(gameplayevent.Text);
+            System.Threading.Thread.Sleep(sleep);
+
+            Train(gameplayevent.Text);
+            System.Threading.Thread.Sleep(sleep);
+
+            Ferry(gameplayevent.Text);
+            System.Threading.Thread.Sleep(sleep);
+
+            Refuel(gameplayevent.Text);
+        }
+
+        private void toolStripJobStarted_Click(object sender, EventArgs e)
+        {
+            Started(job.Text);
+        }
+
+        private void toolStripJobDelivered_Click(object sender, EventArgs e)
+        {
+            Delivered(gameplayevent.Text);
+        }
+
+        private void toolStripJobCancelled_Click(object sender, EventArgs e)
+        {
+            Cancelled(gameplayevent.Text);
+        }
+
+        private void toolStripFinedEvent_Click(object sender, EventArgs e)
+        {
+            Fined(gameplayevent.Text);
+        }
+
+        private void toolStripTollgateEvent_Click(object sender, EventArgs e)
+        {
+            Tollgate(gameplayevent.Text);
+        }
+
+        private void toolStripTrainEvent_Click(object sender, EventArgs e)
+        {
+            Train(gameplayevent.Text);
+        }
+
+        private void toolStripFerryEvent_Click(object sender, EventArgs e)
+        {
+            Ferry(gameplayevent.Text);
+        }
+
+        private void toolStripRefuelEvent_Click(object sender, EventArgs e)
+        {
+            Refuel(gameplayevent.Text);
+        }
     }
 }
