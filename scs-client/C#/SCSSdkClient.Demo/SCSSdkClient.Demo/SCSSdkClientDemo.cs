@@ -11,6 +11,7 @@ using System.Text;
 using static SCSSdkClient.Object.SCSTelemetry;
 using static SCSSdkClient.Demo.SCSSdkClientDemo;
 using System.IO;
+using System.Security.Policy;
 
 namespace SCSSdkClient.Demo {
 
@@ -23,7 +24,7 @@ namespace SCSSdkClient.Demo {
         public SCSSdkTelemetry Telemetry;
 
         ///
-        public string StreamerbotUrl;
+        public string StreamerbotUrl = "";
         ///
         public ActionInfo JobStartedSBAction = new ActionInfo();
         ///
@@ -232,6 +233,7 @@ namespace SCSSdkClient.Demo {
             ///
             public Dictionary<string, string> args { get; set; }
         }
+        
         ///
         public class ActionInfo
         {
@@ -258,13 +260,18 @@ namespace SCSSdkClient.Demo {
         ///
         public async Task<string> PostJsonDataAsync(MyJsonObject data)
         {
-            var url = StreamerbotUrl;
+            //var url = StreamerbotUrl;
+            if (StreamerbotUrl.Equals(""))
+            {
+                return null;
+            }
             using (var client = new HttpClient())
             {
                 var json = JsonConvert.SerializeObject(data);
                 //MessageBox.Show(json);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync(url, content);
+                //var response = await client.PostAsync(url, content);
+                var response = await client.PostAsync(StreamerbotUrl, content);
                 if (response.IsSuccessStatusCode)
                 {
                     return await response.Content.ReadAsStringAsync();
@@ -291,6 +298,7 @@ namespace SCSSdkClient.Demo {
             ///
             public string TargetName { get; set; }
         }
+        
         ///
         public class FinedEvent
         {
@@ -422,8 +430,11 @@ namespace SCSSdkClient.Demo {
                     MessageBox.Show("One or more Connection values are missing.");
                     //return;
                 }
-                var uriBuilder = new UriBuilder(Protocol, Ip, int.Parse(Port), Endpoint);
-                StreamerbotUrl = uriBuilder.ToString();
+                else
+                {
+                    var uriBuilder = new UriBuilder(Protocol, Ip, int.Parse(Port), Endpoint);
+                    StreamerbotUrl = uriBuilder.ToString();
+                }
                 //MessageBox.Show("StreamerbotUrl: " + StreamerbotUrl);
 
                 string JobStartedId = configuration.GetSection("Actions:JobStarted:Id").Value;
