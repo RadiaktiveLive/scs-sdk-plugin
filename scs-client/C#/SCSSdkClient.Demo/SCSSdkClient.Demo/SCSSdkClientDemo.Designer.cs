@@ -71,6 +71,23 @@ namespace SCSSdkClient.Demo
             this.substances = new System.Windows.Forms.RichTextBox();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.gameplayevent = new System.Windows.Forms.RichTextBox();
+            this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.refuelevent = new System.Windows.Forms.RichTextBox();
+            this.ferryevent = new System.Windows.Forms.RichTextBox();
+            this.trainevent = new System.Windows.Forms.RichTextBox();
+            this.tollgateevent = new System.Windows.Forms.RichTextBox();
+            this.finedevent = new System.Windows.Forms.RichTextBox();
+            this.jobcanceled = new System.Windows.Forms.RichTextBox();
+            this.jobdelivered = new System.Windows.Forms.RichTextBox();
+            this.jobstarted = new System.Windows.Forms.RichTextBox();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -98,6 +115,7 @@ namespace SCSSdkClient.Demo
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
+            this.tabPage9.SuspendLayout();
             this.SuspendLayout();
             // 
             // hgf
@@ -111,12 +129,13 @@ namespace SCSSdkClient.Demo
             this.hgf.Controls.Add(this.tabPage6);
             this.hgf.Controls.Add(this.tabPage7);
             this.hgf.Controls.Add(this.tabPage8);
+            this.hgf.Controls.Add(this.tabPage9);
             this.hgf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hgf.Location = new System.Drawing.Point(0, 0);
             this.hgf.Margin = new System.Windows.Forms.Padding(6);
             this.hgf.Name = "hgf";
             this.hgf.SelectedIndex = 0;
-            this.hgf.Size = new System.Drawing.Size(1190, 1194);
+            this.hgf.Size = new System.Drawing.Size(1190, 1276);
             this.hgf.TabIndex = 0;
             // 
             // tabAbout
@@ -132,7 +151,7 @@ namespace SCSSdkClient.Demo
             this.tabAbout.Margin = new System.Windows.Forms.Padding(6);
             this.tabAbout.Name = "tabAbout";
             this.tabAbout.Padding = new System.Windows.Forms.Padding(6);
-            this.tabAbout.Size = new System.Drawing.Size(1174, 1147);
+            this.tabAbout.Size = new System.Drawing.Size(1174, 1229);
             this.tabAbout.TabIndex = 0;
             this.tabAbout.Text = "About";
             this.tabAbout.UseVisualStyleBackColor = true;
@@ -150,7 +169,7 @@ namespace SCSSdkClient.Demo
             this.toolStrip.Location = new System.Drawing.Point(611, 38);
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(302, 42);
+            this.toolStrip.Size = new System.Drawing.Size(240, 42);
             this.toolStrip.Stretch = true;
             this.toolStrip.TabIndex = 6;
             this.toolStrip.Text = "toolStrip1";
@@ -281,7 +300,7 @@ namespace SCSSdkClient.Demo
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.l_updateRate});
-            this.statusStrip1.Location = new System.Drawing.Point(6, 1099);
+            this.statusStrip1.Location = new System.Drawing.Point(6, 1181);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 28, 0);
             this.statusStrip1.Size = new System.Drawing.Size(1162, 42);
@@ -338,7 +357,7 @@ namespace SCSSdkClient.Demo
             this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(1174, 1147);
+            this.tabPage1.Size = new System.Drawing.Size(1174, 1229);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Common";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -349,7 +368,7 @@ namespace SCSSdkClient.Demo
             this.common.Location = new System.Drawing.Point(6, 6);
             this.common.Margin = new System.Windows.Forms.Padding(6);
             this.common.Name = "common";
-            this.common.Size = new System.Drawing.Size(1162, 1135);
+            this.common.Size = new System.Drawing.Size(1162, 1217);
             this.common.TabIndex = 3;
             this.common.Text = "";
             // 
@@ -360,7 +379,7 @@ namespace SCSSdkClient.Demo
             this.tabPage2.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage2.Size = new System.Drawing.Size(1174, 1147);
+            this.tabPage2.Size = new System.Drawing.Size(1174, 1229);
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Truck";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -371,7 +390,7 @@ namespace SCSSdkClient.Demo
             this.truck.Location = new System.Drawing.Point(6, 6);
             this.truck.Margin = new System.Windows.Forms.Padding(6);
             this.truck.Name = "truck";
-            this.truck.Size = new System.Drawing.Size(1162, 1135);
+            this.truck.Size = new System.Drawing.Size(1162, 1217);
             this.truck.TabIndex = 4;
             this.truck.Text = "";
             // 
@@ -382,7 +401,7 @@ namespace SCSSdkClient.Demo
             this.tabPage3.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage3.Size = new System.Drawing.Size(1174, 1147);
+            this.tabPage3.Size = new System.Drawing.Size(1174, 1229);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Trailer";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -393,7 +412,7 @@ namespace SCSSdkClient.Demo
             this.trailer.Location = new System.Drawing.Point(6, 6);
             this.trailer.Margin = new System.Windows.Forms.Padding(6);
             this.trailer.Name = "trailer";
-            this.trailer.Size = new System.Drawing.Size(1162, 1135);
+            this.trailer.Size = new System.Drawing.Size(1162, 1217);
             this.trailer.TabIndex = 4;
             this.trailer.Text = "";
             // 
@@ -404,7 +423,7 @@ namespace SCSSdkClient.Demo
             this.tabPage4.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage4.Size = new System.Drawing.Size(1174, 1147);
+            this.tabPage4.Size = new System.Drawing.Size(1174, 1229);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "Job";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -415,7 +434,7 @@ namespace SCSSdkClient.Demo
             this.job.Location = new System.Drawing.Point(6, 6);
             this.job.Margin = new System.Windows.Forms.Padding(6);
             this.job.Name = "job";
-            this.job.Size = new System.Drawing.Size(1162, 1135);
+            this.job.Size = new System.Drawing.Size(1162, 1217);
             this.job.TabIndex = 4;
             this.job.Text = "";
             // 
@@ -426,7 +445,7 @@ namespace SCSSdkClient.Demo
             this.tabPage5.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage5.Size = new System.Drawing.Size(1174, 1147);
+            this.tabPage5.Size = new System.Drawing.Size(1174, 1229);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Control";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -437,7 +456,7 @@ namespace SCSSdkClient.Demo
             this.control.Location = new System.Drawing.Point(6, 6);
             this.control.Margin = new System.Windows.Forms.Padding(6);
             this.control.Name = "control";
-            this.control.Size = new System.Drawing.Size(1162, 1135);
+            this.control.Size = new System.Drawing.Size(1162, 1217);
             this.control.TabIndex = 4;
             this.control.Text = "";
             // 
@@ -448,7 +467,7 @@ namespace SCSSdkClient.Demo
             this.tabPage6.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage6.Size = new System.Drawing.Size(1174, 1147);
+            this.tabPage6.Size = new System.Drawing.Size(1174, 1229);
             this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "Navigation";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -459,7 +478,7 @@ namespace SCSSdkClient.Demo
             this.navigation.Location = new System.Drawing.Point(6, 6);
             this.navigation.Margin = new System.Windows.Forms.Padding(6);
             this.navigation.Name = "navigation";
-            this.navigation.Size = new System.Drawing.Size(1162, 1135);
+            this.navigation.Size = new System.Drawing.Size(1162, 1217);
             this.navigation.TabIndex = 4;
             this.navigation.Text = "";
             // 
@@ -470,7 +489,7 @@ namespace SCSSdkClient.Demo
             this.tabPage7.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage7.Size = new System.Drawing.Size(1174, 1147);
+            this.tabPage7.Size = new System.Drawing.Size(1174, 1229);
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "Substances";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -481,7 +500,7 @@ namespace SCSSdkClient.Demo
             this.substances.Location = new System.Drawing.Point(6, 6);
             this.substances.Margin = new System.Windows.Forms.Padding(6);
             this.substances.Name = "substances";
-            this.substances.Size = new System.Drawing.Size(1162, 1135);
+            this.substances.Size = new System.Drawing.Size(1162, 1217);
             this.substances.TabIndex = 5;
             this.substances.Text = "";
             // 
@@ -492,7 +511,7 @@ namespace SCSSdkClient.Demo
             this.tabPage8.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage8.Size = new System.Drawing.Size(1174, 1147);
+            this.tabPage8.Size = new System.Drawing.Size(1174, 1229);
             this.tabPage8.TabIndex = 8;
             this.tabPage8.Text = "GameplayEvents";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -503,9 +522,179 @@ namespace SCSSdkClient.Demo
             this.gameplayevent.Location = new System.Drawing.Point(6, 6);
             this.gameplayevent.Margin = new System.Windows.Forms.Padding(6);
             this.gameplayevent.Name = "gameplayevent";
-            this.gameplayevent.Size = new System.Drawing.Size(1162, 1135);
+            this.gameplayevent.Size = new System.Drawing.Size(1162, 1217);
             this.gameplayevent.TabIndex = 6;
             this.gameplayevent.Text = "";
+            // 
+            // tabPage9
+            // 
+            this.tabPage9.Controls.Add(this.label7);
+            this.tabPage9.Controls.Add(this.label8);
+            this.tabPage9.Controls.Add(this.label5);
+            this.tabPage9.Controls.Add(this.label6);
+            this.tabPage9.Controls.Add(this.label3);
+            this.tabPage9.Controls.Add(this.label2);
+            this.tabPage9.Controls.Add(this.label4);
+            this.tabPage9.Controls.Add(this.label1);
+            this.tabPage9.Controls.Add(this.refuelevent);
+            this.tabPage9.Controls.Add(this.ferryevent);
+            this.tabPage9.Controls.Add(this.trainevent);
+            this.tabPage9.Controls.Add(this.tollgateevent);
+            this.tabPage9.Controls.Add(this.finedevent);
+            this.tabPage9.Controls.Add(this.jobcanceled);
+            this.tabPage9.Controls.Add(this.jobdelivered);
+            this.tabPage9.Controls.Add(this.jobstarted);
+            this.tabPage9.Location = new System.Drawing.Point(8, 39);
+            this.tabPage9.Name = "tabPage9";
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage9.Size = new System.Drawing.Size(1174, 1229);
+            this.tabPage9.TabIndex = 9;
+            this.tabPage9.Text = "Events";
+            this.tabPage9.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(598, 915);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(269, 51);
+            this.label7.TabIndex = 15;
+            this.label7.Text = "RefuelEvent";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(3, 915);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(243, 51);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "FerryEvent";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(601, 610);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(241, 51);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "TrainEvent";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(6, 610);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(300, 51);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "TollgateEvent";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(598, 305);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(251, 51);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "FinedEvent";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(598, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(287, 51);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "JobDelivered";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(3, 305);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(297, 51);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "JobCancelled";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(241, 51);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "JobStarted";
+            // 
+            // refuelevent
+            // 
+            this.refuelevent.Location = new System.Drawing.Point(596, 969);
+            this.refuelevent.Name = "refuelevent";
+            this.refuelevent.Size = new System.Drawing.Size(575, 248);
+            this.refuelevent.TabIndex = 7;
+            this.refuelevent.Text = "";
+            // 
+            // ferryevent
+            // 
+            this.ferryevent.Location = new System.Drawing.Point(0, 969);
+            this.ferryevent.Name = "ferryevent";
+            this.ferryevent.Size = new System.Drawing.Size(575, 248);
+            this.ferryevent.TabIndex = 6;
+            this.ferryevent.Text = "";
+            // 
+            // trainevent
+            // 
+            this.trainevent.Location = new System.Drawing.Point(596, 664);
+            this.trainevent.Name = "trainevent";
+            this.trainevent.Size = new System.Drawing.Size(575, 248);
+            this.trainevent.TabIndex = 5;
+            this.trainevent.Text = "";
+            // 
+            // tollgateevent
+            // 
+            this.tollgateevent.Location = new System.Drawing.Point(0, 664);
+            this.tollgateevent.Name = "tollgateevent";
+            this.tollgateevent.Size = new System.Drawing.Size(575, 248);
+            this.tollgateevent.TabIndex = 4;
+            this.tollgateevent.Text = "";
+            // 
+            // finedevent
+            // 
+            this.finedevent.Location = new System.Drawing.Point(599, 359);
+            this.finedevent.Name = "finedevent";
+            this.finedevent.Size = new System.Drawing.Size(575, 248);
+            this.finedevent.TabIndex = 3;
+            this.finedevent.Text = "";
+            // 
+            // jobcanceled
+            // 
+            this.jobcanceled.Location = new System.Drawing.Point(3, 359);
+            this.jobcanceled.Name = "jobcanceled";
+            this.jobcanceled.Size = new System.Drawing.Size(575, 248);
+            this.jobcanceled.TabIndex = 2;
+            this.jobcanceled.Text = "";
+            // 
+            // jobdelivered
+            // 
+            this.jobdelivered.Location = new System.Drawing.Point(596, 54);
+            this.jobdelivered.Name = "jobdelivered";
+            this.jobdelivered.Size = new System.Drawing.Size(575, 248);
+            this.jobdelivered.TabIndex = 1;
+            this.jobdelivered.Text = "";
+            // 
+            // jobstarted
+            // 
+            this.jobstarted.Location = new System.Drawing.Point(0, 54);
+            this.jobstarted.Name = "jobstarted";
+            this.jobstarted.Size = new System.Drawing.Size(575, 248);
+            this.jobstarted.TabIndex = 0;
+            this.jobstarted.Text = "";
             // 
             // toolStripDropDownButton1
             // 
@@ -638,7 +827,7 @@ namespace SCSSdkClient.Demo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1190, 1194);
+            this.ClientSize = new System.Drawing.Size(1190, 1276);
             this.Controls.Add(this.hgf);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "SCSSdkClientDemo";
@@ -660,6 +849,8 @@ namespace SCSSdkClient.Demo
             this.tabPage6.ResumeLayout(false);
             this.tabPage7.ResumeLayout(false);
             this.tabPage8.ResumeLayout(false);
+            this.tabPage9.ResumeLayout(false);
+            this.tabPage9.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -719,6 +910,23 @@ namespace SCSSdkClient.Demo
         private System.Windows.Forms.ToolStripButton toolStripButton10;
         private System.Windows.Forms.ToolStripButton toolStripButton11;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton;
+        private System.Windows.Forms.TabPage tabPage9;
+        private System.Windows.Forms.RichTextBox refuelevent;
+        private System.Windows.Forms.RichTextBox ferryevent;
+        private System.Windows.Forms.RichTextBox trainevent;
+        private System.Windows.Forms.RichTextBox tollgateevent;
+        private System.Windows.Forms.RichTextBox finedevent;
+        private System.Windows.Forms.RichTextBox jobcanceled;
+        private System.Windows.Forms.RichTextBox jobdelivered;
+        private System.Windows.Forms.RichTextBox jobstarted;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
     }
 }
 

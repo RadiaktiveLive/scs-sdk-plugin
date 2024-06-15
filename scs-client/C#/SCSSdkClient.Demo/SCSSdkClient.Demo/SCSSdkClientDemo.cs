@@ -171,6 +171,17 @@ namespace SCSSdkClient.Demo {
                 rtb_fuel.Text = data.TruckValues.CurrentValues.DashboardValues.FuelValue.Amount + " " + data.SpecialEventsValues.Refuel;
                 fuel = data.GamePlay.RefuelEvent.Amount;
                 raw = data;
+
+                //
+                jobstarted.Text = JsonConvert.SerializeObject(data.JobValues, Formatting.Indented);
+                jobdelivered.Text = JsonConvert.SerializeObject(data.GamePlay.JobDelivered, Formatting.Indented);
+                jobcanceled.Text = JsonConvert.SerializeObject(data.GamePlay.JobCancelled, Formatting.Indented);
+                finedevent.Text = JsonConvert.SerializeObject(data.GamePlay.FinedEvent, Formatting.Indented);
+                trainevent.Text = JsonConvert.SerializeObject(data.GamePlay.TrainEvent, Formatting.Indented);
+                tollgateevent.Text = JsonConvert.SerializeObject(data.GamePlay.TollgateEvent, Formatting.Indented);
+                refuelevent.Text = JsonConvert.SerializeObject(data.GamePlay.RefuelEvent, Formatting.Indented);
+                ferryevent.Text = JsonConvert.SerializeObject(data.GamePlay.FerryEvent, Formatting.Indented);
+                //
             } catch (Exception ex) {
                 // ignored atm i found no proper way to shut the telemetry down and down call this anymore when this or another thing is already disposed
                 Console.WriteLine("Telemetry was closed: " + ex);
