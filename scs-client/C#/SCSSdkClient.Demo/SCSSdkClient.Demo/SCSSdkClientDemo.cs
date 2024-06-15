@@ -589,6 +589,8 @@ namespace SCSSdkClient.Demo {
             //MessageBox.Show(json, "FerryEvent");
             var myObject = createMyJsonObject(FerryEventSBAction, "FerryEvent", json);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            Task variableInutilPerEvitarWarnings2 = PanelColor(panelFerry);
         }
         private void Fined(string events)
         {
@@ -597,6 +599,8 @@ namespace SCSSdkClient.Demo {
             //MessageBox.Show(json, "FinedEvent");
             var myObject = createMyJsonObject(FinedEventSBAction, "FinedEvent", json);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            Task variableInutilPerEvitarWarnings2 = PanelColor(panelFined);
         }
         private void Started(string events)
         {
@@ -605,6 +609,8 @@ namespace SCSSdkClient.Demo {
             //MessageBox.Show(json, "JobDelivered");
             var myObject = createMyJsonObject(JobStartedSBAction, "Job", events);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobStarted);
         }
         private void Cancelled(string events)
         {
@@ -613,6 +619,8 @@ namespace SCSSdkClient.Demo {
             //MessageBox.Show(json, "JobCancelled");
             var myObject = createMyJsonObject(JobCancelledSBAction, "JobCancelled", json);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobCancelled);
         }
         private void Delivered(string events)
         {
@@ -621,6 +629,8 @@ namespace SCSSdkClient.Demo {
             //MessageBox.Show(json, "JobDelivered");
             var myObject = createMyJsonObject(JobDeliveredSBAction, "JobDelivered", json);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobDelivered);
         }
         private void Tollgate(string events)
         {
@@ -629,6 +639,8 @@ namespace SCSSdkClient.Demo {
             //MessageBox.Show(json, "TollgateEvent");
             var myObject = createMyJsonObject(TollgateEventSBAction, "TollgateEvent", json);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            Task variableInutilPerEvitarWarnings2 = PanelColor(panelTollgate);
         }
         private void Train(string events)
         {
@@ -637,6 +649,8 @@ namespace SCSSdkClient.Demo {
             //MessageBox.Show(json, "TrainEvent");
             var myObject = createMyJsonObject(TrainEventSBAction, "TrainEvent", json);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            Task variableInutilPerEvitarWarnings2 = PanelColor(panelTrain);
         }
         private void Refuel(string events)
         {
@@ -645,6 +659,17 @@ namespace SCSSdkClient.Demo {
             //MessageBox.Show(json, "RefuelEvent");
             var myObject = createMyJsonObject(RefuelEventSBAction, "RefuelEvent", json);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            //panelRefuel.BackColor = Color.IndianRed;
+            Task variableInutilPerEvitarWarnings2 = PanelColor(panelRefuel);
+            //panelRefuel.BackColor = Color.Transparent;
+        }
+
+        static async Task PanelColor(Panel panel, string panelColorHighlight = "IndianRed", string panelColorRevert = "Transparent")
+        {
+            panel.BackColor = Color.FromName(panelColorHighlight);
+            await Task.Delay(2000); // Non-blocking delay for 2 seconds
+            panel.BackColor = Color.FromName(panelColorRevert);
         }
 
         private void buttonTriggerActions_Click(object sender, EventArgs e)
@@ -684,30 +709,37 @@ namespace SCSSdkClient.Demo {
 
         }
         */
-        private void toolStripRunAll_Click(object sender, EventArgs e)
+        private async void toolStripRunAll_Click(object sender, EventArgs e)
         {
-            var sleep = 1 * 1000;
+            var sleep = 2 * 1000;
 
             Started(job.Text);
-            System.Threading.Thread.Sleep(sleep);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
 
             Delivered(gameplayevent.Text);
-            System.Threading.Thread.Sleep(sleep);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
 
             Cancelled(gameplayevent.Text);
-            System.Threading.Thread.Sleep(sleep);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
 
             Fined(gameplayevent.Text);
-            System.Threading.Thread.Sleep(sleep);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
 
             Tollgate(gameplayevent.Text);
-            System.Threading.Thread.Sleep(sleep);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
 
             Train(gameplayevent.Text);
-            System.Threading.Thread.Sleep(sleep);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
 
             Ferry(gameplayevent.Text);
-            System.Threading.Thread.Sleep(sleep);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
 
             Refuel(gameplayevent.Text);
         }

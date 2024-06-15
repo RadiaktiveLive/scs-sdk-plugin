@@ -33,8 +33,6 @@ namespace SCSSdkClient.Demo
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SCSSdkClientDemo));
             this.hgf = new System.Windows.Forms.TabControl();
-            this.tabAbout = new SCSSdkClient.Demo.CustomTabPage();
-            this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.contextMenuStripTriggerActions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripRunAll = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -46,17 +44,7 @@ namespace SCSSdkClient.Demo
             this.toolStripTrainEvent = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripFerryEvent = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripRefuelEvent = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.buttonTriggerActions = new System.Windows.Forms.Button();
-            this.rtb_fuel = new System.Windows.Forms.RichTextBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.l_updateRate = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lbGeneral = new System.Windows.Forms.RichTextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.lblDemo = new System.Windows.Forms.Label();
-            this.tabPage1 = new SCSSdkClient.Demo.CustomTabPage();
-            this.common = new System.Windows.Forms.RichTextBox();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.truck = new System.Windows.Forms.RichTextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -72,23 +60,6 @@ namespace SCSSdkClient.Demo
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.gameplayevent = new System.Windows.Forms.RichTextBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.refuelevent = new System.Windows.Forms.RichTextBox();
-            this.ferryevent = new System.Windows.Forms.RichTextBox();
-            this.trainevent = new System.Windows.Forms.RichTextBox();
-            this.tollgateevent = new System.Windows.Forms.RichTextBox();
-            this.finedevent = new System.Windows.Forms.RichTextBox();
-            this.jobcanceled = new System.Windows.Forms.RichTextBox();
-            this.jobdelivered = new System.Windows.Forms.RichTextBox();
-            this.jobstarted = new System.Windows.Forms.RichTextBox();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
@@ -102,12 +73,47 @@ namespace SCSSdkClient.Demo
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
+            this.panelRefuel = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.refuelevent = new System.Windows.Forms.RichTextBox();
+            this.tabAbout = new SCSSdkClient.Demo.CustomTabPage();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.buttonTriggerActions = new System.Windows.Forms.Button();
+            this.rtb_fuel = new System.Windows.Forms.RichTextBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.l_updateRate = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lbGeneral = new System.Windows.Forms.RichTextBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.lblDemo = new System.Windows.Forms.Label();
+            this.tabPage1 = new SCSSdkClient.Demo.CustomTabPage();
+            this.common = new System.Windows.Forms.RichTextBox();
+            this.panelFerry = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.ferryevent = new System.Windows.Forms.RichTextBox();
+            this.panelTrain = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.trainevent = new System.Windows.Forms.RichTextBox();
+            this.panelTollgate = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.tollgateevent = new System.Windows.Forms.RichTextBox();
+            this.panelFined = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.finedevent = new System.Windows.Forms.RichTextBox();
+            this.panelJobCancelled = new System.Windows.Forms.Panel();
+            this.label12 = new System.Windows.Forms.Label();
+            this.jobcanceled = new System.Windows.Forms.RichTextBox();
+            this.panelJobDelivered = new System.Windows.Forms.Panel();
+            this.label13 = new System.Windows.Forms.Label();
+            this.jobdelivered = new System.Windows.Forms.RichTextBox();
+            this.panelJobStarted = new System.Windows.Forms.Panel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.jobstarted = new System.Windows.Forms.RichTextBox();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
             this.hgf.SuspendLayout();
-            this.tabAbout.SuspendLayout();
-            this.toolStrip.SuspendLayout();
             this.contextMenuStripTriggerActions.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -116,6 +122,19 @@ namespace SCSSdkClient.Demo
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.tabPage9.SuspendLayout();
+            this.panelRefuel.SuspendLayout();
+            this.tabAbout.SuspendLayout();
+            this.toolStrip.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.panelFerry.SuspendLayout();
+            this.panelTrain.SuspendLayout();
+            this.panelTollgate.SuspendLayout();
+            this.panelFined.SuspendLayout();
+            this.panelJobCancelled.SuspendLayout();
+            this.panelJobDelivered.SuspendLayout();
+            this.panelJobStarted.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // hgf
@@ -135,44 +154,8 @@ namespace SCSSdkClient.Demo
             this.hgf.Margin = new System.Windows.Forms.Padding(6);
             this.hgf.Name = "hgf";
             this.hgf.SelectedIndex = 0;
-            this.hgf.Size = new System.Drawing.Size(1190, 1276);
+            this.hgf.Size = new System.Drawing.Size(1190, 1688);
             this.hgf.TabIndex = 0;
-            // 
-            // tabAbout
-            // 
-            this.tabAbout.Controls.Add(this.toolStrip);
-            this.tabAbout.Controls.Add(this.buttonTriggerActions);
-            this.tabAbout.Controls.Add(this.rtb_fuel);
-            this.tabAbout.Controls.Add(this.statusStrip1);
-            this.tabAbout.Controls.Add(this.lbGeneral);
-            this.tabAbout.Controls.Add(this.richTextBox1);
-            this.tabAbout.Controls.Add(this.lblDemo);
-            this.tabAbout.Location = new System.Drawing.Point(8, 39);
-            this.tabAbout.Margin = new System.Windows.Forms.Padding(6);
-            this.tabAbout.Name = "tabAbout";
-            this.tabAbout.Padding = new System.Windows.Forms.Padding(6);
-            this.tabAbout.Size = new System.Drawing.Size(1174, 1229);
-            this.tabAbout.TabIndex = 0;
-            this.tabAbout.Text = "About";
-            this.tabAbout.UseVisualStyleBackColor = true;
-            // 
-            // toolStrip
-            // 
-            this.toolStrip.AllowMerge = false;
-            this.toolStrip.BackColor = System.Drawing.Color.Transparent;
-            this.toolStrip.ContextMenuStrip = this.contextMenuStripTriggerActions;
-            this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButton});
-            this.toolStrip.Location = new System.Drawing.Point(611, 38);
-            this.toolStrip.Name = "toolStrip";
-            this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(240, 42);
-            this.toolStrip.Stretch = true;
-            this.toolStrip.TabIndex = 6;
-            this.toolStrip.Text = "toolStrip1";
             // 
             // contextMenuStripTriggerActions
             // 
@@ -189,8 +172,6 @@ namespace SCSSdkClient.Demo
             this.toolStripFerryEvent,
             this.toolStripRefuelEvent});
             this.contextMenuStripTriggerActions.Name = "contextMenuStripTriggerActions";
-            this.contextMenuStripTriggerActions.OwnerItem = this.toolStripDropDownButton1;
-            this.contextMenuStripTriggerActions.RightToLeft = System.Windows.Forms.RightToLeft.Inherit;
             this.contextMenuStripTriggerActions.Size = new System.Drawing.Size(232, 352);
             // 
             // toolStripRunAll
@@ -261,116 +242,15 @@ namespace SCSSdkClient.Demo
             this.toolStripRefuelEvent.Text = "RefuelEvent";
             this.toolStripRefuelEvent.Click += new System.EventHandler(this.toolStripRefuelEvent_Click);
             // 
-            // toolStripDropDownButton
+            // toolStripDropDownButton1
             // 
-            this.toolStripDropDownButton.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton.DropDown = this.contextMenuStripTriggerActions;
-            this.toolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton.Image")));
-            this.toolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton.Name = "toolStripDropDownButton";
-            this.toolStripDropDownButton.Size = new System.Drawing.Size(236, 36);
-            this.toolStripDropDownButton.Text = "Trigger SB Actions!";
-            // 
-            // buttonTriggerActions
-            // 
-            this.buttonTriggerActions.ContextMenuStrip = this.contextMenuStripTriggerActions;
-            this.buttonTriggerActions.Location = new System.Drawing.Point(916, 34);
-            this.buttonTriggerActions.Name = "buttonTriggerActions";
-            this.buttonTriggerActions.Size = new System.Drawing.Size(240, 52);
-            this.buttonTriggerActions.TabIndex = 5;
-            this.buttonTriggerActions.Text = "Trigger SB Actions!";
-            this.buttonTriggerActions.UseVisualStyleBackColor = true;
-            this.buttonTriggerActions.Click += new System.EventHandler(this.buttonTriggerActions_Click);
-            // 
-            // rtb_fuel
-            // 
-            this.rtb_fuel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtb_fuel.Location = new System.Drawing.Point(40, 985);
-            this.rtb_fuel.Margin = new System.Windows.Forms.Padding(6);
-            this.rtb_fuel.Name = "rtb_fuel";
-            this.rtb_fuel.Size = new System.Drawing.Size(1094, 66);
-            this.rtb_fuel.TabIndex = 4;
-            this.rtb_fuel.Text = "";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.l_updateRate});
-            this.statusStrip1.Location = new System.Drawing.Point(6, 1181);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 28, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1162, 42);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(229, 32);
-            this.toolStripStatusLabel1.Text = "Current update rate:";
-            // 
-            // l_updateRate
-            // 
-            this.l_updateRate.Name = "l_updateRate";
-            this.l_updateRate.Size = new System.Drawing.Size(0, 32);
-            // 
-            // lbGeneral
-            // 
-            this.lbGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbGeneral.Location = new System.Drawing.Point(40, 404);
-            this.lbGeneral.Margin = new System.Windows.Forms.Padding(6);
-            this.lbGeneral.Name = "lbGeneral";
-            this.lbGeneral.Size = new System.Drawing.Size(1094, 564);
-            this.lbGeneral.TabIndex = 2;
-            this.lbGeneral.Text = "";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(40, 117);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(6);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(1094, 231);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
-            // 
-            // lblDemo
-            // 
-            this.lblDemo.AutoSize = true;
-            this.lblDemo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDemo.Location = new System.Drawing.Point(12, 38);
-            this.lblDemo.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.lblDemo.Name = "lblDemo";
-            this.lblDemo.Size = new System.Drawing.Size(850, 48);
-            this.lblDemo.TabIndex = 0;
-            this.lblDemo.Text = "ETS2 SDK Telemetry C# Demo Radiaktive";
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.common);
-            this.tabPage1.Location = new System.Drawing.Point(8, 39);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(1174, 1229);
-            this.tabPage1.TabIndex = 1;
-            this.tabPage1.Text = "Common";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // common
-            // 
-            this.common.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.common.Location = new System.Drawing.Point(6, 6);
-            this.common.Margin = new System.Windows.Forms.Padding(6);
-            this.common.Name = "common";
-            this.common.Size = new System.Drawing.Size(1162, 1217);
-            this.common.TabIndex = 3;
-            this.common.Text = "";
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton1.DropDown = this.contextMenuStripTriggerActions;
+            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(236, 36);
+            this.toolStripDropDownButton1.Text = "Trigger SB Actions!";
             // 
             // tabPage2
             // 
@@ -528,183 +408,22 @@ namespace SCSSdkClient.Demo
             // 
             // tabPage9
             // 
-            this.tabPage9.Controls.Add(this.label7);
-            this.tabPage9.Controls.Add(this.label8);
-            this.tabPage9.Controls.Add(this.label5);
-            this.tabPage9.Controls.Add(this.label6);
-            this.tabPage9.Controls.Add(this.label3);
-            this.tabPage9.Controls.Add(this.label2);
-            this.tabPage9.Controls.Add(this.label4);
-            this.tabPage9.Controls.Add(this.label1);
-            this.tabPage9.Controls.Add(this.refuelevent);
-            this.tabPage9.Controls.Add(this.ferryevent);
-            this.tabPage9.Controls.Add(this.trainevent);
-            this.tabPage9.Controls.Add(this.tollgateevent);
-            this.tabPage9.Controls.Add(this.finedevent);
-            this.tabPage9.Controls.Add(this.jobcanceled);
-            this.tabPage9.Controls.Add(this.jobdelivered);
-            this.tabPage9.Controls.Add(this.jobstarted);
+            this.tabPage9.Controls.Add(this.toolStrip1);
+            this.tabPage9.Controls.Add(this.panelJobStarted);
+            this.tabPage9.Controls.Add(this.panelFined);
+            this.tabPage9.Controls.Add(this.panelJobDelivered);
+            this.tabPage9.Controls.Add(this.panelJobCancelled);
+            this.tabPage9.Controls.Add(this.panelTollgate);
+            this.tabPage9.Controls.Add(this.panelTrain);
+            this.tabPage9.Controls.Add(this.panelFerry);
+            this.tabPage9.Controls.Add(this.panelRefuel);
             this.tabPage9.Location = new System.Drawing.Point(8, 39);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(1174, 1229);
+            this.tabPage9.Size = new System.Drawing.Size(1174, 1641);
             this.tabPage9.TabIndex = 9;
             this.tabPage9.Text = "Events";
             this.tabPage9.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(598, 915);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(269, 51);
-            this.label7.TabIndex = 15;
-            this.label7.Text = "RefuelEvent";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(3, 915);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(243, 51);
-            this.label8.TabIndex = 14;
-            this.label8.Text = "FerryEvent";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(601, 610);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(241, 51);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "TrainEvent";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 610);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(300, 51);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "TollgateEvent";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(598, 305);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(251, 51);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "FinedEvent";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(598, 3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(287, 51);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "JobDelivered";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(3, 305);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(297, 51);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "JobCancelled";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(241, 51);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "JobStarted";
-            // 
-            // refuelevent
-            // 
-            this.refuelevent.Location = new System.Drawing.Point(596, 969);
-            this.refuelevent.Name = "refuelevent";
-            this.refuelevent.Size = new System.Drawing.Size(575, 248);
-            this.refuelevent.TabIndex = 7;
-            this.refuelevent.Text = "";
-            // 
-            // ferryevent
-            // 
-            this.ferryevent.Location = new System.Drawing.Point(0, 969);
-            this.ferryevent.Name = "ferryevent";
-            this.ferryevent.Size = new System.Drawing.Size(575, 248);
-            this.ferryevent.TabIndex = 6;
-            this.ferryevent.Text = "";
-            // 
-            // trainevent
-            // 
-            this.trainevent.Location = new System.Drawing.Point(596, 664);
-            this.trainevent.Name = "trainevent";
-            this.trainevent.Size = new System.Drawing.Size(575, 248);
-            this.trainevent.TabIndex = 5;
-            this.trainevent.Text = "";
-            // 
-            // tollgateevent
-            // 
-            this.tollgateevent.Location = new System.Drawing.Point(0, 664);
-            this.tollgateevent.Name = "tollgateevent";
-            this.tollgateevent.Size = new System.Drawing.Size(575, 248);
-            this.tollgateevent.TabIndex = 4;
-            this.tollgateevent.Text = "";
-            // 
-            // finedevent
-            // 
-            this.finedevent.Location = new System.Drawing.Point(599, 359);
-            this.finedevent.Name = "finedevent";
-            this.finedevent.Size = new System.Drawing.Size(575, 248);
-            this.finedevent.TabIndex = 3;
-            this.finedevent.Text = "";
-            // 
-            // jobcanceled
-            // 
-            this.jobcanceled.Location = new System.Drawing.Point(3, 359);
-            this.jobcanceled.Name = "jobcanceled";
-            this.jobcanceled.Size = new System.Drawing.Size(575, 248);
-            this.jobcanceled.TabIndex = 2;
-            this.jobcanceled.Text = "";
-            // 
-            // jobdelivered
-            // 
-            this.jobdelivered.Location = new System.Drawing.Point(596, 54);
-            this.jobdelivered.Name = "jobdelivered";
-            this.jobdelivered.Size = new System.Drawing.Size(575, 248);
-            this.jobdelivered.TabIndex = 1;
-            this.jobdelivered.Text = "";
-            // 
-            // jobstarted
-            // 
-            this.jobstarted.Location = new System.Drawing.Point(0, 54);
-            this.jobstarted.Name = "jobstarted";
-            this.jobstarted.Size = new System.Drawing.Size(575, 248);
-            this.jobstarted.TabIndex = 0;
-            this.jobstarted.Text = "";
-            // 
-            // toolStripDropDownButton1
-            // 
-            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton1.DropDown = this.contextMenuStripTriggerActions;
-            this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
-            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(236, 36);
-            this.toolStripDropDownButton1.Text = "Trigger SB Actions!";
             // 
             // toolStripSplitButton1
             // 
@@ -823,25 +542,434 @@ namespace SCSSdkClient.Demo
             this.toolStripButton11.Size = new System.Drawing.Size(23, 23);
             this.toolStripButton11.Text = "toolStripButton11";
             // 
+            // panelRefuel
+            // 
+            this.panelRefuel.AutoSize = true;
+            this.panelRefuel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelRefuel.Controls.Add(this.label7);
+            this.panelRefuel.Controls.Add(this.refuelevent);
+            this.panelRefuel.Location = new System.Drawing.Point(6, 1453);
+            this.panelRefuel.Name = "panelRefuel";
+            this.panelRefuel.Padding = new System.Windows.Forms.Padding(15);
+            this.panelRefuel.Size = new System.Drawing.Size(596, 179);
+            this.panelRefuel.TabIndex = 16;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(17, 15);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(269, 51);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "RefuelEvent";
+            // 
+            // refuelevent
+            // 
+            this.refuelevent.Location = new System.Drawing.Point(16, 69);
+            this.refuelevent.Name = "refuelevent";
+            this.refuelevent.Size = new System.Drawing.Size(562, 92);
+            this.refuelevent.TabIndex = 16;
+            this.refuelevent.Text = "";
+            // 
+            // tabAbout
+            // 
+            this.tabAbout.Controls.Add(this.toolStrip);
+            this.tabAbout.Controls.Add(this.buttonTriggerActions);
+            this.tabAbout.Controls.Add(this.rtb_fuel);
+            this.tabAbout.Controls.Add(this.statusStrip1);
+            this.tabAbout.Controls.Add(this.lbGeneral);
+            this.tabAbout.Controls.Add(this.richTextBox1);
+            this.tabAbout.Controls.Add(this.lblDemo);
+            this.tabAbout.Location = new System.Drawing.Point(8, 39);
+            this.tabAbout.Margin = new System.Windows.Forms.Padding(6);
+            this.tabAbout.Name = "tabAbout";
+            this.tabAbout.Padding = new System.Windows.Forms.Padding(6);
+            this.tabAbout.Size = new System.Drawing.Size(1174, 1229);
+            this.tabAbout.TabIndex = 0;
+            this.tabAbout.Text = "About";
+            this.tabAbout.UseVisualStyleBackColor = true;
+            // 
+            // toolStrip
+            // 
+            this.toolStrip.AllowMerge = false;
+            this.toolStrip.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip.ContextMenuStrip = this.contextMenuStripTriggerActions;
+            this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripDropDownButton});
+            this.toolStrip.Location = new System.Drawing.Point(611, 38);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.ShowItemToolTips = false;
+            this.toolStrip.Size = new System.Drawing.Size(240, 42);
+            this.toolStrip.Stretch = true;
+            this.toolStrip.TabIndex = 6;
+            this.toolStrip.Text = "toolStrip1";
+            // 
+            // toolStripDropDownButton
+            // 
+            this.toolStripDropDownButton.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton.DropDown = this.contextMenuStripTriggerActions;
+            this.toolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton.Image")));
+            this.toolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton.Name = "toolStripDropDownButton";
+            this.toolStripDropDownButton.Size = new System.Drawing.Size(236, 36);
+            this.toolStripDropDownButton.Text = "Trigger SB Actions!";
+            // 
+            // buttonTriggerActions
+            // 
+            this.buttonTriggerActions.ContextMenuStrip = this.contextMenuStripTriggerActions;
+            this.buttonTriggerActions.Location = new System.Drawing.Point(916, 34);
+            this.buttonTriggerActions.Name = "buttonTriggerActions";
+            this.buttonTriggerActions.Size = new System.Drawing.Size(240, 52);
+            this.buttonTriggerActions.TabIndex = 5;
+            this.buttonTriggerActions.Text = "Trigger SB Actions!";
+            this.buttonTriggerActions.UseVisualStyleBackColor = true;
+            this.buttonTriggerActions.Click += new System.EventHandler(this.buttonTriggerActions_Click);
+            // 
+            // rtb_fuel
+            // 
+            this.rtb_fuel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtb_fuel.Location = new System.Drawing.Point(40, 985);
+            this.rtb_fuel.Margin = new System.Windows.Forms.Padding(6);
+            this.rtb_fuel.Name = "rtb_fuel";
+            this.rtb_fuel.Size = new System.Drawing.Size(1094, 66);
+            this.rtb_fuel.TabIndex = 4;
+            this.rtb_fuel.Text = "";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.l_updateRate});
+            this.statusStrip1.Location = new System.Drawing.Point(6, 1181);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 28, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1162, 42);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(229, 32);
+            this.toolStripStatusLabel1.Text = "Current update rate:";
+            // 
+            // l_updateRate
+            // 
+            this.l_updateRate.Name = "l_updateRate";
+            this.l_updateRate.Size = new System.Drawing.Size(0, 32);
+            // 
+            // lbGeneral
+            // 
+            this.lbGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbGeneral.Location = new System.Drawing.Point(40, 404);
+            this.lbGeneral.Margin = new System.Windows.Forms.Padding(6);
+            this.lbGeneral.Name = "lbGeneral";
+            this.lbGeneral.Size = new System.Drawing.Size(1094, 564);
+            this.lbGeneral.TabIndex = 2;
+            this.lbGeneral.Text = "";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(40, 117);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(6);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(1094, 231);
+            this.richTextBox1.TabIndex = 1;
+            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            // 
+            // lblDemo
+            // 
+            this.lblDemo.AutoSize = true;
+            this.lblDemo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDemo.Location = new System.Drawing.Point(12, 38);
+            this.lblDemo.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblDemo.Name = "lblDemo";
+            this.lblDemo.Size = new System.Drawing.Size(850, 48);
+            this.lblDemo.TabIndex = 0;
+            this.lblDemo.Text = "ETS2 SDK Telemetry C# Demo Radiaktive";
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.common);
+            this.tabPage1.Location = new System.Drawing.Point(8, 39);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
+            this.tabPage1.Size = new System.Drawing.Size(1174, 1229);
+            this.tabPage1.TabIndex = 1;
+            this.tabPage1.Text = "Common";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // common
+            // 
+            this.common.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.common.Location = new System.Drawing.Point(6, 6);
+            this.common.Margin = new System.Windows.Forms.Padding(6);
+            this.common.Name = "common";
+            this.common.Size = new System.Drawing.Size(1162, 1217);
+            this.common.TabIndex = 3;
+            this.common.Text = "";
+            // 
+            // panelFerry
+            // 
+            this.panelFerry.AutoSize = true;
+            this.panelFerry.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelFerry.Controls.Add(this.label9);
+            this.panelFerry.Controls.Add(this.ferryevent);
+            this.panelFerry.Location = new System.Drawing.Point(6, 1173);
+            this.panelFerry.Name = "panelFerry";
+            this.panelFerry.Padding = new System.Windows.Forms.Padding(15);
+            this.panelFerry.Size = new System.Drawing.Size(596, 274);
+            this.panelFerry.TabIndex = 17;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(17, 15);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(243, 51);
+            this.label9.TabIndex = 17;
+            this.label9.Text = "FerryEvent";
+            // 
+            // ferryevent
+            // 
+            this.ferryevent.Location = new System.Drawing.Point(16, 69);
+            this.ferryevent.Name = "ferryevent";
+            this.ferryevent.Size = new System.Drawing.Size(562, 187);
+            this.ferryevent.TabIndex = 16;
+            this.ferryevent.Text = "";
+            // 
+            // panelTrain
+            // 
+            this.panelTrain.AutoSize = true;
+            this.panelTrain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelTrain.Controls.Add(this.label8);
+            this.panelTrain.Controls.Add(this.trainevent);
+            this.panelTrain.Location = new System.Drawing.Point(6, 891);
+            this.panelTrain.Name = "panelTrain";
+            this.panelTrain.Padding = new System.Windows.Forms.Padding(15);
+            this.panelTrain.Size = new System.Drawing.Size(596, 276);
+            this.panelTrain.TabIndex = 18;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(17, 15);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(241, 51);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "TrainEvent";
+            // 
+            // trainevent
+            // 
+            this.trainevent.Location = new System.Drawing.Point(16, 69);
+            this.trainevent.Name = "trainevent";
+            this.trainevent.Size = new System.Drawing.Size(562, 189);
+            this.trainevent.TabIndex = 16;
+            this.trainevent.Text = "";
+            // 
+            // panelTollgate
+            // 
+            this.panelTollgate.AutoSize = true;
+            this.panelTollgate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelTollgate.Controls.Add(this.label10);
+            this.panelTollgate.Controls.Add(this.tollgateevent);
+            this.panelTollgate.Location = new System.Drawing.Point(616, 1306);
+            this.panelTollgate.Name = "panelTollgate";
+            this.panelTollgate.Padding = new System.Windows.Forms.Padding(15);
+            this.panelTollgate.Size = new System.Drawing.Size(596, 175);
+            this.panelTollgate.TabIndex = 19;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(17, 15);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(300, 51);
+            this.label10.TabIndex = 17;
+            this.label10.Text = "TollgateEvent";
+            // 
+            // tollgateevent
+            // 
+            this.tollgateevent.Location = new System.Drawing.Point(16, 69);
+            this.tollgateevent.Name = "tollgateevent";
+            this.tollgateevent.Size = new System.Drawing.Size(562, 88);
+            this.tollgateevent.TabIndex = 16;
+            this.tollgateevent.Text = "";
+            // 
+            // panelFined
+            // 
+            this.panelFined.AutoSize = true;
+            this.panelFined.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelFined.Controls.Add(this.label11);
+            this.panelFined.Controls.Add(this.finedevent);
+            this.panelFined.Location = new System.Drawing.Point(616, 1099);
+            this.panelFined.Name = "panelFined";
+            this.panelFined.Padding = new System.Windows.Forms.Padding(15);
+            this.panelFined.Size = new System.Drawing.Size(596, 201);
+            this.panelFined.TabIndex = 20;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(17, 15);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(251, 51);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "FinedEvent";
+            // 
+            // finedevent
+            // 
+            this.finedevent.Location = new System.Drawing.Point(16, 69);
+            this.finedevent.Name = "finedevent";
+            this.finedevent.Size = new System.Drawing.Size(562, 114);
+            this.finedevent.TabIndex = 16;
+            this.finedevent.Text = "";
+            // 
+            // panelJobCancelled
+            // 
+            this.panelJobCancelled.AutoSize = true;
+            this.panelJobCancelled.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelJobCancelled.Controls.Add(this.label12);
+            this.panelJobCancelled.Controls.Add(this.jobcanceled);
+            this.panelJobCancelled.Location = new System.Drawing.Point(616, 715);
+            this.panelJobCancelled.Name = "panelJobCancelled";
+            this.panelJobCancelled.Padding = new System.Windows.Forms.Padding(15);
+            this.panelJobCancelled.Size = new System.Drawing.Size(596, 378);
+            this.panelJobCancelled.TabIndex = 21;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(17, 15);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(297, 51);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "JobCancelled";
+            // 
+            // jobcanceled
+            // 
+            this.jobcanceled.Location = new System.Drawing.Point(16, 69);
+            this.jobcanceled.Name = "jobcanceled";
+            this.jobcanceled.Size = new System.Drawing.Size(562, 291);
+            this.jobcanceled.TabIndex = 16;
+            this.jobcanceled.Text = "";
+            // 
+            // panelJobDelivered
+            // 
+            this.panelJobDelivered.AutoSize = true;
+            this.panelJobDelivered.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelJobDelivered.Controls.Add(this.label13);
+            this.panelJobDelivered.Controls.Add(this.jobdelivered);
+            this.panelJobDelivered.Location = new System.Drawing.Point(616, 6);
+            this.panelJobDelivered.Name = "panelJobDelivered";
+            this.panelJobDelivered.Padding = new System.Windows.Forms.Padding(15);
+            this.panelJobDelivered.Size = new System.Drawing.Size(596, 703);
+            this.panelJobDelivered.TabIndex = 22;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(17, 15);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(287, 51);
+            this.label13.TabIndex = 17;
+            this.label13.Text = "JobDelivered";
+            // 
+            // jobdelivered
+            // 
+            this.jobdelivered.Location = new System.Drawing.Point(16, 69);
+            this.jobdelivered.Name = "jobdelivered";
+            this.jobdelivered.Size = new System.Drawing.Size(562, 616);
+            this.jobdelivered.TabIndex = 16;
+            this.jobdelivered.Text = "";
+            // 
+            // panelJobStarted
+            // 
+            this.panelJobStarted.AutoSize = true;
+            this.panelJobStarted.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelJobStarted.Controls.Add(this.label14);
+            this.panelJobStarted.Controls.Add(this.jobstarted);
+            this.panelJobStarted.Location = new System.Drawing.Point(6, 6);
+            this.panelJobStarted.Name = "panelJobStarted";
+            this.panelJobStarted.Padding = new System.Windows.Forms.Padding(15);
+            this.panelJobStarted.Size = new System.Drawing.Size(596, 877);
+            this.panelJobStarted.TabIndex = 23;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(17, 15);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(241, 51);
+            this.label14.TabIndex = 17;
+            this.label14.Text = "JobStarted";
+            // 
+            // jobstarted
+            // 
+            this.jobstarted.Location = new System.Drawing.Point(16, 69);
+            this.jobstarted.Name = "jobstarted";
+            this.jobstarted.Size = new System.Drawing.Size(562, 790);
+            this.jobstarted.TabIndex = 16;
+            this.jobstarted.Text = "";
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.AllowMerge = false;
+            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip1.ContextMenuStrip = this.contextMenuStripTriggerActions;
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripDropDownButton3});
+            this.toolStrip1.Location = new System.Drawing.Point(732, 1522);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.ShowItemToolTips = false;
+            this.toolStrip1.Size = new System.Drawing.Size(240, 42);
+            this.toolStrip1.Stretch = true;
+            this.toolStrip1.TabIndex = 24;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripDropDownButton3
+            // 
+            this.toolStripDropDownButton3.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripDropDownButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton3.DropDown = this.contextMenuStripTriggerActions;
+            this.toolStripDropDownButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton3.Image")));
+            this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
+            this.toolStripDropDownButton3.Size = new System.Drawing.Size(236, 36);
+            this.toolStripDropDownButton3.Text = "Trigger SB Actions!";
+            // 
             // SCSSdkClientDemo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1190, 1276);
+            this.ClientSize = new System.Drawing.Size(1190, 1688);
             this.Controls.Add(this.hgf);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "SCSSdkClientDemo";
             this.Text = "SCSSDkClientDemo 0.9 Radiaktive";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SCSSdkClientDemo_FormClosing);
             this.hgf.ResumeLayout(false);
-            this.tabAbout.ResumeLayout(false);
-            this.tabAbout.PerformLayout();
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
             this.contextMenuStripTriggerActions.ResumeLayout(false);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
@@ -851,6 +979,31 @@ namespace SCSSdkClient.Demo
             this.tabPage8.ResumeLayout(false);
             this.tabPage9.ResumeLayout(false);
             this.tabPage9.PerformLayout();
+            this.panelRefuel.ResumeLayout(false);
+            this.panelRefuel.PerformLayout();
+            this.tabAbout.ResumeLayout(false);
+            this.tabAbout.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
+            this.panelFerry.ResumeLayout(false);
+            this.panelFerry.PerformLayout();
+            this.panelTrain.ResumeLayout(false);
+            this.panelTrain.PerformLayout();
+            this.panelTollgate.ResumeLayout(false);
+            this.panelTollgate.PerformLayout();
+            this.panelFined.ResumeLayout(false);
+            this.panelFined.PerformLayout();
+            this.panelJobCancelled.ResumeLayout(false);
+            this.panelJobCancelled.PerformLayout();
+            this.panelJobDelivered.ResumeLayout(false);
+            this.panelJobDelivered.PerformLayout();
+            this.panelJobStarted.ResumeLayout(false);
+            this.panelJobStarted.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -911,22 +1064,32 @@ namespace SCSSdkClient.Demo
         private System.Windows.Forms.ToolStripButton toolStripButton11;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton;
         private System.Windows.Forms.TabPage tabPage9;
-        private System.Windows.Forms.RichTextBox refuelevent;
-        private System.Windows.Forms.RichTextBox ferryevent;
-        private System.Windows.Forms.RichTextBox trainevent;
-        private System.Windows.Forms.RichTextBox tollgateevent;
-        private System.Windows.Forms.RichTextBox finedevent;
-        private System.Windows.Forms.RichTextBox jobcanceled;
-        private System.Windows.Forms.RichTextBox jobdelivered;
-        private System.Windows.Forms.RichTextBox jobstarted;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panelRefuel;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.RichTextBox refuelevent;
+        private System.Windows.Forms.Panel panelJobStarted;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.RichTextBox jobstarted;
+        private System.Windows.Forms.Panel panelJobDelivered;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.RichTextBox jobdelivered;
+        private System.Windows.Forms.Panel panelJobCancelled;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.RichTextBox jobcanceled;
+        private System.Windows.Forms.Panel panelFined;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.RichTextBox finedevent;
+        private System.Windows.Forms.Panel panelTollgate;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.RichTextBox tollgateevent;
+        private System.Windows.Forms.Panel panelTrain;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.RichTextBox trainevent;
+        private System.Windows.Forms.Panel panelFerry;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.RichTextBox ferryevent;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
+        private System.Windows.Forms.ToolStrip toolStrip1;
     }
 }
 
