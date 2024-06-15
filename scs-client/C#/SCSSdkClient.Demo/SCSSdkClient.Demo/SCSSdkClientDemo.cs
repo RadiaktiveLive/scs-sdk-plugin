@@ -49,8 +49,9 @@ namespace SCSSdkClient.Demo {
 
         /// <inheritdoc />
         public SCSSdkClientDemo() {
-            readConfigFile();
+            
             InitializeComponent();
+            readConfigFile();
             /*
             var myObject = new MyJsonObject
             {
@@ -445,6 +446,8 @@ namespace SCSSdkClient.Demo {
                 {
                     var uriBuilder = new UriBuilder(Protocol, Ip, int.Parse(Port), Endpoint);
                     StreamerbotUrl = uriBuilder.ToString();
+                    textBoxIp.Text = Ip;
+                    textBoxPort.Text = Port;
                 }
                 //MessageBox.Show("StreamerbotUrl: " + StreamerbotUrl);
 
@@ -460,6 +463,8 @@ namespace SCSSdkClient.Demo {
                     //JobStartedSBAction = new ActionInfo { id = JobStartedId, name = JobStartedName };
                     JobStartedSBAction.id = JobStartedId;
                     JobStartedSBAction.name = JobStartedName;
+                    textBoxStartedId.Text = JobStartedId;
+                    textBoxStartedName.Text = JobStartedName;
                 }
                 //MessageBox.Show("JobStartedSBAction: \n{\n id = \"" + JobStartedSBAction.id + "\",\n name = \"" + JobStartedSBAction.name + "\"\n}");
 
@@ -475,6 +480,8 @@ namespace SCSSdkClient.Demo {
                     //JobDeliveredSBAction = new ActionInfo { id = JobDeliveredId, name = JobDeliveredName };
                     JobDeliveredSBAction.id = JobDeliveredId;
                     JobDeliveredSBAction.name = JobDeliveredName;
+                    textBoxDeliveredId.Text = JobDeliveredId;
+                    textBoxDeliveredName.Text = JobDeliveredName;
                 }
                 //MessageBox.Show("JobDeliveredSBAction: \n{\n id = \"" + JobDeliveredSBAction.id + "\",\n name = \"" + JobDeliveredSBAction.name + "\"\n}");
 
@@ -490,6 +497,8 @@ namespace SCSSdkClient.Demo {
                     //JobCancelledSBAction = new ActionInfo { id = JobCancelledId, name = JobCancelledName };
                     JobCancelledSBAction.id = JobCancelledId;
                     JobCancelledSBAction.name = JobCancelledName;
+                    textBoxCancelledId.Text = JobCancelledId;
+                    textBoxCancelledName.Text = JobCancelledName;
                 }
                 //MessageBox.Show("JobCancelledSBAction: \n{\n id = \"" + JobCancelledSBAction.id + "\",\n name = \"" + JobCancelledSBAction.name + "\"\n}");
 
@@ -505,6 +514,8 @@ namespace SCSSdkClient.Demo {
                     //FinedEventSBAction = new ActionInfo { id = FinedEventId, name = FinedEventName };
                     FinedEventSBAction.id = FinedEventId;
                     FinedEventSBAction.name = FinedEventName;
+                    textBoxFinedId.Text = FinedEventId;
+                    textBoxFinedName.Text = FinedEventName;
                 }
                 //MessageBox.Show("FinedEventSBAction: \n{\n id = \"" + FinedEventSBAction.id + "\",\n name = \"" + FinedEventSBAction.name + "\"\n}");
 
@@ -520,6 +531,8 @@ namespace SCSSdkClient.Demo {
                     //TollgateEventSBAction = new ActionInfo { id = TollgateEventId, name = TollgateEventName };
                     TollgateEventSBAction.id = TollgateEventId;
                     TollgateEventSBAction.name = TollgateEventName;
+                    textBoxTollgateId.Text = TollgateEventId;
+                    textBoxTollgateName.Text = TollgateEventName;
                 }
                 //MessageBox.Show("TollgateEventSBAction: \n{\n id = \"" + TollgateEventSBAction.id + "\",\n name = \"" + TollgateEventSBAction.name + "\"\n}");
 
@@ -535,6 +548,8 @@ namespace SCSSdkClient.Demo {
                     //TrainEventSBAction = new ActionInfo { id = TrainEventId, name = TrainEventName };
                     TrainEventSBAction.id = TrainEventId;
                     TrainEventSBAction.name = TrainEventName;
+                    textBoxTrainId.Text = TrainEventId;
+                    textBoxTrainName.Text = TrainEventName;
                 }
                 //MessageBox.Show("TrainEventSBAction: \n{\n id = \"" + TrainEventSBAction.id + "\",\n name = \"" + TrainEventSBAction.name + "\"\n}");
 
@@ -550,6 +565,8 @@ namespace SCSSdkClient.Demo {
                     //FerryEventSBAction = new ActionInfo { id = FerryEventId, name = FerryEventName };
                     FerryEventSBAction.id = FerryEventId;
                     FerryEventSBAction.name = FerryEventName;
+                    textBoxFerryId.Text = FerryEventId;
+                    textBoxFerryName.Text = FerryEventName;
                 }
                 //MessageBox.Show("FerryEventSBAction: \n{\n id = \"" + FerryEventSBAction.id + "\",\n name = \"" + FerryEventSBAction.name + "\"\n}");
 
@@ -565,12 +582,31 @@ namespace SCSSdkClient.Demo {
                     //RefuelEventSBAction = new ActionInfo { id = RefuelEventId, name = RefuelEventName };
                     RefuelEventSBAction.id = RefuelEventId;
                     RefuelEventSBAction.name = RefuelEventName;
+                    textBoxRefuelId.Text = RefuelEventId;
+                    textBoxRefuelName.Text = RefuelEventName;
                 }
                 //MessageBox.Show("RefuelEventSBAction: \n{\n id = \"" + RefuelEventSBAction.id + "\",\n name = \"" + RefuelEventSBAction.name + "\"\n}");
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+        }
+
+        private void textBoxPort_TextChanged(object sender, EventArgs e)
+        {
+            int value;
+            if (int.TryParse(textBoxPort.Text, out value))
+            {
+                if (value < 0 || value > 65535) // Minimum value
+                {
+                    //textBoxPort.Text = "0";
+                    MessageBox.Show("Please enter a number between 0 and 65535. Default port is 7474.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid number between 0 and 65535. Default port is 7474.");
             }
         }
 

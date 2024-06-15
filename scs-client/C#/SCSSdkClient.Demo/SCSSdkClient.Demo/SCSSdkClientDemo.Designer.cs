@@ -112,6 +112,53 @@ namespace SCSSdkClient.Demo
             this.jobstarted = new System.Windows.Forms.RichTextBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.groupBoxConnection = new System.Windows.Forms.GroupBox();
+            this.groupBoxActions = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxIp = new System.Windows.Forms.TextBox();
+            this.textBoxPort = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBoxStartedName = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBoxStartedId = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBoxDeliveredName = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxDeliveredId = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBoxCancelledName = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.textBoxCancelledId = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.textBoxFinedName = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.textBoxFinedId = new System.Windows.Forms.TextBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.textBoxTollgateName = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBoxTollgateId = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.textBoxTrainName = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.textBoxTrainId = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.textBoxFerryName = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.textBoxFerryId = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.textBoxRefuelName = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.textBoxRefuelId = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.hgf.SuspendLayout();
             this.contextMenuStripTriggerActions.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -135,6 +182,17 @@ namespace SCSSdkClient.Demo
             this.panelJobDelivered.SuspendLayout();
             this.panelJobStarted.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.tabPage10.SuspendLayout();
+            this.groupBoxConnection.SuspendLayout();
+            this.groupBoxActions.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
             this.SuspendLayout();
             // 
             // hgf
@@ -149,6 +207,7 @@ namespace SCSSdkClient.Demo
             this.hgf.Controls.Add(this.tabPage7);
             this.hgf.Controls.Add(this.tabPage8);
             this.hgf.Controls.Add(this.tabPage9);
+            this.hgf.Controls.Add(this.tabPage10);
             this.hgf.Dock = System.Windows.Forms.DockStyle.Fill;
             this.hgf.Location = new System.Drawing.Point(0, 0);
             this.hgf.Margin = new System.Windows.Forms.Padding(6);
@@ -259,7 +318,7 @@ namespace SCSSdkClient.Demo
             this.tabPage2.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage2.Size = new System.Drawing.Size(1174, 1229);
+            this.tabPage2.Size = new System.Drawing.Size(1174, 1641);
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Truck";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -270,7 +329,7 @@ namespace SCSSdkClient.Demo
             this.truck.Location = new System.Drawing.Point(6, 6);
             this.truck.Margin = new System.Windows.Forms.Padding(6);
             this.truck.Name = "truck";
-            this.truck.Size = new System.Drawing.Size(1162, 1217);
+            this.truck.Size = new System.Drawing.Size(1162, 1629);
             this.truck.TabIndex = 4;
             this.truck.Text = "";
             // 
@@ -281,7 +340,7 @@ namespace SCSSdkClient.Demo
             this.tabPage3.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage3.Size = new System.Drawing.Size(1174, 1229);
+            this.tabPage3.Size = new System.Drawing.Size(1174, 1641);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Trailer";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -292,7 +351,7 @@ namespace SCSSdkClient.Demo
             this.trailer.Location = new System.Drawing.Point(6, 6);
             this.trailer.Margin = new System.Windows.Forms.Padding(6);
             this.trailer.Name = "trailer";
-            this.trailer.Size = new System.Drawing.Size(1162, 1217);
+            this.trailer.Size = new System.Drawing.Size(1162, 1629);
             this.trailer.TabIndex = 4;
             this.trailer.Text = "";
             // 
@@ -303,7 +362,7 @@ namespace SCSSdkClient.Demo
             this.tabPage4.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage4.Size = new System.Drawing.Size(1174, 1229);
+            this.tabPage4.Size = new System.Drawing.Size(1174, 1641);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "Job";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -314,7 +373,7 @@ namespace SCSSdkClient.Demo
             this.job.Location = new System.Drawing.Point(6, 6);
             this.job.Margin = new System.Windows.Forms.Padding(6);
             this.job.Name = "job";
-            this.job.Size = new System.Drawing.Size(1162, 1217);
+            this.job.Size = new System.Drawing.Size(1162, 1629);
             this.job.TabIndex = 4;
             this.job.Text = "";
             // 
@@ -325,7 +384,7 @@ namespace SCSSdkClient.Demo
             this.tabPage5.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage5.Size = new System.Drawing.Size(1174, 1229);
+            this.tabPage5.Size = new System.Drawing.Size(1174, 1641);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Control";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -336,7 +395,7 @@ namespace SCSSdkClient.Demo
             this.control.Location = new System.Drawing.Point(6, 6);
             this.control.Margin = new System.Windows.Forms.Padding(6);
             this.control.Name = "control";
-            this.control.Size = new System.Drawing.Size(1162, 1217);
+            this.control.Size = new System.Drawing.Size(1162, 1629);
             this.control.TabIndex = 4;
             this.control.Text = "";
             // 
@@ -347,7 +406,7 @@ namespace SCSSdkClient.Demo
             this.tabPage6.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage6.Size = new System.Drawing.Size(1174, 1229);
+            this.tabPage6.Size = new System.Drawing.Size(1174, 1641);
             this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "Navigation";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -358,7 +417,7 @@ namespace SCSSdkClient.Demo
             this.navigation.Location = new System.Drawing.Point(6, 6);
             this.navigation.Margin = new System.Windows.Forms.Padding(6);
             this.navigation.Name = "navigation";
-            this.navigation.Size = new System.Drawing.Size(1162, 1217);
+            this.navigation.Size = new System.Drawing.Size(1162, 1629);
             this.navigation.TabIndex = 4;
             this.navigation.Text = "";
             // 
@@ -369,7 +428,7 @@ namespace SCSSdkClient.Demo
             this.tabPage7.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage7.Size = new System.Drawing.Size(1174, 1229);
+            this.tabPage7.Size = new System.Drawing.Size(1174, 1641);
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "Substances";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -380,7 +439,7 @@ namespace SCSSdkClient.Demo
             this.substances.Location = new System.Drawing.Point(6, 6);
             this.substances.Margin = new System.Windows.Forms.Padding(6);
             this.substances.Name = "substances";
-            this.substances.Size = new System.Drawing.Size(1162, 1217);
+            this.substances.Size = new System.Drawing.Size(1162, 1629);
             this.substances.TabIndex = 5;
             this.substances.Text = "";
             // 
@@ -391,7 +450,7 @@ namespace SCSSdkClient.Demo
             this.tabPage8.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage8.Size = new System.Drawing.Size(1174, 1229);
+            this.tabPage8.Size = new System.Drawing.Size(1174, 1641);
             this.tabPage8.TabIndex = 8;
             this.tabPage8.Text = "GameplayEvents";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -402,7 +461,7 @@ namespace SCSSdkClient.Demo
             this.gameplayevent.Location = new System.Drawing.Point(6, 6);
             this.gameplayevent.Margin = new System.Windows.Forms.Padding(6);
             this.gameplayevent.Name = "gameplayevent";
-            this.gameplayevent.Size = new System.Drawing.Size(1162, 1217);
+            this.gameplayevent.Size = new System.Drawing.Size(1162, 1629);
             this.gameplayevent.TabIndex = 6;
             this.gameplayevent.Text = "";
             // 
@@ -585,7 +644,7 @@ namespace SCSSdkClient.Demo
             this.tabAbout.Margin = new System.Windows.Forms.Padding(6);
             this.tabAbout.Name = "tabAbout";
             this.tabAbout.Padding = new System.Windows.Forms.Padding(6);
-            this.tabAbout.Size = new System.Drawing.Size(1174, 1229);
+            this.tabAbout.Size = new System.Drawing.Size(1174, 1641);
             this.tabAbout.TabIndex = 0;
             this.tabAbout.Text = "About";
             this.tabAbout.UseVisualStyleBackColor = true;
@@ -634,7 +693,7 @@ namespace SCSSdkClient.Demo
             // 
             this.rtb_fuel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtb_fuel.Location = new System.Drawing.Point(40, 985);
+            this.rtb_fuel.Location = new System.Drawing.Point(40, 1397);
             this.rtb_fuel.Margin = new System.Windows.Forms.Padding(6);
             this.rtb_fuel.Name = "rtb_fuel";
             this.rtb_fuel.Size = new System.Drawing.Size(1094, 66);
@@ -647,7 +706,7 @@ namespace SCSSdkClient.Demo
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.l_updateRate});
-            this.statusStrip1.Location = new System.Drawing.Point(6, 1181);
+            this.statusStrip1.Location = new System.Drawing.Point(6, 1593);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 28, 0);
             this.statusStrip1.Size = new System.Drawing.Size(1162, 42);
@@ -673,7 +732,7 @@ namespace SCSSdkClient.Demo
             this.lbGeneral.Location = new System.Drawing.Point(40, 404);
             this.lbGeneral.Margin = new System.Windows.Forms.Padding(6);
             this.lbGeneral.Name = "lbGeneral";
-            this.lbGeneral.Size = new System.Drawing.Size(1094, 564);
+            this.lbGeneral.Size = new System.Drawing.Size(1094, 976);
             this.lbGeneral.TabIndex = 2;
             this.lbGeneral.Text = "";
             // 
@@ -704,7 +763,7 @@ namespace SCSSdkClient.Demo
             this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(1174, 1229);
+            this.tabPage1.Size = new System.Drawing.Size(1174, 1641);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Common";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -715,7 +774,7 @@ namespace SCSSdkClient.Demo
             this.common.Location = new System.Drawing.Point(6, 6);
             this.common.Margin = new System.Windows.Forms.Padding(6);
             this.common.Name = "common";
-            this.common.Size = new System.Drawing.Size(1162, 1217);
+            this.common.Size = new System.Drawing.Size(1162, 1629);
             this.common.TabIndex = 3;
             this.common.Text = "";
             // 
@@ -958,6 +1017,441 @@ namespace SCSSdkClient.Demo
             this.toolStripDropDownButton3.Size = new System.Drawing.Size(236, 36);
             this.toolStripDropDownButton3.Text = "Trigger SB Actions!";
             // 
+            // tabPage10
+            // 
+            this.tabPage10.Controls.Add(this.groupBoxActions);
+            this.tabPage10.Controls.Add(this.groupBoxConnection);
+            this.tabPage10.Location = new System.Drawing.Point(8, 39);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage10.Size = new System.Drawing.Size(1174, 1641);
+            this.tabPage10.TabIndex = 10;
+            this.tabPage10.Text = "Streamer.Bot Config";
+            this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxConnection
+            // 
+            this.groupBoxConnection.Controls.Add(this.textBoxPort);
+            this.groupBoxConnection.Controls.Add(this.label2);
+            this.groupBoxConnection.Controls.Add(this.textBoxIp);
+            this.groupBoxConnection.Controls.Add(this.label1);
+            this.groupBoxConnection.Location = new System.Drawing.Point(6, 6);
+            this.groupBoxConnection.Name = "groupBoxConnection";
+            this.groupBoxConnection.Size = new System.Drawing.Size(621, 125);
+            this.groupBoxConnection.TabIndex = 0;
+            this.groupBoxConnection.TabStop = false;
+            this.groupBoxConnection.Text = "Streamer.Bot Connection";
+            // 
+            // groupBoxActions
+            // 
+            this.groupBoxActions.Controls.Add(this.groupBox8);
+            this.groupBoxActions.Controls.Add(this.groupBox7);
+            this.groupBoxActions.Controls.Add(this.groupBox6);
+            this.groupBoxActions.Controls.Add(this.groupBox5);
+            this.groupBoxActions.Controls.Add(this.groupBox4);
+            this.groupBoxActions.Controls.Add(this.groupBox3);
+            this.groupBoxActions.Controls.Add(this.groupBox2);
+            this.groupBoxActions.Controls.Add(this.groupBox1);
+            this.groupBoxActions.Location = new System.Drawing.Point(6, 137);
+            this.groupBoxActions.Name = "groupBoxActions";
+            this.groupBoxActions.Size = new System.Drawing.Size(621, 1235);
+            this.groupBoxActions.TabIndex = 1;
+            this.groupBoxActions.TabStop = false;
+            this.groupBoxActions.Text = "Streamer.Bot Actions";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(115, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(31, 25);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "IP";
+            // 
+            // textBoxIp
+            // 
+            this.textBoxIp.Location = new System.Drawing.Point(152, 31);
+            this.textBoxIp.Name = "textBoxIp";
+            this.textBoxIp.Size = new System.Drawing.Size(457, 31);
+            this.textBoxIp.TabIndex = 1;
+            // 
+            // textBoxPort
+            // 
+            this.textBoxPort.Location = new System.Drawing.Point(152, 72);
+            this.textBoxPort.Name = "textBoxPort";
+            this.textBoxPort.Size = new System.Drawing.Size(457, 31);
+            this.textBoxPort.TabIndex = 3;
+            this.textBoxPort.TextChanged += new System.EventHandler(this.textBoxPort_TextChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(95, 72);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(51, 25);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Port";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.textBoxStartedName);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.textBoxStartedId);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Location = new System.Drawing.Point(6, 30);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(609, 143);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "JobStartedEvent";
+            // 
+            // textBoxStartedName
+            // 
+            this.textBoxStartedName.Location = new System.Drawing.Point(146, 83);
+            this.textBoxStartedName.Name = "textBoxStartedName";
+            this.textBoxStartedName.Size = new System.Drawing.Size(457, 31);
+            this.textBoxStartedName.TabIndex = 9;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 83);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(134, 25);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Action Name";
+            // 
+            // textBoxStartedId
+            // 
+            this.textBoxStartedId.Location = new System.Drawing.Point(146, 42);
+            this.textBoxStartedId.Name = "textBoxStartedId";
+            this.textBoxStartedId.Size = new System.Drawing.Size(457, 31);
+            this.textBoxStartedId.TabIndex = 7;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(42, 42);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(98, 25);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Action ID";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.textBoxDeliveredName);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.textBoxDeliveredId);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Location = new System.Drawing.Point(7, 180);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(609, 143);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "JobDeliveredEvent";
+            // 
+            // textBoxDeliveredName
+            // 
+            this.textBoxDeliveredName.Location = new System.Drawing.Point(146, 83);
+            this.textBoxDeliveredName.Name = "textBoxDeliveredName";
+            this.textBoxDeliveredName.Size = new System.Drawing.Size(457, 31);
+            this.textBoxDeliveredName.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 83);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(134, 25);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Action Name";
+            // 
+            // textBoxDeliveredId
+            // 
+            this.textBoxDeliveredId.Location = new System.Drawing.Point(146, 42);
+            this.textBoxDeliveredId.Name = "textBoxDeliveredId";
+            this.textBoxDeliveredId.Size = new System.Drawing.Size(457, 31);
+            this.textBoxDeliveredId.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(42, 42);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(98, 25);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "Action ID";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.textBoxCancelledName);
+            this.groupBox3.Controls.Add(this.label15);
+            this.groupBox3.Controls.Add(this.textBoxCancelledId);
+            this.groupBox3.Controls.Add(this.label16);
+            this.groupBox3.Location = new System.Drawing.Point(6, 328);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(609, 143);
+            this.groupBox3.TabIndex = 8;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "JobCancelledEvent";
+            // 
+            // textBoxCancelledName
+            // 
+            this.textBoxCancelledName.Location = new System.Drawing.Point(146, 83);
+            this.textBoxCancelledName.Name = "textBoxCancelledName";
+            this.textBoxCancelledName.Size = new System.Drawing.Size(457, 31);
+            this.textBoxCancelledName.TabIndex = 9;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 83);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(134, 25);
+            this.label15.TabIndex = 8;
+            this.label15.Text = "Action Name";
+            // 
+            // textBoxCancelledId
+            // 
+            this.textBoxCancelledId.Location = new System.Drawing.Point(146, 42);
+            this.textBoxCancelledId.Name = "textBoxCancelledId";
+            this.textBoxCancelledId.Size = new System.Drawing.Size(457, 31);
+            this.textBoxCancelledId.TabIndex = 7;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(42, 42);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(98, 25);
+            this.label16.TabIndex = 6;
+            this.label16.Text = "Action ID";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.textBoxFinedName);
+            this.groupBox4.Controls.Add(this.label17);
+            this.groupBox4.Controls.Add(this.textBoxFinedId);
+            this.groupBox4.Controls.Add(this.label18);
+            this.groupBox4.Location = new System.Drawing.Point(6, 477);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(609, 143);
+            this.groupBox4.TabIndex = 9;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "FinedEvent";
+            // 
+            // textBoxFinedName
+            // 
+            this.textBoxFinedName.Location = new System.Drawing.Point(146, 83);
+            this.textBoxFinedName.Name = "textBoxFinedName";
+            this.textBoxFinedName.Size = new System.Drawing.Size(457, 31);
+            this.textBoxFinedName.TabIndex = 9;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(6, 83);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(134, 25);
+            this.label17.TabIndex = 8;
+            this.label17.Text = "Action Name";
+            // 
+            // textBoxFinedId
+            // 
+            this.textBoxFinedId.Location = new System.Drawing.Point(146, 42);
+            this.textBoxFinedId.Name = "textBoxFinedId";
+            this.textBoxFinedId.Size = new System.Drawing.Size(457, 31);
+            this.textBoxFinedId.TabIndex = 7;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(42, 42);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(98, 25);
+            this.label18.TabIndex = 6;
+            this.label18.Text = "Action ID";
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.textBoxTollgateName);
+            this.groupBox5.Controls.Add(this.label19);
+            this.groupBox5.Controls.Add(this.textBoxTollgateId);
+            this.groupBox5.Controls.Add(this.label20);
+            this.groupBox5.Location = new System.Drawing.Point(7, 626);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(609, 143);
+            this.groupBox5.TabIndex = 10;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "TollgateEvent";
+            // 
+            // textBoxTollgateName
+            // 
+            this.textBoxTollgateName.Location = new System.Drawing.Point(146, 83);
+            this.textBoxTollgateName.Name = "textBoxTollgateName";
+            this.textBoxTollgateName.Size = new System.Drawing.Size(457, 31);
+            this.textBoxTollgateName.TabIndex = 9;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(6, 83);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(134, 25);
+            this.label19.TabIndex = 8;
+            this.label19.Text = "Action Name";
+            // 
+            // textBoxTollgateId
+            // 
+            this.textBoxTollgateId.Location = new System.Drawing.Point(146, 42);
+            this.textBoxTollgateId.Name = "textBoxTollgateId";
+            this.textBoxTollgateId.Size = new System.Drawing.Size(457, 31);
+            this.textBoxTollgateId.TabIndex = 7;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(42, 42);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(98, 25);
+            this.label20.TabIndex = 6;
+            this.label20.Text = "Action ID";
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.textBoxTrainName);
+            this.groupBox6.Controls.Add(this.label21);
+            this.groupBox6.Controls.Add(this.textBoxTrainId);
+            this.groupBox6.Controls.Add(this.label22);
+            this.groupBox6.Location = new System.Drawing.Point(6, 775);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(609, 143);
+            this.groupBox6.TabIndex = 11;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "TrainEvent";
+            // 
+            // textBoxTrainName
+            // 
+            this.textBoxTrainName.Location = new System.Drawing.Point(146, 83);
+            this.textBoxTrainName.Name = "textBoxTrainName";
+            this.textBoxTrainName.Size = new System.Drawing.Size(457, 31);
+            this.textBoxTrainName.TabIndex = 9;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(6, 83);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(134, 25);
+            this.label21.TabIndex = 8;
+            this.label21.Text = "Action Name";
+            // 
+            // textBoxTrainId
+            // 
+            this.textBoxTrainId.Location = new System.Drawing.Point(146, 42);
+            this.textBoxTrainId.Name = "textBoxTrainId";
+            this.textBoxTrainId.Size = new System.Drawing.Size(457, 31);
+            this.textBoxTrainId.TabIndex = 7;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(42, 42);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(98, 25);
+            this.label22.TabIndex = 6;
+            this.label22.Text = "Action ID";
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.textBoxFerryName);
+            this.groupBox7.Controls.Add(this.label23);
+            this.groupBox7.Controls.Add(this.textBoxFerryId);
+            this.groupBox7.Controls.Add(this.label24);
+            this.groupBox7.Location = new System.Drawing.Point(6, 923);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(609, 143);
+            this.groupBox7.TabIndex = 12;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "FerryEvent";
+            // 
+            // textBoxFerryName
+            // 
+            this.textBoxFerryName.Location = new System.Drawing.Point(146, 83);
+            this.textBoxFerryName.Name = "textBoxFerryName";
+            this.textBoxFerryName.Size = new System.Drawing.Size(457, 31);
+            this.textBoxFerryName.TabIndex = 9;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 83);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(134, 25);
+            this.label23.TabIndex = 8;
+            this.label23.Text = "Action Name";
+            // 
+            // textBoxFerryId
+            // 
+            this.textBoxFerryId.Location = new System.Drawing.Point(146, 42);
+            this.textBoxFerryId.Name = "textBoxFerryId";
+            this.textBoxFerryId.Size = new System.Drawing.Size(457, 31);
+            this.textBoxFerryId.TabIndex = 7;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(42, 42);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(98, 25);
+            this.label24.TabIndex = 6;
+            this.label24.Text = "Action ID";
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.textBoxRefuelName);
+            this.groupBox8.Controls.Add(this.label25);
+            this.groupBox8.Controls.Add(this.textBoxRefuelId);
+            this.groupBox8.Controls.Add(this.label26);
+            this.groupBox8.Location = new System.Drawing.Point(7, 1072);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(609, 143);
+            this.groupBox8.TabIndex = 7;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "RefuelEvent";
+            // 
+            // textBoxRefuelName
+            // 
+            this.textBoxRefuelName.Location = new System.Drawing.Point(146, 83);
+            this.textBoxRefuelName.Name = "textBoxRefuelName";
+            this.textBoxRefuelName.Size = new System.Drawing.Size(457, 31);
+            this.textBoxRefuelName.TabIndex = 9;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(6, 83);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(134, 25);
+            this.label25.TabIndex = 8;
+            this.label25.Text = "Action Name";
+            // 
+            // textBoxRefuelId
+            // 
+            this.textBoxRefuelId.Location = new System.Drawing.Point(146, 42);
+            this.textBoxRefuelId.Name = "textBoxRefuelId";
+            this.textBoxRefuelId.Size = new System.Drawing.Size(457, 31);
+            this.textBoxRefuelId.TabIndex = 7;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(42, 42);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(98, 25);
+            this.label26.TabIndex = 6;
+            this.label26.Text = "Action ID";
+            // 
             // SCSSdkClientDemo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1004,6 +1498,26 @@ namespace SCSSdkClient.Demo
             this.panelJobStarted.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.tabPage10.ResumeLayout(false);
+            this.groupBoxConnection.ResumeLayout(false);
+            this.groupBoxConnection.PerformLayout();
+            this.groupBoxActions.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1090,6 +1604,53 @@ namespace SCSSdkClient.Demo
         private System.Windows.Forms.RichTextBox ferryevent;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton3;
         private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.TabPage tabPage10;
+        private System.Windows.Forms.GroupBox groupBoxConnection;
+        private System.Windows.Forms.GroupBox groupBoxActions;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxIp;
+        private System.Windows.Forms.TextBox textBoxPort;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox textBoxFinedName;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox textBoxFinedId;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox textBoxCancelledName;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox textBoxCancelledId;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox textBoxDeliveredName;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBoxDeliveredId;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox textBoxStartedName;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBoxStartedId;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.TextBox textBoxRefuelName;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox textBoxRefuelId;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.TextBox textBoxFerryName;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox textBoxFerryId;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.TextBox textBoxTrainName;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.TextBox textBoxTrainId;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.TextBox textBoxTollgateName;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox textBoxTollgateId;
+        private System.Windows.Forms.Label label20;
     }
 }
 
