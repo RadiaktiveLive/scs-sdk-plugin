@@ -2,7 +2,7 @@
   "Connection": {
     "Protocol": "http",
     "Ip": "127.0.0.1",
-    "Port": 7474,
+    "Port": "7474",
     "Endpoint": "DoAction"
   },
   "Actions": {

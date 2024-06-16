@@ -950,6 +950,7 @@ namespace SCSSdkClient.Demo {
                 return null;
             }
             */
+            string messageBoxTitle = "StreamerBot Test Connection";
             var testUrl = new UriBuilder(StreamerBotConfig.protocol, textBoxIp.Text, int.Parse(textBoxPort.Text), "GetActions");
             /*
                         using (var client = new HttpClient())
@@ -986,7 +987,7 @@ namespace SCSSdkClient.Demo {
                 {
                     tcpClient.Connect(server, port);
                     //Console.WriteLine("Connection successful");
-                    new LogWriter("TcpClient Connection successful");
+                    new LogWriter("INFO", "TcpClient Connection successful");
 
 
 
@@ -998,7 +999,7 @@ namespace SCSSdkClient.Demo {
                     {
                         string json = await response.Content.ReadAsStringAsync();
                         //MessageBox.Show(json);
-                        new LogWriter(json);
+                        new LogWriter("INFO", json);
 
                         if (json.Length > 0)
                         {
@@ -1007,26 +1008,26 @@ namespace SCSSdkClient.Demo {
                             GetAction data = JsonConvert.DeserializeObject<GetAction>(json);
 
                             //MessageBox.Show(data["count"]);
-                            new LogWriter(data.Count.ToString());
+                            new LogWriter("INFO", data.Count.ToString());
 
                             if (data.Count >= 0 && data.Actions.Count >= 0)
                             {
-                                new LogWriter("data.Count >= 0: " + data.Count.ToString());
-                                new LogWriter("data.Actions.Count >= 0: " + data.Actions.Count.ToString());
+                                new LogWriter("INFO", "data.Count >= 0: " + data.Count.ToString());
+                                new LogWriter("INFO", "data.Actions.Count >= 0: " + data.Actions.Count.ToString());
 
                                 foreach (Action element in data.Actions)
                                 {
-                                    new LogWriter(element.Name.ToString());
-                                    new LogWriter(JsonConvert.SerializeObject(element, Formatting.Indented));
+                                    new LogWriter("INFO", element.Name.ToString());
+                                    new LogWriter("INFO", JsonConvert.SerializeObject(element, Formatting.Indented));
                                 }
 
-                                new LogWriter("Connection successful.");
-                                MessageBox.Show("Connection successful.");
+                                new LogWriter("INFO", "Connection successful.");
+                                MessageBox.Show("Connection successful.", messageBoxTitle);
                             }
                             else
                             {
-                                new LogWriter("Connection failed.");
-                                MessageBox.Show("Connection failed.");
+                                new LogWriter("ERROR", "Connection failed.");
+                                MessageBox.Show("Connection failed.", messageBoxTitle);
                             }
 
 
@@ -1055,7 +1056,7 @@ namespace SCSSdkClient.Demo {
                         }
                         else
                         {
-                            MessageBox.Show("Connection failed.");
+                            MessageBox.Show("Connection failed.", messageBoxTitle);
                         }
 
 
@@ -1063,8 +1064,8 @@ namespace SCSSdkClient.Demo {
                     else
                     {
                         //Console.WriteLine($"Error: {response.StatusCode}");
-                        new LogWriter($"Error: {response.StatusCode}");
-                        MessageBox.Show($"Error: {response.StatusCode}");
+                        new LogWriter("ERROR", $"Error: {response.StatusCode}");
+                        MessageBox.Show($"Error: {response.StatusCode}", messageBoxTitle);
                     }
 
 
@@ -1073,21 +1074,21 @@ namespace SCSSdkClient.Demo {
                 {
                     // Handle exception related to the HTTP request
                     //Console.WriteLine($"Request error: {ex.Message}");
-                    new LogWriter($"Request error: {ex.Message}");
-                    MessageBox.Show($"Request error: {ex.Message}");
+                    new LogWriter("ERROR", $"Request error: {ex.Message}");
+                    MessageBox.Show($"Request error: {ex.Message}", messageBoxTitle);
                 }
                 catch (JsonException ex)
                 {
                     // Handle exception related to JSON deserialization
                     //Console.WriteLine($"Deserialization error: {ex.Message}");
-                    new LogWriter($"Deserialization error: {ex.Message}");
-                    MessageBox.Show($"Deserialization error: {ex.Message}");
+                    new LogWriter("ERROR", $"Deserialization error: {ex.Message}");
+                    MessageBox.Show($"Deserialization error: {ex.Message}", messageBoxTitle);
                 }
                 catch (Exception ex)
                 {
                     //Console.WriteLine($"Connection failed: {ex.Message}");
-                    new LogWriter($"Connection failed: {ex.Message}");
-                    MessageBox.Show($"Connection failed: {ex.Message}");
+                    new LogWriter("ERROR", $"Connection failed: {ex.Message}");
+                    MessageBox.Show($"Connection failed: {ex.Message}", messageBoxTitle);
                 }
             }
 
@@ -1123,18 +1124,23 @@ namespace SCSSdkClient.Demo {
         public class LogWriter
         {
             private string m_exePath = string.Empty;
-            public LogWriter(string logMessage)
+            private string todayDate = DateTime.Now.ToString("yyyyMMdd");
+            public LogWriter(string logType, string logMessage)
             {
-                LogWrite(logMessage);
+                LogWrite(logType, logMessage);
             }
-            public void LogWrite(string logMessage)
+            public void LogWrite(string logType, string logMessage)
             {
                 m_exePath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
                 try
                 {
-                    using (StreamWriter w = File.AppendText(m_exePath + "\\" + "log.txt"))
+                    if (!Directory.Exists(m_exePath + "\\" + "Logs"))
                     {
-                        Log(logMessage, w);
+                        Directory.CreateDirectory(m_exePath + "\\" + "Logs");
+                    }
+                    using (StreamWriter w = File.AppendText(m_exePath + "\\" + "Logs\\" + todayDate + ".txt"))
+                    {
+                        Log(logType, logMessage, w);
                     }
                 }
                 catch (Exception ex)
@@ -1142,13 +1148,13 @@ namespace SCSSdkClient.Demo {
                 }
             }
 
-            public void Log(string logMessage, TextWriter txtWriter)
+            public void Log(string logType, string logMessage, TextWriter txtWriter)
             {
                 try
                 {
                     //txtWriter.Write("\r\nLog Entry : ");
                     //txtWriter.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToShortDateString());
-                    txtWriter.WriteLine("{0} {1} :", DateTime.Now.ToShortDateString(), DateTime.Now.ToLongTimeString());
+                    txtWriter.WriteLine("{0} {1} {2} :", DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToLongTimeString(), logType);
                     //DateTime.Now.ToLongDateString());
                     //txtWriter.WriteLine("  :");
                     //txtWriter.WriteLine("  :{0}", logMessage);
