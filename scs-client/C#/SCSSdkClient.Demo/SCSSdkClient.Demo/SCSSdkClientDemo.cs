@@ -24,17 +24,21 @@ namespace SCSSdkClient.Demo {
         public SCSSdkTelemetry Telemetry;
 
         ///
+        public string StreamerBotConfigFile = "StreamerBotSettings.json";
+        ///
         public string StreamerbotUrl = "";
         ///
-        public ActionInfo JobStartedSBAction = new ActionInfo();
+        public StreamerBot StreamerBotConfig = new StreamerBot();
+        ///
+        public ActionInfo JobStartedEventSBAction = new ActionInfo();
         ///
         public ActionInfo FerryEventSBAction = new ActionInfo();
         ///
         public ActionInfo FinedEventSBAction = new ActionInfo();
         ///
-        public ActionInfo JobCancelledSBAction = new ActionInfo();
+        public ActionInfo JobCancelledEventSBAction = new ActionInfo();
         ///
-        public ActionInfo JobDeliveredSBAction = new ActionInfo();
+        public ActionInfo JobDeliveredEventSBAction = new ActionInfo();
         ///
         public ActionInfo TollgateEventSBAction = new ActionInfo();
         ///
@@ -247,6 +251,41 @@ namespace SCSSdkClient.Demo {
         }
         
         ///
+        public class StreamerBot
+        {
+            ///
+            public string protocol { get; set; }
+            ///
+            public string ip { get; set; }
+            ///
+            public string port { get; set; }
+            ///
+            public string endpoint { get; set; }
+            ///
+            public string url { get; set; }
+
+            /// Constructor
+            public StreamerBot()
+            {
+                this.protocol = "";
+                this.ip = "";
+                this.port = "";
+                this.endpoint = "";
+                this.url = "";
+            }
+
+            /// Constructor
+            public StreamerBot(string protocol, string ip, string port, string endpoint, string url)
+            {
+                this.protocol = protocol;
+                this.ip = ip;
+                this.port = port;
+                this.endpoint = endpoint;
+                this.url = url;
+            }
+        }
+
+        ///
         public class ActionInfo
         {
             ///
@@ -283,7 +322,7 @@ namespace SCSSdkClient.Demo {
                 //MessageBox.Show(json);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
                 //var response = await client.PostAsync(url, content);
-                var response = await client.PostAsync(StreamerbotUrl, content);
+                var response = await client.PostAsync(StreamerBotConfig.url, content);
                 if (response.IsSuccessStatusCode)
                 {
                     return await response.Content.ReadAsStringAsync();
@@ -445,60 +484,68 @@ namespace SCSSdkClient.Demo {
                 else
                 {
                     var uriBuilder = new UriBuilder(Protocol, Ip, int.Parse(Port), Endpoint);
+                    StreamerBotConfig.protocol = Protocol;
+                    StreamerBotConfig.ip = Ip;
+                    StreamerBotConfig.port = Port;
+                    StreamerBotConfig.endpoint = Endpoint;
+                    StreamerBotConfig.url = uriBuilder.ToString();
+                    /*
+                    var uriBuilder = new UriBuilder(Protocol, Ip, int.Parse(Port), Endpoint);
                     StreamerbotUrl = uriBuilder.ToString();
+                    */
                     textBoxIp.Text = Ip;
                     textBoxPort.Text = Port;
                 }
                 //MessageBox.Show("StreamerbotUrl: " + StreamerbotUrl);
 
-                string JobStartedId = configuration.GetSection("Actions:JobStarted:Id").Value;
-                string JobStartedName = configuration.GetSection("Actions:JobStarted:Name").Value;
-                if (JobStartedId == null || JobStartedName == null)
+                string JobStartedEventId = configuration.GetSection("Actions:JobStartedEvent:Id").Value;
+                string JobStartedEventName = configuration.GetSection("Actions:JobStartedEvent:Name").Value;
+                if (JobStartedEventId == null || JobStartedEventName == null)
                 {
-                    MessageBox.Show("JobStarted configuration values are missing.");
+                    MessageBox.Show("JobStartedEvent configuration values are missing.");
                     //return;
                 }
                 else
                 {
                     //JobStartedSBAction = new ActionInfo { id = JobStartedId, name = JobStartedName };
-                    JobStartedSBAction.id = JobStartedId;
-                    JobStartedSBAction.name = JobStartedName;
-                    textBoxStartedId.Text = JobStartedId;
-                    textBoxStartedName.Text = JobStartedName;
+                    JobStartedEventSBAction.id = JobStartedEventId;
+                    JobStartedEventSBAction.name = JobStartedEventName;
+                    textBoxJobStartedId.Text = JobStartedEventId;
+                    textBoxJobStartedName.Text = JobStartedEventName;
                 }
                 //MessageBox.Show("JobStartedSBAction: \n{\n id = \"" + JobStartedSBAction.id + "\",\n name = \"" + JobStartedSBAction.name + "\"\n}");
 
-                string JobDeliveredId = configuration.GetSection("Actions:JobDelivered:Id").Value;
-                string JobDeliveredName = configuration.GetSection("Actions:JobDelivered:Name").Value;
-                if (JobDeliveredId == null || JobDeliveredName == null)
+                string JobDeliveredEventId = configuration.GetSection("Actions:JobDeliveredEvent:Id").Value;
+                string JobDeliveredEventName = configuration.GetSection("Actions:JobDeliveredEvent:Name").Value;
+                if (JobDeliveredEventId == null || JobDeliveredEventName == null)
                 {
-                    MessageBox.Show("JobDelivered configuration values are missing.");
+                    MessageBox.Show("JobDeliveredEvent configuration values are missing.");
                     //return;
                 }
                 else
                 {
                     //JobDeliveredSBAction = new ActionInfo { id = JobDeliveredId, name = JobDeliveredName };
-                    JobDeliveredSBAction.id = JobDeliveredId;
-                    JobDeliveredSBAction.name = JobDeliveredName;
-                    textBoxDeliveredId.Text = JobDeliveredId;
-                    textBoxDeliveredName.Text = JobDeliveredName;
+                    JobDeliveredEventSBAction.id = JobDeliveredEventId;
+                    JobDeliveredEventSBAction.name = JobDeliveredEventName;
+                    textBoxJobDeliveredId.Text = JobDeliveredEventId;
+                    textBoxJobDeliveredName.Text = JobDeliveredEventName;
                 }
                 //MessageBox.Show("JobDeliveredSBAction: \n{\n id = \"" + JobDeliveredSBAction.id + "\",\n name = \"" + JobDeliveredSBAction.name + "\"\n}");
 
-                string JobCancelledId = configuration.GetSection("Actions:JobCancelled:Id").Value;
-                string JobCancelledName = configuration.GetSection("Actions:JobCancelled:Name").Value;
-                if (JobCancelledId == null || JobCancelledName == null)
+                string JobCancelledEventId = configuration.GetSection("Actions:JobCancelledEvent:Id").Value;
+                string JobCancelledEventName = configuration.GetSection("Actions:JobCancelledEvent:Name").Value;
+                if (JobCancelledEventId == null || JobCancelledEventName == null)
                 {
-                    MessageBox.Show("JobCancelled configuration values are missing.");
+                    MessageBox.Show("JobCancelledEvent configuration values are missing.");
                     //return;
                 }
                 else
                 {
                     //JobCancelledSBAction = new ActionInfo { id = JobCancelledId, name = JobCancelledName };
-                    JobCancelledSBAction.id = JobCancelledId;
-                    JobCancelledSBAction.name = JobCancelledName;
-                    textBoxCancelledId.Text = JobCancelledId;
-                    textBoxCancelledName.Text = JobCancelledName;
+                    JobCancelledEventSBAction.id = JobCancelledEventId;
+                    JobCancelledEventSBAction.name = JobCancelledEventName;
+                    textBoxJobCancelledId.Text = JobCancelledEventId;
+                    textBoxJobCancelledName.Text = JobCancelledEventName;
                 }
                 //MessageBox.Show("JobCancelledSBAction: \n{\n id = \"" + JobCancelledSBAction.id + "\",\n name = \"" + JobCancelledSBAction.name + "\"\n}");
 
@@ -514,8 +561,8 @@ namespace SCSSdkClient.Demo {
                     //FinedEventSBAction = new ActionInfo { id = FinedEventId, name = FinedEventName };
                     FinedEventSBAction.id = FinedEventId;
                     FinedEventSBAction.name = FinedEventName;
-                    textBoxFinedId.Text = FinedEventId;
-                    textBoxFinedName.Text = FinedEventName;
+                    textBoxFinedEventId.Text = FinedEventId;
+                    textBoxFinedEventName.Text = FinedEventName;
                 }
                 //MessageBox.Show("FinedEventSBAction: \n{\n id = \"" + FinedEventSBAction.id + "\",\n name = \"" + FinedEventSBAction.name + "\"\n}");
 
@@ -531,8 +578,8 @@ namespace SCSSdkClient.Demo {
                     //TollgateEventSBAction = new ActionInfo { id = TollgateEventId, name = TollgateEventName };
                     TollgateEventSBAction.id = TollgateEventId;
                     TollgateEventSBAction.name = TollgateEventName;
-                    textBoxTollgateId.Text = TollgateEventId;
-                    textBoxTollgateName.Text = TollgateEventName;
+                    textBoxTollgateEventId.Text = TollgateEventId;
+                    textBoxTollgateEventName.Text = TollgateEventName;
                 }
                 //MessageBox.Show("TollgateEventSBAction: \n{\n id = \"" + TollgateEventSBAction.id + "\",\n name = \"" + TollgateEventSBAction.name + "\"\n}");
 
@@ -548,8 +595,8 @@ namespace SCSSdkClient.Demo {
                     //TrainEventSBAction = new ActionInfo { id = TrainEventId, name = TrainEventName };
                     TrainEventSBAction.id = TrainEventId;
                     TrainEventSBAction.name = TrainEventName;
-                    textBoxTrainId.Text = TrainEventId;
-                    textBoxTrainName.Text = TrainEventName;
+                    textBoxTrainEventId.Text = TrainEventId;
+                    textBoxTrainEventName.Text = TrainEventName;
                 }
                 //MessageBox.Show("TrainEventSBAction: \n{\n id = \"" + TrainEventSBAction.id + "\",\n name = \"" + TrainEventSBAction.name + "\"\n}");
 
@@ -565,8 +612,8 @@ namespace SCSSdkClient.Demo {
                     //FerryEventSBAction = new ActionInfo { id = FerryEventId, name = FerryEventName };
                     FerryEventSBAction.id = FerryEventId;
                     FerryEventSBAction.name = FerryEventName;
-                    textBoxFerryId.Text = FerryEventId;
-                    textBoxFerryName.Text = FerryEventName;
+                    textBoxFerryEventId.Text = FerryEventId;
+                    textBoxFerryEventName.Text = FerryEventName;
                 }
                 //MessageBox.Show("FerryEventSBAction: \n{\n id = \"" + FerryEventSBAction.id + "\",\n name = \"" + FerryEventSBAction.name + "\"\n}");
 
@@ -582,8 +629,8 @@ namespace SCSSdkClient.Demo {
                     //RefuelEventSBAction = new ActionInfo { id = RefuelEventId, name = RefuelEventName };
                     RefuelEventSBAction.id = RefuelEventId;
                     RefuelEventSBAction.name = RefuelEventName;
-                    textBoxRefuelId.Text = RefuelEventId;
-                    textBoxRefuelName.Text = RefuelEventName;
+                    textBoxRefuelEventId.Text = RefuelEventId;
+                    textBoxRefuelEventName.Text = RefuelEventName;
                 }
                 //MessageBox.Show("RefuelEventSBAction: \n{\n id = \"" + RefuelEventSBAction.id + "\",\n name = \"" + RefuelEventSBAction.name + "\"\n}");
             }
@@ -643,7 +690,7 @@ namespace SCSSdkClient.Demo {
             //var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
             //var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
             //MessageBox.Show(json, "JobDelivered");
-            var myObject = createMyJsonObject(JobStartedSBAction, "Job", events);
+            var myObject = createMyJsonObject(JobStartedEventSBAction, "Job", events);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
 
             Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobStarted);
@@ -653,7 +700,7 @@ namespace SCSSdkClient.Demo {
             var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
             var json = JsonConvert.SerializeObject(myObject1.JobCancelled);
             //MessageBox.Show(json, "JobCancelled");
-            var myObject = createMyJsonObject(JobCancelledSBAction, "JobCancelled", json);
+            var myObject = createMyJsonObject(JobCancelledEventSBAction, "JobCancelled", json);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
 
             Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobCancelled);
@@ -663,7 +710,7 @@ namespace SCSSdkClient.Demo {
             var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
             var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
             //MessageBox.Show(json, "JobDelivered");
-            var myObject = createMyJsonObject(JobDeliveredSBAction, "JobDelivered", json);
+            var myObject = createMyJsonObject(JobDeliveredEventSBAction, "JobDelivered", json);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
 
             Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobDelivered);
@@ -818,6 +865,76 @@ namespace SCSSdkClient.Demo {
         private void toolStripRefuelEvent_Click(object sender, EventArgs e)
         {
             Refuel(gameplayevent.Text);
+        }
+
+        private void buttonSaveSettings_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to save the settings?", "My Application", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+
+            var data = new
+            {
+                Connection = new
+                {
+                    Protocol = "http",
+                    Ip = textBoxIp.Text,
+                    Port = textBoxPort.Text,
+                    Endpoint = "DoAction"
+                },
+                Actions = new
+                {
+                    JobStartedEvent = new
+                    {
+                        Id = textBoxJobStartedId.Text,
+                        Name = textBoxJobStartedName.Text
+                    },
+                    JobDeliveredEvent = new
+                    {
+                        Id = textBoxJobDeliveredId.Text,
+                        Name = textBoxJobDeliveredName.Text
+                    },
+                    JobCancelledEvent = new
+                    {
+                        Id = textBoxJobCancelledId.Text,
+                        Name = textBoxJobCancelledName.Text
+                    },
+                    FinedEvent = new
+                    {
+                        Id = textBoxFinedEventId.Text,
+                        Name = textBoxFinedEventName.Text
+                    },
+                    TollgateEvent = new
+                    {
+                        Id = textBoxTollgateEventId.Text,
+                        Name = textBoxTollgateEventName.Text
+                    },
+                    TrainEvent = new
+                    {
+                        Id = textBoxTrainEventId.Text,
+                        Name = textBoxTrainEventName.Text
+                    },
+                    FerryEvent = new
+                    {
+                        Id = textBoxFerryEventId.Text,
+                        Name = textBoxFerryEventName.Text
+                    },
+                    RefuelEvent = new
+                    {
+                        Id = textBoxRefuelEventId.Text,
+                        Name = textBoxRefuelEventName.Text
+                    }
+                    // Add more actions as needed
+                }
+            };
+
+            string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+
+            // Specify your own path and filename
+            string path = @"savedSettings.json";
+
+            File.WriteAllText(path, json);
         }
     }
 }

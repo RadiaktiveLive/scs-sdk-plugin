@@ -6,15 +6,15 @@
     "Endpoint": "DoAction"
   },
   "Actions": {
-    "JobStarted": {
+    "JobStartedEvent": {
       "Id": "2fb96e1d-c7db-424d-8082-4208c74b6868",
       "Name": "JobStarted"
     },
-    "JobDelivered": {
+    "JobDeliveredEvent": {
       "Id": "d9aee73d-c46c-4e7e-99a7-b9dda5c698cc",
       "Name": "JobDelivered"
     },
-    "JobCancelled": {
+    "JobCancelledEvent": {
       "Id": "8eea589f-b513-4499-8602-40b914f8c749",
       "Name": "JobCancelled"
     },
