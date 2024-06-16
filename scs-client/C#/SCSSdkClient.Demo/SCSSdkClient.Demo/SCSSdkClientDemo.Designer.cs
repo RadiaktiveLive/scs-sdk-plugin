@@ -160,6 +160,7 @@ namespace SCSSdkClient.Demo
             this.lblDemo = new System.Windows.Forms.Label();
             this.tabPage1 = new SCSSdkClient.Demo.CustomTabPage();
             this.common = new System.Windows.Forms.RichTextBox();
+            this.buttonTestConnection = new System.Windows.Forms.Button();
             this.hgf.SuspendLayout();
             this.contextMenuStripTriggerActions.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -756,6 +757,7 @@ namespace SCSSdkClient.Demo
             // 
             // tabPage10
             // 
+            this.tabPage10.Controls.Add(this.buttonTestConnection);
             this.tabPage10.Controls.Add(this.buttonSaveSettings);
             this.tabPage10.Controls.Add(this.groupBoxActions);
             this.tabPage10.Controls.Add(this.groupBoxConnection);
@@ -771,7 +773,7 @@ namespace SCSSdkClient.Demo
             // 
             this.buttonSaveSettings.Location = new System.Drawing.Point(830, 106);
             this.buttonSaveSettings.Name = "buttonSaveSettings";
-            this.buttonSaveSettings.Size = new System.Drawing.Size(184, 62);
+            this.buttonSaveSettings.Size = new System.Drawing.Size(239, 62);
             this.buttonSaveSettings.TabIndex = 2;
             this.buttonSaveSettings.Text = "Save settings";
             this.buttonSaveSettings.UseVisualStyleBackColor = true;
@@ -1464,6 +1466,16 @@ namespace SCSSdkClient.Demo
             this.common.TabIndex = 3;
             this.common.Text = "";
             // 
+            // buttonTestConnection
+            // 
+            this.buttonTestConnection.Location = new System.Drawing.Point(830, 190);
+            this.buttonTestConnection.Name = "buttonTestConnection";
+            this.buttonTestConnection.Size = new System.Drawing.Size(239, 62);
+            this.buttonTestConnection.TabIndex = 3;
+            this.buttonTestConnection.Text = "Test Connection";
+            this.buttonTestConnection.UseVisualStyleBackColor = true;
+            this.buttonTestConnection.Click += new System.EventHandler(this.buttonTestConnection_Click);
+            // 
             // SCSSdkClientDemo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1664,6 +1676,7 @@ namespace SCSSdkClient.Demo
         private System.Windows.Forms.TextBox textBoxTollgateEventId;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Button buttonSaveSettings;
+        private System.Windows.Forms.Button buttonTestConnection;
     }
 }
 

@@ -12,6 +12,10 @@ using static SCSSdkClient.Object.SCSTelemetry;
 using static SCSSdkClient.Demo.SCSSdkClientDemo;
 using System.IO;
 using System.Security.Policy;
+using System.Net;
+using System.Net.Sockets;
+using Newtonsoft.Json.Linq;
+using System.Xml.Linq;
 
 namespace SCSSdkClient.Demo {
 
@@ -936,5 +940,230 @@ namespace SCSSdkClient.Demo {
 
             File.WriteAllText(path, json);
         }
+
+        private async void buttonTestConnection_Click(object sender, EventArgs e)
+        {
+            /*
+            //var url = StreamerbotUrl;
+            if (StreamerBotConfig.url.Equals(""))
+            {
+                return null;
+            }
+            */
+            var testUrl = new UriBuilder(StreamerBotConfig.protocol, textBoxIp.Text, int.Parse(textBoxPort.Text), "GetActions");
+            /*
+                        using (var client = new HttpClient())
+                        {
+                            //var json = JsonConvert.SerializeObject(data);
+                            //MessageBox.Show(json);
+                            //var content = new StringContent("", Encoding.UTF8, "application/json");
+                            //var response = await client.PostAsync(url, content);
+
+                            var response = await client.GetAsync(testUrl.ToString());
+                            if (response.IsSuccessStatusCode)
+                            {
+                                MessageBox.Show(await response.Content.ReadAsStringAsync());
+                                dynamic jsonObj = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
+                                MessageBox.Show(jsonObj.count);
+                                //return await response.Content.ReadAsStringAsync();
+                            }
+                            else
+                            {
+                                // Handle the error
+                                //return null;
+                            }
+
+                        }*/
+
+
+
+            string server = textBoxIp.Text; // Replace with your server
+            int port = int.Parse(textBoxPort.Text); // Replace with your port
+
+            using (TcpClient tcpClient = new TcpClient())
+            {
+                try
+                {
+                    tcpClient.Connect(server, port);
+                    //Console.WriteLine("Connection successful");
+                    new LogWriter("TcpClient Connection successful");
+
+
+
+                    HttpClient client = new HttpClient();
+
+                    HttpResponseMessage response = await client.GetAsync(testUrl.ToString());
+                    //response.StatusCode == HttpStatusCode.NotFound
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string json = await response.Content.ReadAsStringAsync();
+                        //MessageBox.Show(json);
+                        new LogWriter(json);
+
+                        if (json.Length > 0)
+                        {
+
+                            // Replace 'dynamic' with your object type if you have one
+                            GetAction data = JsonConvert.DeserializeObject<GetAction>(json);
+
+                            //MessageBox.Show(data["count"]);
+                            new LogWriter(data.Count.ToString());
+
+                            if (data.Count >= 0 && data.Actions.Count >= 0)
+                            {
+                                new LogWriter("data.Count >= 0: " + data.Count.ToString());
+                                new LogWriter("data.Actions.Count >= 0: " + data.Actions.Count.ToString());
+
+                                foreach (Action element in data.Actions)
+                                {
+                                    new LogWriter(element.Name.ToString());
+                                    new LogWriter(JsonConvert.SerializeObject(element, Formatting.Indented));
+                                }
+
+                                new LogWriter("Connection successful.");
+                                MessageBox.Show("Connection successful.");
+                            }
+                            else
+                            {
+                                new LogWriter("Connection failed.");
+                                MessageBox.Show("Connection failed.");
+                            }
+
+
+
+
+                            /*
+                            if (data.Count >= 0) {
+
+                                new LogWriter("data.Count >= 0: " + (data.Count >= 0).ToString());
+
+                            }
+
+                            //new LogWriter(data.Actions.ToString());
+                            
+                            foreach (Action element in data.Actions)
+                            {
+                                new LogWriter(element.Name.ToString());
+                                new LogWriter(JsonConvert.SerializeObject(element, Formatting.Indented));
+                            }
+
+                            if (data.Actions.Count >= 0)
+                            {
+                                new LogWriter("data.Actions.Count >= 0: " + (data.Actions.Count >= 0).ToString());
+                            }
+                            */
+                        }
+                        else
+                        {
+                            MessageBox.Show("Connection failed.");
+                        }
+
+
+                    }
+                    else
+                    {
+                        //Console.WriteLine($"Error: {response.StatusCode}");
+                        new LogWriter($"Error: {response.StatusCode}");
+                        MessageBox.Show($"Error: {response.StatusCode}");
+                    }
+
+
+                }
+                catch (HttpRequestException ex)
+                {
+                    // Handle exception related to the HTTP request
+                    //Console.WriteLine($"Request error: {ex.Message}");
+                    new LogWriter($"Request error: {ex.Message}");
+                    MessageBox.Show($"Request error: {ex.Message}");
+                }
+                catch (JsonException ex)
+                {
+                    // Handle exception related to JSON deserialization
+                    //Console.WriteLine($"Deserialization error: {ex.Message}");
+                    new LogWriter($"Deserialization error: {ex.Message}");
+                    MessageBox.Show($"Deserialization error: {ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                    //Console.WriteLine($"Connection failed: {ex.Message}");
+                    new LogWriter($"Connection failed: {ex.Message}");
+                    MessageBox.Show($"Connection failed: {ex.Message}");
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+        }
+
+        public class GetAction
+        {
+            public int Count { get; set; }
+            public List<Action> Actions { get; set; }
+            public string Status { get; set; }
+            public string Id { get; set; }
+        }
+
+        public class Action
+        {
+            public bool Enabled { get; set; }
+            public string Group { get; set; }
+            public string Id { get; set; }
+            public string Name { get; set; }
+            public int SubactionCount { get; set; }
+        }
+
+
+        public class LogWriter
+        {
+            private string m_exePath = string.Empty;
+            public LogWriter(string logMessage)
+            {
+                LogWrite(logMessage);
+            }
+            public void LogWrite(string logMessage)
+            {
+                m_exePath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                try
+                {
+                    using (StreamWriter w = File.AppendText(m_exePath + "\\" + "log.txt"))
+                    {
+                        Log(logMessage, w);
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+
+            public void Log(string logMessage, TextWriter txtWriter)
+            {
+                try
+                {
+                    //txtWriter.Write("\r\nLog Entry : ");
+                    //txtWriter.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToShortDateString());
+                    txtWriter.WriteLine("{0} {1} :", DateTime.Now.ToShortDateString(), DateTime.Now.ToLongTimeString());
+                    //DateTime.Now.ToLongDateString());
+                    //txtWriter.WriteLine("  :");
+                    //txtWriter.WriteLine("  :{0}", logMessage);
+                    txtWriter.WriteLine("{0}", logMessage);
+                    txtWriter.WriteLine("-------------------------------");
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+        }
+
+
+
+
+
     }
 }
