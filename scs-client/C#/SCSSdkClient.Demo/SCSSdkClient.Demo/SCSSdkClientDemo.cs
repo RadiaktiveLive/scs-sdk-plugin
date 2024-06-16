@@ -312,7 +312,7 @@ namespace SCSSdkClient.Demo {
         public async Task<string> PostJsonDataAsync(MyJsonObject data)
         {
             //var url = StreamerbotUrl;
-            if (StreamerbotUrl.Equals(""))
+            if (StreamerBotConfig.url.Equals(""))
             {
                 return null;
             }
