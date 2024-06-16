@@ -938,7 +938,10 @@ namespace SCSSdkClient.Demo {
             // Specify your own path and filename
             string path = @"savedSettings.json";
 
-            File.WriteAllText(path, json);
+            // Replace Windows-style line endings with Unix-style line endings
+            json = json.Replace("\r\n", "\n");
+
+            File.WriteAllText(path, json, Encoding.UTF8);
         }
 
         private async void buttonTestConnection_Click(object sender, EventArgs e)
