@@ -33,8 +33,6 @@ namespace SCSSdkClient.Demo
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SCSSdkClientDemo));
             this.hgf = new System.Windows.Forms.TabControl();
-            this.tabAbout = new SCSSdkClient.Demo.CustomTabPage();
-            this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.contextMenuStripTriggerActions = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripRunAll = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -47,17 +45,6 @@ namespace SCSSdkClient.Demo
             this.toolStripFerryEvent = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripRefuelEvent = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
-            this.buttonTriggerActions = new System.Windows.Forms.Button();
-            this.rtb_fuel = new System.Windows.Forms.RichTextBox();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.l_updateRate = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lbGeneral = new System.Windows.Forms.RichTextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.lblDemo = new System.Windows.Forms.Label();
-            this.tabPage1 = new SCSSdkClient.Demo.CustomTabPage();
-            this.common = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.truck = new System.Windows.Forms.RichTextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -160,12 +147,21 @@ namespace SCSSdkClient.Demo
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
+            this.tabAbout = new SCSSdkClient.Demo.CustomTabPage();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.buttonTriggerActions = new System.Windows.Forms.Button();
+            this.rtb_fuel = new System.Windows.Forms.RichTextBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.l_updateRate = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lbGeneral = new System.Windows.Forms.RichTextBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.lblDemo = new System.Windows.Forms.Label();
+            this.tabPage1 = new SCSSdkClient.Demo.CustomTabPage();
+            this.common = new System.Windows.Forms.RichTextBox();
             this.hgf.SuspendLayout();
-            this.tabAbout.SuspendLayout();
-            this.toolStrip.SuspendLayout();
             this.contextMenuStripTriggerActions.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -194,6 +190,10 @@ namespace SCSSdkClient.Demo
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBoxConnection.SuspendLayout();
+            this.tabAbout.SuspendLayout();
+            this.toolStrip.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // hgf
@@ -214,44 +214,8 @@ namespace SCSSdkClient.Demo
             this.hgf.Margin = new System.Windows.Forms.Padding(6);
             this.hgf.Name = "hgf";
             this.hgf.SelectedIndex = 0;
-            this.hgf.Size = new System.Drawing.Size(1190, 1688);
+            this.hgf.Size = new System.Drawing.Size(1238, 1603);
             this.hgf.TabIndex = 0;
-            // 
-            // tabAbout
-            // 
-            this.tabAbout.Controls.Add(this.toolStrip);
-            this.tabAbout.Controls.Add(this.buttonTriggerActions);
-            this.tabAbout.Controls.Add(this.rtb_fuel);
-            this.tabAbout.Controls.Add(this.statusStrip1);
-            this.tabAbout.Controls.Add(this.lbGeneral);
-            this.tabAbout.Controls.Add(this.richTextBox1);
-            this.tabAbout.Controls.Add(this.lblDemo);
-            this.tabAbout.Location = new System.Drawing.Point(8, 39);
-            this.tabAbout.Margin = new System.Windows.Forms.Padding(6);
-            this.tabAbout.Name = "tabAbout";
-            this.tabAbout.Padding = new System.Windows.Forms.Padding(6);
-            this.tabAbout.Size = new System.Drawing.Size(1174, 1641);
-            this.tabAbout.TabIndex = 0;
-            this.tabAbout.Text = "About";
-            this.tabAbout.UseVisualStyleBackColor = true;
-            // 
-            // toolStrip
-            // 
-            this.toolStrip.AllowMerge = false;
-            this.toolStrip.BackColor = System.Drawing.Color.Transparent;
-            this.toolStrip.ContextMenuStrip = this.contextMenuStripTriggerActions;
-            this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButton});
-            this.toolStrip.Location = new System.Drawing.Point(611, 38);
-            this.toolStrip.Name = "toolStrip";
-            this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(240, 42);
-            this.toolStrip.Stretch = true;
-            this.toolStrip.TabIndex = 6;
-            this.toolStrip.Text = "toolStrip1";
             // 
             // contextMenuStripTriggerActions
             // 
@@ -268,7 +232,6 @@ namespace SCSSdkClient.Demo
             this.toolStripFerryEvent,
             this.toolStripRefuelEvent});
             this.contextMenuStripTriggerActions.Name = "contextMenuStripTriggerActions";
-            this.contextMenuStripTriggerActions.OwnerItem = this.toolStripDropDownButton3;
             this.contextMenuStripTriggerActions.Size = new System.Drawing.Size(232, 352);
             // 
             // toolStripRunAll
@@ -348,117 +311,6 @@ namespace SCSSdkClient.Demo
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(236, 36);
             this.toolStripDropDownButton1.Text = "Trigger SB Actions!";
-            // 
-            // toolStripDropDownButton
-            // 
-            this.toolStripDropDownButton.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton.DropDown = this.contextMenuStripTriggerActions;
-            this.toolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton.Image")));
-            this.toolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton.Name = "toolStripDropDownButton";
-            this.toolStripDropDownButton.Size = new System.Drawing.Size(236, 36);
-            this.toolStripDropDownButton.Text = "Trigger SB Actions!";
-            // 
-            // buttonTriggerActions
-            // 
-            this.buttonTriggerActions.ContextMenuStrip = this.contextMenuStripTriggerActions;
-            this.buttonTriggerActions.Location = new System.Drawing.Point(916, 34);
-            this.buttonTriggerActions.Name = "buttonTriggerActions";
-            this.buttonTriggerActions.Size = new System.Drawing.Size(240, 52);
-            this.buttonTriggerActions.TabIndex = 5;
-            this.buttonTriggerActions.Text = "Trigger SB Actions!";
-            this.buttonTriggerActions.UseVisualStyleBackColor = true;
-            this.buttonTriggerActions.Click += new System.EventHandler(this.buttonTriggerActions_Click);
-            // 
-            // rtb_fuel
-            // 
-            this.rtb_fuel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtb_fuel.Location = new System.Drawing.Point(40, 1397);
-            this.rtb_fuel.Margin = new System.Windows.Forms.Padding(6);
-            this.rtb_fuel.Name = "rtb_fuel";
-            this.rtb_fuel.Size = new System.Drawing.Size(1094, 66);
-            this.rtb_fuel.TabIndex = 4;
-            this.rtb_fuel.Text = "";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.l_updateRate});
-            this.statusStrip1.Location = new System.Drawing.Point(6, 1593);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 28, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1162, 42);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(229, 32);
-            this.toolStripStatusLabel1.Text = "Current update rate:";
-            // 
-            // l_updateRate
-            // 
-            this.l_updateRate.Name = "l_updateRate";
-            this.l_updateRate.Size = new System.Drawing.Size(0, 32);
-            // 
-            // lbGeneral
-            // 
-            this.lbGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbGeneral.Location = new System.Drawing.Point(40, 404);
-            this.lbGeneral.Margin = new System.Windows.Forms.Padding(6);
-            this.lbGeneral.Name = "lbGeneral";
-            this.lbGeneral.Size = new System.Drawing.Size(1094, 976);
-            this.lbGeneral.TabIndex = 2;
-            this.lbGeneral.Text = "";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(40, 117);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(6);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(1094, 231);
-            this.richTextBox1.TabIndex = 1;
-            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
-            // 
-            // lblDemo
-            // 
-            this.lblDemo.AutoSize = true;
-            this.lblDemo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDemo.Location = new System.Drawing.Point(12, 38);
-            this.lblDemo.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.lblDemo.Name = "lblDemo";
-            this.lblDemo.Size = new System.Drawing.Size(850, 48);
-            this.lblDemo.TabIndex = 0;
-            this.lblDemo.Text = "ETS2 SDK Telemetry C# Demo Radiaktive";
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.common);
-            this.tabPage1.Location = new System.Drawing.Point(8, 39);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
-            this.tabPage1.Size = new System.Drawing.Size(1174, 1641);
-            this.tabPage1.TabIndex = 1;
-            this.tabPage1.Text = "Common";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // common
-            // 
-            this.common.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.common.Location = new System.Drawing.Point(6, 6);
-            this.common.Margin = new System.Windows.Forms.Padding(6);
-            this.common.Name = "common";
-            this.common.Size = new System.Drawing.Size(1162, 1629);
-            this.common.TabIndex = 3;
-            this.common.Text = "";
             // 
             // tabPage2
             // 
@@ -628,7 +480,7 @@ namespace SCSSdkClient.Demo
             this.tabPage9.Location = new System.Drawing.Point(8, 39);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(1174, 1641);
+            this.tabPage9.Size = new System.Drawing.Size(1222, 1556);
             this.tabPage9.TabIndex = 9;
             this.tabPage9.Text = "Events";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -643,7 +495,7 @@ namespace SCSSdkClient.Demo
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDropDownButton3});
-            this.toolStrip1.Location = new System.Drawing.Point(732, 1522);
+            this.toolStrip1.Location = new System.Drawing.Point(723, 1428);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.ShowItemToolTips = false;
             this.toolStrip1.Size = new System.Drawing.Size(240, 42);
@@ -671,22 +523,22 @@ namespace SCSSdkClient.Demo
             this.panelJobStarted.Location = new System.Drawing.Point(6, 6);
             this.panelJobStarted.Name = "panelJobStarted";
             this.panelJobStarted.Padding = new System.Windows.Forms.Padding(15);
-            this.panelJobStarted.Size = new System.Drawing.Size(596, 877);
+            this.panelJobStarted.Size = new System.Drawing.Size(596, 857);
             this.panelJobStarted.TabIndex = 23;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(17, 15);
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(10, 15);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(241, 51);
+            this.label14.Size = new System.Drawing.Size(156, 31);
             this.label14.TabIndex = 17;
             this.label14.Text = "JobStarted";
             // 
             // jobstarted
             // 
-            this.jobstarted.Location = new System.Drawing.Point(16, 69);
+            this.jobstarted.Location = new System.Drawing.Point(16, 49);
             this.jobstarted.Name = "jobstarted";
             this.jobstarted.Size = new System.Drawing.Size(562, 790);
             this.jobstarted.TabIndex = 16;
@@ -698,25 +550,25 @@ namespace SCSSdkClient.Demo
             this.panelFined.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelFined.Controls.Add(this.label11);
             this.panelFined.Controls.Add(this.finedevent);
-            this.panelFined.Location = new System.Drawing.Point(616, 1099);
+            this.panelFined.Location = new System.Drawing.Point(616, 1060);
             this.panelFined.Name = "panelFined";
             this.panelFined.Padding = new System.Windows.Forms.Padding(15);
-            this.panelFined.Size = new System.Drawing.Size(596, 201);
+            this.panelFined.Size = new System.Drawing.Size(596, 179);
             this.panelFined.TabIndex = 20;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(17, 15);
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(10, 13);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(251, 51);
+            this.label11.Size = new System.Drawing.Size(162, 31);
             this.label11.TabIndex = 17;
             this.label11.Text = "FinedEvent";
             // 
             // finedevent
             // 
-            this.finedevent.Location = new System.Drawing.Point(16, 69);
+            this.finedevent.Location = new System.Drawing.Point(16, 47);
             this.finedevent.Name = "finedevent";
             this.finedevent.Size = new System.Drawing.Size(562, 114);
             this.finedevent.TabIndex = 16;
@@ -731,22 +583,22 @@ namespace SCSSdkClient.Demo
             this.panelJobDelivered.Location = new System.Drawing.Point(616, 6);
             this.panelJobDelivered.Name = "panelJobDelivered";
             this.panelJobDelivered.Padding = new System.Windows.Forms.Padding(15);
-            this.panelJobDelivered.Size = new System.Drawing.Size(596, 703);
+            this.panelJobDelivered.Size = new System.Drawing.Size(596, 683);
             this.panelJobDelivered.TabIndex = 22;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(17, 15);
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(10, 15);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(287, 51);
+            this.label13.Size = new System.Drawing.Size(185, 31);
             this.label13.TabIndex = 17;
             this.label13.Text = "JobDelivered";
             // 
             // jobdelivered
             // 
-            this.jobdelivered.Location = new System.Drawing.Point(16, 69);
+            this.jobdelivered.Location = new System.Drawing.Point(16, 49);
             this.jobdelivered.Name = "jobdelivered";
             this.jobdelivered.Size = new System.Drawing.Size(562, 616);
             this.jobdelivered.TabIndex = 16;
@@ -758,25 +610,25 @@ namespace SCSSdkClient.Demo
             this.panelJobCancelled.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelJobCancelled.Controls.Add(this.label12);
             this.panelJobCancelled.Controls.Add(this.jobcanceled);
-            this.panelJobCancelled.Location = new System.Drawing.Point(616, 715);
+            this.panelJobCancelled.Location = new System.Drawing.Point(616, 695);
             this.panelJobCancelled.Name = "panelJobCancelled";
             this.panelJobCancelled.Padding = new System.Windows.Forms.Padding(15);
-            this.panelJobCancelled.Size = new System.Drawing.Size(596, 378);
+            this.panelJobCancelled.Size = new System.Drawing.Size(596, 358);
             this.panelJobCancelled.TabIndex = 21;
             // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(17, 15);
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(10, 15);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(297, 51);
+            this.label12.Size = new System.Drawing.Size(191, 31);
             this.label12.TabIndex = 17;
             this.label12.Text = "JobCancelled";
             // 
             // jobcanceled
             // 
-            this.jobcanceled.Location = new System.Drawing.Point(16, 69);
+            this.jobcanceled.Location = new System.Drawing.Point(16, 49);
             this.jobcanceled.Name = "jobcanceled";
             this.jobcanceled.Size = new System.Drawing.Size(562, 291);
             this.jobcanceled.TabIndex = 16;
@@ -788,25 +640,25 @@ namespace SCSSdkClient.Demo
             this.panelTollgate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelTollgate.Controls.Add(this.label10);
             this.panelTollgate.Controls.Add(this.tollgateevent);
-            this.panelTollgate.Location = new System.Drawing.Point(616, 1306);
+            this.panelTollgate.Location = new System.Drawing.Point(616, 1245);
             this.panelTollgate.Name = "panelTollgate";
             this.panelTollgate.Padding = new System.Windows.Forms.Padding(15);
-            this.panelTollgate.Size = new System.Drawing.Size(596, 175);
+            this.panelTollgate.Size = new System.Drawing.Size(596, 150);
             this.panelTollgate.TabIndex = 19;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(17, 15);
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(10, 10);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(300, 51);
+            this.label10.Size = new System.Drawing.Size(194, 31);
             this.label10.TabIndex = 17;
             this.label10.Text = "TollgateEvent";
             // 
             // tollgateevent
             // 
-            this.tollgateevent.Location = new System.Drawing.Point(16, 69);
+            this.tollgateevent.Location = new System.Drawing.Point(16, 44);
             this.tollgateevent.Name = "tollgateevent";
             this.tollgateevent.Size = new System.Drawing.Size(562, 88);
             this.tollgateevent.TabIndex = 16;
@@ -818,25 +670,25 @@ namespace SCSSdkClient.Demo
             this.panelTrain.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelTrain.Controls.Add(this.label8);
             this.panelTrain.Controls.Add(this.trainevent);
-            this.panelTrain.Location = new System.Drawing.Point(6, 891);
+            this.panelTrain.Location = new System.Drawing.Point(6, 869);
             this.panelTrain.Name = "panelTrain";
             this.panelTrain.Padding = new System.Windows.Forms.Padding(15);
-            this.panelTrain.Size = new System.Drawing.Size(596, 276);
+            this.panelTrain.Size = new System.Drawing.Size(596, 251);
             this.panelTrain.TabIndex = 18;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(17, 15);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(10, 10);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(241, 51);
+            this.label8.Size = new System.Drawing.Size(156, 31);
             this.label8.TabIndex = 17;
             this.label8.Text = "TrainEvent";
             // 
             // trainevent
             // 
-            this.trainevent.Location = new System.Drawing.Point(16, 69);
+            this.trainevent.Location = new System.Drawing.Point(16, 44);
             this.trainevent.Name = "trainevent";
             this.trainevent.Size = new System.Drawing.Size(562, 189);
             this.trainevent.TabIndex = 16;
@@ -848,25 +700,25 @@ namespace SCSSdkClient.Demo
             this.panelFerry.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelFerry.Controls.Add(this.label9);
             this.panelFerry.Controls.Add(this.ferryevent);
-            this.panelFerry.Location = new System.Drawing.Point(6, 1173);
+            this.panelFerry.Location = new System.Drawing.Point(6, 1126);
             this.panelFerry.Name = "panelFerry";
             this.panelFerry.Padding = new System.Windows.Forms.Padding(15);
-            this.panelFerry.Size = new System.Drawing.Size(596, 274);
+            this.panelFerry.Size = new System.Drawing.Size(596, 251);
             this.panelFerry.TabIndex = 17;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(17, 15);
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(10, 12);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(243, 51);
+            this.label9.Size = new System.Drawing.Size(158, 31);
             this.label9.TabIndex = 17;
             this.label9.Text = "FerryEvent";
             // 
             // ferryevent
             // 
-            this.ferryevent.Location = new System.Drawing.Point(16, 69);
+            this.ferryevent.Location = new System.Drawing.Point(16, 46);
             this.ferryevent.Name = "ferryevent";
             this.ferryevent.Size = new System.Drawing.Size(562, 187);
             this.ferryevent.TabIndex = 16;
@@ -878,25 +730,25 @@ namespace SCSSdkClient.Demo
             this.panelRefuel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelRefuel.Controls.Add(this.label7);
             this.panelRefuel.Controls.Add(this.refuelevent);
-            this.panelRefuel.Location = new System.Drawing.Point(6, 1453);
+            this.panelRefuel.Location = new System.Drawing.Point(6, 1383);
             this.panelRefuel.Name = "panelRefuel";
             this.panelRefuel.Padding = new System.Windows.Forms.Padding(15);
-            this.panelRefuel.Size = new System.Drawing.Size(596, 179);
+            this.panelRefuel.Size = new System.Drawing.Size(596, 155);
             this.panelRefuel.TabIndex = 16;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(17, 15);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.125F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(10, 11);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(269, 51);
+            this.label7.Size = new System.Drawing.Size(174, 31);
             this.label7.TabIndex = 17;
             this.label7.Text = "RefuelEvent";
             // 
             // refuelevent
             // 
-            this.refuelevent.Location = new System.Drawing.Point(16, 69);
+            this.refuelevent.Location = new System.Drawing.Point(16, 45);
             this.refuelevent.Name = "refuelevent";
             this.refuelevent.Size = new System.Drawing.Size(562, 92);
             this.refuelevent.TabIndex = 16;
@@ -910,14 +762,14 @@ namespace SCSSdkClient.Demo
             this.tabPage10.Location = new System.Drawing.Point(8, 39);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(1174, 1641);
+            this.tabPage10.Size = new System.Drawing.Size(1222, 1556);
             this.tabPage10.TabIndex = 10;
             this.tabPage10.Text = "Streamer.Bot Config";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
             // buttonSaveSettings
             // 
-            this.buttonSaveSettings.Location = new System.Drawing.Point(893, 107);
+            this.buttonSaveSettings.Location = new System.Drawing.Point(830, 106);
             this.buttonSaveSettings.Name = "buttonSaveSettings";
             this.buttonSaveSettings.Size = new System.Drawing.Size(184, 62);
             this.buttonSaveSettings.TabIndex = 2;
@@ -1465,25 +1317,165 @@ namespace SCSSdkClient.Demo
             this.toolStripButton11.Size = new System.Drawing.Size(23, 23);
             this.toolStripButton11.Text = "toolStripButton11";
             // 
+            // tabAbout
+            // 
+            this.tabAbout.Controls.Add(this.toolStrip);
+            this.tabAbout.Controls.Add(this.buttonTriggerActions);
+            this.tabAbout.Controls.Add(this.rtb_fuel);
+            this.tabAbout.Controls.Add(this.statusStrip1);
+            this.tabAbout.Controls.Add(this.lbGeneral);
+            this.tabAbout.Controls.Add(this.richTextBox1);
+            this.tabAbout.Controls.Add(this.lblDemo);
+            this.tabAbout.Location = new System.Drawing.Point(8, 39);
+            this.tabAbout.Margin = new System.Windows.Forms.Padding(6);
+            this.tabAbout.Name = "tabAbout";
+            this.tabAbout.Padding = new System.Windows.Forms.Padding(6);
+            this.tabAbout.Size = new System.Drawing.Size(1174, 1641);
+            this.tabAbout.TabIndex = 0;
+            this.tabAbout.Text = "About";
+            this.tabAbout.UseVisualStyleBackColor = true;
+            // 
+            // toolStrip
+            // 
+            this.toolStrip.AllowMerge = false;
+            this.toolStrip.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip.ContextMenuStrip = this.contextMenuStripTriggerActions;
+            this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripDropDownButton});
+            this.toolStrip.Location = new System.Drawing.Point(611, 38);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.ShowItemToolTips = false;
+            this.toolStrip.Size = new System.Drawing.Size(240, 42);
+            this.toolStrip.Stretch = true;
+            this.toolStrip.TabIndex = 6;
+            this.toolStrip.Text = "toolStrip1";
+            // 
+            // toolStripDropDownButton
+            // 
+            this.toolStripDropDownButton.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton.DropDown = this.contextMenuStripTriggerActions;
+            this.toolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton.Image")));
+            this.toolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton.Name = "toolStripDropDownButton";
+            this.toolStripDropDownButton.Size = new System.Drawing.Size(236, 36);
+            this.toolStripDropDownButton.Text = "Trigger SB Actions!";
+            // 
+            // buttonTriggerActions
+            // 
+            this.buttonTriggerActions.ContextMenuStrip = this.contextMenuStripTriggerActions;
+            this.buttonTriggerActions.Location = new System.Drawing.Point(916, 34);
+            this.buttonTriggerActions.Name = "buttonTriggerActions";
+            this.buttonTriggerActions.Size = new System.Drawing.Size(240, 52);
+            this.buttonTriggerActions.TabIndex = 5;
+            this.buttonTriggerActions.Text = "Trigger SB Actions!";
+            this.buttonTriggerActions.UseVisualStyleBackColor = true;
+            this.buttonTriggerActions.Click += new System.EventHandler(this.buttonTriggerActions_Click);
+            // 
+            // rtb_fuel
+            // 
+            this.rtb_fuel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.rtb_fuel.Location = new System.Drawing.Point(40, 1397);
+            this.rtb_fuel.Margin = new System.Windows.Forms.Padding(6);
+            this.rtb_fuel.Name = "rtb_fuel";
+            this.rtb_fuel.Size = new System.Drawing.Size(1094, 66);
+            this.rtb_fuel.TabIndex = 4;
+            this.rtb_fuel.Text = "";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1,
+            this.l_updateRate});
+            this.statusStrip1.Location = new System.Drawing.Point(6, 1593);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(2, 0, 28, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1162, 42);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(229, 32);
+            this.toolStripStatusLabel1.Text = "Current update rate:";
+            // 
+            // l_updateRate
+            // 
+            this.l_updateRate.Name = "l_updateRate";
+            this.l_updateRate.Size = new System.Drawing.Size(0, 32);
+            // 
+            // lbGeneral
+            // 
+            this.lbGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbGeneral.Location = new System.Drawing.Point(40, 404);
+            this.lbGeneral.Margin = new System.Windows.Forms.Padding(6);
+            this.lbGeneral.Name = "lbGeneral";
+            this.lbGeneral.Size = new System.Drawing.Size(1094, 976);
+            this.lbGeneral.TabIndex = 2;
+            this.lbGeneral.Text = "";
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(40, 117);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(6);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(1094, 231);
+            this.richTextBox1.TabIndex = 1;
+            this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            // 
+            // lblDemo
+            // 
+            this.lblDemo.AutoSize = true;
+            this.lblDemo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDemo.Location = new System.Drawing.Point(12, 38);
+            this.lblDemo.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblDemo.Name = "lblDemo";
+            this.lblDemo.Size = new System.Drawing.Size(850, 48);
+            this.lblDemo.TabIndex = 0;
+            this.lblDemo.Text = "ETS2 SDK Telemetry C# Demo Radiaktive";
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.common);
+            this.tabPage1.Location = new System.Drawing.Point(8, 39);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(6);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(6);
+            this.tabPage1.Size = new System.Drawing.Size(1174, 1641);
+            this.tabPage1.TabIndex = 1;
+            this.tabPage1.Text = "Common";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // common
+            // 
+            this.common.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.common.Location = new System.Drawing.Point(6, 6);
+            this.common.Margin = new System.Windows.Forms.Padding(6);
+            this.common.Name = "common";
+            this.common.Size = new System.Drawing.Size(1162, 1629);
+            this.common.TabIndex = 3;
+            this.common.Text = "";
+            // 
             // SCSSdkClientDemo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1190, 1688);
+            this.ClientSize = new System.Drawing.Size(1238, 1603);
             this.Controls.Add(this.hgf);
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "SCSSdkClientDemo";
             this.Text = "SCSSDkClientDemo 0.9 Radiaktive";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SCSSdkClientDemo_FormClosing);
             this.hgf.ResumeLayout(false);
-            this.tabAbout.ResumeLayout(false);
-            this.tabAbout.PerformLayout();
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
             this.contextMenuStripTriggerActions.ResumeLayout(false);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
@@ -1531,6 +1523,13 @@ namespace SCSSdkClient.Demo
             this.groupBox1.PerformLayout();
             this.groupBoxConnection.ResumeLayout(false);
             this.groupBoxConnection.PerformLayout();
+            this.tabAbout.ResumeLayout(false);
+            this.tabAbout.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

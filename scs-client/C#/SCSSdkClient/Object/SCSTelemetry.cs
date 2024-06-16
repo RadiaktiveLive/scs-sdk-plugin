@@ -73,6 +73,7 @@ namespace SCSSdkClient.Object {
         /// <seealso cref="SCSGame" />
         public SCSGame Game { get; internal set; }
 
+        ///
         public GamePlayEvents GamePlay { get; internal set; }
 
         /// <summary>
@@ -88,6 +89,7 @@ namespace SCSSdkClient.Object {
         /// </summary>
         public Job JobValues { get; internal set; }
 
+        ///
         public uint MaxTrailerCount { get; internal set; }
 
         /// <summary>
