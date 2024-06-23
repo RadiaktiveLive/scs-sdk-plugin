@@ -462,7 +462,7 @@ namespace SCSSdkClient.Demo {
             {
                 var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory());
 
-                string jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), "StreamerBotSettings.json");
+                string jsonFilePath = Path.Combine(Directory.GetCurrentDirectory(), StreamerBotConfigFile);
 
                 if (File.Exists(jsonFilePath))
                 {
@@ -936,7 +936,7 @@ namespace SCSSdkClient.Demo {
             string json = JsonConvert.SerializeObject(data, Formatting.Indented);
 
             // Specify your own path and filename
-            string path = @"savedSettings.json";
+            string path = StreamerBotConfigFile;
 
             // Replace Windows-style line endings with Unix-style line endings
             json = json.Replace("\r\n", "\n");
