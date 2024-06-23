@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Sockets;
 using Newtonsoft.Json.Linq;
 using System.Xml.Linq;
+using static SCSSdkClient.Object.SCSTelemetry.GamePlayEvents;
 
 namespace SCSSdkClient.Demo {
 
@@ -53,6 +54,7 @@ namespace SCSSdkClient.Demo {
         private static readonly HttpClient client = new HttpClient();
 
         private float fuel;
+        private float fuelLevel;
         private SCSTelemetry raw;
 
         /// <inheritdoc />
@@ -188,8 +190,13 @@ namespace SCSSdkClient.Demo {
                 finedevent.Text = JsonConvert.SerializeObject(data.GamePlay.FinedEvent, Formatting.Indented);
                 trainevent.Text = JsonConvert.SerializeObject(data.GamePlay.TrainEvent, Formatting.Indented);
                 tollgateevent.Text = JsonConvert.SerializeObject(data.GamePlay.TollgateEvent, Formatting.Indented);
+                //data.GamePlay.RefuelEvent.
                 refuelevent.Text = JsonConvert.SerializeObject(data.GamePlay.RefuelEvent, Formatting.Indented);
                 ferryevent.Text = JsonConvert.SerializeObject(data.GamePlay.FerryEvent, Formatting.Indented);
+                if (data.TruckValues.CurrentValues.DashboardValues.FuelValue.Amount < fuelLevel)
+                {
+                    fuelLevel = data.TruckValues.CurrentValues.DashboardValues.FuelValue.Amount;
+                }
                 //
             } catch (Exception ex) {
                 // ignored atm i found no proper way to shut the telemetry down and down call this anymore when this or another thing is already disposed
@@ -232,7 +239,12 @@ namespace SCSSdkClient.Demo {
 
         private void TelemetryRefuelPayed(object sender, EventArgs e) {
             //MessageBox.Show("Fuel Payed: " + fuel);
-            Refuel(gameplayevent.Text);
+            var myObject1 = JsonConvert.DeserializeObject<SCSTelemetry>(truck.Text);
+            float litersAfterRefuel = myObject1.TruckValues.CurrentValues.DashboardValues.FuelValue.Amount;
+            float refueledLiters = litersAfterRefuel - fuelLevel;
+            fuelLevel = litersAfterRefuel;
+            //Refuel(gameplayevent.Text);
+            Refuel(gameplayevent.Text, refueledLiters);
         }
 
         private void TelemetryTollgate(object sender, EventArgs e) {
@@ -426,6 +438,10 @@ namespace SCSSdkClient.Demo {
         {
             ///
             public double Amount { get; set; }
+            ///
+            public double? RefueledLiters { get; set; }
+            ///
+            public double? PricePerLiter { get; set; }
         }
 
         ///
@@ -739,9 +755,31 @@ namespace SCSSdkClient.Demo {
 
             Task variableInutilPerEvitarWarnings2 = PanelColor(panelTrain);
         }
+        //private void Refuel(string events)
         private void Refuel(string events)
         {
+            //Refuel(events, 75.167254);
+            Refuel(events, 0);
+        }
+        private void Refuel(string events, double refueledLiters)
+        {
             var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+            if (refueledLiters > 0) {
+                myObject1.RefuelEvent.RefueledLiters = refueledLiters;
+                //myObject1.RefuelEvent.Amount = 120.85236;
+                var pricePerLiter = myObject1.RefuelEvent.Amount / refueledLiters;
+                myObject1.RefuelEvent.PricePerLiter = pricePerLiter;
+            }
+            else
+            {
+                myObject1.RefuelEvent.RefueledLiters = 0;
+                myObject1.RefuelEvent.PricePerLiter = 0;
+            }
+            /*
+            var myObject2 = JsonConvert.DeserializeObject<SCSTelemetry.GamePlayEvents.Refuel>(events);
+            myObject2.LitersRefueled = 7;
+            myObject2.PricePerLiter = 1;
+            */
             var json = JsonConvert.SerializeObject(myObject1.RefuelEvent);
             //MessageBox.Show(json, "RefuelEvent");
             var myObject = createMyJsonObject(RefuelEventSBAction, "RefuelEvent", json);
