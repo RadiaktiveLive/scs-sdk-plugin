@@ -106,10 +106,6 @@ namespace SCSSdkClient.Object {
             public class Refuel {
                 ///
                 public float Amount{ get; internal set; }
-                ///
-                public float RefueledLiters { get; internal set; }
-                ///
-                public float PricePerLiter { get; internal set; }
             }
         }
     }
