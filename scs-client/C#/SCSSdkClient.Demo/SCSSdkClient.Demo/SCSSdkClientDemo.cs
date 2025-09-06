@@ -16,6 +16,8 @@ using System.Net;
 using System.Net.Sockets;
 using Newtonsoft.Json.Linq;
 using System.Xml.Linq;
+using System.Configuration;
+using ConfigurationBuilder = Microsoft.Extensions.Configuration.ConfigurationBuilder;
 
 namespace SCSSdkClient.Demo {
 
