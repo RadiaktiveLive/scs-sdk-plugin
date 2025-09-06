@@ -118,6 +118,18 @@
     <Compile Include="CustomTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SBConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SBConfigForm.Designer.cs">
+      <DependentUpon>SBConfigForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SCSSdkClientDemo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +138,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -136,6 +151,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SBConfigForm.resx">
+      <DependentUpon>SBConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SCSSdkClientDemo.resx">
       <DependentUpon>SCSSdkClientDemo.cs</DependentUpon>
     </EmbeddedResource>

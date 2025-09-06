@@ -1172,9 +1172,30 @@ namespace SCSSdkClient.Demo {
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Crea una nueva instancia del formulario de configuración básica
+            // SBConfigForm formConfigBasica = new SBConfigForm();
 
+            // Muestra el formulario de manera no modal
+            // Esto permite al usuario interactuar con la ventana principal mientras la de configuración está abierta
+            // formConfigBasica.Show();
 
+            // Si necesitas que la subventana se cierre antes de interactuar con la principal, usa ShowDialog():
+            // formConfigBasica.ShowDialog();
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Crea una nueva instancia del formulario de configuración básica
+            // Main formConfigBasica = new Main();
 
+            // Muestra el formulario de manera no modal
+            // Esto permite al usuario interactuar con la ventana principal mientras la de configuración está abierta
+            // formConfigBasica.Show();
+
+            // Si necesitas que la subventana se cierre antes de interactuar con la principal, usa ShowDialog():
+            // formConfigBasica.ShowDialog();
+        }
     }
 }
