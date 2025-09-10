@@ -305,12 +305,25 @@ namespace SCSSdkClient.Demo
 
         private void textBoxPort_TextChanged(object sender, EventArgs e)
         {
-
+            int value;
+            if (int.TryParse(textBoxPort.Text, out value))
+            {
+                if (value < 0 || value > 65535) // Minimum value
+                {
+                    //textBoxPort.Text = "0";
+                    MessageBox.Show("Please enter a number between 0 and 65535. Default port is 7474.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter a valid number between 0 and 65535. Default port is 7474.");
+            }
         }
 
         private void SBConfigForm_FormClosed(object sender, FormClosedEventArgs e)
         {
 
         }
+
     }
 }

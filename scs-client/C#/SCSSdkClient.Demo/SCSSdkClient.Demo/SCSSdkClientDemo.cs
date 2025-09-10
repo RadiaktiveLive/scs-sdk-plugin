@@ -24,11 +24,19 @@ namespace SCSSdkClient.Demo {
     /// <inheritdoc />
     public partial class SCSSdkClientDemo : Form {
 
+        private Main _mainForm;
+        /*
+        public SCSSdkClientDemo(Main mainForm)
+        {
+            InitializeComponent();
+            _mainForm = mainForm;
+        }
+        */
         /// <summary>
         ///     The SCSSdkTelemetry object
         /// </summary>
         public SCSSdkTelemetry Telemetry;
-
+        /*
         ///
         public string StreamerBotConfigFile = "StreamerBotSettings.json";
         ///
@@ -51,17 +59,22 @@ namespace SCSSdkClient.Demo {
         public ActionInfo TrainEventSBAction = new ActionInfo();
         ///
         public ActionInfo RefuelEventSBAction = new ActionInfo();
-
+        */
         private static readonly HttpClient client = new HttpClient();
 
         private float fuel;
         private SCSTelemetry raw;
 
         /// <inheritdoc />
-        public SCSSdkClientDemo() {
+        public SCSSdkClientDemo(Main mainForm) {
             
             InitializeComponent();
-            readConfigFile();
+            _mainForm = mainForm;
+
+            // Suscribe el método 'ActualizarTextBox' al evento del formulario principal.
+            _mainForm.DatosActualizadosSdkTelemetry += ActualizarSdkTelemetry;
+            _mainForm.DatosActualizadosTelemetry += ActualizarTelemetry;
+            //readConfigFile();
             /*
             var myObject = new MyJsonObject
             {
@@ -78,6 +91,8 @@ namespace SCSSdkClient.Demo {
             };
             PostJsonDataAsync(myObject);
             */
+            Telemetry = _mainForm.Telemetry;
+            /*
             Telemetry = new SCSSdkTelemetry();
             Telemetry.Data += Telemetry_Data;
             Telemetry.JobStarted += TelemetryOnJobStarted;
@@ -91,7 +106,7 @@ namespace SCSSdkClient.Demo {
             Telemetry.RefuelStart += TelemetryRefuel;
             Telemetry.RefuelEnd += TelemetryRefuelEnd;
             Telemetry.RefuelPayed += TelemetryRefuelPayed;
-
+            */
             if (Telemetry.Error != null) {
                 lbGeneral.Text =
                     "General info:\r\nFailed to open memory map " +
@@ -102,10 +117,51 @@ namespace SCSSdkClient.Demo {
                     Telemetry.Error.StackTrace;
             }
 
+            l_updateRate.Text = _mainForm.lbUpdateRateString;
+            lbGeneral.Text = _mainForm.lbGeneralString;
+        }
+
+        // Este método se ejecutará cada vez que el evento 'DatosActualizados' se dispare.
+        private void ActualizarSdkTelemetry(SCSSdkTelemetry nuevoValor)
+        {
+            //MessageBox.Show("SdkTelemetry updated");
+            // Actualiza el TextBox del formulario secundario con el valor recibido.
+            Telemetry = nuevoValor;
             l_updateRate.Text = Telemetry.UpdateInterval + "ms";
+            lbGeneral.Text = _mainForm.lbGeneralString;
+        }
+        private void ActualizarTelemetry(SCSTelemetry nuevoValor)
+        {
+            //MessageBox.Show("Telemetry updated");
+            // Actualiza el TextBox del formulario secundario con el valor recibido.
+            common.Text = JsonConvert.SerializeObject(nuevoValor.CommonValues, Formatting.Indented);
+            truck.Text = JsonConvert.SerializeObject(nuevoValor.TruckValues, Formatting.Indented);
+            trailer.Text =
+                JsonConvert.SerializeObject(nuevoValor.TrailerValues[0],
+                                            Formatting
+                                                .Indented); //TODO: UNTIL I WORK ON A BETTER DEMO SHOW ONLY TRAILER 0
+            job.Text = JsonConvert.SerializeObject(nuevoValor.JobValues, Formatting.Indented);
+            control.Text = JsonConvert.SerializeObject(nuevoValor.ControlValues, Formatting.Indented);
+            navigation.Text = JsonConvert.SerializeObject(nuevoValor.NavigationValues, Formatting.Indented);
+            substances.Text = JsonConvert.SerializeObject(nuevoValor.Substances, Formatting.Indented);
+            gameplayevent.Text = JsonConvert.SerializeObject(nuevoValor.GamePlay, Formatting.Indented);
+            rtb_fuel.Text = nuevoValor.TruckValues.CurrentValues.DashboardValues.FuelValue.Amount + " " + nuevoValor.SpecialEventsValues.Refuel;
+            fuel = nuevoValor.GamePlay.RefuelEvent.Amount;
+            //raw = nuevoValor;
+
+            jobstarted.Text = JsonConvert.SerializeObject(nuevoValor.JobValues, Formatting.Indented);
+            jobdelivered.Text = JsonConvert.SerializeObject(nuevoValor.GamePlay.JobDelivered, Formatting.Indented);
+            jobcanceled.Text = JsonConvert.SerializeObject(nuevoValor.GamePlay.JobCancelled, Formatting.Indented);
+            finedevent.Text = JsonConvert.SerializeObject(nuevoValor.GamePlay.FinedEvent, Formatting.Indented);
+            trainevent.Text = JsonConvert.SerializeObject(nuevoValor.GamePlay.TrainEvent, Formatting.Indented);
+            tollgateevent.Text = JsonConvert.SerializeObject(nuevoValor.GamePlay.TollgateEvent, Formatting.Indented);
+            refuelevent.Text = JsonConvert.SerializeObject(nuevoValor.GamePlay.RefuelEvent, Formatting.Indented);
+            ferryevent.Text = JsonConvert.SerializeObject(nuevoValor.GamePlay.FerryEvent, Formatting.Indented);
+
         }
 
         private void SCSSdkClientDemo_FormClosing(object sender, FormClosingEventArgs e) {
+            /*
             Telemetry.pause(); // that line make it possible, but not every application wants to ask the user to quit, need to see if i can change that, when not use the try catch and IGNORE it (nothing changed )
             if (MessageBox.Show("Are you sure you want to quit?", "My Application", MessageBoxButtons.YesNo) ==
                 DialogResult.No) {
@@ -115,8 +171,9 @@ namespace SCSSdkClient.Demo {
             }
 
             Telemetry.Dispose();
+            */
         }
-
+        /*
         private void Telemetry_Data(SCSTelemetry data, bool updated) {
             if (!updated)
                 return;
@@ -198,30 +255,30 @@ namespace SCSSdkClient.Demo {
                 Console.WriteLine("Telemetry was closed: " + ex);
             }
         }
-
+        */
         private void TelemetryFerry(object sender, EventArgs e) {
             //MessageBox.Show("Ferry");
-            Ferry(gameplayevent.Text);
+            //Ferry(gameplayevent.Text);
         }
 
         private void TelemetryFined(object sender, EventArgs e) {
             //MessageBox.Show("Fined");
-            Fined(gameplayevent.Text);
+            //Fined(gameplayevent.Text);
         }
 
         private void TelemetryJobCancelled(object sender, EventArgs e) {
             //MessageBox.Show("Job Cancelled");
-            Cancelled(gameplayevent.Text);
+            //Cancelled(gameplayevent.Text);
         }
 
         private void TelemetryJobDelivered(object sender, EventArgs e) {
             //MessageBox.Show("Job Delivered");
-            Delivered(gameplayevent.Text);
+            //Delivered(gameplayevent.Text);
         }
 
         private void TelemetryOnJobStarted(object sender, EventArgs e) {
             //MessageBox.Show("Just started job OR loaded game with active.");
-            Started(job.Text);
+            //Started(job.Text);
         }
 
         private void TelemetryRefuel(object sender, EventArgs e) {
@@ -234,17 +291,17 @@ namespace SCSSdkClient.Demo {
 
         private void TelemetryRefuelPayed(object sender, EventArgs e) {
             //MessageBox.Show("Fuel Payed: " + fuel);
-            Refuel(gameplayevent.Text);
+            //Refuel(gameplayevent.Text);
         }
 
         private void TelemetryTollgate(object sender, EventArgs e) {
             //MessageBox.Show("Tollgate");
-            Tollgate(gameplayevent.Text);
+            //Tollgate(gameplayevent.Text);
         }
 
         private void TelemetryTrain(object sender, EventArgs e) {
             //MessageBox.Show("Train");
-            Train(gameplayevent.Text);
+            //Train(gameplayevent.Text);
         }
 
         ///
@@ -313,7 +370,7 @@ namespace SCSSdkClient.Demo {
                 this.name = name;
             }
         }
-
+        /*
         ///
         public async Task<string> PostJsonDataAsync(MyJsonObject data)
         {
@@ -340,7 +397,7 @@ namespace SCSSdkClient.Demo {
                 }
             }
         }
-
+        */
         ///
         public class FerryEvent
         {
@@ -457,7 +514,7 @@ namespace SCSSdkClient.Demo {
             ///
             public RefuelEvent RefuelEvent { get; set; }
         }
-
+        /*
         private void readConfigFile()
         {
             try
@@ -498,7 +555,7 @@ namespace SCSSdkClient.Demo {
                     /*
                     var uriBuilder = new UriBuilder(Protocol, Ip, int.Parse(Port), Endpoint);
                     StreamerbotUrl = uriBuilder.ToString();
-                    */
+                    * /
                     textBoxIp.Text = Ip;
                     textBoxPort.Text = Port;
                 }
@@ -645,7 +702,7 @@ namespace SCSSdkClient.Demo {
                 MessageBox.Show($"An error occurred: {ex.Message}");
             }
         }
-
+        */
         private void textBoxPort_TextChanged(object sender, EventArgs e)
         {
             int value;
@@ -662,7 +719,7 @@ namespace SCSSdkClient.Demo {
                 MessageBox.Show("Please enter a valid number between 0 and 65535. Default port is 7474.");
             }
         }
-
+        /*
         private MyJsonObject createMyJsonObject(ActionInfo actionInfo, string title, string json)
         {
             var myObject = new MyJsonObject();
@@ -760,7 +817,7 @@ namespace SCSSdkClient.Demo {
             await Task.Delay(2000); // Non-blocking delay for 2 seconds
             panel.BackColor = Color.FromName(panelColorRevert);
         }
-
+        */
         private void buttonTriggerActions_Click(object sender, EventArgs e)
         {
             contextMenuStripTriggerActions.Show(buttonTriggerActions, new Point(0, buttonTriggerActions.Height)); // Shows the menu strip below the button
@@ -802,75 +859,75 @@ namespace SCSSdkClient.Demo {
         {
             var sleep = 2 * 1000;
 
-            Started(job.Text);
+            //Started(job.Text);
             await Task.Delay(sleep);
             //System.Threading.Thread.Sleep(sleep);
 
-            Delivered(gameplayevent.Text);
+            //Delivered(gameplayevent.Text);
             await Task.Delay(sleep);
             //System.Threading.Thread.Sleep(sleep);
 
-            Cancelled(gameplayevent.Text);
+            //Cancelled(gameplayevent.Text);
             await Task.Delay(sleep);
             //System.Threading.Thread.Sleep(sleep);
 
-            Fined(gameplayevent.Text);
+            //Fined(gameplayevent.Text);
             await Task.Delay(sleep);
             //System.Threading.Thread.Sleep(sleep);
 
-            Tollgate(gameplayevent.Text);
+            //Tollgate(gameplayevent.Text);
             await Task.Delay(sleep);
             //System.Threading.Thread.Sleep(sleep);
 
-            Train(gameplayevent.Text);
+            //Train(gameplayevent.Text);
             await Task.Delay(sleep);
             //System.Threading.Thread.Sleep(sleep);
 
-            Ferry(gameplayevent.Text);
+            //Ferry(gameplayevent.Text);
             await Task.Delay(sleep);
             //System.Threading.Thread.Sleep(sleep);
 
-            Refuel(gameplayevent.Text);
+            //Refuel(gameplayevent.Text);
         }
-
+        
         private void toolStripJobStarted_Click(object sender, EventArgs e)
         {
-            Started(job.Text);
+            //Started(job.Text);
         }
 
         private void toolStripJobDelivered_Click(object sender, EventArgs e)
         {
-            Delivered(gameplayevent.Text);
+            //Delivered(gameplayevent.Text);
         }
 
         private void toolStripJobCancelled_Click(object sender, EventArgs e)
         {
-            Cancelled(gameplayevent.Text);
+            //Cancelled(gameplayevent.Text);
         }
 
         private void toolStripFinedEvent_Click(object sender, EventArgs e)
         {
-            Fined(gameplayevent.Text);
+            //Fined(gameplayevent.Text);
         }
 
         private void toolStripTollgateEvent_Click(object sender, EventArgs e)
         {
-            Tollgate(gameplayevent.Text);
+            //Tollgate(gameplayevent.Text);
         }
 
         private void toolStripTrainEvent_Click(object sender, EventArgs e)
         {
-            Train(gameplayevent.Text);
+            //Train(gameplayevent.Text);
         }
 
         private void toolStripFerryEvent_Click(object sender, EventArgs e)
         {
-            Ferry(gameplayevent.Text);
+            //Ferry(gameplayevent.Text);
         }
 
         private void toolStripRefuelEvent_Click(object sender, EventArgs e)
         {
-            Refuel(gameplayevent.Text);
+            //Refuel(gameplayevent.Text);
         }
 
         private void buttonSaveSettings_Click(object sender, EventArgs e)
@@ -935,15 +992,15 @@ namespace SCSSdkClient.Demo {
                 }
             };
 
-            string json = JsonConvert.SerializeObject(data, Formatting.Indented);
+            //string json = JsonConvert.SerializeObject(data, Formatting.Indented);
 
             // Specify your own path and filename
-            string path = StreamerBotConfigFile;
+            //string path = StreamerBotConfigFile;
 
             // Replace Windows-style line endings with Unix-style line endings
-            json = json.Replace("\r\n", "\n");
+            //json = json.Replace("\r\n", "\n");
 
-            File.WriteAllText(path, json, Encoding.UTF8);
+            //File.WriteAllText(path, json, Encoding.UTF8);
         }
 
         private async void buttonTestConnection_Click(object sender, EventArgs e)
@@ -955,8 +1012,8 @@ namespace SCSSdkClient.Demo {
                 return null;
             }
             */
-            string messageBoxTitle = "StreamerBot Test Connection";
-            var testUrl = new UriBuilder(StreamerBotConfig.protocol, textBoxIp.Text, int.Parse(textBoxPort.Text), "GetActions");
+            //string messageBoxTitle = "StreamerBot Test Connection";
+            //var testUrl = new UriBuilder(StreamerBotConfig.protocol, textBoxIp.Text, int.Parse(textBoxPort.Text), "GetActions");
             /*
                         using (var client = new HttpClient())
                         {
@@ -982,7 +1039,7 @@ namespace SCSSdkClient.Demo {
                         }*/
 
 
-
+            /*
             string server = textBoxIp.Text; // Replace with your server
             int port = int.Parse(textBoxPort.Text); // Replace with your port
 
@@ -1057,7 +1114,7 @@ namespace SCSSdkClient.Demo {
                             {
                                 new LogWriter("data.Actions.Count >= 0: " + (data.Actions.Count >= 0).ToString());
                             }
-                            */
+                            * /
                         }
                         else
                         {
@@ -1096,15 +1153,7 @@ namespace SCSSdkClient.Demo {
                     MessageBox.Show($"Connection failed: {ex.Message}", messageBoxTitle);
                 }
             }
-
-
-
-
-
-
-
-
-
+            */
 
         }
 

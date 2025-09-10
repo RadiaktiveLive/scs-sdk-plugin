@@ -32,6 +32,8 @@
             this.DebugTelemetry_btn = new System.Windows.Forms.Button();
             this.textBoxIp = new System.Windows.Forms.TextBox();
             this.textBoxPort = new System.Windows.Forms.TextBox();
+            this.l_updateRate = new System.Windows.Forms.Label();
+            this.lbGeneral = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // SBConfig_btn
@@ -46,6 +48,7 @@
             // 
             // DebugTelemetry_btn
             // 
+            this.DebugTelemetry_btn.Enabled = false;
             this.DebugTelemetry_btn.Location = new System.Drawing.Point(169, 12);
             this.DebugTelemetry_btn.Name = "DebugTelemetry_btn";
             this.DebugTelemetry_btn.Size = new System.Drawing.Size(151, 82);
@@ -68,11 +71,31 @@
             this.textBoxPort.Size = new System.Drawing.Size(157, 20);
             this.textBoxPort.TabIndex = 3;
             // 
+            // l_updateRate
+            // 
+            this.l_updateRate.AutoSize = true;
+            this.l_updateRate.Location = new System.Drawing.Point(63, 168);
+            this.l_updateRate.Name = "l_updateRate";
+            this.l_updateRate.Size = new System.Drawing.Size(65, 13);
+            this.l_updateRate.TabIndex = 4;
+            this.l_updateRate.Text = "UpdateRate";
+            // 
+            // lbGeneral
+            // 
+            this.lbGeneral.AutoSize = true;
+            this.lbGeneral.Location = new System.Drawing.Point(247, 138);
+            this.lbGeneral.Name = "lbGeneral";
+            this.lbGeneral.Size = new System.Drawing.Size(52, 13);
+            this.lbGeneral.TabIndex = 5;
+            this.lbGeneral.Text = "lbGeneral";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(333, 190);
+            this.Controls.Add(this.lbGeneral);
+            this.Controls.Add(this.l_updateRate);
             this.Controls.Add(this.textBoxPort);
             this.Controls.Add(this.textBoxIp);
             this.Controls.Add(this.DebugTelemetry_btn);
@@ -92,5 +115,7 @@
         private System.Windows.Forms.Button DebugTelemetry_btn;
         private System.Windows.Forms.TextBox textBoxIp;
         private System.Windows.Forms.TextBox textBoxPort;
+        private System.Windows.Forms.Label l_updateRate;
+        private System.Windows.Forms.Label lbGeneral;
     }
 }

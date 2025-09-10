@@ -1,20 +1,33 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using SCSSdkClient.Object;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Net.Http;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using static SCSSdkClient.Object.SCSTelemetry;
+using static SCSSdkClient.Demo.SCSSdkClientDemo;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static SCSSdkClient.Demo.SCSSdkClientDemo;
+using System.Security.Policy;
+using System.Net;
+using System.Net.Sockets;
+using Newtonsoft.Json.Linq;
+using System.Xml.Linq;
+using System.Configuration;
+using ConfigurationBuilder = Microsoft.Extensions.Configuration.ConfigurationBuilder;
 
 namespace SCSSdkClient.Demo
 {
     public partial class Main : Form
     {
+        #region StreamerBot Definitions
         public StreamerBot StreamerBotConfig = new StreamerBot();
 
         public string StreamerBotConfigFile = "StreamerBotSettings.json";
@@ -36,16 +49,42 @@ namespace SCSSdkClient.Demo
         public ActionInfo TrainEventSBAction = new ActionInfo();
         ///
         public ActionInfo RefuelEventSBAction = new ActionInfo();
+        #endregion
+
+        public string lbGeneralString;
+        public string lbUpdateRateString;
+
+        #region SCSTelemetry Definitions
+        /// <summary>
+        ///     The SCSSdkTelemetry object
+        /// </summary>
+        public SCSSdkTelemetry Telemetry;
+        private float fuel;
+        private SCSTelemetry raw;
+        #endregion
 
         public Main()
         {
             InitializeComponent();
             ReadConfigFile();
+            TelemetryRun();
         }
 
+        #region Test
+        // Define el delegado que especifica el tipo de método que puede suscribirse.
+        // En este caso, un método que toma un string como parámetro.
+        public delegate void ActualizarDatosSdkTelemetryHandler(SCSSdkTelemetry nuevoValor);
+        public delegate void ActualizarDatosTelemetryHandler(SCSTelemetry nuevoValor);
+
+        // Declara el evento. Los otros formularios se suscribirán a este evento.
+        public event ActualizarDatosSdkTelemetryHandler DatosActualizadosSdkTelemetry;
+        public event ActualizarDatosTelemetryHandler DatosActualizadosTelemetry;
+        #endregion
+
+        #region StreamerBot Methods
         private void ReadConfigFile()
         {
-            MessageBox.Show("ReadConfigFile running");
+            //MessageBox.Show("ReadConfigFile running");
             try
             {
                 var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory());
@@ -235,6 +274,7 @@ namespace SCSSdkClient.Demo
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
+            /*
             //Telemetry.pause(); // that line make it possible, but not every application wants to ask the user to quit, need to see if i can change that, when not use the try catch and IGNORE it (nothing changed )
             if (MessageBox.Show("Are you sure you want to quit?", "My Application", MessageBoxButtons.YesNo) == DialogResult.No)
             {
@@ -244,6 +284,7 @@ namespace SCSSdkClient.Demo
             }
 
             //Telemetry.Dispose();
+            */
         }
 
         private void SBConfig_btn_Click(object sender, EventArgs e)
@@ -284,7 +325,10 @@ namespace SCSSdkClient.Demo
         private void DebugTelemetry_btn_Click(object sender, EventArgs e)
         {
             // Crea una nueva instancia del formulario de configuración básica
-            SCSSdkClientDemo formConfigBasica = new SCSSdkClientDemo();
+            SCSSdkClientDemo formConfigBasica = new SCSSdkClientDemo(this);
+
+            DatosActualizadosSdkTelemetry?.Invoke(Telemetry);
+            DatosActualizadosTelemetry?.Invoke(raw);
 
             // Muestra el formulario de manera no modal
             // Esto permite al usuario interactuar con la ventana principal mientras la de configuración está abierta
@@ -390,5 +434,490 @@ namespace SCSSdkClient.Demo
                 }
             }
         }
+        #endregion
+
+        #region SCSTelemetry
+        private void TelemetryRun()
+        {
+            Telemetry = new SCSSdkTelemetry();
+            Telemetry.Data += Telemetry_Data;
+            Telemetry.JobStarted += TelemetryOnJobStarted;
+
+            Telemetry.JobCancelled += TelemetryJobCancelled;
+            Telemetry.JobDelivered += TelemetryJobDelivered;
+            Telemetry.Fined += TelemetryFined;
+            Telemetry.Tollgate += TelemetryTollgate;
+            Telemetry.Ferry += TelemetryFerry;
+            Telemetry.Train += TelemetryTrain;
+            Telemetry.RefuelStart += TelemetryRefuel;
+            Telemetry.RefuelEnd += TelemetryRefuelEnd;
+            Telemetry.RefuelPayed += TelemetryRefuelPayed;
+
+            if (Telemetry.Error != null)
+            {
+                lbGeneralString =
+                    "General info:\r\nFailed to open memory map " +
+                    Telemetry.Map +
+                    " - on some systems you need to run the client (this app) with elevated permissions, because e.g. you're running Steam/ETS2 with elevated permissions as well. .NET reported the following Exception:\r\n" +
+                    Telemetry.Error.Message +
+                    "\r\n\r\nStacktrace:\r\n" +
+                    Telemetry.Error.StackTrace;
+            }
+
+            lbUpdateRateString = Telemetry.UpdateInterval + "ms";
+            //MessageBox.Show("Telemetry updated start");
+            //DatosActualizadosSdkTelemetry?.Invoke(Telemetry);
+        }
+
+        private void SCSSdkClientDemo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Telemetry.pause(); // that line make it possible, but not every application wants to ask the user to quit, need to see if i can change that, when not use the try catch and IGNORE it (nothing changed )
+            if (MessageBox.Show("Are you sure you want to quit?", "My Application", MessageBoxButtons.YesNo) ==
+                DialogResult.No)
+            {
+                e.Cancel = true;
+                Telemetry.resume();
+                return;
+            }
+
+            Telemetry.Dispose();
+        }
+
+        private void Telemetry_Data(SCSTelemetry data, bool updated)
+        {
+            //MessageBox.Show("Telemetry Data updated: " + updated);
+            if (!updated)
+                return;
+            try
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(new TelemetryData(Telemetry_Data), data, updated);
+                    return;
+                }
+
+                lbUpdateRateString = Telemetry.UpdateInterval + "ms";
+
+                lbGeneralString = "General info:\n" +
+                                     "\tSDK Running:" +
+                                        $"\t\t{data.SdkActive}\n" +
+                                     "\tSDK Version:" +
+                                        $"\t\t{data.DllVersion}\n" +
+                                     "\tGame:" +
+                                        $"\t\t\t{data.Game}\n" +
+                                     "\tGame Version:" +
+                                        $"\t\t{data.GameVersion}\n" +
+                                     "\tTelemetry Version:" +
+                                        $"\t\t{data.TelemetryVersion}\n" +
+                                     "\tTimeStamp:" +
+                                        $"\t\t{data.Timestamp}\n" +
+                                     "\tSimulation TimeStamp:" +
+                                        $"\t{data.SimulationTimestamp}\n" +
+                                     "\tRender TimeStamp:" +
+                                        $"\t\t{data.RenderTimestamp}\n" +
+                                     "\tMultiplayer Time Offset:" +
+                                        $"\t{data.MultiplayerTimeOffset}\n" +
+                                     "\tGame Paused:" +
+                                        $"\t\t{data.Paused}\n" +
+                                     "\tOn Job:" +
+                                        $"\t\t\t{data.SpecialEventsValues.OnJob}\n" +
+                                     "\tJob Finished:" +
+                                        $"\t\t{data.SpecialEventsValues.JobFinished}\n" +
+                                     "\tJob Delivered:" +
+                                        $"\t\t{data.SpecialEventsValues.JobDelivered}\n" +
+                                     "\tJob Cancelled:" +
+                                        $"\t\t{data.SpecialEventsValues.JobCancelled}\n" +
+                                     "\tFined:" +
+                                        $"\t\t\t{data.SpecialEventsValues.Fined}\n" +
+                                     "\tTollgate:" +
+                                        $"\t\t\t{data.SpecialEventsValues.Tollgate}\n" +
+                                     "\tFerry:" +
+                                        $"\t\t\t{data.SpecialEventsValues.Ferry}\n" +
+                                     "\tTrain:" +
+                                        $"\t\t\t{data.SpecialEventsValues.Train}\n" +
+                                     "\tRefuel Payed:" +
+                                        $"\t\t{data.SpecialEventsValues.RefuelPayed}\n";
+
+                lbGeneral.Text = lbGeneralString;
+                l_updateRate.Text = lbUpdateRateString;
+                //MessageBox.Show("Telemetry updated start");
+                DatosActualizadosSdkTelemetry?.Invoke(Telemetry);
+                DatosActualizadosTelemetry?.Invoke(data);
+                /*
+                common.Text = JsonConvert.SerializeObject(data.CommonValues, Formatting.Indented);
+                truck.Text = JsonConvert.SerializeObject(data.TruckValues, Formatting.Indented);
+                trailer.Text =
+                    JsonConvert.SerializeObject(data.TrailerValues[0],
+                                                Formatting
+                                                    .Indented); //TODO: UNTIL I WORK ON A BETTER DEMO SHOW ONLY TRAILER 0
+                job.Text = JsonConvert.SerializeObject(data.JobValues, Formatting.Indented);
+                control.Text = JsonConvert.SerializeObject(data.ControlValues, Formatting.Indented);
+                navigation.Text = JsonConvert.SerializeObject(data.NavigationValues, Formatting.Indented);
+                substances.Text = JsonConvert.SerializeObject(data.Substances, Formatting.Indented);
+                gameplayevent.Text = JsonConvert.SerializeObject(data.GamePlay, Formatting.Indented);
+                rtb_fuel.Text = data.TruckValues.CurrentValues.DashboardValues.FuelValue.Amount + " " + data.SpecialEventsValues.Refuel;
+                fuel = data.GamePlay.RefuelEvent.Amount;
+                */
+                raw = data;
+                /*
+                //
+                jobstarted.Text = JsonConvert.SerializeObject(data.JobValues, Formatting.Indented);
+                jobdelivered.Text = JsonConvert.SerializeObject(data.GamePlay.JobDelivered, Formatting.Indented);
+                jobcanceled.Text = JsonConvert.SerializeObject(data.GamePlay.JobCancelled, Formatting.Indented);
+                finedevent.Text = JsonConvert.SerializeObject(data.GamePlay.FinedEvent, Formatting.Indented);
+                trainevent.Text = JsonConvert.SerializeObject(data.GamePlay.TrainEvent, Formatting.Indented);
+                tollgateevent.Text = JsonConvert.SerializeObject(data.GamePlay.TollgateEvent, Formatting.Indented);
+                refuelevent.Text = JsonConvert.SerializeObject(data.GamePlay.RefuelEvent, Formatting.Indented);
+                ferryevent.Text = JsonConvert.SerializeObject(data.GamePlay.FerryEvent, Formatting.Indented);
+                //
+                */
+                //MessageBox.Show("Telemetry loaded");
+                DebugTelemetry_btn.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                // ignored atm i found no proper way to shut the telemetry down and down call this anymore when this or another thing is already disposed
+                Console.WriteLine("Telemetry was closed: " + ex);
+            }
+        }
+
+        private void TelemetryFerry(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Ferry");
+            //Ferry(gameplayevent.Text);
+        }
+
+        private void TelemetryFined(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Fined");
+            //Fined(gameplayevent.Text);
+        }
+
+        private void TelemetryJobCancelled(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Job Cancelled");
+            //Cancelled(gameplayevent.Text);
+        }
+
+        private void TelemetryJobDelivered(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Job Delivered");
+            //Delivered(gameplayevent.Text);
+        }
+
+        private void TelemetryOnJobStarted(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Just started job OR loaded game with active.");
+            //Started(job.Text);
+        }
+
+        private void TelemetryRefuel(object sender, EventArgs e)
+        {
+            //rtb_fuel.Invoke((MethodInvoker)(() => rtb_fuel.BackColor = Color.Green));
+        }
+
+        private void TelemetryRefuelEnd(object sender, EventArgs e)
+        {
+            //rtb_fuel.Invoke((MethodInvoker)(() => rtb_fuel.BackColor = Color.Red));
+        }
+
+        private void TelemetryRefuelPayed(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Fuel Payed: " + fuel);
+            //Refuel(gameplayevent.Text);
+        }
+
+        private void TelemetryTollgate(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Tollgate");
+            //Tollgate(gameplayevent.Text);
+        }
+
+        private void TelemetryTrain(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Train");
+            //Train(gameplayevent.Text);
+        }
+        #endregion
+
+        #region classes
+        ///
+        public class MyJsonObject
+        {
+            ///
+            public ActionInfo action { get; set; }
+            ///
+            public Dictionary<string, string> args { get; set; }
+        }
+
+
+        ///
+        public class ActionInfo
+        {
+            ///
+            public string id { get; set; }
+            ///
+            public string name { get; set; }
+
+            /// Constructor
+            public ActionInfo()
+            {
+                this.id = "";
+                this.name = "";
+            }
+
+            /// Constructor
+            public ActionInfo(string id, string name)
+            {
+                this.id = id;
+                this.name = name;
+            }
+        }
+
+        ///
+        public async Task<string> PostJsonDataAsync(MyJsonObject data)
+        {
+            //var url = StreamerbotUrl;
+            if (StreamerBotConfig.url.Equals(""))
+            {
+                return null;
+            }
+            using (var client = new HttpClient())
+            {
+                var json = JsonConvert.SerializeObject(data);
+                //MessageBox.Show(json);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                //var response = await client.PostAsync(url, content);
+                var response = await client.PostAsync(StreamerBotConfig.url, content);
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    // Handle the error
+                    return null;
+                }
+            }
+        }
+
+        ///
+        public class FerryEvent
+        {
+            ///
+            public decimal PayAmount { get; set; }
+            ///
+            public string SourceId { get; set; }
+            ///
+            public string SourceName { get; set; }
+            ///
+            public string TargetId { get; set; }
+            ///
+            public string TargetName { get; set; }
+        }
+
+        ///
+        public class FinedEvent
+        {
+            ///
+            public decimal Amount { get; set; }
+            ///
+            public int Offence { get; set; }
+        }
+
+        ///
+        public class JobCancelled
+        {
+            ///
+            public decimal Penalty { get; set; }
+            ///
+            public EventInfo Finished { get; set; }
+            ///
+            public EventInfo Started { get; set; }
+        }
+
+        ///
+        public class JobDelivered
+        {
+            ///
+            public bool AutoLoaded { get; set; }
+            ///
+            public bool AutoParked { get; set; }
+            ///
+            public double CargoDamage { get; set; }
+            ///
+            public EventInfo DeliveryTime { get; set; }
+            ///
+            public double DistanceKm { get; set; }
+            ///
+            public int EarnedXp { get; set; }
+            ///
+            public decimal Revenue { get; set; }
+            ///
+            public EventInfo Finished { get; set; }
+            ///
+            public EventInfo Started { get; set; }
+            ///
+            public EventInfo StartedBackup { get; set; }
+        }
+
+        ///
+        public class TollgateEvent
+        {
+            ///
+            public decimal PayAmount { get; set; }
+        }
+
+        ///
+        public class TrainEvent
+        {
+            ///
+            public decimal PayAmount { get; set; }
+            ///
+            public string SourceId { get; set; }
+            ///
+            public string SourceName { get; set; }
+            ///
+            public string TargetId { get; set; }
+            ///
+            public string TargetName { get; set; }
+        }
+
+        ///
+        public class RefuelEvent
+        {
+            ///
+            public double Amount { get; set; }
+        }
+
+        ///
+        public class EventInfo
+        {
+            ///
+            public int Value { get; set; }
+            ///
+            public DateTime Date { get; set; }
+        }
+
+        ///
+        public class GamePlayEvents
+        {
+            ///
+            public FerryEvent FerryEvent { get; set; }
+            ///
+            public FinedEvent FinedEvent { get; set; }
+            ///
+            public JobCancelled JobCancelled { get; set; }
+            ///
+            public JobDelivered JobDelivered { get; set; }
+            ///
+            public TollgateEvent TollgateEvent { get; set; }
+            ///
+            public TrainEvent TrainEvent { get; set; }
+            ///
+            public RefuelEvent RefuelEvent { get; set; }
+        }
+        #endregion
+
+
+        private MyJsonObject createMyJsonObject(ActionInfo actionInfo, string title, string json)
+        {
+            var myObject = new MyJsonObject();
+            var args = new Dictionary<string, string> { { "event", title }, { "json", json } };
+            myObject = new MyJsonObject { action = actionInfo, args = args };
+            return myObject;
+        }
+
+        private void Ferry(string events)
+        {
+            var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+            var json = JsonConvert.SerializeObject(myObject1.FerryEvent);
+            //MessageBox.Show(json, "FerryEvent");
+            var myObject = createMyJsonObject(FerryEventSBAction, "FerryEvent", json);
+            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelFerry);
+        }
+        private void Fined(string events)
+        {
+            var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+            var json = JsonConvert.SerializeObject(myObject1.FinedEvent);
+            //MessageBox.Show(json, "FinedEvent");
+            var myObject = createMyJsonObject(FinedEventSBAction, "FinedEvent", json);
+            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelFined);
+        }
+        private void Started(string events)
+        {
+            //var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+            //var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
+            //MessageBox.Show(json, "JobDelivered");
+            var myObject = createMyJsonObject(JobStartedEventSBAction, "Job", events);
+            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobStarted);
+        }
+        private void Cancelled(string events)
+        {
+            var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+            var json = JsonConvert.SerializeObject(myObject1.JobCancelled);
+            //MessageBox.Show(json, "JobCancelled");
+            var myObject = createMyJsonObject(JobCancelledEventSBAction, "JobCancelled", json);
+            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobCancelled);
+        }
+        private void Delivered(string events)
+        {
+            var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+            var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
+            //MessageBox.Show(json, "JobDelivered");
+            var myObject = createMyJsonObject(JobDeliveredEventSBAction, "JobDelivered", json);
+            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobDelivered);
+        }
+        private void Tollgate(string events)
+        {
+            var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+            var json = JsonConvert.SerializeObject(myObject1.TollgateEvent);
+            //MessageBox.Show(json, "TollgateEvent");
+            var myObject = createMyJsonObject(TollgateEventSBAction, "TollgateEvent", json);
+            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelTollgate);
+        }
+        private void Train(string events)
+        {
+            var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+            var json = JsonConvert.SerializeObject(myObject1.TrainEvent);
+            //MessageBox.Show(json, "TrainEvent");
+            var myObject = createMyJsonObject(TrainEventSBAction, "TrainEvent", json);
+            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelTrain);
+        }
+        private void Refuel(string events)
+        {
+            var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+            var json = JsonConvert.SerializeObject(myObject1.RefuelEvent);
+            //MessageBox.Show(json, "RefuelEvent");
+            var myObject = createMyJsonObject(RefuelEventSBAction, "RefuelEvent", json);
+            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+
+            //panelRefuel.BackColor = Color.IndianRed;
+            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelRefuel);
+            //panelRefuel.BackColor = Color.Transparent;
+        }
+
+
+        static async Task PanelColor(Panel panel, string panelColorHighlight = "IndianRed", string panelColorRevert = "Transparent")
+        {
+            panel.BackColor = Color.FromName(panelColorHighlight);
+            await Task.Delay(2000); // Non-blocking delay for 2 seconds
+            panel.BackColor = Color.FromName(panelColorRevert);
+        }
+
     }
 }
