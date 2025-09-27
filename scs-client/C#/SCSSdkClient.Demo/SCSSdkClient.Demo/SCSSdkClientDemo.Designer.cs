@@ -44,6 +44,7 @@ namespace SCSSdkClient.Demo
             this.toolStripTrainEvent = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripFerryEvent = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripRefuelEvent = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.truck = new System.Windows.Forms.RichTextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -60,7 +61,6 @@ namespace SCSSdkClient.Demo
             this.gameplayevent = new System.Windows.Forms.RichTextBox();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripDropDownButton3 = new System.Windows.Forms.ToolStripDropDownButton();
             this.panelJobStarted = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.jobstarted = new System.Windows.Forms.RichTextBox();
@@ -86,6 +86,8 @@ namespace SCSSdkClient.Demo
             this.label7 = new System.Windows.Forms.Label();
             this.refuelevent = new System.Windows.Forms.RichTextBox();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.buttonTestConnection = new System.Windows.Forms.Button();
             this.buttonSaveSettings = new System.Windows.Forms.Button();
             this.groupBoxActions = new System.Windows.Forms.GroupBox();
@@ -148,7 +150,6 @@ namespace SCSSdkClient.Demo
             this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton10 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton11 = new System.Windows.Forms.ToolStripButton();
-            this.button1 = new System.Windows.Forms.Button();
             this.tabAbout = new SCSSdkClient.Demo.CustomTabPage();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
@@ -162,7 +163,6 @@ namespace SCSSdkClient.Demo
             this.lblDemo = new System.Windows.Forms.Label();
             this.tabPage1 = new SCSSdkClient.Demo.CustomTabPage();
             this.common = new System.Windows.Forms.RichTextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.hgf.SuspendLayout();
             this.contextMenuStripTriggerActions.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -216,7 +216,7 @@ namespace SCSSdkClient.Demo
             this.hgf.Location = new System.Drawing.Point(0, 0);
             this.hgf.Name = "hgf";
             this.hgf.SelectedIndex = 0;
-            this.hgf.Size = new System.Drawing.Size(619, 552);
+            this.hgf.Size = new System.Drawing.Size(619, 697);
             this.hgf.TabIndex = 0;
             // 
             // contextMenuStripTriggerActions
@@ -234,7 +234,6 @@ namespace SCSSdkClient.Demo
             this.toolStripFerryEvent,
             this.toolStripRefuelEvent});
             this.contextMenuStripTriggerActions.Name = "contextMenuStripTriggerActions";
-            this.contextMenuStripTriggerActions.OwnerItem = this.toolStripDropDownButton3;
             this.contextMenuStripTriggerActions.Size = new System.Drawing.Size(145, 208);
             // 
             // toolStripRunAll
@@ -305,13 +304,24 @@ namespace SCSSdkClient.Demo
             this.toolStripRefuelEvent.Text = "RefuelEvent";
             this.toolStripRefuelEvent.Click += new System.EventHandler(this.toolStripRefuelEvent_Click);
             // 
+            // toolStripDropDownButton3
+            // 
+            this.toolStripDropDownButton3.BackColor = System.Drawing.Color.Transparent;
+            this.toolStripDropDownButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButton3.DropDown = this.contextMenuStripTriggerActions;
+            this.toolStripDropDownButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton3.Image")));
+            this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
+            this.toolStripDropDownButton3.Size = new System.Drawing.Size(118, 22);
+            this.toolStripDropDownButton3.Text = "Trigger SB Actions!";
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.truck);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage2.Size = new System.Drawing.Size(611, 526);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(611, 948);
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Truck";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -321,7 +331,7 @@ namespace SCSSdkClient.Demo
             this.truck.Dock = System.Windows.Forms.DockStyle.Fill;
             this.truck.Location = new System.Drawing.Point(3, 3);
             this.truck.Name = "truck";
-            this.truck.Size = new System.Drawing.Size(605, 520);
+            this.truck.Size = new System.Drawing.Size(605, 942);
             this.truck.TabIndex = 4;
             this.truck.Text = "";
             // 
@@ -330,8 +340,8 @@ namespace SCSSdkClient.Demo
             this.tabPage3.Controls.Add(this.trailer);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage3.Size = new System.Drawing.Size(611, 526);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(611, 948);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "Trailer";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -341,7 +351,7 @@ namespace SCSSdkClient.Demo
             this.trailer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trailer.Location = new System.Drawing.Point(3, 3);
             this.trailer.Name = "trailer";
-            this.trailer.Size = new System.Drawing.Size(605, 520);
+            this.trailer.Size = new System.Drawing.Size(605, 942);
             this.trailer.TabIndex = 4;
             this.trailer.Text = "";
             // 
@@ -350,8 +360,8 @@ namespace SCSSdkClient.Demo
             this.tabPage4.Controls.Add(this.job);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage4.Size = new System.Drawing.Size(611, 526);
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(611, 948);
             this.tabPage4.TabIndex = 4;
             this.tabPage4.Text = "Job";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -361,7 +371,7 @@ namespace SCSSdkClient.Demo
             this.job.Dock = System.Windows.Forms.DockStyle.Fill;
             this.job.Location = new System.Drawing.Point(3, 3);
             this.job.Name = "job";
-            this.job.Size = new System.Drawing.Size(605, 520);
+            this.job.Size = new System.Drawing.Size(605, 942);
             this.job.TabIndex = 4;
             this.job.Text = "";
             // 
@@ -370,8 +380,8 @@ namespace SCSSdkClient.Demo
             this.tabPage5.Controls.Add(this.control);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage5.Size = new System.Drawing.Size(611, 526);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(611, 948);
             this.tabPage5.TabIndex = 5;
             this.tabPage5.Text = "Control";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -381,7 +391,7 @@ namespace SCSSdkClient.Demo
             this.control.Dock = System.Windows.Forms.DockStyle.Fill;
             this.control.Location = new System.Drawing.Point(3, 3);
             this.control.Name = "control";
-            this.control.Size = new System.Drawing.Size(605, 520);
+            this.control.Size = new System.Drawing.Size(605, 942);
             this.control.TabIndex = 4;
             this.control.Text = "";
             // 
@@ -390,8 +400,8 @@ namespace SCSSdkClient.Demo
             this.tabPage6.Controls.Add(this.navigation);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage6.Size = new System.Drawing.Size(611, 526);
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage6.Size = new System.Drawing.Size(611, 948);
             this.tabPage6.TabIndex = 6;
             this.tabPage6.Text = "Navigation";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -401,7 +411,7 @@ namespace SCSSdkClient.Demo
             this.navigation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.navigation.Location = new System.Drawing.Point(3, 3);
             this.navigation.Name = "navigation";
-            this.navigation.Size = new System.Drawing.Size(605, 520);
+            this.navigation.Size = new System.Drawing.Size(605, 942);
             this.navigation.TabIndex = 4;
             this.navigation.Text = "";
             // 
@@ -410,8 +420,8 @@ namespace SCSSdkClient.Demo
             this.tabPage7.Controls.Add(this.substances);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage7.Size = new System.Drawing.Size(611, 526);
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(611, 948);
             this.tabPage7.TabIndex = 7;
             this.tabPage7.Text = "Substances";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -421,7 +431,7 @@ namespace SCSSdkClient.Demo
             this.substances.Dock = System.Windows.Forms.DockStyle.Fill;
             this.substances.Location = new System.Drawing.Point(3, 3);
             this.substances.Name = "substances";
-            this.substances.Size = new System.Drawing.Size(605, 520);
+            this.substances.Size = new System.Drawing.Size(605, 942);
             this.substances.TabIndex = 5;
             this.substances.Text = "";
             // 
@@ -430,8 +440,8 @@ namespace SCSSdkClient.Demo
             this.tabPage8.Controls.Add(this.gameplayevent);
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
-            this.tabPage8.Size = new System.Drawing.Size(611, 526);
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage8.Size = new System.Drawing.Size(611, 948);
             this.tabPage8.TabIndex = 8;
             this.tabPage8.Text = "GameplayEvents";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -441,7 +451,7 @@ namespace SCSSdkClient.Demo
             this.gameplayevent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gameplayevent.Location = new System.Drawing.Point(3, 3);
             this.gameplayevent.Name = "gameplayevent";
-            this.gameplayevent.Size = new System.Drawing.Size(605, 520);
+            this.gameplayevent.Size = new System.Drawing.Size(605, 942);
             this.gameplayevent.TabIndex = 6;
             this.gameplayevent.Text = "";
             // 
@@ -457,10 +467,10 @@ namespace SCSSdkClient.Demo
             this.tabPage9.Controls.Add(this.panelFerry);
             this.tabPage9.Controls.Add(this.panelRefuel);
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
-            this.tabPage9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage9.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tabPage9.Size = new System.Drawing.Size(611, 526);
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPage9.Size = new System.Drawing.Size(611, 671);
             this.tabPage9.TabIndex = 9;
             this.tabPage9.Text = "Events";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -477,23 +487,12 @@ namespace SCSSdkClient.Demo
             this.toolStripDropDownButton3});
             this.toolStrip1.Location = new System.Drawing.Point(362, 743);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.toolStrip1.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip1.ShowItemToolTips = false;
             this.toolStrip1.Size = new System.Drawing.Size(120, 25);
             this.toolStrip1.Stretch = true;
             this.toolStrip1.TabIndex = 24;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripDropDownButton3
-            // 
-            this.toolStripDropDownButton3.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripDropDownButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton3.DropDown = this.contextMenuStripTriggerActions;
-            this.toolStripDropDownButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton3.Image")));
-            this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
-            this.toolStripDropDownButton3.Size = new System.Drawing.Size(118, 22);
-            this.toolStripDropDownButton3.Text = "Trigger SB Actions!";
             // 
             // panelJobStarted
             // 
@@ -502,9 +501,9 @@ namespace SCSSdkClient.Demo
             this.panelJobStarted.Controls.Add(this.label14);
             this.panelJobStarted.Controls.Add(this.jobstarted);
             this.panelJobStarted.Location = new System.Drawing.Point(3, 3);
-            this.panelJobStarted.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelJobStarted.Margin = new System.Windows.Forms.Padding(2);
             this.panelJobStarted.Name = "panelJobStarted";
-            this.panelJobStarted.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.panelJobStarted.Padding = new System.Windows.Forms.Padding(8);
             this.panelJobStarted.Size = new System.Drawing.Size(301, 448);
             this.panelJobStarted.TabIndex = 23;
             // 
@@ -522,7 +521,7 @@ namespace SCSSdkClient.Demo
             // jobstarted
             // 
             this.jobstarted.Location = new System.Drawing.Point(8, 25);
-            this.jobstarted.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.jobstarted.Margin = new System.Windows.Forms.Padding(2);
             this.jobstarted.Name = "jobstarted";
             this.jobstarted.Size = new System.Drawing.Size(283, 413);
             this.jobstarted.TabIndex = 16;
@@ -535,9 +534,9 @@ namespace SCSSdkClient.Demo
             this.panelFined.Controls.Add(this.label11);
             this.panelFined.Controls.Add(this.finedevent);
             this.panelFined.Location = new System.Drawing.Point(308, 551);
-            this.panelFined.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelFined.Margin = new System.Windows.Forms.Padding(2);
             this.panelFined.Name = "panelFined";
-            this.panelFined.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.panelFined.Padding = new System.Windows.Forms.Padding(8);
             this.panelFined.Size = new System.Drawing.Size(301, 95);
             this.panelFined.TabIndex = 20;
             // 
@@ -555,7 +554,7 @@ namespace SCSSdkClient.Demo
             // finedevent
             // 
             this.finedevent.Location = new System.Drawing.Point(8, 24);
-            this.finedevent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.finedevent.Margin = new System.Windows.Forms.Padding(2);
             this.finedevent.Name = "finedevent";
             this.finedevent.Size = new System.Drawing.Size(283, 61);
             this.finedevent.TabIndex = 16;
@@ -568,9 +567,9 @@ namespace SCSSdkClient.Demo
             this.panelJobDelivered.Controls.Add(this.label13);
             this.panelJobDelivered.Controls.Add(this.jobdelivered);
             this.panelJobDelivered.Location = new System.Drawing.Point(308, 3);
-            this.panelJobDelivered.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelJobDelivered.Margin = new System.Windows.Forms.Padding(2);
             this.panelJobDelivered.Name = "panelJobDelivered";
-            this.panelJobDelivered.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.panelJobDelivered.Padding = new System.Windows.Forms.Padding(8);
             this.panelJobDelivered.Size = new System.Drawing.Size(301, 357);
             this.panelJobDelivered.TabIndex = 22;
             // 
@@ -588,7 +587,7 @@ namespace SCSSdkClient.Demo
             // jobdelivered
             // 
             this.jobdelivered.Location = new System.Drawing.Point(8, 25);
-            this.jobdelivered.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.jobdelivered.Margin = new System.Windows.Forms.Padding(2);
             this.jobdelivered.Name = "jobdelivered";
             this.jobdelivered.Size = new System.Drawing.Size(283, 322);
             this.jobdelivered.TabIndex = 16;
@@ -601,9 +600,9 @@ namespace SCSSdkClient.Demo
             this.panelJobCancelled.Controls.Add(this.label12);
             this.panelJobCancelled.Controls.Add(this.jobcanceled);
             this.panelJobCancelled.Location = new System.Drawing.Point(308, 361);
-            this.panelJobCancelled.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelJobCancelled.Margin = new System.Windows.Forms.Padding(2);
             this.panelJobCancelled.Name = "panelJobCancelled";
-            this.panelJobCancelled.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.panelJobCancelled.Padding = new System.Windows.Forms.Padding(8);
             this.panelJobCancelled.Size = new System.Drawing.Size(301, 188);
             this.panelJobCancelled.TabIndex = 21;
             // 
@@ -621,7 +620,7 @@ namespace SCSSdkClient.Demo
             // jobcanceled
             // 
             this.jobcanceled.Location = new System.Drawing.Point(8, 25);
-            this.jobcanceled.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.jobcanceled.Margin = new System.Windows.Forms.Padding(2);
             this.jobcanceled.Name = "jobcanceled";
             this.jobcanceled.Size = new System.Drawing.Size(283, 153);
             this.jobcanceled.TabIndex = 16;
@@ -634,9 +633,9 @@ namespace SCSSdkClient.Demo
             this.panelTollgate.Controls.Add(this.label10);
             this.panelTollgate.Controls.Add(this.tollgateevent);
             this.panelTollgate.Location = new System.Drawing.Point(308, 647);
-            this.panelTollgate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelTollgate.Margin = new System.Windows.Forms.Padding(2);
             this.panelTollgate.Name = "panelTollgate";
-            this.panelTollgate.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.panelTollgate.Padding = new System.Windows.Forms.Padding(8);
             this.panelTollgate.Size = new System.Drawing.Size(301, 81);
             this.panelTollgate.TabIndex = 19;
             // 
@@ -654,7 +653,7 @@ namespace SCSSdkClient.Demo
             // tollgateevent
             // 
             this.tollgateevent.Location = new System.Drawing.Point(8, 23);
-            this.tollgateevent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tollgateevent.Margin = new System.Windows.Forms.Padding(2);
             this.tollgateevent.Name = "tollgateevent";
             this.tollgateevent.Size = new System.Drawing.Size(283, 48);
             this.tollgateevent.TabIndex = 16;
@@ -667,9 +666,9 @@ namespace SCSSdkClient.Demo
             this.panelTrain.Controls.Add(this.label8);
             this.panelTrain.Controls.Add(this.trainevent);
             this.panelTrain.Location = new System.Drawing.Point(3, 452);
-            this.panelTrain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelTrain.Margin = new System.Windows.Forms.Padding(2);
             this.panelTrain.Name = "panelTrain";
-            this.panelTrain.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.panelTrain.Padding = new System.Windows.Forms.Padding(8);
             this.panelTrain.Size = new System.Drawing.Size(301, 133);
             this.panelTrain.TabIndex = 18;
             // 
@@ -687,7 +686,7 @@ namespace SCSSdkClient.Demo
             // trainevent
             // 
             this.trainevent.Location = new System.Drawing.Point(8, 23);
-            this.trainevent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.trainevent.Margin = new System.Windows.Forms.Padding(2);
             this.trainevent.Name = "trainevent";
             this.trainevent.Size = new System.Drawing.Size(283, 100);
             this.trainevent.TabIndex = 16;
@@ -700,9 +699,9 @@ namespace SCSSdkClient.Demo
             this.panelFerry.Controls.Add(this.label9);
             this.panelFerry.Controls.Add(this.ferryevent);
             this.panelFerry.Location = new System.Drawing.Point(3, 586);
-            this.panelFerry.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelFerry.Margin = new System.Windows.Forms.Padding(2);
             this.panelFerry.Name = "panelFerry";
-            this.panelFerry.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.panelFerry.Padding = new System.Windows.Forms.Padding(8);
             this.panelFerry.Size = new System.Drawing.Size(301, 133);
             this.panelFerry.TabIndex = 17;
             // 
@@ -720,7 +719,7 @@ namespace SCSSdkClient.Demo
             // ferryevent
             // 
             this.ferryevent.Location = new System.Drawing.Point(8, 24);
-            this.ferryevent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ferryevent.Margin = new System.Windows.Forms.Padding(2);
             this.ferryevent.Name = "ferryevent";
             this.ferryevent.Size = new System.Drawing.Size(283, 99);
             this.ferryevent.TabIndex = 16;
@@ -733,9 +732,9 @@ namespace SCSSdkClient.Demo
             this.panelRefuel.Controls.Add(this.label7);
             this.panelRefuel.Controls.Add(this.refuelevent);
             this.panelRefuel.Location = new System.Drawing.Point(3, 719);
-            this.panelRefuel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelRefuel.Margin = new System.Windows.Forms.Padding(2);
             this.panelRefuel.Name = "panelRefuel";
-            this.panelRefuel.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.panelRefuel.Padding = new System.Windows.Forms.Padding(8);
             this.panelRefuel.Size = new System.Drawing.Size(301, 83);
             this.panelRefuel.TabIndex = 16;
             // 
@@ -753,7 +752,7 @@ namespace SCSSdkClient.Demo
             // refuelevent
             // 
             this.refuelevent.Location = new System.Drawing.Point(8, 23);
-            this.refuelevent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.refuelevent.Margin = new System.Windows.Forms.Padding(2);
             this.refuelevent.Name = "refuelevent";
             this.refuelevent.Size = new System.Drawing.Size(283, 50);
             this.refuelevent.TabIndex = 16;
@@ -768,18 +767,38 @@ namespace SCSSdkClient.Demo
             this.tabPage10.Controls.Add(this.groupBoxActions);
             this.tabPage10.Controls.Add(this.groupBoxConnection);
             this.tabPage10.Location = new System.Drawing.Point(4, 22);
-            this.tabPage10.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage10.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tabPage10.Size = new System.Drawing.Size(611, 526);
+            this.tabPage10.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPage10.Size = new System.Drawing.Size(611, 948);
             this.tabPage10.TabIndex = 10;
             this.tabPage10.Text = "Streamer.Bot Config";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(432, 242);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(103, 23);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "open debug";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(432, 204);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(104, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "open sbconfig";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // buttonTestConnection
             // 
             this.buttonTestConnection.Location = new System.Drawing.Point(415, 99);
-            this.buttonTestConnection.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonTestConnection.Margin = new System.Windows.Forms.Padding(2);
             this.buttonTestConnection.Name = "buttonTestConnection";
             this.buttonTestConnection.Size = new System.Drawing.Size(120, 32);
             this.buttonTestConnection.TabIndex = 3;
@@ -790,7 +809,7 @@ namespace SCSSdkClient.Demo
             // buttonSaveSettings
             // 
             this.buttonSaveSettings.Location = new System.Drawing.Point(415, 55);
-            this.buttonSaveSettings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonSaveSettings.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSaveSettings.Name = "buttonSaveSettings";
             this.buttonSaveSettings.Size = new System.Drawing.Size(120, 32);
             this.buttonSaveSettings.TabIndex = 2;
@@ -809,9 +828,9 @@ namespace SCSSdkClient.Demo
             this.groupBoxActions.Controls.Add(this.groupBox2);
             this.groupBoxActions.Controls.Add(this.groupBox1);
             this.groupBoxActions.Location = new System.Drawing.Point(3, 71);
-            this.groupBoxActions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxActions.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxActions.Name = "groupBoxActions";
-            this.groupBoxActions.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxActions.Padding = new System.Windows.Forms.Padding(2);
             this.groupBoxActions.Size = new System.Drawing.Size(310, 637);
             this.groupBoxActions.TabIndex = 1;
             this.groupBoxActions.TabStop = false;
@@ -824,9 +843,9 @@ namespace SCSSdkClient.Demo
             this.groupBox8.Controls.Add(this.textBoxRefuelEventId);
             this.groupBox8.Controls.Add(this.label26);
             this.groupBox8.Location = new System.Drawing.Point(4, 557);
-            this.groupBox8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox8.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox8.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox8.Size = new System.Drawing.Size(304, 74);
             this.groupBox8.TabIndex = 7;
             this.groupBox8.TabStop = false;
@@ -835,7 +854,7 @@ namespace SCSSdkClient.Demo
             // textBoxRefuelEventName
             // 
             this.textBoxRefuelEventName.Location = new System.Drawing.Point(73, 43);
-            this.textBoxRefuelEventName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxRefuelEventName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxRefuelEventName.Name = "textBoxRefuelEventName";
             this.textBoxRefuelEventName.Size = new System.Drawing.Size(230, 20);
             this.textBoxRefuelEventName.TabIndex = 9;
@@ -853,7 +872,7 @@ namespace SCSSdkClient.Demo
             // textBoxRefuelEventId
             // 
             this.textBoxRefuelEventId.Location = new System.Drawing.Point(73, 22);
-            this.textBoxRefuelEventId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxRefuelEventId.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxRefuelEventId.Name = "textBoxRefuelEventId";
             this.textBoxRefuelEventId.Size = new System.Drawing.Size(230, 20);
             this.textBoxRefuelEventId.TabIndex = 7;
@@ -875,9 +894,9 @@ namespace SCSSdkClient.Demo
             this.groupBox7.Controls.Add(this.textBoxFerryEventId);
             this.groupBox7.Controls.Add(this.label24);
             this.groupBox7.Location = new System.Drawing.Point(3, 480);
-            this.groupBox7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox7.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox7.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox7.Size = new System.Drawing.Size(304, 74);
             this.groupBox7.TabIndex = 12;
             this.groupBox7.TabStop = false;
@@ -886,7 +905,7 @@ namespace SCSSdkClient.Demo
             // textBoxFerryEventName
             // 
             this.textBoxFerryEventName.Location = new System.Drawing.Point(73, 43);
-            this.textBoxFerryEventName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxFerryEventName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxFerryEventName.Name = "textBoxFerryEventName";
             this.textBoxFerryEventName.Size = new System.Drawing.Size(230, 20);
             this.textBoxFerryEventName.TabIndex = 9;
@@ -904,7 +923,7 @@ namespace SCSSdkClient.Demo
             // textBoxFerryEventId
             // 
             this.textBoxFerryEventId.Location = new System.Drawing.Point(73, 22);
-            this.textBoxFerryEventId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxFerryEventId.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxFerryEventId.Name = "textBoxFerryEventId";
             this.textBoxFerryEventId.Size = new System.Drawing.Size(230, 20);
             this.textBoxFerryEventId.TabIndex = 7;
@@ -926,9 +945,9 @@ namespace SCSSdkClient.Demo
             this.groupBox6.Controls.Add(this.textBoxTrainEventId);
             this.groupBox6.Controls.Add(this.label22);
             this.groupBox6.Location = new System.Drawing.Point(3, 403);
-            this.groupBox6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox6.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox6.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox6.Size = new System.Drawing.Size(304, 74);
             this.groupBox6.TabIndex = 11;
             this.groupBox6.TabStop = false;
@@ -937,7 +956,7 @@ namespace SCSSdkClient.Demo
             // textBoxTrainEventName
             // 
             this.textBoxTrainEventName.Location = new System.Drawing.Point(73, 43);
-            this.textBoxTrainEventName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxTrainEventName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTrainEventName.Name = "textBoxTrainEventName";
             this.textBoxTrainEventName.Size = new System.Drawing.Size(230, 20);
             this.textBoxTrainEventName.TabIndex = 9;
@@ -955,7 +974,7 @@ namespace SCSSdkClient.Demo
             // textBoxTrainEventId
             // 
             this.textBoxTrainEventId.Location = new System.Drawing.Point(73, 22);
-            this.textBoxTrainEventId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxTrainEventId.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTrainEventId.Name = "textBoxTrainEventId";
             this.textBoxTrainEventId.Size = new System.Drawing.Size(230, 20);
             this.textBoxTrainEventId.TabIndex = 7;
@@ -977,9 +996,9 @@ namespace SCSSdkClient.Demo
             this.groupBox5.Controls.Add(this.textBoxTollgateEventId);
             this.groupBox5.Controls.Add(this.label20);
             this.groupBox5.Location = new System.Drawing.Point(4, 326);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox5.Size = new System.Drawing.Size(304, 74);
             this.groupBox5.TabIndex = 10;
             this.groupBox5.TabStop = false;
@@ -988,7 +1007,7 @@ namespace SCSSdkClient.Demo
             // textBoxTollgateEventName
             // 
             this.textBoxTollgateEventName.Location = new System.Drawing.Point(73, 43);
-            this.textBoxTollgateEventName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxTollgateEventName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTollgateEventName.Name = "textBoxTollgateEventName";
             this.textBoxTollgateEventName.Size = new System.Drawing.Size(230, 20);
             this.textBoxTollgateEventName.TabIndex = 9;
@@ -1006,7 +1025,7 @@ namespace SCSSdkClient.Demo
             // textBoxTollgateEventId
             // 
             this.textBoxTollgateEventId.Location = new System.Drawing.Point(73, 22);
-            this.textBoxTollgateEventId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxTollgateEventId.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxTollgateEventId.Name = "textBoxTollgateEventId";
             this.textBoxTollgateEventId.Size = new System.Drawing.Size(230, 20);
             this.textBoxTollgateEventId.TabIndex = 7;
@@ -1028,9 +1047,9 @@ namespace SCSSdkClient.Demo
             this.groupBox4.Controls.Add(this.textBoxFinedEventId);
             this.groupBox4.Controls.Add(this.label18);
             this.groupBox4.Location = new System.Drawing.Point(3, 248);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox4.Size = new System.Drawing.Size(304, 74);
             this.groupBox4.TabIndex = 9;
             this.groupBox4.TabStop = false;
@@ -1039,7 +1058,7 @@ namespace SCSSdkClient.Demo
             // textBoxFinedEventName
             // 
             this.textBoxFinedEventName.Location = new System.Drawing.Point(73, 43);
-            this.textBoxFinedEventName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxFinedEventName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxFinedEventName.Name = "textBoxFinedEventName";
             this.textBoxFinedEventName.Size = new System.Drawing.Size(230, 20);
             this.textBoxFinedEventName.TabIndex = 9;
@@ -1057,7 +1076,7 @@ namespace SCSSdkClient.Demo
             // textBoxFinedEventId
             // 
             this.textBoxFinedEventId.Location = new System.Drawing.Point(73, 22);
-            this.textBoxFinedEventId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxFinedEventId.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxFinedEventId.Name = "textBoxFinedEventId";
             this.textBoxFinedEventId.Size = new System.Drawing.Size(230, 20);
             this.textBoxFinedEventId.TabIndex = 7;
@@ -1079,9 +1098,9 @@ namespace SCSSdkClient.Demo
             this.groupBox3.Controls.Add(this.textBoxJobCancelledId);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Location = new System.Drawing.Point(3, 171);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox3.Size = new System.Drawing.Size(304, 74);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
@@ -1090,7 +1109,7 @@ namespace SCSSdkClient.Demo
             // textBoxJobCancelledName
             // 
             this.textBoxJobCancelledName.Location = new System.Drawing.Point(73, 43);
-            this.textBoxJobCancelledName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxJobCancelledName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxJobCancelledName.Name = "textBoxJobCancelledName";
             this.textBoxJobCancelledName.Size = new System.Drawing.Size(230, 20);
             this.textBoxJobCancelledName.TabIndex = 9;
@@ -1108,7 +1127,7 @@ namespace SCSSdkClient.Demo
             // textBoxJobCancelledId
             // 
             this.textBoxJobCancelledId.Location = new System.Drawing.Point(73, 22);
-            this.textBoxJobCancelledId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxJobCancelledId.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxJobCancelledId.Name = "textBoxJobCancelledId";
             this.textBoxJobCancelledId.Size = new System.Drawing.Size(230, 20);
             this.textBoxJobCancelledId.TabIndex = 7;
@@ -1130,9 +1149,9 @@ namespace SCSSdkClient.Demo
             this.groupBox2.Controls.Add(this.textBoxJobDeliveredId);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Location = new System.Drawing.Point(4, 94);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(304, 74);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
@@ -1141,7 +1160,7 @@ namespace SCSSdkClient.Demo
             // textBoxJobDeliveredName
             // 
             this.textBoxJobDeliveredName.Location = new System.Drawing.Point(73, 43);
-            this.textBoxJobDeliveredName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxJobDeliveredName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxJobDeliveredName.Name = "textBoxJobDeliveredName";
             this.textBoxJobDeliveredName.Size = new System.Drawing.Size(230, 20);
             this.textBoxJobDeliveredName.TabIndex = 9;
@@ -1159,7 +1178,7 @@ namespace SCSSdkClient.Demo
             // textBoxJobDeliveredId
             // 
             this.textBoxJobDeliveredId.Location = new System.Drawing.Point(73, 22);
-            this.textBoxJobDeliveredId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxJobDeliveredId.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxJobDeliveredId.Name = "textBoxJobDeliveredId";
             this.textBoxJobDeliveredId.Size = new System.Drawing.Size(230, 20);
             this.textBoxJobDeliveredId.TabIndex = 7;
@@ -1181,9 +1200,9 @@ namespace SCSSdkClient.Demo
             this.groupBox1.Controls.Add(this.textBoxJobStartedId);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(3, 16);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(304, 74);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
@@ -1192,7 +1211,7 @@ namespace SCSSdkClient.Demo
             // textBoxJobStartedName
             // 
             this.textBoxJobStartedName.Location = new System.Drawing.Point(73, 43);
-            this.textBoxJobStartedName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxJobStartedName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxJobStartedName.Name = "textBoxJobStartedName";
             this.textBoxJobStartedName.Size = new System.Drawing.Size(230, 20);
             this.textBoxJobStartedName.TabIndex = 9;
@@ -1210,7 +1229,7 @@ namespace SCSSdkClient.Demo
             // textBoxJobStartedId
             // 
             this.textBoxJobStartedId.Location = new System.Drawing.Point(73, 22);
-            this.textBoxJobStartedId.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxJobStartedId.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxJobStartedId.Name = "textBoxJobStartedId";
             this.textBoxJobStartedId.Size = new System.Drawing.Size(230, 20);
             this.textBoxJobStartedId.TabIndex = 7;
@@ -1232,9 +1251,9 @@ namespace SCSSdkClient.Demo
             this.groupBoxConnection.Controls.Add(this.textBoxIp);
             this.groupBoxConnection.Controls.Add(this.label1);
             this.groupBoxConnection.Location = new System.Drawing.Point(3, 3);
-            this.groupBoxConnection.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxConnection.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxConnection.Name = "groupBoxConnection";
-            this.groupBoxConnection.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxConnection.Padding = new System.Windows.Forms.Padding(2);
             this.groupBoxConnection.Size = new System.Drawing.Size(310, 65);
             this.groupBoxConnection.TabIndex = 0;
             this.groupBoxConnection.TabStop = false;
@@ -1243,7 +1262,7 @@ namespace SCSSdkClient.Demo
             // textBoxPort
             // 
             this.textBoxPort.Location = new System.Drawing.Point(76, 37);
-            this.textBoxPort.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxPort.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPort.Name = "textBoxPort";
             this.textBoxPort.Size = new System.Drawing.Size(230, 20);
             this.textBoxPort.TabIndex = 3;
@@ -1262,7 +1281,7 @@ namespace SCSSdkClient.Demo
             // textBoxIp
             // 
             this.textBoxIp.Location = new System.Drawing.Point(76, 16);
-            this.textBoxIp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxIp.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxIp.Name = "textBoxIp";
             this.textBoxIp.Size = new System.Drawing.Size(230, 20);
             this.textBoxIp.TabIndex = 1;
@@ -1404,16 +1423,6 @@ namespace SCSSdkClient.Demo
             this.toolStripButton11.Size = new System.Drawing.Size(23, 23);
             this.toolStripButton11.Text = "toolStripButton11";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(432, 204);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(104, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "open sbconfig";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // tabAbout
             // 
             this.tabAbout.Controls.Add(this.toolStrip);
@@ -1426,7 +1435,7 @@ namespace SCSSdkClient.Demo
             this.tabAbout.Location = new System.Drawing.Point(4, 22);
             this.tabAbout.Name = "tabAbout";
             this.tabAbout.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAbout.Size = new System.Drawing.Size(611, 526);
+            this.tabAbout.Size = new System.Drawing.Size(611, 948);
             this.tabAbout.TabIndex = 0;
             this.tabAbout.Text = "About";
             this.tabAbout.UseVisualStyleBackColor = true;
@@ -1477,7 +1486,7 @@ namespace SCSSdkClient.Demo
             // 
             this.rtb_fuel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rtb_fuel.Location = new System.Drawing.Point(20, 444);
+            this.rtb_fuel.Location = new System.Drawing.Point(20, 866);
             this.rtb_fuel.Name = "rtb_fuel";
             this.rtb_fuel.Size = new System.Drawing.Size(549, 36);
             this.rtb_fuel.TabIndex = 4;
@@ -1489,7 +1498,7 @@ namespace SCSSdkClient.Demo
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.l_updateRate});
-            this.statusStrip1.Location = new System.Drawing.Point(3, 501);
+            this.statusStrip1.Location = new System.Drawing.Point(3, 923);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(605, 22);
             this.statusStrip1.TabIndex = 3;
@@ -1513,7 +1522,7 @@ namespace SCSSdkClient.Demo
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbGeneral.Location = new System.Drawing.Point(20, 210);
             this.lbGeneral.Name = "lbGeneral";
-            this.lbGeneral.Size = new System.Drawing.Size(549, 227);
+            this.lbGeneral.Size = new System.Drawing.Size(549, 649);
             this.lbGeneral.TabIndex = 2;
             this.lbGeneral.Text = "";
             // 
@@ -1541,7 +1550,7 @@ namespace SCSSdkClient.Demo
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(611, 526);
+            this.tabPage1.Size = new System.Drawing.Size(611, 948);
             this.tabPage1.TabIndex = 1;
             this.tabPage1.Text = "Common";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1551,25 +1560,15 @@ namespace SCSSdkClient.Demo
             this.common.Dock = System.Windows.Forms.DockStyle.Fill;
             this.common.Location = new System.Drawing.Point(3, 3);
             this.common.Name = "common";
-            this.common.Size = new System.Drawing.Size(605, 520);
+            this.common.Size = new System.Drawing.Size(605, 942);
             this.common.TabIndex = 3;
             this.common.Text = "";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(432, 242);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(103, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "open debug";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // SCSSdkClientDemo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 552);
+            this.ClientSize = new System.Drawing.Size(619, 697);
             this.Controls.Add(this.hgf);
             this.Name = "SCSSdkClientDemo";
             this.Text = "SCSSDkClientDemo 0.9 Radiaktive";

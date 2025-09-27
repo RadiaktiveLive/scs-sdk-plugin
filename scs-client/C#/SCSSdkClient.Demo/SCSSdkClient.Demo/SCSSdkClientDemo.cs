@@ -258,50 +258,50 @@ namespace SCSSdkClient.Demo {
         */
         private void TelemetryFerry(object sender, EventArgs e) {
             //MessageBox.Show("Ferry");
-            //Ferry(gameplayevent.Text);
+            _mainForm.TelemetryFerry(gameplayevent.Text, e);
         }
 
         private void TelemetryFined(object sender, EventArgs e) {
             //MessageBox.Show("Fined");
-            //Fined(gameplayevent.Text);
+            _mainForm.TelemetryFined(gameplayevent.Text, e);
         }
 
         private void TelemetryJobCancelled(object sender, EventArgs e) {
             //MessageBox.Show("Job Cancelled");
-            //Cancelled(gameplayevent.Text);
+            _mainForm.TelemetryJobCancelled(gameplayevent.Text, e);
         }
 
         private void TelemetryJobDelivered(object sender, EventArgs e) {
             //MessageBox.Show("Job Delivered");
-            //Delivered(gameplayevent.Text);
+            _mainForm.TelemetryJobDelivered(gameplayevent.Text, e);
         }
 
         private void TelemetryOnJobStarted(object sender, EventArgs e) {
             //MessageBox.Show("Just started job OR loaded game with active.");
-            //Started(job.Text);
+            _mainForm.TelemetryOnJobStarted(job.Text, e);
         }
 
         private void TelemetryRefuel(object sender, EventArgs e) {
-            rtb_fuel.Invoke((MethodInvoker)(() => rtb_fuel.BackColor = Color.Green));
+            //rtb_fuel.Invoke((MethodInvoker)(() => rtb_fuel.BackColor = Color.Green));
         }
 
         private void TelemetryRefuelEnd(object sender, EventArgs e) {
-            rtb_fuel.Invoke((MethodInvoker)(() => rtb_fuel.BackColor = Color.Red));
+            //rtb_fuel.Invoke((MethodInvoker)(() => rtb_fuel.BackColor = Color.Red));
         }
 
         private void TelemetryRefuelPayed(object sender, EventArgs e) {
             //MessageBox.Show("Fuel Payed: " + fuel);
-            //Refuel(gameplayevent.Text);
+            _mainForm.TelemetryRefuelPayed(gameplayevent.Text, e);
         }
 
         private void TelemetryTollgate(object sender, EventArgs e) {
             //MessageBox.Show("Tollgate");
-            //Tollgate(gameplayevent.Text);
+            _mainForm.TelemetryTollgate(gameplayevent.Text, e);
         }
 
         private void TelemetryTrain(object sender, EventArgs e) {
             //MessageBox.Show("Train");
-            //Train(gameplayevent.Text);
+            _mainForm.TelemetryTrain(gameplayevent.Text, e);
         }
 
         ///
@@ -859,75 +859,75 @@ namespace SCSSdkClient.Demo {
         {
             var sleep = 2 * 1000;
 
-            //Started(job.Text);
+            _mainForm.Started(job.Text);
             await Task.Delay(sleep);
             //System.Threading.Thread.Sleep(sleep);
 
-            //Delivered(gameplayevent.Text);
+            _mainForm.Delivered(gameplayevent.Text);
             await Task.Delay(sleep);
             //System.Threading.Thread.Sleep(sleep);
 
-            //Cancelled(gameplayevent.Text);
+            _mainForm.Cancelled(gameplayevent.Text);
             await Task.Delay(sleep);
             //System.Threading.Thread.Sleep(sleep);
 
-            //Fined(gameplayevent.Text);
+            _mainForm.Fined(gameplayevent.Text);
             await Task.Delay(sleep);
             //System.Threading.Thread.Sleep(sleep);
 
-            //Tollgate(gameplayevent.Text);
+            _mainForm.Tollgate(gameplayevent.Text);
             await Task.Delay(sleep);
             //System.Threading.Thread.Sleep(sleep);
 
-            //Train(gameplayevent.Text);
+            _mainForm.Train(gameplayevent.Text);
             await Task.Delay(sleep);
             //System.Threading.Thread.Sleep(sleep);
 
-            //Ferry(gameplayevent.Text);
+            _mainForm.Ferry(gameplayevent.Text);
             await Task.Delay(sleep);
             //System.Threading.Thread.Sleep(sleep);
 
-            //Refuel(gameplayevent.Text);
+            _mainForm.Refuel(gameplayevent.Text);
         }
         
         private void toolStripJobStarted_Click(object sender, EventArgs e)
         {
-            //Started(job.Text);
+            _mainForm.Started(job.Text);
         }
 
         private void toolStripJobDelivered_Click(object sender, EventArgs e)
         {
-            //Delivered(gameplayevent.Text);
+            _mainForm.Delivered(gameplayevent.Text);
         }
 
         private void toolStripJobCancelled_Click(object sender, EventArgs e)
         {
-            //Cancelled(gameplayevent.Text);
+            _mainForm.Cancelled(gameplayevent.Text);
         }
 
         private void toolStripFinedEvent_Click(object sender, EventArgs e)
         {
-            //Fined(gameplayevent.Text);
+            _mainForm.Fined(gameplayevent.Text);
         }
 
         private void toolStripTollgateEvent_Click(object sender, EventArgs e)
         {
-            //Tollgate(gameplayevent.Text);
+            _mainForm.Tollgate(gameplayevent.Text);
         }
 
         private void toolStripTrainEvent_Click(object sender, EventArgs e)
         {
-            //Train(gameplayevent.Text);
+            _mainForm.Train(gameplayevent.Text);
         }
 
         private void toolStripFerryEvent_Click(object sender, EventArgs e)
         {
-            //Ferry(gameplayevent.Text);
+            _mainForm.Ferry(gameplayevent.Text);
         }
 
         private void toolStripRefuelEvent_Click(object sender, EventArgs e)
         {
-            //Refuel(gameplayevent.Text);
+            _mainForm.Refuel(gameplayevent.Text);
         }
 
         private void buttonSaveSettings_Click(object sender, EventArgs e)

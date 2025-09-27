@@ -29,6 +29,22 @@
         private void InitializeComponent()
         {
             this.groupBoxActions = new System.Windows.Forms.GroupBox();
+            this.testFerryEventCurrentValue = new System.Windows.Forms.Button();
+            this.testRefuelPayedEventCurrentValue = new System.Windows.Forms.Button();
+            this.testTrainEventCurrentValue = new System.Windows.Forms.Button();
+            this.testJobCancelledEventCurrentValue = new System.Windows.Forms.Button();
+            this.testTollgateEventCurrentValue = new System.Windows.Forms.Button();
+            this.testJobDeliveredEventCurrentValue = new System.Windows.Forms.Button();
+            this.testFinedEventCurrentValue = new System.Windows.Forms.Button();
+            this.testJobStartedEventCurrentValue = new System.Windows.Forms.Button();
+            this.testFerryEventDemoData = new System.Windows.Forms.Button();
+            this.testRefuelPayedEventDemoData = new System.Windows.Forms.Button();
+            this.testTrainEventDemoData = new System.Windows.Forms.Button();
+            this.testJobCancelledEventDemoData = new System.Windows.Forms.Button();
+            this.testTollgateEventDemoData = new System.Windows.Forms.Button();
+            this.testJobDeliveredEventDemoData = new System.Windows.Forms.Button();
+            this.testFinedEventDemoData = new System.Windows.Forms.Button();
+            this.testJobStartedEventDemoData = new System.Windows.Forms.Button();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.textBoxRefuelEventName = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
@@ -90,6 +106,22 @@
             // 
             // groupBoxActions
             // 
+            this.groupBoxActions.Controls.Add(this.testFerryEventCurrentValue);
+            this.groupBoxActions.Controls.Add(this.testRefuelPayedEventCurrentValue);
+            this.groupBoxActions.Controls.Add(this.testTrainEventCurrentValue);
+            this.groupBoxActions.Controls.Add(this.testJobCancelledEventCurrentValue);
+            this.groupBoxActions.Controls.Add(this.testTollgateEventCurrentValue);
+            this.groupBoxActions.Controls.Add(this.testJobDeliveredEventCurrentValue);
+            this.groupBoxActions.Controls.Add(this.testFinedEventCurrentValue);
+            this.groupBoxActions.Controls.Add(this.testJobStartedEventCurrentValue);
+            this.groupBoxActions.Controls.Add(this.testFerryEventDemoData);
+            this.groupBoxActions.Controls.Add(this.testRefuelPayedEventDemoData);
+            this.groupBoxActions.Controls.Add(this.testTrainEventDemoData);
+            this.groupBoxActions.Controls.Add(this.testJobCancelledEventDemoData);
+            this.groupBoxActions.Controls.Add(this.testTollgateEventDemoData);
+            this.groupBoxActions.Controls.Add(this.testJobDeliveredEventDemoData);
+            this.groupBoxActions.Controls.Add(this.testFinedEventDemoData);
+            this.groupBoxActions.Controls.Add(this.testJobStartedEventDemoData);
             this.groupBoxActions.Controls.Add(this.groupBox8);
             this.groupBoxActions.Controls.Add(this.groupBox7);
             this.groupBoxActions.Controls.Add(this.groupBox6);
@@ -106,6 +138,166 @@
             this.groupBoxActions.TabIndex = 3;
             this.groupBoxActions.TabStop = false;
             this.groupBoxActions.Text = "Streamer.Bot Actions";
+            // 
+            // testFerryEventCurrentValue
+            // 
+            this.testFerryEventCurrentValue.Location = new System.Drawing.Point(351, 291);
+            this.testFerryEventCurrentValue.Name = "testFerryEventCurrentValue";
+            this.testFerryEventCurrentValue.Size = new System.Drawing.Size(37, 23);
+            this.testFerryEventCurrentValue.TabIndex = 28;
+            this.testFerryEventCurrentValue.Text = "CV";
+            this.testFerryEventCurrentValue.UseVisualStyleBackColor = true;
+            this.testFerryEventCurrentValue.Click += new System.EventHandler(this.testFerryEventCurrentValue_Click);
+            // 
+            // testRefuelPayedEventCurrentValue
+            // 
+            this.testRefuelPayedEventCurrentValue.Location = new System.Drawing.Point(313, 291);
+            this.testRefuelPayedEventCurrentValue.Name = "testRefuelPayedEventCurrentValue";
+            this.testRefuelPayedEventCurrentValue.Size = new System.Drawing.Size(37, 23);
+            this.testRefuelPayedEventCurrentValue.TabIndex = 27;
+            this.testRefuelPayedEventCurrentValue.Text = "CV";
+            this.testRefuelPayedEventCurrentValue.UseVisualStyleBackColor = true;
+            this.testRefuelPayedEventCurrentValue.Click += new System.EventHandler(this.testRefuelPayedEventCurrentValue_Click);
+            // 
+            // testTrainEventCurrentValue
+            // 
+            this.testTrainEventCurrentValue.Location = new System.Drawing.Point(351, 214);
+            this.testTrainEventCurrentValue.Name = "testTrainEventCurrentValue";
+            this.testTrainEventCurrentValue.Size = new System.Drawing.Size(37, 23);
+            this.testTrainEventCurrentValue.TabIndex = 26;
+            this.testTrainEventCurrentValue.Text = "CV";
+            this.testTrainEventCurrentValue.UseVisualStyleBackColor = true;
+            this.testTrainEventCurrentValue.Click += new System.EventHandler(this.testTrainEventCurrentValue_Click);
+            // 
+            // testJobCancelledEventCurrentValue
+            // 
+            this.testJobCancelledEventCurrentValue.Location = new System.Drawing.Point(313, 214);
+            this.testJobCancelledEventCurrentValue.Name = "testJobCancelledEventCurrentValue";
+            this.testJobCancelledEventCurrentValue.Size = new System.Drawing.Size(37, 23);
+            this.testJobCancelledEventCurrentValue.TabIndex = 25;
+            this.testJobCancelledEventCurrentValue.Text = "CV";
+            this.testJobCancelledEventCurrentValue.UseVisualStyleBackColor = true;
+            this.testJobCancelledEventCurrentValue.Click += new System.EventHandler(this.testJobCancelledEventCurrentValue_Click);
+            // 
+            // testTollgateEventCurrentValue
+            // 
+            this.testTollgateEventCurrentValue.Location = new System.Drawing.Point(351, 137);
+            this.testTollgateEventCurrentValue.Name = "testTollgateEventCurrentValue";
+            this.testTollgateEventCurrentValue.Size = new System.Drawing.Size(37, 23);
+            this.testTollgateEventCurrentValue.TabIndex = 24;
+            this.testTollgateEventCurrentValue.Text = "CV";
+            this.testTollgateEventCurrentValue.UseVisualStyleBackColor = true;
+            this.testTollgateEventCurrentValue.Click += new System.EventHandler(this.testTollgateEventCurrentValue_Click);
+            // 
+            // testJobDeliveredEventCurrentValue
+            // 
+            this.testJobDeliveredEventCurrentValue.Location = new System.Drawing.Point(313, 137);
+            this.testJobDeliveredEventCurrentValue.Name = "testJobDeliveredEventCurrentValue";
+            this.testJobDeliveredEventCurrentValue.Size = new System.Drawing.Size(37, 23);
+            this.testJobDeliveredEventCurrentValue.TabIndex = 23;
+            this.testJobDeliveredEventCurrentValue.Text = "CV";
+            this.testJobDeliveredEventCurrentValue.UseVisualStyleBackColor = true;
+            this.testJobDeliveredEventCurrentValue.Click += new System.EventHandler(this.testJobDeliveredEventCurrentValue_Click);
+            // 
+            // testFinedEventCurrentValue
+            // 
+            this.testFinedEventCurrentValue.Location = new System.Drawing.Point(351, 57);
+            this.testFinedEventCurrentValue.Name = "testFinedEventCurrentValue";
+            this.testFinedEventCurrentValue.Size = new System.Drawing.Size(37, 23);
+            this.testFinedEventCurrentValue.TabIndex = 22;
+            this.testFinedEventCurrentValue.Text = "CV";
+            this.testFinedEventCurrentValue.UseVisualStyleBackColor = true;
+            this.testFinedEventCurrentValue.Click += new System.EventHandler(this.testFinedEventCurrentValue_Click);
+            // 
+            // testJobStartedEventCurrentValue
+            // 
+            this.testJobStartedEventCurrentValue.Location = new System.Drawing.Point(313, 57);
+            this.testJobStartedEventCurrentValue.Name = "testJobStartedEventCurrentValue";
+            this.testJobStartedEventCurrentValue.Size = new System.Drawing.Size(37, 23);
+            this.testJobStartedEventCurrentValue.TabIndex = 21;
+            this.testJobStartedEventCurrentValue.Text = "CV";
+            this.testJobStartedEventCurrentValue.UseVisualStyleBackColor = true;
+            this.testJobStartedEventCurrentValue.Click += new System.EventHandler(this.testJobStartedEventCurrentValue_Click);
+            // 
+            // testFerryEventDemoData
+            // 
+            this.testFerryEventDemoData.Location = new System.Drawing.Point(351, 265);
+            this.testFerryEventDemoData.Name = "testFerryEventDemoData";
+            this.testFerryEventDemoData.Size = new System.Drawing.Size(37, 23);
+            this.testFerryEventDemoData.TabIndex = 20;
+            this.testFerryEventDemoData.Text = "DD";
+            this.testFerryEventDemoData.UseVisualStyleBackColor = true;
+            this.testFerryEventDemoData.Click += new System.EventHandler(this.testFerryEventDemoData_Click);
+            // 
+            // testRefuelPayedEventDemoData
+            // 
+            this.testRefuelPayedEventDemoData.Location = new System.Drawing.Point(313, 265);
+            this.testRefuelPayedEventDemoData.Name = "testRefuelPayedEventDemoData";
+            this.testRefuelPayedEventDemoData.Size = new System.Drawing.Size(37, 23);
+            this.testRefuelPayedEventDemoData.TabIndex = 19;
+            this.testRefuelPayedEventDemoData.Text = "DD";
+            this.testRefuelPayedEventDemoData.UseVisualStyleBackColor = true;
+            this.testRefuelPayedEventDemoData.Click += new System.EventHandler(this.testRefuelPayedEventDemoData_Click);
+            // 
+            // testTrainEventDemoData
+            // 
+            this.testTrainEventDemoData.Location = new System.Drawing.Point(351, 188);
+            this.testTrainEventDemoData.Name = "testTrainEventDemoData";
+            this.testTrainEventDemoData.Size = new System.Drawing.Size(37, 23);
+            this.testTrainEventDemoData.TabIndex = 18;
+            this.testTrainEventDemoData.Text = "DD";
+            this.testTrainEventDemoData.UseVisualStyleBackColor = true;
+            this.testTrainEventDemoData.Click += new System.EventHandler(this.testTrainEventDemoData_Click);
+            // 
+            // testJobCancelledEventDemoData
+            // 
+            this.testJobCancelledEventDemoData.Location = new System.Drawing.Point(313, 188);
+            this.testJobCancelledEventDemoData.Name = "testJobCancelledEventDemoData";
+            this.testJobCancelledEventDemoData.Size = new System.Drawing.Size(37, 23);
+            this.testJobCancelledEventDemoData.TabIndex = 17;
+            this.testJobCancelledEventDemoData.Text = "DD";
+            this.testJobCancelledEventDemoData.UseVisualStyleBackColor = true;
+            this.testJobCancelledEventDemoData.Click += new System.EventHandler(this.testJobCancelledEventDemoData_Click);
+            // 
+            // testTollgateEventDemoData
+            // 
+            this.testTollgateEventDemoData.Location = new System.Drawing.Point(351, 111);
+            this.testTollgateEventDemoData.Name = "testTollgateEventDemoData";
+            this.testTollgateEventDemoData.Size = new System.Drawing.Size(37, 23);
+            this.testTollgateEventDemoData.TabIndex = 16;
+            this.testTollgateEventDemoData.Text = "DD";
+            this.testTollgateEventDemoData.UseVisualStyleBackColor = true;
+            this.testTollgateEventDemoData.Click += new System.EventHandler(this.testTollgateEventDemoData_Click);
+            // 
+            // testJobDeliveredEventDemoData
+            // 
+            this.testJobDeliveredEventDemoData.Location = new System.Drawing.Point(313, 111);
+            this.testJobDeliveredEventDemoData.Name = "testJobDeliveredEventDemoData";
+            this.testJobDeliveredEventDemoData.Size = new System.Drawing.Size(37, 23);
+            this.testJobDeliveredEventDemoData.TabIndex = 15;
+            this.testJobDeliveredEventDemoData.Text = "DD";
+            this.testJobDeliveredEventDemoData.UseVisualStyleBackColor = true;
+            this.testJobDeliveredEventDemoData.Click += new System.EventHandler(this.testJobDeliveredEventDemoData_Click);
+            // 
+            // testFinedEventDemoData
+            // 
+            this.testFinedEventDemoData.Location = new System.Drawing.Point(351, 33);
+            this.testFinedEventDemoData.Name = "testFinedEventDemoData";
+            this.testFinedEventDemoData.Size = new System.Drawing.Size(37, 23);
+            this.testFinedEventDemoData.TabIndex = 14;
+            this.testFinedEventDemoData.Text = "DD";
+            this.testFinedEventDemoData.UseVisualStyleBackColor = true;
+            this.testFinedEventDemoData.Click += new System.EventHandler(this.testFinedEventDemoData_Click);
+            // 
+            // testJobStartedEventDemoData
+            // 
+            this.testJobStartedEventDemoData.Location = new System.Drawing.Point(313, 33);
+            this.testJobStartedEventDemoData.Name = "testJobStartedEventDemoData";
+            this.testJobStartedEventDemoData.Size = new System.Drawing.Size(37, 23);
+            this.testJobStartedEventDemoData.TabIndex = 13;
+            this.testJobStartedEventDemoData.Text = "DD";
+            this.testJobStartedEventDemoData.UseVisualStyleBackColor = true;
+            this.testJobStartedEventDemoData.Click += new System.EventHandler(this.testJobStartedEventDemoData_Click);
             // 
             // groupBox8
             // 
@@ -676,5 +868,21 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonTestConnection;
         private System.Windows.Forms.Button buttonSaveSettings;
+        private System.Windows.Forms.Button testFerryEventDemoData;
+        private System.Windows.Forms.Button testRefuelPayedEventDemoData;
+        private System.Windows.Forms.Button testTrainEventDemoData;
+        private System.Windows.Forms.Button testJobCancelledEventDemoData;
+        private System.Windows.Forms.Button testTollgateEventDemoData;
+        private System.Windows.Forms.Button testJobDeliveredEventDemoData;
+        private System.Windows.Forms.Button testFinedEventDemoData;
+        private System.Windows.Forms.Button testJobStartedEventDemoData;
+        private System.Windows.Forms.Button testFerryEventCurrentValue;
+        private System.Windows.Forms.Button testRefuelPayedEventCurrentValue;
+        private System.Windows.Forms.Button testTrainEventCurrentValue;
+        private System.Windows.Forms.Button testJobCancelledEventCurrentValue;
+        private System.Windows.Forms.Button testTollgateEventCurrentValue;
+        private System.Windows.Forms.Button testJobDeliveredEventCurrentValue;
+        private System.Windows.Forms.Button testFinedEventCurrentValue;
+        private System.Windows.Forms.Button testJobStartedEventCurrentValue;
     }
 }

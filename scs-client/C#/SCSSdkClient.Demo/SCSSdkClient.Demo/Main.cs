@@ -1,26 +1,27 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using SCSSdkClient.Object;
 using System;
 using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
-using System.Net.Http;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Sockets;
+using System.Security.Policy;
 using System.Text;
-using static SCSSdkClient.Object.SCSTelemetry;
-using static SCSSdkClient.Demo.SCSSdkClientDemo;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Security.Policy;
-using System.Net;
-using System.Net.Sockets;
-using Newtonsoft.Json.Linq;
 using System.Xml.Linq;
-using System.Configuration;
+using static SCSSdkClient.Demo.SCSSdkClientDemo;
+using static SCSSdkClient.Object.SCSTelemetry;
+using static SCSSdkClient.Object.SCSTelemetry.Job;
 using ConfigurationBuilder = Microsoft.Extensions.Configuration.ConfigurationBuilder;
 
 namespace SCSSdkClient.Demo
@@ -60,7 +61,8 @@ namespace SCSSdkClient.Demo
         /// </summary>
         public SCSSdkTelemetry Telemetry;
         private float fuel;
-        private SCSTelemetry raw;
+        //private SCSTelemetry raw;
+        public SCSTelemetry raw;
         #endregion
 
         public Main()
@@ -310,7 +312,7 @@ namespace SCSSdkClient.Demo
             // Por ejemplo, actualizar datos, recargar la interfaz, etc.
             ReadConfigFile();
             //ActualizarDatosPrincipales();
-            MessageBox.Show("El formulario de configuración ha sido cerrado.");
+            //MessageBox.Show("El formulario de configuración ha sido cerrado.");
         }
 
         // Un método de ejemplo que podría ser llamado.
@@ -393,6 +395,7 @@ namespace SCSSdkClient.Demo
         {
             private string m_exePath = string.Empty;
             private string todayDate = DateTime.Now.ToString("yyyyMMdd");
+            private string now = DateTime.Now.ToString("yyyyMMdd_HHmmss");
             public LogWriter(string logType, string logMessage)
             {
                 LogWrite(logType, logMessage);
@@ -428,6 +431,50 @@ namespace SCSSdkClient.Demo
                     //txtWriter.WriteLine("  :{0}", logMessage);
                     txtWriter.WriteLine("{0}", logMessage);
                     txtWriter.WriteLine("-------------------------------");
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+
+
+
+
+            public LogWriter(string logType, string logMessage, string eventName)
+            {
+                LogWrite(logType, logMessage, eventName);
+            }
+            public void LogWrite(string logType, string logMessage, string eventName)
+            {
+                m_exePath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                try
+                {
+                    if (!Directory.Exists(m_exePath + "\\" + "Logs"))
+                    {
+                        Directory.CreateDirectory(m_exePath + "\\" + "Logs");
+                    }
+                    using (StreamWriter w = File.AppendText(m_exePath + "\\" + "Logs\\" + now + "_" + eventName + ".txt"))
+                    {
+                        Log(logMessage, w);
+                    }
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+
+            public void Log(string logMessage, TextWriter txtWriter)
+            {
+                try
+                {
+                    //txtWriter.Write("\r\nLog Entry : ");
+                    //txtWriter.WriteLine("{0} {1}", DateTime.Now.ToLongTimeString(), DateTime.Now.ToShortDateString());
+                    //txtWriter.WriteLine("{0} {1} {2} :", DateTime.Now.ToString("yyyy-MM-dd"), DateTime.Now.ToLongTimeString(), logType);
+                    //DateTime.Now.ToLongDateString());
+                    //txtWriter.WriteLine("  :");
+                    //txtWriter.WriteLine("  :{0}", logMessage);
+                    txtWriter.WriteLine("{0}", logMessage);
+                    //txtWriter.WriteLine("-------------------------------");
                 }
                 catch (Exception ex)
                 {
@@ -581,62 +628,69 @@ namespace SCSSdkClient.Demo
             }
         }
 
-        private void TelemetryFerry(object sender, EventArgs e)
+        public void TelemetryFerry(object sender, EventArgs e)
         {
             //MessageBox.Show("Ferry");
-            //Ferry(gameplayevent.Text);
+            //Ferry(JsonConvert.SerializeObject(raw.GamePlay.FerryEvent, Formatting.Indented));
+            Ferry(JsonConvert.SerializeObject(raw.GamePlay, Formatting.Indented));
         }
 
-        private void TelemetryFined(object sender, EventArgs e)
+        public void TelemetryFined(object sender, EventArgs e)
         {
             //MessageBox.Show("Fined");
-            //Fined(gameplayevent.Text);
+            //Fined(JsonConvert.SerializeObject(raw.GamePlay.FinedEvent, Formatting.Indented));
+            Fined(JsonConvert.SerializeObject(raw.GamePlay, Formatting.Indented));
         }
 
-        private void TelemetryJobCancelled(object sender, EventArgs e)
+        public void TelemetryJobCancelled(object sender, EventArgs e)
         {
             //MessageBox.Show("Job Cancelled");
-            //Cancelled(gameplayevent.Text);
+            //Cancelled(JsonConvert.SerializeObject(raw.GamePlay.JobCancelled, Formatting.Indented));
+            Cancelled(JsonConvert.SerializeObject(raw.GamePlay, Formatting.Indented));
         }
 
-        private void TelemetryJobDelivered(object sender, EventArgs e)
+        public void TelemetryJobDelivered(object sender, EventArgs e)
         {
             //MessageBox.Show("Job Delivered");
-            //Delivered(gameplayevent.Text);
+            //Delivered(JsonConvert.SerializeObject(raw.GamePlay.JobDelivered, Formatting.Indented));
+            Delivered(JsonConvert.SerializeObject(raw.GamePlay, Formatting.Indented));
         }
 
-        private void TelemetryOnJobStarted(object sender, EventArgs e)
+        public void TelemetryOnJobStarted(object sender, EventArgs e)
         {
             //MessageBox.Show("Just started job OR loaded game with active.");
-            //Started(job.Text);
+            Started(JsonConvert.SerializeObject(raw.JobValues, Formatting.Indented));
         }
 
-        private void TelemetryRefuel(object sender, EventArgs e)
+        public void TelemetryRefuel(object sender, EventArgs e)
         {
             //rtb_fuel.Invoke((MethodInvoker)(() => rtb_fuel.BackColor = Color.Green));
         }
 
-        private void TelemetryRefuelEnd(object sender, EventArgs e)
+        public void TelemetryRefuelEnd(object sender, EventArgs e)
         {
             //rtb_fuel.Invoke((MethodInvoker)(() => rtb_fuel.BackColor = Color.Red));
         }
 
-        private void TelemetryRefuelPayed(object sender, EventArgs e)
+        public void TelemetryRefuelPayed(object sender, EventArgs e)
         {
             //MessageBox.Show("Fuel Payed: " + fuel);
-            //Refuel(gameplayevent.Text);
+            //Refuel(JsonConvert.SerializeObject(raw.GamePlay.RefuelEvent, Formatting.Indented));
+            Refuel(JsonConvert.SerializeObject(raw.GamePlay, Formatting.Indented));
         }
 
-        private void TelemetryTollgate(object sender, EventArgs e)
+        public void TelemetryTollgate(object sender, EventArgs e)
         {
             //MessageBox.Show("Tollgate");
-            //Tollgate(gameplayevent.Text);
+            //Tollgate(JsonConvert.SerializeObject(raw.GamePlay.TollgateEvent, Formatting.Indented));
+            Tollgate(JsonConvert.SerializeObject(raw.GamePlay, Formatting.Indented));
         }
 
-        private void TelemetryTrain(object sender, EventArgs e)
+        public void TelemetryTrain(object sender, EventArgs e)
         {
             //MessageBox.Show("Train");
-            //Train(gameplayevent.Text);
+            //Train(JsonConvert.SerializeObject(raw.GamePlay.TrainEvent, Formatting.Indented));
+            Train(JsonConvert.SerializeObject(raw.GamePlay, Formatting.Indented));
         }
         #endregion
 
@@ -720,6 +774,13 @@ namespace SCSSdkClient.Demo
         public class FinedEvent
         {
             ///
+            public FinedEvent(decimal amount, int offence)
+            {
+                Amount = amount;
+                Offence = offence;
+            }
+
+            ///
             public decimal Amount { get; set; }
             ///
             public int Offence { get; set; }
@@ -772,6 +833,11 @@ namespace SCSSdkClient.Demo
         public class TrainEvent
         {
             ///
+            public TrainEvent()
+            {
+            }
+
+            ///
             public decimal PayAmount { get; set; }
             ///
             public string SourceId { get; set; }
@@ -816,6 +882,41 @@ namespace SCSSdkClient.Demo
             public TrainEvent TrainEvent { get; set; }
             ///
             public RefuelEvent RefuelEvent { get; set; }
+
+            public Job JobValues { get; set; }
+        }
+
+        public class Job
+        {
+            ///
+            public Time DeliveryTime { get; set; }
+            public Frequency RemainingDeliveryTime { get; set; }
+
+            public bool CargoLoaded { get; set; }
+            public bool SpecialJob { get; set; }
+            public JobMarket Market { get; set; }
+
+            public uint PlannedDistanceKm { get; set; }
+
+            public Cargo CargoValues { get; set; }
+
+            public string CityDestinationId { get; set; }
+
+            public string CityDestination { get; set; }
+
+            public string CompanyDestinationId { get; set; }
+
+            public string CompanyDestination { get; set; }
+
+            public string CitySourceId { get; set; }
+
+            public string CitySource { get; set; }
+
+            public string CompanySourceId { get; set; }
+
+            public string CompanySource { get; set; }
+
+            public ulong Income { get; set; }
         }
         #endregion
 
@@ -828,84 +929,133 @@ namespace SCSSdkClient.Demo
             return myObject;
         }
 
-        private void Ferry(string events)
+        public void Ferry(string events)
         {
             var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
             var json = JsonConvert.SerializeObject(myObject1.FerryEvent);
             //MessageBox.Show(json, "FerryEvent");
             var myObject = createMyJsonObject(FerryEventSBAction, "FerryEvent", json);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
-
+            //new LogWriter("INFO FERRY", JsonConvert.SerializeObject(raw.GamePlay.FerryEvent, Formatting.Indented), "FERRY");
+            new LogWriter("INFO FERRY", JsonConvert.SerializeObject(json, Formatting.Indented));
+            new LogWriter("INFO FERRY", JsonConvert.SerializeObject(raw, Formatting.Indented), "FERRY");
             //Task variableInutilPerEvitarWarnings2 = PanelColor(panelFerry);
         }
-        private void Fined(string events)
+        public void Fined(string events)
         {
-            var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
-            var json = JsonConvert.SerializeObject(myObject1.FinedEvent);
-            //MessageBox.Show(json, "FinedEvent");
-            var myObject = createMyJsonObject(FinedEventSBAction, "FinedEvent", json);
-            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
-
-            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelFined);
+            try
+            {
+                //MessageBox.Show(events, "FinedEvent");
+                var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+                var json = JsonConvert.SerializeObject(myObject1.FinedEvent);
+                //MessageBox.Show(json, "FinedEvent");
+                //MessageBox.Show(json, "FinedEvent");
+                var myObject = createMyJsonObject(FinedEventSBAction, "FinedEvent", json);
+                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                //new LogWriter("INFO FINED", JsonConvert.SerializeObject(raw.GamePlay.FinedEvent, Formatting.Indented), "FINED");
+                //new LogWriter("INFO FINED", JsonConvert.SerializeObject(json, Formatting.Indented));
+                new LogWriter("INFO FINED", json);
+                new LogWriter("INFO FINED", JsonConvert.SerializeObject(raw, Formatting.Indented), "FINED");
+                //Task variableInutilPerEvitarWarnings2 = PanelColor(panelFined);
+            }
+            catch (Exception ex)
+            {
+                new LogWriter("EXCEPTION FINED", ex.Message);
+            }
         }
-        private void Started(string events)
+        public void Started(string events, bool demoData = false)
         {
-            //var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
-            //var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
-            //MessageBox.Show(json, "JobDelivered");
-            var myObject = createMyJsonObject(JobStartedEventSBAction, "Job", events);
-            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+            if (demoData)
+            {
+                //MessageBox.Show(events, "Started");
+                var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+                var json = JsonConvert.SerializeObject(myObject1.JobValues);
+                //MessageBox.Show(json, "Started");
+                //MessageBox.Show(json, "FinedEvent");
+                var myObject = createMyJsonObject(JobStartedEventSBAction, "Job", json);
+                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                //new LogWriter("INFO FINED", JsonConvert.SerializeObject(raw.GamePlay.FinedEvent, Formatting.Indented), "FINED");
+                //new LogWriter("INFO FINED", JsonConvert.SerializeObject(json, Formatting.Indented));
+                new LogWriter("INFO Started", json);
+                new LogWriter("INFO Started", JsonConvert.SerializeObject(raw, Formatting.Indented), "Started");
+                //Task variableInutilPerEvitarWarnings2 = PanelColor(panelFined);
+            }
+            else
+            {
+                //var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+                //var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
+                //MessageBox.Show(json, "JobDelivered");
+                var myObject = createMyJsonObject(JobStartedEventSBAction, "Job", events);
+                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                //new LogWriter("INFO STARTED", JsonConvert.SerializeObject(raw.JobValues, Formatting.Indented), "JOB_STARTED");
+                new LogWriter("INFO STARTED", JsonConvert.SerializeObject(events, Formatting.Indented));
+                new LogWriter("INFO STARTED", JsonConvert.SerializeObject(raw, Formatting.Indented), "JOB_STARTED");
+                //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobStarted);
+            }
+            
 
-            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobStarted);
+            
         }
-        private void Cancelled(string events)
+        public void Cancelled(string events)
         {
             var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
             var json = JsonConvert.SerializeObject(myObject1.JobCancelled);
             //MessageBox.Show(json, "JobCancelled");
             var myObject = createMyJsonObject(JobCancelledEventSBAction, "JobCancelled", json);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
-
+            //new LogWriter("INFO CANCELLED", JsonConvert.SerializeObject(raw.GamePlay.JobCancelled, Formatting.Indented), "JOB_CANCELLED");
+            new LogWriter("INFO CANCELLED", JsonConvert.SerializeObject(json, Formatting.Indented));
+            new LogWriter("INFO CANCELLED", JsonConvert.SerializeObject(raw, Formatting.Indented), "JOB_CANCELLED");
             //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobCancelled);
         }
-        private void Delivered(string events)
+        public void Delivered(string events)
         {
             var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
             var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
             //MessageBox.Show(json, "JobDelivered");
             var myObject = createMyJsonObject(JobDeliveredEventSBAction, "JobDelivered", json);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
-
+            //new LogWriter("INFO DELIVERED", JsonConvert.SerializeObject(raw.GamePlay.JobDelivered, Formatting.Indented), "JOB_DELIVERED");
+            new LogWriter("INFO DELIVERED", JsonConvert.SerializeObject(json, Formatting.Indented));
+            new LogWriter("INFO DELIVERED", JsonConvert.SerializeObject(raw, Formatting.Indented), "JOB_DELIVERED");
             //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobDelivered);
         }
-        private void Tollgate(string events)
+        public void Tollgate(string events)
         {
             var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
             var json = JsonConvert.SerializeObject(myObject1.TollgateEvent);
             //MessageBox.Show(json, "TollgateEvent");
             var myObject = createMyJsonObject(TollgateEventSBAction, "TollgateEvent", json);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
-
+            //new LogWriter("INFO TOLLGATE", JsonConvert.SerializeObject(raw.GamePlay.TollgateEvent, Formatting.Indented), "TOLLGATE");
+            new LogWriter("INFO TOLLGATE", JsonConvert.SerializeObject(json, Formatting.Indented));
+            new LogWriter("INFO TOLLGATE", JsonConvert.SerializeObject(raw, Formatting.Indented), "TOLLGATE");
             //Task variableInutilPerEvitarWarnings2 = PanelColor(panelTollgate);
         }
-        private void Train(string events)
+        public void Train(string events)
         {
+            //MessageBox.Show(events, "TrainEvent");
             var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
             var json = JsonConvert.SerializeObject(myObject1.TrainEvent);
             //MessageBox.Show(json, "TrainEvent");
+            //MessageBox.Show(json, "TrainEvent");
             var myObject = createMyJsonObject(TrainEventSBAction, "TrainEvent", json);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
-
+            //new LogWriter("INFO TRAIN", JsonConvert.SerializeObject(raw.GamePlay.TrainEvent, Formatting.Indented), "TRAIN");
+            new LogWriter("INFO TRAIN", JsonConvert.SerializeObject(json, Formatting.Indented));
+            new LogWriter("INFO TRAIN", JsonConvert.SerializeObject(raw, Formatting.Indented), "TRAIN");
             //Task variableInutilPerEvitarWarnings2 = PanelColor(panelTrain);
         }
-        private void Refuel(string events)
+        public void Refuel(string events)
         {
             var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
             var json = JsonConvert.SerializeObject(myObject1.RefuelEvent);
             //MessageBox.Show(json, "RefuelEvent");
             var myObject = createMyJsonObject(RefuelEventSBAction, "RefuelEvent", json);
             Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
-
+            //new LogWriter("INFO REFUEL", JsonConvert.SerializeObject(raw.GamePlay.RefuelEvent, Formatting.Indented), "REFUEL_PAYED");
+            new LogWriter("INFO REFUEL", JsonConvert.SerializeObject(json, Formatting.Indented));
+            new LogWriter("INFO REFUEL", JsonConvert.SerializeObject(raw, Formatting.Indented), "REFUEL_PAYED");
             //panelRefuel.BackColor = Color.IndianRed;
             //Task variableInutilPerEvitarWarnings2 = PanelColor(panelRefuel);
             //panelRefuel.BackColor = Color.Transparent;

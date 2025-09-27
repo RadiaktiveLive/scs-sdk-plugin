@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using SCSSdkClient.Object;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static SCSSdkClient.Demo.SCSSdkClientDemo;
+using static SCSSdkClient.Object.SCSTelemetry;
 
 namespace SCSSdkClient.Demo
 {
@@ -323,6 +326,294 @@ namespace SCSSdkClient.Demo
         private void SBConfigForm_FormClosed(object sender, FormClosedEventArgs e)
         {
 
+        }
+
+        private void testJobStartedEventDemoData_Click(object sender, EventArgs e)
+        {
+            //string jobStartedDemoData = "{\"JobValues\":{\"CargoLoaded\":false,\"CargoValues\":{\"CargoDamage\":0.0,\"Id\":\"\",\"Mass\":0.0,\"Name\":\"\",\"UnitCount\":0,\"UnitMass\":0.0},\"CityDestination\":\"\",\"CityDestinationId\":\"\",\"CitySource\":\"\",\"CitySourceId\":\"\",\"CompanyDestination\":\"\",\"CompanyDestinationId\":\"\",\"CompanySource\":\"\",\"CompanySourceId\":\"\",\"DeliveryTime\":{\"Date\":\"0001-01-01T00:00:00Z\",\"Value\":0},\"Income\":0,\"Market\":0,\"PlannedDistanceKm\":0,\"RemainingDeliveryTime\":{\"Date\":\"0001-01-01T00:00:00Z\",\"Value\":0},\"SpecialJob\":false}}";
+            string jobStartedDemoData = @"
+                {
+                  ""JobValues"": {
+                    ""DeliveryTime"": {
+                      ""Value"": 0,
+                      ""Date"": ""0001-01-01T00:00:00Z""
+                    },
+                    ""RemainingDeliveryTime"": {
+                      ""Value"": 0,
+                      ""Date"": ""0001-01-01T00:00:00Z""
+                    },
+                    ""CargoLoaded"": false,
+                    ""SpecialJob"": false,
+                    ""Market"": 1,
+                    ""PlannedDistanceKm"": 0,
+                    ""CargoValues"": {
+                      ""Mass"": 0.0,
+                      ""Id"": """",
+                      ""Name"": """",
+                      ""UnitCount"": 0,
+                      ""UnitMass"": 0.0,
+                      ""CargoDamage"": 0.0
+                    },
+                    ""CityDestinationId"": """",
+                    ""CityDestination"": """",
+                    ""CompanyDestinationId"": """",
+                    ""CompanyDestination"": """",
+                    ""CitySourceId"": """",
+                    ""CitySource"": """",
+                    ""CompanySourceId"": """",
+                    ""CompanySource"": """",
+                    ""Income"": 123
+                  }
+                }
+            ";
+            var json = JsonConvert.DeserializeObject<Main.GamePlayEvents>(jobStartedDemoData);
+            Main.GamePlayEvents jobStarted = json;
+            _mainForm.Started(JsonConvert.SerializeObject(jobStarted, Formatting.Indented), true);
+        }
+
+        private void testJobStartedEventCurrentValue_Click(object sender, EventArgs e)
+        {
+            _mainForm.Started(JsonConvert.SerializeObject(_mainForm.raw.JobValues, Formatting.Indented));
+        }
+
+        private void testJobDeliveredEventDemoData_Click(object sender, EventArgs e)
+        {
+            //string jobDeliveredDemoData = "{\"JobDelivered\":{\"AutoLoaded\":false,\"AutoParked\":false,\"CargoDamage\":0.0,\"DeliveryTime\":{\"Date\":\"0001-01-01T00:00:00Z\",\"Value\":0},\"DistanceKm\":0.0,\"EarnedXp\":0,\"Finished\":{\"Date\":\"0001-01-01T00:00:00Z\",\"Value\":0},\"Revenue\":0,\"Started\":{\"Date\":\"0001-01-01T00:00:00Z\",\"Value\":0},\"StartedBackup\":{\"Date\":\"0001-01-01T00:00:00Z\",\"Value\":0}}}";
+            string jobDeliveredDemoData = @"
+                {
+                    ""JobDelivered"": {
+                      ""AutoLoaded"": false,
+                      ""AutoParked"": false,
+                      ""CargoDamage"": 0.0,
+                      ""DeliveryTime"": {
+                        ""Value"": 0,
+                        ""Date"": ""0001-01-01T00:00:00Z""
+                      },
+                      ""DistanceKm"": 0.0,
+                      ""EarnedXp"": 0,
+                      ""Revenue"": 0,
+                      ""Finished"": {
+                        ""Value"": 0,
+                        ""Date"": ""0001-01-01T00:00:00Z""
+                      },
+                      ""Started"": {
+                        ""Value"": 0,
+                        ""Date"": ""0001-01-01T00:00:00Z""
+                      },
+                      ""StartedBackup"": {
+                        ""Value"": 0,
+                        ""Date"": ""0001-01-01T00:00:00Z""
+                      }
+                    }
+                }
+            ";
+            var json = JsonConvert.DeserializeObject<Main.GamePlayEvents>(jobDeliveredDemoData);
+            Main.GamePlayEvents jobDelivered = json;
+            _mainForm.Delivered(JsonConvert.SerializeObject(jobDelivered, Formatting.Indented));
+        }
+
+        private void testJobDeliveredEventCurrentValue_Click(object sender, EventArgs e)
+        {
+            //_mainForm.Delivered(JsonConvert.SerializeObject(_mainForm.raw.GamePlay.JobDelivered, Formatting.Indented));
+            _mainForm.Delivered(JsonConvert.SerializeObject(_mainForm.raw.GamePlay, Formatting.Indented));
+        }
+
+        private void testJobCancelledEventDemoData_Click(object sender, EventArgs e)
+        {
+            //string jobCancelledDemoData = "{\"JobCancelled\":{\"Finished\":{\"Date\":\"0001-01-01T00:00:00Z\",\"Value\":0},\"Penalty\":0,\"Started\":{\"Date\":\"0001-01-01T00:00:00Z\",\"Value\":0}}}";
+            string jobCancelledDemoData = @"
+                {
+                    ""JobCancelled"": {
+                      ""Penalty"": 0,
+                      ""Finished"": {
+                        ""Value"": 0,
+                        ""Date"": ""0001-01-01T00:00:00Z""
+                      },
+                      ""Started"": {
+                        ""Value"": 0,
+                        ""Date"": ""0001-01-01T00:00:00Z""
+                      }
+                    }
+                }
+            ";
+            var json = JsonConvert.DeserializeObject<Main.GamePlayEvents>(jobCancelledDemoData);
+            Main.GamePlayEvents jobCancelledEvents = json;
+            /*
+            Main.JobCancelled testJobCancelledEvent = new Main.JobCancelled();
+            Main.GamePlayEvents testGamePlayEventsJobCancelled = new Main.GamePlayEvents();
+            testGamePlayEventsJobCancelled.JobCancelled = testJobCancelledEvent;
+            */
+            _mainForm.Cancelled(JsonConvert.SerializeObject(jobCancelledEvents, Formatting.Indented));
+        }
+
+        private void testJobCancelledEventCurrentValue_Click(object sender, EventArgs e)
+        {
+            //_mainForm.Cancelled(JsonConvert.SerializeObject(_mainForm.raw.GamePlay.JobCancelled, Formatting.Indented));
+            _mainForm.Cancelled(JsonConvert.SerializeObject(_mainForm.raw.GamePlay, Formatting.Indented));
+        }
+
+        private void testRefuelPayedEventDemoData_Click(object sender, EventArgs e)
+        {
+            //string refuelPayedDemoData = "{\"RefuelEvent\":{\"Amount\":0.0}}";
+            string refuelPayedDemoData = @"
+                {
+                    ""RefuelEvent"": {
+                        ""Amount"": 4.41064453
+                    }
+                }
+            ";
+            var json = JsonConvert.DeserializeObject<Main.GamePlayEvents>(refuelPayedDemoData);
+            Main.GamePlayEvents refuelPayedEvents = json;
+            /*
+            //string refuelPayedDemoData = "";
+            Main.RefuelEvent testRefuelPayedEvent = new Main.RefuelEvent();
+            Main.GamePlayEvents testGamePlayEventsRefuelPayed = new Main.GamePlayEvents();
+            testGamePlayEventsRefuelPayed.RefuelEvent = testRefuelPayedEvent;
+            //_mainForm.Refuel(JsonConvert.SerializeObject(refuelPayedDemoData, Formatting.Indented));
+            */
+            _mainForm.Refuel(JsonConvert.SerializeObject(refuelPayedEvents, Formatting.Indented));
+        }
+
+        private void testRefuelPayedEventCurrentValue_Click(object sender, EventArgs e)
+        {
+            //_mainForm.Refuel(JsonConvert.SerializeObject(_mainForm.raw.GamePlay.RefuelEvent, Formatting.Indented));
+            _mainForm.Refuel(JsonConvert.SerializeObject(_mainForm.raw.GamePlay, Formatting.Indented));
+        }
+
+        private void testFinedEventDemoData_Click(object sender, EventArgs e)
+        {
+            //string finedDemoData = "{\"FinedEvent\":{\"Amount\":123.0,\"Offence\":1}}";
+            string finedDemoData = @"
+                {
+	                ""FinedEvent"": {
+		                ""Amount"": 360,
+		                ""Offence"": 6
+	                }
+                }
+            ";
+            var json = JsonConvert.DeserializeObject<Main.GamePlayEvents>(finedDemoData);
+            //Main.TrainEvent trainEvent = new Main.TrainEvent { trainDemoData };
+            //Main.GamePlayEvents trainEvents = new Main.GamePlayEvents();
+            Main.GamePlayEvents finedEvents = json;
+            //trainEvents.TrainEvent = trainEvent;
+            _mainForm.Fined(JsonConvert.SerializeObject(finedEvents, Formatting.Indented));
+            /*
+            //string finedDemoData = "{\"Amount\":0,\"Offence\":0}";
+            //Main.GamePlayEvents gpeFined = new FinedEvent(finedDemoData);
+            //FinedEvent fe = new Main.FinedEvent();
+            //FinedEvent feDd = new Main.FinedEvent((decimal)0.0, 0);
+            Main.FinedEvent testFinedEvent = new Main.FinedEvent((decimal)123.0,1);
+            Main.GamePlayEvents testGamePlayEventsFined = new Main.GamePlayEvents();
+            testGamePlayEventsFined.FinedEvent = testFinedEvent;
+            /*{
+                Amount = 0,
+                Offence = 0
+            };* /
+            //var myObject1 = JsonConvert.DeserializeObject<Main.GamePlayEvents>(JsonConvert.SerializeObject(finedEventObject));
+            //_mainForm.Fined(JsonConvert.SerializeObject(finedEventObject, Formatting.Indented));
+            _mainForm.Fined(JsonConvert.SerializeObject(testGamePlayEventsFined, Formatting.Indented));
+            */
+            /*
+            string finedDemoData = "{\"GamePlay\":{\"FinedEvent\":{\"Amount\":0,\"Offence\":0}}}";
+            var json = JsonConvert.SerializeObject(finedDemoData, Formatting.Indented);
+            //Main.GamePlayEvents gpeFined = new FinedEvent(finedDemoData);
+            //FinedEvent fe = new Main.FinedEvent();
+            //FinedEvent feDd = new Main.FinedEvent((decimal)0.0, 0);
+            //Main.FinedEvent testFinedEvent = new Main.FinedEvent((decimal)123.0,1);
+            //var myObject1 = JsonConvert.DeserializeObject<Main.GamePlayEvents>(finedDemoData);
+            var myObject1 = JsonConvert.DeserializeObject<Main.GamePlayEvents>(json);
+            //Main.GamePlayEvents testGamePlayEventsFined = new Main.GamePlayEvents();
+            //testGamePlayEventsFined.FinedEvent = testFinedEvent;
+            /*{
+                Amount = 0,
+                Offence = 0
+            };* /
+            //var myObject1 = JsonConvert.DeserializeObject<Main.GamePlayEvents>(JsonConvert.SerializeObject(finedEventObject));
+            //_mainForm.Fined(JsonConvert.SerializeObject(finedEventObject, Formatting.Indented));
+            //_mainForm.Fined(JsonConvert.SerializeObject(testGamePlayEventsFined, Formatting.Indented));
+            _mainForm.Fined(JsonConvert.SerializeObject(myObject1, Formatting.Indented));
+            */
+        }
+
+        private void testFinedEventCurrentValue_Click(object sender, EventArgs e)
+        {
+            //_mainForm.Fined(JsonConvert.SerializeObject(_mainForm.raw.GamePlay.FinedEvent, Formatting.Indented));
+            _mainForm.Fined(JsonConvert.SerializeObject(_mainForm.raw.GamePlay, Formatting.Indented));
+        }
+
+        private void testTollgateEventDemoData_Click(object sender, EventArgs e)
+        {
+            //string tollgateDemoData = "{\"TollgateEvent\":{\"PayAmount\":0}}";
+            string tollgateDemoData = @"
+                {
+                    ""TollgateEvent"": {
+                          ""PayAmount"": 0
+                    }
+                }
+            ";
+            var json = JsonConvert.DeserializeObject<Main.GamePlayEvents>(tollgateDemoData);
+            Main.GamePlayEvents tollgateEvents = json;
+            _mainForm.Tollgate(JsonConvert.SerializeObject(tollgateEvents, Formatting.Indented));
+        }
+
+        private void testTollgateEventCurrentValue_Click(object sender, EventArgs e)
+        {
+            //_mainForm.Tollgate(JsonConvert.SerializeObject(_mainForm.raw.GamePlay.TollgateEvent, Formatting.Indented));
+            _mainForm.Tollgate(JsonConvert.SerializeObject(_mainForm.raw.GamePlay, Formatting.Indented));
+        }
+
+        private void testTrainEventDemoData_Click(object sender, EventArgs e)
+        {
+            //string trainDemoData = "{\"TrainEvent\":{\"PayAmount\":0,\"SourceId\":\"\",\"SourceName\":\"\",\"TargetId\":\"\",\"TargetName\":\"\"}}";
+            string trainDemoData = @"
+                {
+                    ""TrainEvent"": {
+                          ""PayAmount"": 0,
+                          ""SourceId"": """",
+                          ""SourceName"": """",
+                          ""TargetId"": """",
+                          ""TargetName"": """"
+                    }
+                }
+            ";
+            var json = JsonConvert.DeserializeObject<Main.GamePlayEvents>(trainDemoData);
+            //Main.TrainEvent trainEvent = new Main.TrainEvent { trainDemoData };
+            //Main.GamePlayEvents trainEvents = new Main.GamePlayEvents();
+            Main.GamePlayEvents trainEvents = json;
+            //trainEvents.TrainEvent = trainEvent;
+            _mainForm.Train(JsonConvert.SerializeObject(trainEvents, Formatting.Indented));
+            //MessageBox.Show(JsonConvert.SerializeObject(trainEvents, Formatting.Indented));
+        }
+
+        private void testTrainEventCurrentValue_Click(object sender, EventArgs e)
+        {
+            //_mainForm.Train(JsonConvert.SerializeObject(_mainForm.raw.GamePlay.TrainEvent, Formatting.Indented));
+            _mainForm.Train(JsonConvert.SerializeObject(_mainForm.raw.GamePlay, Formatting.Indented));
+        }
+
+        private void testFerryEventDemoData_Click(object sender, EventArgs e)
+        {
+            //string ferryDemoData = "{\"FerryEvent\":{\"PayAmount\":0,\"SourceId\":\"\",\"SourceName\":\"\",\"TargetId\":\"\",\"TargetName\":\"\"}}";
+            string ferryDemoData = @"
+                {
+                    ""FerryEvent"": {
+                          ""PayAmount"": 0,
+                          ""SourceId"": """",
+                          ""SourceName"": """",
+                          ""TargetId"": """",
+                          ""TargetName"": """"
+                    }
+                }
+            ";
+            var json = JsonConvert.DeserializeObject<Main.GamePlayEvents>(ferryDemoData);
+            Main.GamePlayEvents ferryEvents = json;
+            _mainForm.Ferry(JsonConvert.SerializeObject(ferryEvents, Formatting.Indented));
+        }
+
+        private void testFerryEventCurrentValue_Click(object sender, EventArgs e)
+        {
+            //_mainForm.Ferry(JsonConvert.SerializeObject(_mainForm.raw.GamePlay.FerryEvent, Formatting.Indented));
+            _mainForm.Ferry(JsonConvert.SerializeObject(_mainForm.raw.GamePlay, Formatting.Indented));
         }
 
     }
