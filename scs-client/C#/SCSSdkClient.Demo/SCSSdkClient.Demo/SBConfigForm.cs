@@ -366,9 +366,16 @@ namespace SCSSdkClient.Demo
                   }
                 }
             ";
-            var json = JsonConvert.DeserializeObject<Main.GamePlayEvents>(jobStartedDemoData);
-            Main.GamePlayEvents jobStarted = json;
-            _mainForm.Started(JsonConvert.SerializeObject(jobStarted, Formatting.Indented), true);
+            try
+            {
+                var json = JsonConvert.DeserializeObject<Main.GamePlayEvents>(jobStartedDemoData);
+                Main.GamePlayEvents jobStarted = json;
+                _mainForm.Started(JsonConvert.SerializeObject(jobStarted, Formatting.Indented), true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void testJobStartedEventCurrentValue_Click(object sender, EventArgs e)

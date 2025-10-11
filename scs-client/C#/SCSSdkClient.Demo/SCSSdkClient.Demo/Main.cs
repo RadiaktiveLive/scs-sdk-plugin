@@ -965,34 +965,41 @@ namespace SCSSdkClient.Demo
         }
         public void Started(string events, bool demoData = false)
         {
-            if (demoData)
+            try
             {
-                //MessageBox.Show(events, "Started");
-                var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
-                var json = JsonConvert.SerializeObject(myObject1.JobValues);
-                //MessageBox.Show(json, "Started");
-                //MessageBox.Show(json, "FinedEvent");
-                var myObject = createMyJsonObject(JobStartedEventSBAction, "Job", json);
-                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
-                //new LogWriter("INFO FINED", JsonConvert.SerializeObject(raw.GamePlay.FinedEvent, Formatting.Indented), "FINED");
-                //new LogWriter("INFO FINED", JsonConvert.SerializeObject(json, Formatting.Indented));
-                new LogWriter("INFO Started", json);
-                new LogWriter("INFO Started", JsonConvert.SerializeObject(raw, Formatting.Indented), "Started");
-                //Task variableInutilPerEvitarWarnings2 = PanelColor(panelFined);
+                if (demoData)
+                {
+                    MessageBox.Show(events, "Started demoData");
+                    var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+                    var json = JsonConvert.SerializeObject(myObject1.JobValues);
+                    //MessageBox.Show(json, "Started");
+                    //MessageBox.Show(json, "FinedEvent");
+                    var myObject = createMyJsonObject(JobStartedEventSBAction, "Job", json);
+                    Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                    //new LogWriter("INFO FINED", JsonConvert.SerializeObject(raw.GamePlay.FinedEvent, Formatting.Indented), "FINED");
+                    //new LogWriter("INFO FINED", JsonConvert.SerializeObject(json, Formatting.Indented));
+                    new LogWriter("INFO Started", json);
+                    new LogWriter("INFO Started", JsonConvert.SerializeObject(raw, Formatting.Indented), "Started");
+                    //Task variableInutilPerEvitarWarnings2 = PanelColor(panelFined);
+                }
+                else
+                {
+                    MessageBox.Show(events, "Started currentData");
+                    //var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+                    //var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
+                    //MessageBox.Show(json, "JobDelivered");
+                    var myObject = createMyJsonObject(JobStartedEventSBAction, "Job", events);
+                    Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                    //new LogWriter("INFO STARTED", JsonConvert.SerializeObject(raw.JobValues, Formatting.Indented), "JOB_STARTED");
+                    new LogWriter("INFO STARTED", JsonConvert.SerializeObject(events, Formatting.Indented));
+                    new LogWriter("INFO STARTED", JsonConvert.SerializeObject(raw, Formatting.Indented), "JOB_STARTED");
+                    //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobStarted);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                //var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
-                //var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
-                //MessageBox.Show(json, "JobDelivered");
-                var myObject = createMyJsonObject(JobStartedEventSBAction, "Job", events);
-                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
-                //new LogWriter("INFO STARTED", JsonConvert.SerializeObject(raw.JobValues, Formatting.Indented), "JOB_STARTED");
-                new LogWriter("INFO STARTED", JsonConvert.SerializeObject(events, Formatting.Indented));
-                new LogWriter("INFO STARTED", JsonConvert.SerializeObject(raw, Formatting.Indented), "JOB_STARTED");
-                //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobStarted);
+                new LogWriter("EXCEPTION STARTED", ex.Message);
             }
-            
 
             
         }
