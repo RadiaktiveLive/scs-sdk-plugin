@@ -120,12 +120,14 @@ namespace SCSSdkClient.Demo
                 {
                     tcpClient.Connect(server, port);
                     //Console.WriteLine("Connection successful");
-                    new LogWriter("INFO", "TcpClient Connection successful");
+                    //new LogWriter("INFO", "TcpClient Connection successful");
+                    //new LogWriter("INFO", testUrl.ToString() + "\rTcpClient Connection successful");
+                    new LogWriter("TEST CONNECTION", "Streamer.bot IP: " + server + ":" + port + "\rResult: TcpClient Connection successful");
+                    MessageBox.Show($"Connection successful", messageBoxTitle);
 
-
-
+                    /*
                     HttpClient client = new HttpClient();
-
+                    new LogWriter("INFO", testUrl.ToString());
                     HttpResponseMessage response = await client.GetAsync(testUrl.ToString());
                     //response.StatusCode == HttpStatusCode.NotFound
                     if (response.IsSuccessStatusCode)
@@ -185,7 +187,7 @@ namespace SCSSdkClient.Demo
                             {
                                 new LogWriter("data.Actions.Count >= 0: " + (data.Actions.Count >= 0).ToString());
                             }
-                            */
+                            * /
                         }
                         else
                         {
@@ -200,7 +202,7 @@ namespace SCSSdkClient.Demo
                         new LogWriter("ERROR", $"Error: {response.StatusCode}");
                         MessageBox.Show($"Error: {response.StatusCode}", messageBoxTitle);
                     }
-
+                    */
 
                 }
                 catch (HttpRequestException ex)
@@ -221,6 +223,7 @@ namespace SCSSdkClient.Demo
                 {
                     //Console.WriteLine($"Connection failed: {ex.Message}");
                     new LogWriter("ERROR", $"Connection failed: {ex.Message}");
+                    //new LogWriter("ERROR", $"Connection failed: {ex}");
                     MessageBox.Show($"Connection failed: {ex.Message}", messageBoxTitle);
                 }
             }
