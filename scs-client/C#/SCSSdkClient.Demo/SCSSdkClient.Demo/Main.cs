@@ -918,6 +918,38 @@ namespace SCSSdkClient.Demo
 
             public ulong Income { get; set; }
         }
+
+        public class Cargo
+        {
+            /// <summary>
+            ///     Mass in kilograms
+            /// </summary>
+            public float Mass { get; set; }
+
+            /// <summary>
+            ///     Name for internal use by code.
+            ///     Limited to C-identifier characters and dots.
+            /// </summary>
+            public string Id { get; set; }
+
+            /// <summary>
+            ///     Name for display purposes.
+            ///     Localized using the current in-game language.
+            /// </summary>
+            public string Name { get; set; }
+
+            /// <summary>
+            ///     How many units of the cargo the job consist of.
+            /// </summary>
+            public uint UnitCount { get; set; }
+
+            /// <summary>
+            ///     Mass of the single unit of the cargo in kilograms.
+            /// </summary>
+            public float UnitMass { get; set; }
+
+            public float CargoDamage { get; set; }
+        }
         #endregion
 
 

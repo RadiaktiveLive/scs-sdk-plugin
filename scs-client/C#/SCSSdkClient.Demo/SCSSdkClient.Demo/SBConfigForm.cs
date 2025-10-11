@@ -13,6 +13,7 @@ using System.Net.Http;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 using static SCSSdkClient.Demo.SCSSdkClientDemo;
 using static SCSSdkClient.Object.SCSTelemetry;
@@ -84,7 +85,7 @@ namespace SCSSdkClient.Demo
             }
             */
             string messageBoxTitle = "StreamerBot Test Connection";
-            var testUrl = new UriBuilder(StreamerBotConfig.protocol, textBoxIp.Text, int.Parse(textBoxPort.Text), "GetActions");
+            var testUrl = new UriBuilder("http", textBoxIp.Text, int.Parse(textBoxPort.Text), "GetActions");
             /*
             using (var client = new HttpClient())
             {
@@ -110,7 +111,6 @@ namespace SCSSdkClient.Demo
             }*/
 
 
-
             string server = textBoxIp.Text; // Replace with your server
             int port = int.Parse(textBoxPort.Text); // Replace with your port
 
@@ -125,16 +125,19 @@ namespace SCSSdkClient.Demo
                     new LogWriter("TEST CONNECTION", "Streamer.bot IP: " + server + ":" + port + "\rResult: TcpClient Connection successful");
                     MessageBox.Show($"Connection successful", messageBoxTitle);
                     tcpClient.Close();
-                    /*
+                    
                     HttpClient client = new HttpClient();
                     new LogWriter("INFO", testUrl.ToString());
-                    HttpResponseMessage response = await client.GetAsync(testUrl.ToString());
+                    //new LogWriter("INFO2", testUrl.Uri.ToString());
+
+                    HttpResponseMessage response = await client.GetAsync(testUrl.Uri.ToString());
+                    //HttpResponseMessage response = await client.PostAsync(testUrl.ToString(), content);
                     //response.StatusCode == HttpStatusCode.NotFound
                     if (response.IsSuccessStatusCode)
                     {
                         string json = await response.Content.ReadAsStringAsync();
                         //MessageBox.Show(json);
-                        new LogWriter("INFO", json);
+                        //new LogWriter("INFO", json);
 
                         if (json.Length > 0)
                         {
@@ -143,10 +146,13 @@ namespace SCSSdkClient.Demo
                             GetAction data = JsonConvert.DeserializeObject<GetAction>(json);
 
                             //MessageBox.Show(data["count"]);
-                            new LogWriter("INFO", data.Count.ToString());
-
+                            //new LogWriter("INFO", data.Count.ToString());
+                            //new LogWriter("INFO", "data.Count ACTIONS: " + data.Count.ToString());
+                            new LogWriter("INFO", "Streamer.bot Total Actions: " + data.Count.ToString());
+                            /*
                             if (data.Count >= 0 && data.Actions.Count >= 0)
                             {
+                                new LogWriter("INFO", "data.Count ACTIONS: " + data.Count.ToString());
                                 new LogWriter("INFO", "data.Count >= 0: " + data.Count.ToString());
                                 new LogWriter("INFO", "data.Actions.Count >= 0: " + data.Actions.Count.ToString());
 
@@ -164,7 +170,7 @@ namespace SCSSdkClient.Demo
                                 new LogWriter("ERROR", "Connection failed.");
                                 MessageBox.Show("Connection failed.", messageBoxTitle);
                             }
-
+                            */
 
 
 
@@ -187,7 +193,7 @@ namespace SCSSdkClient.Demo
                             {
                                 new LogWriter("data.Actions.Count >= 0: " + (data.Actions.Count >= 0).ToString());
                             }
-                            * /
+                            */
                         }
                         else
                         {
@@ -202,7 +208,7 @@ namespace SCSSdkClient.Demo
                         new LogWriter("ERROR", $"Error: {response.StatusCode}");
                         MessageBox.Show($"Error: {response.StatusCode}", messageBoxTitle);
                     }
-                    */
+                    
 
                 }
                 catch (HttpRequestException ex)
