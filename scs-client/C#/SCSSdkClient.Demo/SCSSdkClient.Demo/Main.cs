@@ -931,16 +931,24 @@ namespace SCSSdkClient.Demo
 
         public void Ferry(string events)
         {
-            var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
-            var json = JsonConvert.SerializeObject(myObject1.FerryEvent);
-            //MessageBox.Show(json, "FerryEvent");
-            var myObject = createMyJsonObject(FerryEventSBAction, "FerryEvent", json);
-            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
-            //new LogWriter("INFO FERRY", JsonConvert.SerializeObject(raw.GamePlay.FerryEvent, Formatting.Indented), "FERRY");
-            new LogWriter("INFO FERRY", JsonConvert.SerializeObject(json, Formatting.Indented));
-            new LogWriter("INFO FERRY", JsonConvert.SerializeObject(raw, Formatting.Indented), "FERRY");
-            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelFerry);
+            try
+            {
+                var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+                var json = JsonConvert.SerializeObject(myObject1.FerryEvent);
+                //MessageBox.Show(json, "FerryEvent");
+                var myObject = createMyJsonObject(FerryEventSBAction, "FerryEvent", json);
+                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                //new LogWriter("INFO FERRY", JsonConvert.SerializeObject(raw.GamePlay.FerryEvent, Formatting.Indented), "FERRY");
+                new LogWriter("INFO FERRY", JsonConvert.SerializeObject(json, Formatting.Indented));
+                new LogWriter("INFO FERRY", JsonConvert.SerializeObject(raw, Formatting.Indented), "FERRY");
+                //Task variableInutilPerEvitarWarnings2 = PanelColor(panelFerry);
+            }
+            catch (Exception ex)
+            {
+                new LogWriter("EXCEPTION FERRY", ex.Message);
+            }
         }
+
         public void Fined(string events)
         {
             try
@@ -963,6 +971,7 @@ namespace SCSSdkClient.Demo
                 new LogWriter("EXCEPTION FINED", ex.Message);
             }
         }
+
         public void Started(string events, bool demoData = false)
         {
             try
@@ -1000,74 +1009,111 @@ namespace SCSSdkClient.Demo
             {
                 new LogWriter("EXCEPTION STARTED", ex.Message);
             }
-
-            
         }
+
         public void Cancelled(string events)
         {
-            var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
-            var json = JsonConvert.SerializeObject(myObject1.JobCancelled);
-            //MessageBox.Show(json, "JobCancelled");
-            var myObject = createMyJsonObject(JobCancelledEventSBAction, "JobCancelled", json);
-            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
-            //new LogWriter("INFO CANCELLED", JsonConvert.SerializeObject(raw.GamePlay.JobCancelled, Formatting.Indented), "JOB_CANCELLED");
-            new LogWriter("INFO CANCELLED", JsonConvert.SerializeObject(json, Formatting.Indented));
-            new LogWriter("INFO CANCELLED", JsonConvert.SerializeObject(raw, Formatting.Indented), "JOB_CANCELLED");
-            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobCancelled);
-        }
-        public void Delivered(string events)
-        {
-            var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
-            var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
-            //MessageBox.Show(json, "JobDelivered");
-            var myObject = createMyJsonObject(JobDeliveredEventSBAction, "JobDelivered", json);
-            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
-            //new LogWriter("INFO DELIVERED", JsonConvert.SerializeObject(raw.GamePlay.JobDelivered, Formatting.Indented), "JOB_DELIVERED");
-            new LogWriter("INFO DELIVERED", JsonConvert.SerializeObject(json, Formatting.Indented));
-            new LogWriter("INFO DELIVERED", JsonConvert.SerializeObject(raw, Formatting.Indented), "JOB_DELIVERED");
-            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobDelivered);
-        }
-        public void Tollgate(string events)
-        {
-            var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
-            var json = JsonConvert.SerializeObject(myObject1.TollgateEvent);
-            //MessageBox.Show(json, "TollgateEvent");
-            var myObject = createMyJsonObject(TollgateEventSBAction, "TollgateEvent", json);
-            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
-            //new LogWriter("INFO TOLLGATE", JsonConvert.SerializeObject(raw.GamePlay.TollgateEvent, Formatting.Indented), "TOLLGATE");
-            new LogWriter("INFO TOLLGATE", JsonConvert.SerializeObject(json, Formatting.Indented));
-            new LogWriter("INFO TOLLGATE", JsonConvert.SerializeObject(raw, Formatting.Indented), "TOLLGATE");
-            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelTollgate);
-        }
-        public void Train(string events)
-        {
-            //MessageBox.Show(events, "TrainEvent");
-            var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
-            var json = JsonConvert.SerializeObject(myObject1.TrainEvent);
-            //MessageBox.Show(json, "TrainEvent");
-            //MessageBox.Show(json, "TrainEvent");
-            var myObject = createMyJsonObject(TrainEventSBAction, "TrainEvent", json);
-            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
-            //new LogWriter("INFO TRAIN", JsonConvert.SerializeObject(raw.GamePlay.TrainEvent, Formatting.Indented), "TRAIN");
-            new LogWriter("INFO TRAIN", JsonConvert.SerializeObject(json, Formatting.Indented));
-            new LogWriter("INFO TRAIN", JsonConvert.SerializeObject(raw, Formatting.Indented), "TRAIN");
-            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelTrain);
-        }
-        public void Refuel(string events)
-        {
-            var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
-            var json = JsonConvert.SerializeObject(myObject1.RefuelEvent);
-            //MessageBox.Show(json, "RefuelEvent");
-            var myObject = createMyJsonObject(RefuelEventSBAction, "RefuelEvent", json);
-            Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
-            //new LogWriter("INFO REFUEL", JsonConvert.SerializeObject(raw.GamePlay.RefuelEvent, Formatting.Indented), "REFUEL_PAYED");
-            new LogWriter("INFO REFUEL", JsonConvert.SerializeObject(json, Formatting.Indented));
-            new LogWriter("INFO REFUEL", JsonConvert.SerializeObject(raw, Formatting.Indented), "REFUEL_PAYED");
-            //panelRefuel.BackColor = Color.IndianRed;
-            //Task variableInutilPerEvitarWarnings2 = PanelColor(panelRefuel);
-            //panelRefuel.BackColor = Color.Transparent;
+            try
+            {
+                var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+                var json = JsonConvert.SerializeObject(myObject1.JobCancelled);
+                //MessageBox.Show(json, "JobCancelled");
+                var myObject = createMyJsonObject(JobCancelledEventSBAction, "JobCancelled", json);
+                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                //new LogWriter("INFO CANCELLED", JsonConvert.SerializeObject(raw.GamePlay.JobCancelled, Formatting.Indented), "JOB_CANCELLED");
+                new LogWriter("INFO CANCELLED", JsonConvert.SerializeObject(json, Formatting.Indented));
+                new LogWriter("INFO CANCELLED", JsonConvert.SerializeObject(raw, Formatting.Indented), "JOB_CANCELLED");
+                //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobCancelled);
+            }
+            catch (Exception ex)
+            {
+                new LogWriter("EXCEPTION CANCELLED", ex.Message);
+            }
         }
 
+        public void Delivered(string events)
+        {
+            try
+            {
+                var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+                var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
+                //MessageBox.Show(json, "JobDelivered");
+                var myObject = createMyJsonObject(JobDeliveredEventSBAction, "JobDelivered", json);
+                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                //new LogWriter("INFO DELIVERED", JsonConvert.SerializeObject(raw.GamePlay.JobDelivered, Formatting.Indented), "JOB_DELIVERED");
+                new LogWriter("INFO DELIVERED", JsonConvert.SerializeObject(json, Formatting.Indented));
+                new LogWriter("INFO DELIVERED", JsonConvert.SerializeObject(raw, Formatting.Indented), "JOB_DELIVERED");
+                //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobDelivered);
+            }
+            catch (Exception ex)
+            {
+                new LogWriter("EXCEPTION DELIVERED", ex.Message);
+            }
+        }
+
+        public void Tollgate(string events)
+        {
+            try
+            {
+                var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+                var json = JsonConvert.SerializeObject(myObject1.TollgateEvent);
+                //MessageBox.Show(json, "TollgateEvent");
+                var myObject = createMyJsonObject(TollgateEventSBAction, "TollgateEvent", json);
+                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                //new LogWriter("INFO TOLLGATE", JsonConvert.SerializeObject(raw.GamePlay.TollgateEvent, Formatting.Indented), "TOLLGATE");
+                new LogWriter("INFO TOLLGATE", JsonConvert.SerializeObject(json, Formatting.Indented));
+                new LogWriter("INFO TOLLGATE", JsonConvert.SerializeObject(raw, Formatting.Indented), "TOLLGATE");
+                //Task variableInutilPerEvitarWarnings2 = PanelColor(panelTollgate);
+            }
+            catch (Exception ex)
+            {
+                new LogWriter("EXCEPTION TOLLGATE", ex.Message);
+            }
+        }
+
+        public void Train(string events)
+        {
+            try
+            {
+                //MessageBox.Show(events, "TrainEvent");
+                var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+                var json = JsonConvert.SerializeObject(myObject1.TrainEvent);
+                //MessageBox.Show(json, "TrainEvent");
+                //MessageBox.Show(json, "TrainEvent");
+                var myObject = createMyJsonObject(TrainEventSBAction, "TrainEvent", json);
+                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                //new LogWriter("INFO TRAIN", JsonConvert.SerializeObject(raw.GamePlay.TrainEvent, Formatting.Indented), "TRAIN");
+                new LogWriter("INFO TRAIN", JsonConvert.SerializeObject(json, Formatting.Indented));
+                new LogWriter("INFO TRAIN", JsonConvert.SerializeObject(raw, Formatting.Indented), "TRAIN");
+                //Task variableInutilPerEvitarWarnings2 = PanelColor(panelTrain);
+            }
+            catch (Exception ex)
+            {
+                new LogWriter("EXCEPTION TRAIN", ex.Message);
+            }
+        }
+
+        public void Refuel(string events)
+        {
+            try
+            {
+                var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+                var json = JsonConvert.SerializeObject(myObject1.RefuelEvent);
+                //MessageBox.Show(json, "RefuelEvent");
+                var myObject = createMyJsonObject(RefuelEventSBAction, "RefuelEvent", json);
+                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                //new LogWriter("INFO REFUEL", JsonConvert.SerializeObject(raw.GamePlay.RefuelEvent, Formatting.Indented), "REFUEL_PAYED");
+                new LogWriter("INFO REFUEL", JsonConvert.SerializeObject(json, Formatting.Indented));
+                new LogWriter("INFO REFUEL", JsonConvert.SerializeObject(raw, Formatting.Indented), "REFUEL_PAYED");
+                //panelRefuel.BackColor = Color.IndianRed;
+                //Task variableInutilPerEvitarWarnings2 = PanelColor(panelRefuel);
+                //panelRefuel.BackColor = Color.Transparent;
+            }
+            catch (Exception ex)
+            {
+                new LogWriter("EXCEPTION REFUEL", ex.Message);
+            }
+        }
 
         static async Task PanelColor(Panel panel, string panelColorHighlight = "IndianRed", string panelColorRevert = "Transparent")
         {

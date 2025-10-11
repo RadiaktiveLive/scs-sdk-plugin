@@ -124,7 +124,7 @@ namespace SCSSdkClient.Demo
                     //new LogWriter("INFO", testUrl.ToString() + "\rTcpClient Connection successful");
                     new LogWriter("TEST CONNECTION", "Streamer.bot IP: " + server + ":" + port + "\rResult: TcpClient Connection successful");
                     MessageBox.Show($"Connection successful", messageBoxTitle);
-
+                    tcpClient.Close();
                     /*
                     HttpClient client = new HttpClient();
                     new LogWriter("INFO", testUrl.ToString());
