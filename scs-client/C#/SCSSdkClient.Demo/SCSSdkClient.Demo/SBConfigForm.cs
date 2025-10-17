@@ -687,47 +687,9 @@ namespace SCSSdkClient.Demo
             contextMenuStrip1.Show(buttonTriggerActions, new Point(0, buttonTriggerActions.Height)); // Shows the menu strip below the button
         }
 
-        private async void toolStripMenuItemRunAll_Click(object sender, EventArgs e)
+        private void toolStripMenuItemRunAll_Click(object sender, EventArgs e)
         {
-            var sleep = 2 * 1000;
-
-            //_mainForm.TelemetryOnJobStarted(_mainForm.raw.JobValues, e);
-            testJobStartedEventDemoData_Click(sender, e);
-            await Task.Delay(sleep);
-            //System.Threading.Thread.Sleep(sleep);
-
-            //_mainForm.TelemetryJobDelivered(_mainForm.raw.GamePlay, e);
-            testJobDeliveredEventDemoData_Click(sender, e);
-            await Task.Delay(sleep);
-            //System.Threading.Thread.Sleep(sleep);
-
-            //_mainForm.TelemetryJobCancelled(_mainForm.raw.GamePlay, e);
-            testJobCancelledEventDemoData_Click(sender, e);
-            await Task.Delay(sleep);
-            //System.Threading.Thread.Sleep(sleep);
-
-            //_mainForm.TelemetryFined(_mainForm.raw.GamePlay, e);
-            testFinedEventDemoData_Click(sender, e);
-            await Task.Delay(sleep);
-            //System.Threading.Thread.Sleep(sleep);
-
-            //_mainForm.TelemetryTollgate(_mainForm.raw.GamePlay, e);
-            testTollgateEventDemoData_Click(sender, e);
-            await Task.Delay(sleep);
-            //System.Threading.Thread.Sleep(sleep);
-
-            //_mainForm.TelemetryTrain(_mainForm.raw.GamePlay, e);
-            testTrainEventDemoData_Click(sender, e);
-            await Task.Delay(sleep);
-            //System.Threading.Thread.Sleep(sleep);
-
-            //_mainForm.TelemetryFerry(_mainForm.raw.GamePlay, e);
-            testFerryEventDemoData_Click(sender, e);
-            await Task.Delay(sleep);
-            //System.Threading.Thread.Sleep(sleep);
-
-            //_mainForm.TelemetryRefuelPayed(_mainForm.raw.GamePlay, e);
-            testRefuelPayedEventDemoData_Click(sender, e);
+            btnRunAllEvents_Click(sender, e);
         }
 
         private void toolStripMenuItemJobStarted_Click(object sender, EventArgs e)
@@ -767,6 +729,49 @@ namespace SCSSdkClient.Demo
 
         private void toolStripMenuItemRefuelEvent_Click(object sender, EventArgs e)
         {
+            testRefuelPayedEventDemoData_Click(sender, e);
+        }
+
+        private async void btnRunAllEvents_Click(object sender, EventArgs e)
+        {
+            var sleep = 2 * 1000;
+
+            //_mainForm.TelemetryOnJobStarted(_mainForm.raw.JobValues, e);
+            testJobStartedEventDemoData_Click(sender, e);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
+
+            //_mainForm.TelemetryJobDelivered(_mainForm.raw.GamePlay, e);
+            testJobDeliveredEventDemoData_Click(sender, e);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
+
+            //_mainForm.TelemetryJobCancelled(_mainForm.raw.GamePlay, e);
+            testJobCancelledEventDemoData_Click(sender, e);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
+
+            //_mainForm.TelemetryFined(_mainForm.raw.GamePlay, e);
+            testFinedEventDemoData_Click(sender, e);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
+
+            //_mainForm.TelemetryTollgate(_mainForm.raw.GamePlay, e);
+            testTollgateEventDemoData_Click(sender, e);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
+
+            //_mainForm.TelemetryTrain(_mainForm.raw.GamePlay, e);
+            testTrainEventDemoData_Click(sender, e);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
+
+            //_mainForm.TelemetryFerry(_mainForm.raw.GamePlay, e);
+            testFerryEventDemoData_Click(sender, e);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
+
+            //_mainForm.TelemetryRefuelPayed(_mainForm.raw.GamePlay, e);
             testRefuelPayedEventDemoData_Click(sender, e);
         }
     }

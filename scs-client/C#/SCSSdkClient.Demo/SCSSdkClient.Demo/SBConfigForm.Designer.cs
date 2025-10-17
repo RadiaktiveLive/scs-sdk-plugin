@@ -1,4 +1,6 @@
-﻿namespace SCSSdkClient.Demo
+﻿using System;
+
+namespace SCSSdkClient.Demo
 {
     partial class SBConfigForm
     {
@@ -29,7 +31,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SBConfigForm));
             this.groupBoxActions = new System.Windows.Forms.GroupBox();
             this.testFerryEventCurrentValue = new System.Windows.Forms.Button();
             this.testRefuelPayedEventCurrentValue = new System.Windows.Forms.Button();
@@ -94,8 +95,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonTestConnection = new System.Windows.Forms.Button();
             this.buttonSaveSettings = new System.Windows.Forms.Button();
-            this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.buttonTriggerActions = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItemRunAll = new System.Windows.Forms.ToolStripMenuItem();
@@ -108,6 +107,7 @@
             this.toolStripMenuItemTrainEvent = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemFerryEvent = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRefuelEvent = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnRunAllEvents = new System.Windows.Forms.Button();
             this.groupBoxActions.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -118,7 +118,6 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBoxConnection.SuspendLayout();
-            this.toolStrip.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -798,42 +797,13 @@
             this.buttonSaveSettings.UseVisualStyleBackColor = true;
             this.buttonSaveSettings.Click += new System.EventHandler(this.ButtonSaveSettings_Click);
             // 
-            // toolStrip
-            // 
-            this.toolStrip.AllowMerge = false;
-            this.toolStrip.BackColor = System.Drawing.Color.Transparent;
-            this.toolStrip.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
-            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripDropDownButton});
-            this.toolStrip.Location = new System.Drawing.Point(324, 9);
-            this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
-            this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(120, 25);
-            this.toolStrip.Stretch = true;
-            this.toolStrip.TabIndex = 7;
-            this.toolStrip.Text = "toolStrip1";
-            // 
-            // toolStripDropDownButton
-            // 
-            this.toolStripDropDownButton.BackColor = System.Drawing.Color.Transparent;
-            this.toolStripDropDownButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton.Image")));
-            this.toolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButton.Name = "toolStripDropDownButton";
-            this.toolStripDropDownButton.Size = new System.Drawing.Size(118, 22);
-            this.toolStripDropDownButton.Text = "Trigger SB Actions!";
-            this.toolStripDropDownButton.Click += new System.EventHandler(this.toolStripDropDownButton_Click);
-            // 
             // buttonTriggerActions
             // 
             this.buttonTriggerActions.ContextMenuStrip = this.contextMenuStrip1;
-            this.buttonTriggerActions.Location = new System.Drawing.Point(325, 58);
+            this.buttonTriggerActions.Location = new System.Drawing.Point(321, 68);
             this.buttonTriggerActions.Margin = new System.Windows.Forms.Padding(2);
             this.buttonTriggerActions.Name = "buttonTriggerActions";
-            this.buttonTriggerActions.Size = new System.Drawing.Size(120, 27);
+            this.buttonTriggerActions.Size = new System.Drawing.Size(120, 32);
             this.buttonTriggerActions.TabIndex = 8;
             this.buttonTriggerActions.Text = "Trigger SB Actions!";
             this.buttonTriggerActions.UseVisualStyleBackColor = true;
@@ -853,7 +823,7 @@
             this.toolStripMenuItemFerryEvent,
             this.toolStripMenuItemRefuelEvent});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 230);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(145, 208);
             // 
             // toolStripMenuItemRunAll
             // 
@@ -877,59 +847,69 @@
             // toolStripMenuItemJobDelivered
             // 
             this.toolStripMenuItemJobDelivered.Name = "toolStripMenuItemJobDelivered";
-            this.toolStripMenuItemJobDelivered.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemJobDelivered.Size = new System.Drawing.Size(144, 22);
             this.toolStripMenuItemJobDelivered.Text = "JobDelivered";
             this.toolStripMenuItemJobDelivered.Click += new System.EventHandler(this.toolStripMenuItemJobDelivered_Click);
             // 
             // toolStripMenuItemJobCancelled
             // 
             this.toolStripMenuItemJobCancelled.Name = "toolStripMenuItemJobCancelled";
-            this.toolStripMenuItemJobCancelled.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemJobCancelled.Size = new System.Drawing.Size(144, 22);
             this.toolStripMenuItemJobCancelled.Text = "JobCancelled";
             this.toolStripMenuItemJobCancelled.Click += new System.EventHandler(this.toolStripMenuItemJobCancelled_Click);
             // 
             // toolStripMenuItemFinedEvent
             // 
             this.toolStripMenuItemFinedEvent.Name = "toolStripMenuItemFinedEvent";
-            this.toolStripMenuItemFinedEvent.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemFinedEvent.Size = new System.Drawing.Size(144, 22);
             this.toolStripMenuItemFinedEvent.Text = "FinedEvent";
             this.toolStripMenuItemFinedEvent.Click += new System.EventHandler(this.toolStripMenuItemFinedEvent_Click);
             // 
             // toolStripMenuItemTollgateEvent
             // 
             this.toolStripMenuItemTollgateEvent.Name = "toolStripMenuItemTollgateEvent";
-            this.toolStripMenuItemTollgateEvent.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemTollgateEvent.Size = new System.Drawing.Size(144, 22);
             this.toolStripMenuItemTollgateEvent.Text = "TollgateEvent";
             this.toolStripMenuItemTollgateEvent.Click += new System.EventHandler(this.toolStripMenuItemTollgateEvent_Click);
             // 
             // toolStripMenuItemTrainEvent
             // 
             this.toolStripMenuItemTrainEvent.Name = "toolStripMenuItemTrainEvent";
-            this.toolStripMenuItemTrainEvent.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemTrainEvent.Size = new System.Drawing.Size(144, 22);
             this.toolStripMenuItemTrainEvent.Text = "TrainEvent";
             this.toolStripMenuItemTrainEvent.Click += new System.EventHandler(this.toolStripMenuItemTrainEvent_Click);
             // 
             // toolStripMenuItemFerryEvent
             // 
             this.toolStripMenuItemFerryEvent.Name = "toolStripMenuItemFerryEvent";
-            this.toolStripMenuItemFerryEvent.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemFerryEvent.Size = new System.Drawing.Size(144, 22);
             this.toolStripMenuItemFerryEvent.Text = "FerryEvent";
             this.toolStripMenuItemFerryEvent.Click += new System.EventHandler(this.toolStripMenuItemFerryEvent_Click);
             // 
             // toolStripMenuItemRefuelEvent
             // 
             this.toolStripMenuItemRefuelEvent.Name = "toolStripMenuItemRefuelEvent";
-            this.toolStripMenuItemRefuelEvent.Size = new System.Drawing.Size(180, 22);
+            this.toolStripMenuItemRefuelEvent.Size = new System.Drawing.Size(144, 22);
             this.toolStripMenuItemRefuelEvent.Text = "RefuelEvent";
             this.toolStripMenuItemRefuelEvent.Click += new System.EventHandler(this.toolStripMenuItemRefuelEvent_Click);
+            // 
+            // btnRunAllEvents
+            // 
+            this.btnRunAllEvents.Location = new System.Drawing.Point(495, 68);
+            this.btnRunAllEvents.Name = "btnRunAllEvents";
+            this.btnRunAllEvents.Size = new System.Drawing.Size(120, 32);
+            this.btnRunAllEvents.TabIndex = 9;
+            this.btnRunAllEvents.Text = "Run all events";
+            this.btnRunAllEvents.UseVisualStyleBackColor = true;
+            this.btnRunAllEvents.Click += new System.EventHandler(this.btnRunAllEvents_Click);
             // 
             // SBConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(730, 429);
+            this.Controls.Add(this.btnRunAllEvents);
             this.Controls.Add(this.buttonTriggerActions);
-            this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.buttonTestConnection);
             this.Controls.Add(this.buttonSaveSettings);
             this.Controls.Add(this.groupBoxActions);
@@ -959,12 +939,14 @@
             this.groupBox1.PerformLayout();
             this.groupBoxConnection.ResumeLayout(false);
             this.groupBoxConnection.PerformLayout();
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
+        }
+
+        private void toolStripDropDownButton_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -1033,8 +1015,6 @@
         private System.Windows.Forms.Button testJobDeliveredEventCurrentValue;
         private System.Windows.Forms.Button testFinedEventCurrentValue;
         private System.Windows.Forms.Button testJobStartedEventCurrentValue;
-        private System.Windows.Forms.ToolStrip toolStrip;
-        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton;
         private System.Windows.Forms.Button buttonTriggerActions;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripTriggerActions;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
@@ -1048,5 +1028,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemTrainEvent;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFerryEvent;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRefuelEvent;
+        private System.Windows.Forms.Button btnRunAllEvents;
     }
 }
