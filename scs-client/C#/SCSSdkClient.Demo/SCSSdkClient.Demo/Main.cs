@@ -1026,6 +1026,7 @@ namespace SCSSdkClient.Demo
         {
             try
             {
+                MessageBox.Show(events, "Ferry");
                 var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                 var json = JsonConvert.SerializeObject(myObject1.FerryEvent);
                 //MessageBox.Show(json, "FerryEvent");
@@ -1046,7 +1047,7 @@ namespace SCSSdkClient.Demo
         {
             try
             {
-                //MessageBox.Show(events, "FinedEvent");
+                MessageBox.Show(events, "Fined");
                 var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                 var json = JsonConvert.SerializeObject(myObject1.FinedEvent);
                 //MessageBox.Show(json, "FinedEvent");
@@ -1108,6 +1109,7 @@ namespace SCSSdkClient.Demo
         {
             try
             {
+                MessageBox.Show(events, "Cancelled");
                 var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                 var json = JsonConvert.SerializeObject(myObject1.JobCancelled);
                 //MessageBox.Show(json, "JobCancelled");
@@ -1149,6 +1151,7 @@ namespace SCSSdkClient.Demo
         {
             try
             {
+                MessageBox.Show(events, "Tollgate");
                 var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                 var json = JsonConvert.SerializeObject(myObject1.TollgateEvent);
                 //MessageBox.Show(json, "TollgateEvent");
@@ -1169,7 +1172,7 @@ namespace SCSSdkClient.Demo
         {
             try
             {
-                //MessageBox.Show(events, "TrainEvent");
+                MessageBox.Show(events, "Train");
                 var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                 var json = JsonConvert.SerializeObject(myObject1.TrainEvent);
                 //MessageBox.Show(json, "TrainEvent");
@@ -1191,6 +1194,7 @@ namespace SCSSdkClient.Demo
         {
             try
             {
+                MessageBox.Show(events, "Refuel");
                 var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                 var json = JsonConvert.SerializeObject(myObject1.RefuelEvent);
                 //MessageBox.Show(json, "RefuelEvent");
