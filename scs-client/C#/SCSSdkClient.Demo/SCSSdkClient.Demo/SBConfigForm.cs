@@ -401,27 +401,27 @@ namespace SCSSdkClient.Demo
                 string jobDeliveredDemoData = @"
                     {
                         ""JobDelivered"": {
-                          ""AutoLoaded"": false,
-                          ""AutoParked"": false,
+                          ""AutoLoaded"": true,
+                          ""AutoParked"": true,
                           ""CargoDamage"": 0.0,
                           ""DeliveryTime"": {
-                            ""Value"": 0,
-                            ""Date"": ""0001-01-01T00:00:00Z""
+                            ""Value"": 700,
+                            ""Date"": ""0001-01-01T11:40:00Z""
                           },
-                          ""DistanceKm"": 0.0,
-                          ""EarnedXp"": 0,
-                          ""Revenue"": 0,
+                          ""DistanceKm"": 584.0,
+                          ""EarnedXp"": 904,
+                          ""Revenue"": 3072,
                           ""Finished"": {
-                            ""Value"": 0,
-                            ""Date"": ""0001-01-01T00:00:00Z""
+                            ""Value"": 199969,
+                            ""Date"": ""0001-05-19T20:49:00Z""
                           },
                           ""Started"": {
-                            ""Value"": 0,
-                            ""Date"": ""0001-01-01T00:00:00Z""
+                            ""Value"": 199269,
+                            ""Date"": ""0001-05-19T09:09:00Z""
                           },
                           ""StartedBackup"": {
-                            ""Value"": 0,
-                            ""Date"": ""0001-01-01T00:00:00Z""
+                            ""Value"": 199269,
+                            ""Date"": ""0001-05-19T09:09:00Z""
                           }
                         }
                     }
@@ -491,7 +491,7 @@ namespace SCSSdkClient.Demo
                 string refuelPayedDemoData = @"
                     {
                         ""RefuelEvent"": {
-                            ""Amount"": 4.41064453
+                            ""Amount"": 744.1648
                         }
                     }
                 ";
@@ -526,8 +526,8 @@ namespace SCSSdkClient.Demo
                 string finedDemoData = @"
                     {
 	                    ""FinedEvent"": {
-		                    ""Amount"": 360,
-		                    ""Offence"": 6
+		                    ""Amount"": 140,
+		                    ""Offence"": 4
 	                    }
                     }
                 ";
@@ -658,11 +658,11 @@ namespace SCSSdkClient.Demo
                 string ferryDemoData = @"
                     {
                         ""FerryEvent"": {
-                              ""PayAmount"": 0,
-                              ""SourceId"": """",
-                              ""SourceName"": """",
-                              ""TargetId"": """",
-                              ""TargetName"": """"
+                              ""PayAmount"": 434,
+                              ""SourceId"": ""europoort"",
+                              ""SourceName"": ""Europoort"",
+                              ""TargetId"": ""harwich"",
+                              ""TargetName"": ""Harwich""
                         }
                     }
                 ";

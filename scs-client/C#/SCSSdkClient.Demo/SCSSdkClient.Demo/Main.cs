@@ -1128,6 +1128,7 @@ namespace SCSSdkClient.Demo
         {
             try
             {
+                MessageBox.Show(events, "Delivered");
                 var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                 var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
                 //MessageBox.Show(json, "JobDelivered");
