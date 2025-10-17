@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.SBConfig_btn = new System.Windows.Forms.Button();
             this.DebugTelemetry_btn = new System.Windows.Forms.Button();
             this.textBoxIp = new System.Windows.Forms.TextBox();
@@ -59,14 +60,14 @@
             // 
             // textBoxIp
             // 
-            this.textBoxIp.Location = new System.Drawing.Point(66, 112);
+            this.textBoxIp.Location = new System.Drawing.Point(12, 105);
             this.textBoxIp.Name = "textBoxIp";
             this.textBoxIp.Size = new System.Drawing.Size(157, 20);
             this.textBoxIp.TabIndex = 2;
             // 
             // textBoxPort
             // 
-            this.textBoxPort.Location = new System.Drawing.Point(66, 138);
+            this.textBoxPort.Location = new System.Drawing.Point(12, 131);
             this.textBoxPort.Name = "textBoxPort";
             this.textBoxPort.Size = new System.Drawing.Size(157, 20);
             this.textBoxPort.TabIndex = 3;
@@ -74,33 +75,35 @@
             // l_updateRate
             // 
             this.l_updateRate.AutoSize = true;
-            this.l_updateRate.Location = new System.Drawing.Point(63, 168);
+            this.l_updateRate.Location = new System.Drawing.Point(175, 138);
             this.l_updateRate.Name = "l_updateRate";
-            this.l_updateRate.Size = new System.Drawing.Size(65, 13);
+            this.l_updateRate.Size = new System.Drawing.Size(104, 13);
             this.l_updateRate.TabIndex = 4;
-            this.l_updateRate.Text = "UpdateRate";
+            this.l_updateRate.Text = "Current update rate: ";
             // 
             // lbGeneral
             // 
             this.lbGeneral.AutoSize = true;
-            this.lbGeneral.Location = new System.Drawing.Point(247, 138);
+            this.lbGeneral.Location = new System.Drawing.Point(175, 112);
             this.lbGeneral.Name = "lbGeneral";
-            this.lbGeneral.Size = new System.Drawing.Size(52, 13);
+            this.lbGeneral.Size = new System.Drawing.Size(95, 13);
             this.lbGeneral.TabIndex = 5;
-            this.lbGeneral.Text = "lbGeneral";
+            this.lbGeneral.Text = "Game connected: ";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(333, 190);
+            this.ClientSize = new System.Drawing.Size(333, 166);
             this.Controls.Add(this.lbGeneral);
             this.Controls.Add(this.l_updateRate);
             this.Controls.Add(this.textBoxPort);
             this.Controls.Add(this.textBoxIp);
             this.Controls.Add(this.DebugTelemetry_btn);
             this.Controls.Add(this.SBConfig_btn);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(349, 205);
             this.Name = "Main";
             this.Text = "Radiaktive - ETS/ATS Events to Streamer.Bot";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);

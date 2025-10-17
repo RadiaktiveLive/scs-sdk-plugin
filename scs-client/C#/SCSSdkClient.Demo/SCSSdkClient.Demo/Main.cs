@@ -585,8 +585,9 @@ namespace SCSSdkClient.Demo
                                      "\tRefuel Payed:" +
                                         $"\t\t{data.SpecialEventsValues.RefuelPayed}\n";
 
-                lbGeneral.Text = lbGeneralString;
-                l_updateRate.Text = lbUpdateRateString;
+                //lbGeneral.Text = lbGeneralString;
+                lbGeneral.Text = "Game connected: " + $"{data.Game}";
+                l_updateRate.Text = "Current update rate: " + lbUpdateRateString;
                 //MessageBox.Show("Telemetry updated start");
                 DatosActualizadosSdkTelemetry?.Invoke(Telemetry);
                 DatosActualizadosTelemetry?.Invoke(data);
