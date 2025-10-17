@@ -866,6 +866,66 @@ namespace SCSSdkClient.Demo
             public DateTime Date { get; set; }
         }
 
+        public class Time
+        {
+            public Time(uint i) => Value = i;
+
+            public Time() { }
+
+            /// <summary>
+            ///     Represented in number of in-game minutes
+            /// </summary>
+            public uint Value { get; set; }
+
+            /// <summary>
+            ///     Represented in data of in-game minutes
+            /// </summary>
+            public DateTime Date => MinutesToDate(Value);
+
+            public static implicit operator Time(uint i) => new Time(i);
+
+            public static Time operator -(Time a, Time b) => new Time(a.Value - b.Value);
+        }
+
+        public class Frequency
+        {
+            public Frequency(int i) => Value = i;
+
+            public Frequency() { }
+
+            /// <summary>
+            ///     Represented in number of in-game minutes
+            /// </summary>
+            public int Value { get; set; }
+
+            /// <summary>
+            ///     Represented in data of in-game minutes
+            /// </summary>
+            public DateTime Date => MinutesToDate(Value);
+
+            public static implicit operator Frequency(int i) => new Frequency(i);
+        }
+
+        /// <summary>
+        ///     Converts uint minutes in a DateTime object
+        /// </summary>
+        /// <param name="minutes">In-Game Minutes</param>
+        /// <returns>
+        ///     DateTime object of the in-game time
+        /// </returns>
+        internal static DateTime MinutesToDate(uint minutes) =>
+            new DateTime((long)minutes * 10000000 * 60, DateTimeKind.Utc);
+
+        /// <summary>
+        ///     Converts int minutes in a DateTime object
+        /// </summary>
+        /// <param name="minutes">In-Game Minutes</param>
+        /// <returns>
+        ///     DateTime object of the in-game time
+        /// </returns>
+        internal static DateTime MinutesToDate(int minutes) =>
+            new DateTime((long)Math.Abs(minutes) * 10000000 * 60, DateTimeKind.Utc);
+
         ///
         public class GamePlayEvents
         {

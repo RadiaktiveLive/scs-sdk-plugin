@@ -347,34 +347,34 @@ namespace SCSSdkClient.Demo
                     {
                       ""JobValues"": {
                         ""DeliveryTime"": {
-                          ""Value"": 0,
-                          ""Date"": ""0001-01-01T00:00:00Z""
+                          ""Value"": 201906,
+                          ""Date"": ""0001-05-21T05:06:00Z""
                         },
                         ""RemainingDeliveryTime"": {
-                          ""Value"": 0,
-                          ""Date"": ""0001-01-01T00:00:00Z""
+                          ""Value"": 2637,
+                          ""Date"": ""0001-01-02T19:57:00Z""
                         },
-                        ""CargoLoaded"": false,
+                        ""CargoLoaded"": true,
                         ""SpecialJob"": false,
-                        ""Market"": 1,
-                        ""PlannedDistanceKm"": 0,
+                        ""Market"": 3,
+                        ""PlannedDistanceKm"": 620,
                         ""CargoValues"": {
-                          ""Mass"": 0.0,
-                          ""Id"": """",
-                          ""Name"": """",
-                          ""UnitCount"": 0,
-                          ""UnitMass"": 0.0,
+                          ""Mass"": 12911.6006,
+                          ""Id"": ""electronics"",
+                          ""Name"": ""Dispositivos de electrónica"",
+                          ""UnitCount"": 52,
+                          ""UnitMass"": 248.3,
                           ""CargoDamage"": 0.0
                         },
-                        ""CityDestinationId"": """",
-                        ""CityDestination"": """",
-                        ""CompanyDestinationId"": """",
-                        ""CompanyDestination"": """",
-                        ""CitySourceId"": """",
-                        ""CitySource"": """",
-                        ""CompanySourceId"": """",
-                        ""CompanySource"": """",
-                        ""Income"": 123
+                        ""CityDestinationId"": ""helsinki"",
+                        ""CityDestination"": ""Helsinki"",
+                        ""CompanyDestinationId"": ""polarislines"",
+                        ""CompanyDestination"": ""Polaris Lines"",
+                        ""CitySourceId"": ""jonkoping"",
+                        ""CitySource"": ""Jönköping"",
+                        ""CompanySourceId"": ""gnt"",
+                        ""CompanySource"": ""GNT"",
+                        ""Income"": 3072
                       }
                     }
                 ";
