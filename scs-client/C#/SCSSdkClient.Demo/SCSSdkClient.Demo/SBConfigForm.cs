@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
+using static SCSSdkClient.Demo.Main;
 using static SCSSdkClient.Demo.SCSSdkClientDemo;
 using static SCSSdkClient.Object.SCSTelemetry;
 
@@ -24,7 +25,7 @@ namespace SCSSdkClient.Demo
     {
         private Main _mainForm;
 
-        public StreamerBot StreamerBotConfig = new StreamerBot();
+        public Main.StreamerBot StreamerBotConfig = new Main.StreamerBot();
 
         public string StreamerBotConfigFile = "StreamerBotSettings.json";
 
@@ -122,12 +123,12 @@ namespace SCSSdkClient.Demo
                     //Console.WriteLine("Connection successful");
                     //new LogWriter("INFO", "TcpClient Connection successful");
                     //new LogWriter("INFO", testUrl.ToString() + "\rTcpClient Connection successful");
-                    new LogWriter("TEST CONNECTION", "Streamer.bot IP: " + server + ":" + port + "\rResult: TcpClient Connection successful");
+                    new Main.LogWriter("TEST CONNECTION", "Streamer.bot IP: " + server + ":" + port + "\rResult: TcpClient Connection successful");
                     MessageBox.Show($"Connection successful", messageBoxTitle);
                     tcpClient.Close();
                     
                     HttpClient client = new HttpClient();
-                    new LogWriter("INFO", testUrl.ToString());
+                    new Main.LogWriter("INFO", testUrl.ToString());
                     //new LogWriter("INFO2", testUrl.Uri.ToString());
 
                     HttpResponseMessage response = await client.GetAsync(testUrl.Uri.ToString());
@@ -143,12 +144,12 @@ namespace SCSSdkClient.Demo
                         {
 
                             // Replace 'dynamic' with your object type if you have one
-                            GetAction data = JsonConvert.DeserializeObject<GetAction>(json);
+                            Main.GetAction data = JsonConvert.DeserializeObject<Main.GetAction>(json);
 
                             //MessageBox.Show(data["count"]);
                             //new LogWriter("INFO", data.Count.ToString());
                             //new LogWriter("INFO", "data.Count ACTIONS: " + data.Count.ToString());
-                            new LogWriter("INFO", "Streamer.bot Total Actions: " + data.Count.ToString());
+                            new Main.LogWriter("INFO", "Streamer.bot Total Actions: " + data.Count.ToString());
                             /*
                             if (data.Count >= 0 && data.Actions.Count >= 0)
                             {
@@ -205,7 +206,7 @@ namespace SCSSdkClient.Demo
                     else
                     {
                         //Console.WriteLine($"Error: {response.StatusCode}");
-                        new LogWriter("ERROR", $"Error: {response.StatusCode}");
+                        new Main.LogWriter("ERROR", $"Error: {response.StatusCode}");
                         MessageBox.Show($"Error: {response.StatusCode}", messageBoxTitle);
                     }
                     
@@ -215,20 +216,20 @@ namespace SCSSdkClient.Demo
                 {
                     // Handle exception related to the HTTP request
                     //Console.WriteLine($"Request error: {ex.Message}");
-                    new LogWriter("ERROR", $"Request error: {ex.Message}");
+                    new Main.LogWriter("ERROR", $"Request error: {ex.Message}");
                     MessageBox.Show($"Request error: {ex.Message}", messageBoxTitle);
                 }
                 catch (JsonException ex)
                 {
                     // Handle exception related to JSON deserialization
                     //Console.WriteLine($"Deserialization error: {ex.Message}");
-                    new LogWriter("ERROR", $"Deserialization error: {ex.Message}");
+                    new Main.LogWriter("ERROR", $"Deserialization error: {ex.Message}");
                     MessageBox.Show($"Deserialization error: {ex.Message}", messageBoxTitle);
                 }
                 catch (Exception ex)
                 {
                     //Console.WriteLine($"Connection failed: {ex.Message}");
-                    new LogWriter("ERROR", $"Connection failed: {ex.Message}");
+                    new Main.LogWriter("ERROR", $"Connection failed: {ex.Message}");
                     //new LogWriter("ERROR", $"Connection failed: {ex}");
                     MessageBox.Show($"Connection failed: {ex.Message}", messageBoxTitle);
                 }
@@ -632,5 +633,137 @@ namespace SCSSdkClient.Demo
             _mainForm.Ferry(JsonConvert.SerializeObject(_mainForm.raw.GamePlay, Formatting.Indented));
         }
 
+        private void toolStripDropDownButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonTriggerActions_Click(object sender, EventArgs e)
+        {
+            contextMenuStrip1.Show(buttonTriggerActions, new Point(0, buttonTriggerActions.Height)); // Shows the menu strip below the button
+        }
+
+        private void toolStripJobStarted_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void toolStripJobDelivered_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void toolStripJobCancelled_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void toolStripFinedEvent_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void toolStripTollgateEvent_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void toolStripTrainEvent_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void toolStripFerryEvent_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void toolStripRefuelEvent_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private async void toolStripMenuItemRunAll_Click(object sender, EventArgs e)
+        {
+            var sleep = 2 * 1000;
+
+            //_mainForm.TelemetryOnJobStarted(_mainForm.raw.JobValues, e);
+            testJobStartedEventDemoData_Click(sender, e);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
+
+            //_mainForm.TelemetryJobDelivered(_mainForm.raw.GamePlay, e);
+            testJobDeliveredEventDemoData_Click(sender, e);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
+
+            //_mainForm.TelemetryJobCancelled(_mainForm.raw.GamePlay, e);
+            testJobCancelledEventDemoData_Click(sender, e);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
+
+            //_mainForm.TelemetryFined(_mainForm.raw.GamePlay, e);
+            testFinedEventDemoData_Click(sender, e);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
+
+            //_mainForm.TelemetryTollgate(_mainForm.raw.GamePlay, e);
+            testTollgateEventDemoData_Click(sender, e);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
+
+            //_mainForm.TelemetryTrain(_mainForm.raw.GamePlay, e);
+            testTrainEventDemoData_Click(sender, e);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
+
+            //_mainForm.TelemetryFerry(_mainForm.raw.GamePlay, e);
+            testFerryEventDemoData_Click(sender, e);
+            await Task.Delay(sleep);
+            //System.Threading.Thread.Sleep(sleep);
+
+            //_mainForm.TelemetryRefuelPayed(_mainForm.raw.GamePlay, e);
+            testRefuelPayedEventDemoData_Click(sender, e);
+        }
+
+        private void toolStripMenuItemJobStarted_Click(object sender, EventArgs e)
+        {
+            testJobStartedEventDemoData_Click(sender, e);
+        }
+
+        private void toolStripMenuItemJobDelivered_Click(object sender, EventArgs e)
+        {
+            testJobDeliveredEventDemoData_Click(sender, e);
+        }
+
+        private void toolStripMenuItemJobCancelled_Click(object sender, EventArgs e)
+        {
+            testJobCancelledEventDemoData_Click(sender, e);
+        }
+
+        private void toolStripMenuItemFinedEvent_Click(object sender, EventArgs e)
+        {
+            testFinedEventDemoData_Click(sender, e);
+        }
+
+        private void toolStripMenuItemTollgateEvent_Click(object sender, EventArgs e)
+        {
+            testTollgateEventDemoData_Click(sender, e);
+        }
+
+        private void toolStripMenuItemTrainEvent_Click(object sender, EventArgs e)
+        {
+            testTrainEventDemoData_Click(sender, e);
+        }
+
+        private void toolStripMenuItemFerryEvent_Click(object sender, EventArgs e)
+        {
+            testFerryEventDemoData_Click(sender, e);
+        }
+
+        private void toolStripMenuItemRefuelEvent_Click(object sender, EventArgs e)
+        {
+            testRefuelPayedEventDemoData_Click(sender, e);
+        }
     }
 }
