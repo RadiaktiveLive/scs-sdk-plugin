@@ -35,6 +35,8 @@ namespace SCSSdkClient.Demo
 
         public string StreamerbotUrl = "";
 
+        public bool StreamerBotConnected = false;
+
         public ActionInfo JobStartedEventSBAction = new ActionInfo();
         ///
         public ActionInfo FerryEventSBAction = new ActionInfo();
@@ -70,6 +72,7 @@ namespace SCSSdkClient.Demo
             InitializeComponent();
             ReadConfigFile();
             TelemetryRun();
+            //TestSbConnection();
         }
 
         #region Test
@@ -95,7 +98,8 @@ namespace SCSSdkClient.Demo
 
                 if (File.Exists(jsonFilePath))
                 {
-                    builder.AddJsonFile(jsonFilePath, optional: true, reloadOnChange: false);
+                    //builder.AddJsonFile(jsonFilePath, optional: true, reloadOnChange: false);
+                    builder.AddJsonFile(jsonFilePath, optional: true, reloadOnChange: true);
                 }
                 else
                 {
@@ -1297,6 +1301,211 @@ namespace SCSSdkClient.Demo
 
             // Muestra la aplicación en la barra de tareas
             this.ShowInTaskbar = true;
+        }
+
+        private void ButtonTestConnection_Click(object sender, EventArgs e)
+        {
+            //TestSbConnection(sender, e);
+            TestSbConnection();
+        }
+
+        private void ButtonTestConnection_Click_1(object sender, EventArgs e)
+        {
+            //TestSbConnection(sender, e);
+            TestSbConnection();
+        }
+
+        //private async void TestSbConnection(object sender, EventArgs e)
+        private async void TestSbConnection()
+        {
+            /*
+             //var url = StreamerbotUrl;
+             if (StreamerBotConfig.url.Equals(""))
+             {
+                 return null;
+             }
+             */
+            string messageBoxTitle = "StreamerBot Test Connection";
+            var testUrl = new UriBuilder("http", StreamerBotConfig.ip, int.Parse(StreamerBotConfig.port), "GetActions");
+            /*
+            using (var client = new HttpClient())
+            {
+                //var json = JsonConvert.SerializeObject(data);
+                //MessageBox.Show(json);
+                //var content = new StringContent("", Encoding.UTF8, "application/json");
+                //var response = await client.PostAsync(url, content);
+
+                var response = await client.GetAsync(testUrl.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show(await response.Content.ReadAsStringAsync());
+                    dynamic jsonObj = JsonConvert.DeserializeObject(await response.Content.ReadAsStringAsync());
+                    MessageBox.Show(jsonObj.count);
+                    //return await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    // Handle the error
+                    //return null;
+                }
+
+            }*/
+
+
+            string server = StreamerBotConfig.ip; // Replace with your server
+            int port = int.Parse(StreamerBotConfig.port); // Replace with your port
+
+            StreamerBotConnected = false;
+
+            using (TcpClient tcpClient = new TcpClient())
+            {
+                try
+                {
+                    tcpClient.Connect(server, port);
+                    //Console.WriteLine("Connection successful");
+                    //new LogWriter("INFO", "TcpClient Connection successful");
+                    //new LogWriter("INFO", testUrl.ToString() + "\rTcpClient Connection successful");
+                    new Main.LogWriter("TEST CONNECTION", "Streamer.bot IP: " + server + ":" + port + "\rResult: TcpClient Connection successful");
+//                    MessageBox.Show($"Connection successful", messageBoxTitle);
+                    //lblSBConnected.Text = "SB Connection try: ✔";
+                    StreamerBotConnected = true;
+                    tcpClient.Close();
+
+                    HttpClient client = new HttpClient();
+                    new Main.LogWriter("INFO", testUrl.ToString());
+                    //new LogWriter("INFO2", testUrl.Uri.ToString());
+
+                    HttpResponseMessage response = await client.GetAsync(testUrl.Uri.ToString());
+                    //HttpResponseMessage response = await client.PostAsync(testUrl.ToString(), content);
+                    //response.StatusCode == HttpStatusCode.NotFound
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string json = await response.Content.ReadAsStringAsync();
+                        //MessageBox.Show(json);
+                        //new LogWriter("INFO", json);
+
+                        if (json.Length > 0)
+                        {
+
+                            // Replace 'dynamic' with your object type if you have one
+                            Main.GetAction data = JsonConvert.DeserializeObject<Main.GetAction>(json);
+
+                            //MessageBox.Show(data["count"]);
+                            //new LogWriter("INFO", data.Count.ToString());
+                            //new LogWriter("INFO", "data.Count ACTIONS: " + data.Count.ToString());
+                            new Main.LogWriter("INFO", "Streamer.bot Total Actions: " + data.Count.ToString());
+                            /*
+                            if (data.Count >= 0 && data.Actions.Count >= 0)
+                            {
+                                new LogWriter("INFO", "data.Count ACTIONS: " + data.Count.ToString());
+                                new LogWriter("INFO", "data.Count >= 0: " + data.Count.ToString());
+                                new LogWriter("INFO", "data.Actions.Count >= 0: " + data.Actions.Count.ToString());
+
+                                foreach (SCSSdkClientDemo.Action element in data.Actions)
+                                {
+                                    new LogWriter("INFO", element.Name.ToString());
+                                    new LogWriter("INFO", JsonConvert.SerializeObject(element, Formatting.Indented));
+                                }
+
+                                new LogWriter("INFO", "Connection successful.");
+                                MessageBox.Show("Connection successful.", messageBoxTitle);
+                            }
+                            else
+                            {
+                                new LogWriter("ERROR", "Connection failed.");
+                                MessageBox.Show("Connection failed.", messageBoxTitle);
+                            }
+                            */
+
+
+
+                            /*
+                            if (data.Count >= 0) {
+
+                                new LogWriter("data.Count >= 0: " + (data.Count >= 0).ToString());
+
+                            }
+
+                            //new LogWriter(data.Actions.ToString());
+                            
+                            foreach (Action element in data.Actions)
+                            {
+                                new LogWriter(element.Name.ToString());
+                                new LogWriter(JsonConvert.SerializeObject(element, Formatting.Indented));
+                            }
+
+                            if (data.Actions.Count >= 0)
+                            {
+                                new LogWriter("data.Actions.Count >= 0: " + (data.Actions.Count >= 0).ToString());
+                            }
+                            */
+                        }
+                        else
+                        {
+                            MessageBox.Show("Connection failed.", messageBoxTitle);
+                            //lblSBConnected.Text = "SB Connection else 1: ❌";
+                        }
+
+
+                    }
+                    else
+                    {
+                        //Console.WriteLine($"Error: {response.StatusCode}");
+                        new Main.LogWriter("ERROR", $"Error: {response.StatusCode}");
+                        MessageBox.Show($"Error: {response.StatusCode}", messageBoxTitle);
+                        //lblSBConnected.Text = "SB Connection else 2: ❌";
+                    }
+
+
+                }
+                catch (HttpRequestException ex)
+                {
+                    // Handle exception related to the HTTP request
+                    //Console.WriteLine($"Request error: {ex.Message}");
+                    new Main.LogWriter("ERROR", $"Request error: {ex.Message}");
+                    MessageBox.Show($"Request error: {ex.Message}", messageBoxTitle);
+                    //lblSBConnected.Text = "SB Connection HttpRequestException: ❌";
+                }
+                catch (JsonException ex)
+                {
+                    // Handle exception related to JSON deserialization
+                    //Console.WriteLine($"Deserialization error: {ex.Message}");
+                    new Main.LogWriter("ERROR", $"Deserialization error: {ex.Message}");
+                    MessageBox.Show($"Deserialization error: {ex.Message}", messageBoxTitle);
+                    //lblSBConnected.Text = "SB Connection JsonException: ❌";
+                }
+                catch (Exception ex)
+                {
+                    //Console.WriteLine($"Connection failed: {ex.Message}");
+                    new Main.LogWriter("ERROR", $"Connection failed: {ex.Message}");
+                    //new LogWriter("ERROR", $"Connection failed: {ex}");
+//                    MessageBox.Show($"Connection failed: {ex.Message}", messageBoxTitle);
+                    //lblSBConnected.Text = "SB Connection Exception: ❌";
+                }
+                lblSBConnected.Text = "SB Connection: " + (StreamerBotConnected ? "✔" : "❌");
+            }
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            //TestSbConnection();
+
+            // 1. Iniciar el temporizador
+            timer1.Start();
+        }
+
+        private void Main_Shown(object sender, EventArgs e)
+        {
+            //TestSbConnection();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            // LLAMA AQUÍ A LA FUNCIÓN QUE QUIERES EJECUTAR
+            TestSbConnection();
+
+            // Opcional: Mostrar la hora actual para comprobar que funciona
+            label1.Text = "Última ejecución: " + DateTime.Now.ToLongTimeString();
         }
     }
 }

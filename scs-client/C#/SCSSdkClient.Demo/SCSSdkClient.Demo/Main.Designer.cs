@@ -40,6 +40,10 @@
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.maximizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblSBConnected = new System.Windows.Forms.Label();
+            this.ButtonTestConnection = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -110,28 +114,64 @@
             this.maximizarToolStripMenuItem,
             this.salirToolStripMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip.Size = new System.Drawing.Size(124, 48);
             this.contextMenuStrip.Click += new System.EventHandler(this.contextMenuStrip_Click);
             // 
             // maximizarToolStripMenuItem
             // 
             this.maximizarToolStripMenuItem.Name = "maximizarToolStripMenuItem";
-            this.maximizarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.maximizarToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.maximizarToolStripMenuItem.Text = "Restaurar";
             this.maximizarToolStripMenuItem.Click += new System.EventHandler(this.restaurarToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            // 
+            // lblSBConnected
+            // 
+            this.lblSBConnected.AutoSize = true;
+            this.lblSBConnected.Location = new System.Drawing.Point(175, 160);
+            this.lblSBConnected.Name = "lblSBConnected";
+            this.lblSBConnected.Size = new System.Drawing.Size(96, 13);
+            this.lblSBConnected.TabIndex = 6;
+            this.lblSBConnected.Text = "SB Connection: ➖";
+            // 
+            // ButtonTestConnection
+            // 
+            this.ButtonTestConnection.Location = new System.Drawing.Point(12, 158);
+            this.ButtonTestConnection.Name = "ButtonTestConnection";
+            this.ButtonTestConnection.Size = new System.Drawing.Size(157, 23);
+            this.ButtonTestConnection.TabIndex = 7;
+            this.ButtonTestConnection.Text = "Test SB Connection";
+            this.ButtonTestConnection.UseVisualStyleBackColor = true;
+            this.ButtonTestConnection.Click += new System.EventHandler(this.ButtonTestConnection_Click_1);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 10000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(175, 97);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "label1";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(333, 166);
+            this.ClientSize = new System.Drawing.Size(333, 182);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.ButtonTestConnection);
+            this.Controls.Add(this.lblSBConnected);
             this.Controls.Add(this.lbGeneral);
             this.Controls.Add(this.l_updateRate);
             this.Controls.Add(this.textBoxPort);
@@ -144,6 +184,8 @@
             this.Name = "Main";
             this.Text = "Radiaktive - ETS/ATS Events to Streamer.Bot";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
+            this.Load += new System.EventHandler(this.Main_Load);
+            this.Shown += new System.EventHandler(this.Main_Shown);
             this.Resize += new System.EventHandler(this.Main_Resize);
             this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -163,5 +205,9 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem maximizarToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
+        private System.Windows.Forms.Label lblSBConnected;
+        private System.Windows.Forms.Button ButtonTestConnection;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label1;
     }
 }
