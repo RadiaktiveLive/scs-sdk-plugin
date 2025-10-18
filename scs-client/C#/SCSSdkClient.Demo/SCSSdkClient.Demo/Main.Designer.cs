@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.SBConfig_btn = new System.Windows.Forms.Button();
             this.DebugTelemetry_btn = new System.Windows.Forms.Button();
@@ -35,6 +36,11 @@
             this.textBoxPort = new System.Windows.Forms.TextBox();
             this.l_updateRate = new System.Windows.Forms.Label();
             this.lbGeneral = new System.Windows.Forms.Label();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.maximizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // SBConfig_btn
@@ -90,6 +96,37 @@
             this.lbGeneral.TabIndex = 5;
             this.lbGeneral.Text = "Game connected: ";
             // 
+            // notifyIcon
+            // 
+            this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "Radiaktive - ETS/ATS Events to Streamer.Bot";
+            this.notifyIcon.Visible = true;
+            this.notifyIcon.DoubleClick += new System.EventHandler(this.notifyIcon_DoubleClick);
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.maximizarToolStripMenuItem,
+            this.salirToolStripMenuItem});
+            this.contextMenuStrip.Name = "contextMenuStrip";
+            this.contextMenuStrip.Size = new System.Drawing.Size(181, 70);
+            this.contextMenuStrip.Click += new System.EventHandler(this.contextMenuStrip_Click);
+            // 
+            // maximizarToolStripMenuItem
+            // 
+            this.maximizarToolStripMenuItem.Name = "maximizarToolStripMenuItem";
+            this.maximizarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.maximizarToolStripMenuItem.Text = "Restaurar";
+            this.maximizarToolStripMenuItem.Click += new System.EventHandler(this.restaurarToolStripMenuItem_Click);
+            // 
+            // salirToolStripMenuItem
+            // 
+            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Text = "Salir";
+            this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -107,6 +144,8 @@
             this.Name = "Main";
             this.Text = "Radiaktive - ETS/ATS Events to Streamer.Bot";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
+            this.Resize += new System.EventHandler(this.Main_Resize);
+            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -120,5 +159,9 @@
         private System.Windows.Forms.TextBox textBoxPort;
         private System.Windows.Forms.Label l_updateRate;
         private System.Windows.Forms.Label lbGeneral;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem maximizarToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
     }
 }

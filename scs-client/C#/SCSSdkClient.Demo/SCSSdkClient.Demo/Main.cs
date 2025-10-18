@@ -1220,5 +1220,83 @@ namespace SCSSdkClient.Demo
             panel.BackColor = Color.FromName(panelColorRevert);
         }
 
+        private void Main_Resize(object sender, EventArgs e)
+        {
+            MinimizeToSysTray(sender, e);
+        }
+
+        private void notifyIcon_DoubleClick(object sender, EventArgs e)
+        {
+            RestoreFromSysTray(sender, e);
+        }
+
+        private void MinimizeToSysTray(object sender, EventArgs e)
+        {
+            // Verifica si la ventana se está minimizando
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                // 1. Oculta el formulario de la barra de tareas
+                this.ShowInTaskbar = false;
+
+                // 2. Hace visible el icono en la bandeja de sistema
+                //notifyIcon.Visible = true;
+
+                // Opcional: Muestra una notificación temporal
+                notifyIcon.ShowBalloonTip(3000, "Mi Aplicación", "La aplicación se está ejecutando en segundo plano.", ToolTipIcon.Info);
+            }
+            // Si la ventana se está restaurando (Maximizado o Normal)
+            else
+            {
+                // Oculta el icono de la bandeja cuando la aplicación está visible
+                //notifyIcon.Visible = false;
+
+                // Muestra el formulario en la barra de tareas
+                this.ShowInTaskbar = true;
+            }
+        }
+
+        private void RestoreFromSysTray(object sender, EventArgs e)
+        {
+            // 1. Muestra el formulario nuevamente
+            this.WindowState = FormWindowState.Normal;
+
+            // 2. Asegúrate de que se muestre en la barra de tareas y el icono de la bandeja se oculte
+            this.ShowInTaskbar = true;
+            //notifyIcon.Visible = false;
+        }
+
+        private void contextMenuStrip_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void maximizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void salirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Oculta el icono de la bandeja antes de cerrar
+            notifyIcon.Visible = false;
+
+            // Cierra completamente la aplicación
+            Application.Exit();
+        }
+
+        private void restaurarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Muestra el formulario
+            this.WindowState = FormWindowState.Normal;
+
+            // Lo trae al frente
+            this.Activate();
+
+            // Oculta el icono de la bandeja
+            //notifyIcon.Visible = false;
+
+            // Muestra la aplicación en la barra de tareas
+            this.ShowInTaskbar = true;
+        }
     }
 }
