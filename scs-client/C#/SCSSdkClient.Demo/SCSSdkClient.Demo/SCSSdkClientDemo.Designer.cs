@@ -152,6 +152,7 @@ namespace SCSSdkClient.Demo
             this.toolStripFerryEvent,
             this.toolStripRefuelEvent});
             this.contextMenuStripTriggerActions.Name = "contextMenuStripTriggerActions";
+            this.contextMenuStripTriggerActions.OwnerItem = this.toolStripDropDownButton;
             this.contextMenuStripTriggerActions.Size = new System.Drawing.Size(145, 208);
             // 
             // toolStripRunAll
@@ -376,7 +377,7 @@ namespace SCSSdkClient.Demo
             this.hgf.Location = new System.Drawing.Point(0, 0);
             this.hgf.Name = "hgf";
             this.hgf.SelectedIndex = 0;
-            this.hgf.Size = new System.Drawing.Size(619, 697);
+            this.hgf.Size = new System.Drawing.Size(636, 697);
             this.hgf.TabIndex = 0;
             this.hgf.SelectedIndexChanged += new System.EventHandler(this.hgf_SelectedIndexChanged);
             // 
@@ -392,7 +393,7 @@ namespace SCSSdkClient.Demo
             this.tabAbout.Location = new System.Drawing.Point(4, 22);
             this.tabAbout.Name = "tabAbout";
             this.tabAbout.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAbout.Size = new System.Drawing.Size(611, 671);
+            this.tabAbout.Size = new System.Drawing.Size(628, 671);
             this.tabAbout.TabIndex = 0;
             this.tabAbout.Text = "About";
             this.tabAbout.UseVisualStyleBackColor = true;
@@ -412,7 +413,7 @@ namespace SCSSdkClient.Demo
             this.toolStrip.Name = "toolStrip";
             this.toolStrip.Padding = new System.Windows.Forms.Padding(0);
             this.toolStrip.ShowItemToolTips = false;
-            this.toolStrip.Size = new System.Drawing.Size(151, 25);
+            this.toolStrip.Size = new System.Drawing.Size(120, 25);
             this.toolStrip.Stretch = true;
             this.toolStrip.TabIndex = 6;
             this.toolStrip.Text = "toolStrip1";
@@ -447,7 +448,7 @@ namespace SCSSdkClient.Demo
             | System.Windows.Forms.AnchorStyles.Right)));
             this.rtb_fuel.Location = new System.Drawing.Point(20, 866);
             this.rtb_fuel.Name = "rtb_fuel";
-            this.rtb_fuel.Size = new System.Drawing.Size(549, 36);
+            this.rtb_fuel.Size = new System.Drawing.Size(566, 36);
             this.rtb_fuel.TabIndex = 4;
             this.rtb_fuel.Text = "";
             // 
@@ -459,7 +460,7 @@ namespace SCSSdkClient.Demo
             this.l_updateRate});
             this.statusStrip1.Location = new System.Drawing.Point(3, 646);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(605, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(622, 22);
             this.statusStrip1.TabIndex = 3;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -479,9 +480,9 @@ namespace SCSSdkClient.Demo
             this.lbGeneral.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbGeneral.Location = new System.Drawing.Point(20, 210);
+            this.lbGeneral.Location = new System.Drawing.Point(20, 189);
             this.lbGeneral.Name = "lbGeneral";
-            this.lbGeneral.Size = new System.Drawing.Size(549, 649);
+            this.lbGeneral.Size = new System.Drawing.Size(585, 444);
             this.lbGeneral.TabIndex = 2;
             this.lbGeneral.Text = "";
             // 
@@ -489,7 +490,7 @@ namespace SCSSdkClient.Demo
             // 
             this.richTextBox1.Location = new System.Drawing.Point(20, 61);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(549, 122);
+            this.richTextBox1.Size = new System.Drawing.Size(585, 122);
             this.richTextBox1.TabIndex = 1;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
@@ -665,6 +666,7 @@ namespace SCSSdkClient.Demo
             // 
             // tabPage9
             // 
+            this.tabPage9.AutoScroll = true;
             this.tabPage9.Controls.Add(this.toolStrip1);
             this.tabPage9.Controls.Add(this.panelJobStarted);
             this.tabPage9.Controls.Add(this.panelFined);
@@ -678,7 +680,7 @@ namespace SCSSdkClient.Demo
             this.tabPage9.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage9.Size = new System.Drawing.Size(611, 671);
+            this.tabPage9.Size = new System.Drawing.Size(628, 671);
             this.tabPage9.TabIndex = 9;
             this.tabPage9.Text = "Events";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -970,7 +972,7 @@ namespace SCSSdkClient.Demo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(619, 697);
+            this.ClientSize = new System.Drawing.Size(636, 697);
             this.Controls.Add(this.hgf);
             this.Name = "SCSSdkClientDemo";
             this.Text = "SCSSDkClientDemo 0.9 Radiaktive";
