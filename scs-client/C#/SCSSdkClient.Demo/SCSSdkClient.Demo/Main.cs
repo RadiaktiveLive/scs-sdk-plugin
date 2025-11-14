@@ -1589,6 +1589,10 @@ namespace SCSSdkClient.Demo
             {
                 MessageBox.Show(eventData, title);
             }
+            else
+            {
+                notifyIcon.ShowBalloonTip(3000, "Mi Aplicación", title + " Event Fired", ToolTipIcon.Info);
+            }
         }
 
         private void checkBoxEnableMessageBox_CheckedChanged(object sender, EventArgs e)
