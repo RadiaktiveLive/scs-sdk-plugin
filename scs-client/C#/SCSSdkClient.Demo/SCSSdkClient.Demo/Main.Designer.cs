@@ -48,6 +48,7 @@
             this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.linkStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
+            this.checkBoxEnableMessageBox = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -203,11 +204,23 @@
             this.timer2.Interval = 10000;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
+            // checkBoxEnableMessageBox
+            // 
+            this.checkBoxEnableMessageBox.AutoSize = true;
+            this.checkBoxEnableMessageBox.Location = new System.Drawing.Point(176, 177);
+            this.checkBoxEnableMessageBox.Name = "checkBoxEnableMessageBox";
+            this.checkBoxEnableMessageBox.Size = new System.Drawing.Size(129, 17);
+            this.checkBoxEnableMessageBox.TabIndex = 10;
+            this.checkBoxEnableMessageBox.Text = "Enable MessageBox?";
+            this.checkBoxEnableMessageBox.UseVisualStyleBackColor = true;
+            this.checkBoxEnableMessageBox.CheckedChanged += new System.EventHandler(this.checkBoxEnableMessageBox_CheckedChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(333, 212);
+            this.Controls.Add(this.checkBoxEnableMessageBox);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ButtonTestConnection);
@@ -256,5 +269,6 @@
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.ToolStripStatusLabel statusLabel;
         private System.Windows.Forms.ToolStripStatusLabel linkStatusLabel;
+        private System.Windows.Forms.CheckBox checkBoxEnableMessageBox;
     }
 }

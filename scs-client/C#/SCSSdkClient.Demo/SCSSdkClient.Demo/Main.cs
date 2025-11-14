@@ -67,6 +67,8 @@ namespace SCSSdkClient.Demo
 
         // La URL actual, guardada para el evento Click
         private string urlActual = "";
+
+        private bool messageBoxShow = false;
         #endregion
 
         public string lbGeneralString;
@@ -1046,7 +1048,8 @@ namespace SCSSdkClient.Demo
         {
             try
             {
-                MessageBox.Show(events, "Ferry");
+                ShowMessageBox(events, "Ferry");
+                //MessageBox.Show(events, "Ferry");
                 var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                 var json = JsonConvert.SerializeObject(myObject1.FerryEvent);
                 //MessageBox.Show(json, "FerryEvent");
@@ -1067,7 +1070,8 @@ namespace SCSSdkClient.Demo
         {
             try
             {
-                MessageBox.Show(events, "Fined");
+                ShowMessageBox(events, "Fined");
+                //MessageBox.Show(events, "Fined");
                 var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                 var json = JsonConvert.SerializeObject(myObject1.FinedEvent);
                 //MessageBox.Show(json, "FinedEvent");
@@ -1092,7 +1096,8 @@ namespace SCSSdkClient.Demo
             {
                 if (demoData)
                 {
-                    MessageBox.Show(events, "Started demoData");
+                    ShowMessageBox(events, "Started demoData");
+                    //MessageBox.Show(events, "Started demoData");
                     var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                     var json = JsonConvert.SerializeObject(myObject1.JobValues);
                     //MessageBox.Show(json, "Started");
@@ -1107,7 +1112,8 @@ namespace SCSSdkClient.Demo
                 }
                 else
                 {
-                    MessageBox.Show(events, "Started currentData");
+                    ShowMessageBox(events, "Started currentData");
+                    //MessageBox.Show(events, "Started currentData");
                     //var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                     //var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
                     //MessageBox.Show(json, "JobDelivered");
@@ -1129,7 +1135,8 @@ namespace SCSSdkClient.Demo
         {
             try
             {
-                MessageBox.Show(events, "Cancelled");
+                ShowMessageBox(events, "Cancelled");
+                //MessageBox.Show(events, "Cancelled");
                 var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                 var json = JsonConvert.SerializeObject(myObject1.JobCancelled);
                 //MessageBox.Show(json, "JobCancelled");
@@ -1150,7 +1157,8 @@ namespace SCSSdkClient.Demo
         {
             try
             {
-                MessageBox.Show(events, "Delivered");
+                ShowMessageBox(events, "Delivered");
+                //MessageBox.Show(events, "Delivered");
                 var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                 var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
                 //MessageBox.Show(json, "JobDelivered");
@@ -1171,7 +1179,8 @@ namespace SCSSdkClient.Demo
         {
             try
             {
-                MessageBox.Show(events, "Tollgate");
+                ShowMessageBox(events, "Tollgate");
+                //MessageBox.Show(events, "Tollgate");
                 var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                 var json = JsonConvert.SerializeObject(myObject1.TollgateEvent);
                 //MessageBox.Show(json, "TollgateEvent");
@@ -1192,7 +1201,8 @@ namespace SCSSdkClient.Demo
         {
             try
             {
-                MessageBox.Show(events, "Train");
+                ShowMessageBox(events, "Train");
+                //MessageBox.Show(events, "Train");
                 var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                 var json = JsonConvert.SerializeObject(myObject1.TrainEvent);
                 //MessageBox.Show(json, "TrainEvent");
@@ -1214,7 +1224,8 @@ namespace SCSSdkClient.Demo
         {
             try
             {
-                MessageBox.Show(events, "Refuel");
+                ShowMessageBox(events, "Refuel");
+                //MessageBox.Show(events, "Refuel");
                 var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
                 var json = JsonConvert.SerializeObject(myObject1.RefuelEvent);
                 //MessageBox.Show(json, "RefuelEvent");
@@ -1572,5 +1583,18 @@ namespace SCSSdkClient.Demo
             }
         }
 
+        public void ShowMessageBox(string eventData, string title)
+        {
+            if (messageBoxShow)
+            {
+                MessageBox.Show(eventData, title);
+            }
+        }
+
+        private void checkBoxEnableMessageBox_CheckedChanged(object sender, EventArgs e)
+        {
+            messageBoxShow = checkBoxEnableMessageBox.Checked;
+            //MessageBox.Show("MessageBox Status: " + messageBoxShow);
+        }
     }
 }
