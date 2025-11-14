@@ -44,7 +44,12 @@
             this.ButtonTestConnection = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.statusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.linkStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // SBConfig_btn
@@ -164,11 +169,46 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "label1";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusLabel,
+            this.linkStatusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 190);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(333, 22);
+            this.statusStrip1.SizingGrip = false;
+            this.statusStrip1.TabIndex = 9;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // statusLabel
+            // 
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(102, 17);
+            this.statusLabel.Text = "© Radiaktive 2025";
+            // 
+            // linkStatusLabel
+            // 
+            this.linkStatusLabel.IsLink = true;
+            this.linkStatusLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.linkStatusLabel.Name = "linkStatusLabel";
+            this.linkStatusLabel.Size = new System.Drawing.Size(118, 17);
+            this.linkStatusLabel.Text = "toolStripStatusLabel1";
+            this.linkStatusLabel.Visible = false;
+            this.linkStatusLabel.Click += new System.EventHandler(this.linkStatusLabel_Click);
+            // 
+            // timer2
+            // 
+            this.timer2.Enabled = true;
+            this.timer2.Interval = 10000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(333, 182);
+            this.ClientSize = new System.Drawing.Size(333, 212);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ButtonTestConnection);
             this.Controls.Add(this.lblSBConnected);
@@ -178,9 +218,10 @@
             this.Controls.Add(this.textBoxIp);
             this.Controls.Add(this.DebugTelemetry_btn);
             this.Controls.Add(this.SBConfig_btn);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(349, 205);
+            this.MinimumSize = new System.Drawing.Size(349, 251);
             this.Name = "Main";
             this.Text = "Radiaktive - ETS/ATS Events to Streamer.Bot";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
@@ -188,6 +229,8 @@
             this.Shown += new System.EventHandler(this.Main_Shown);
             this.Resize += new System.EventHandler(this.Main_Resize);
             this.contextMenuStrip.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,5 +252,9 @@
         private System.Windows.Forms.Button ButtonTestConnection;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.Timer timer2;
+        private System.Windows.Forms.ToolStripStatusLabel statusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel linkStatusLabel;
     }
 }

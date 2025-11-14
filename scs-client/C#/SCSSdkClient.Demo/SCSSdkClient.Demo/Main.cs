@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -52,6 +53,20 @@ namespace SCSSdkClient.Demo
         public ActionInfo TrainEventSBAction = new ActionInfo();
         ///
         public ActionInfo RefuelEventSBAction = new ActionInfo();
+
+        // --- Variables de Clase ---
+        private (string Texto, string URL)[] mensajes = new (string, string)[] {
+            //("Estado: Aplicación lista.", ""), // Mensaje normal
+            ("© Radiaktive 2025", ""),
+            ("Visita mi web: radiaktive.stream", "https://www.radiaktive.stream"), // Mensaje de enlace
+            ("Visita mi Twitch: twitch.tv/radiaktive", "https://www.twitch.tv/radiaktive"), // Mensaje de enlace
+            ("Visita mi YouTube: youtube.com/@RadiaktiveTV", "https://www.youtube.com/@RadiaktiveTV") // Mensaje de enlace
+        };
+
+        private int indiceMensaje = 0;
+
+        // La URL actual, guardada para el evento Click
+        private string urlActual = "";
         #endregion
 
         public string lbGeneralString;
@@ -73,6 +88,7 @@ namespace SCSSdkClient.Demo
             ReadConfigFile();
             TelemetryRun();
             //TestSbConnection();
+            timer2_Tick(timer2, EventArgs.Empty);
         }
 
         #region Test
@@ -1507,5 +1523,54 @@ namespace SCSSdkClient.Demo
             // Opcional: Mostrar la hora actual para comprobar que funciona
             label1.Text = "Última ejecución: " + DateTime.Now.ToLongTimeString();
         }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            var mensajeActual = mensajes[indiceMensaje];
+
+            // 1. Mostrar/Ocultar y Actualizar los StatusLabels
+            if (string.IsNullOrEmpty(mensajeActual.URL))
+            {
+                // Es un mensaje normal
+                statusLabel.Text = mensajeActual.Texto;
+                statusLabel.Visible = true;
+                linkStatusLabel.Visible = false;
+                urlActual = "";
+            }
+            else
+            {
+                // Es un mensaje de enlace
+                linkStatusLabel.Text = mensajeActual.Texto;
+                linkStatusLabel.Visible = true;
+                statusLabel.Visible = false;
+                urlActual = mensajeActual.URL; // Guarda la URL para usarla en el evento Click
+            }
+
+            // 2. Avanzar y resetear el índice
+            indiceMensaje++;
+            if (indiceMensaje >= mensajes.Length)
+            {
+                indiceMensaje = 0;
+            }
+        }
+
+        // --- Manejar el Clic en el Enlace ---
+        // Debes crear este método haciendo doble clic en 'linkStatusLabel' en el diseñador
+        private void linkStatusLabel_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(urlActual))
+            {
+                try
+                {
+                    // Abre la URL en el navegador predeterminado
+                    Process.Start(new ProcessStartInfo(urlActual) { UseShellExecute = true });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("No se pudo abrir el enlace: " + ex.Message);
+                }
+            }
+        }
+
     }
 }

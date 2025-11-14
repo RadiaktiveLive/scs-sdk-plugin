@@ -914,6 +914,7 @@ namespace SCSSdkClient.Demo
             this.Controls.Add(this.buttonSaveSettings);
             this.Controls.Add(this.groupBoxActions);
             this.Controls.Add(this.groupBoxConnection);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "SBConfigForm";
