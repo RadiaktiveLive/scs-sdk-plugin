@@ -1138,7 +1138,8 @@ namespace SCSSdkClient.Demo
                 Task variableInutilPerEvitarWarnings = SendDataToSb(myObject);
                 //Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
                 //new LogWriter("INFO FERRY", JsonConvert.SerializeObject(raw.GamePlay.FerryEvent, Formatting.Indented), "FERRY");
-                new LogWriter("INFO FERRY" + (socketUdp ? " UDP" : " HTTP"), JsonConvert.SerializeObject(json, Formatting.Indented));
+                new LogWriter("INFO FERRY" + (socketUdp ? " UDP" : " HTTP"), json);
+                //new LogWriter("INFO FERRY" + (socketUdp ? " UDP" : " HTTP"), JsonConvert.SerializeObject(json, Formatting.Indented));
                 new LogWriter("INFO FERRY", JsonConvert.SerializeObject(raw, Formatting.Indented), "FERRY");
                 //Task variableInutilPerEvitarWarnings2 = PanelColor(panelFerry);
             }
@@ -1159,10 +1160,11 @@ namespace SCSSdkClient.Demo
                 //MessageBox.Show(json, "FinedEvent");
                 //MessageBox.Show(json, "FinedEvent");
                 var myObject = createMyJsonObject(FinedEventSBAction, "FinedEvent", json);
-                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                Task variableInutilPerEvitarWarnings = SendDataToSb(myObject);
+                //Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
                 //new LogWriter("INFO FINED", JsonConvert.SerializeObject(raw.GamePlay.FinedEvent, Formatting.Indented), "FINED");
                 //new LogWriter("INFO FINED", JsonConvert.SerializeObject(json, Formatting.Indented));
-                new LogWriter("INFO FINED", json);
+                new LogWriter("INFO FINED" + (socketUdp ? " UDP" : " HTTP"), json);
                 new LogWriter("INFO FINED", JsonConvert.SerializeObject(raw, Formatting.Indented), "FINED");
                 //Task variableInutilPerEvitarWarnings2 = PanelColor(panelFined);
             }
@@ -1185,11 +1187,12 @@ namespace SCSSdkClient.Demo
                     //MessageBox.Show(json, "Started");
                     //MessageBox.Show(json, "FinedEvent");
                     var myObject = createMyJsonObject(JobStartedEventSBAction, "Job", json);
-                    Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                    Task variableInutilPerEvitarWarnings = SendDataToSb(myObject);
+                    //Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
                     //new LogWriter("INFO FINED", JsonConvert.SerializeObject(raw.GamePlay.FinedEvent, Formatting.Indented), "FINED");
                     //new LogWriter("INFO FINED", JsonConvert.SerializeObject(json, Formatting.Indented));
-                    new LogWriter("INFO Started", json);
-                    new LogWriter("INFO Started", JsonConvert.SerializeObject(raw, Formatting.Indented), "Started");
+                    new LogWriter("INFO STARTED" + (socketUdp ? " UDP" : " HTTP"), json);
+                    new LogWriter("INFO STARTED", JsonConvert.SerializeObject(raw, Formatting.Indented), "Started");
                     //Task variableInutilPerEvitarWarnings2 = PanelColor(panelFined);
                 }
                 else
@@ -1200,9 +1203,11 @@ namespace SCSSdkClient.Demo
                     //var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
                     //MessageBox.Show(json, "JobDelivered");
                     var myObject = createMyJsonObject(JobStartedEventSBAction, "Job", events);
-                    Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                    Task variableInutilPerEvitarWarnings = SendDataToSb(myObject);
+                    //Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
                     //new LogWriter("INFO STARTED", JsonConvert.SerializeObject(raw.JobValues, Formatting.Indented), "JOB_STARTED");
-                    new LogWriter("INFO STARTED", JsonConvert.SerializeObject(events, Formatting.Indented));
+                    new LogWriter("INFO STARTED" + (socketUdp ? " UDP" : " HTTP"), events);
+                    //new LogWriter("INFO STARTED" + (socketUdp ? " UDP" : " HTTP"), JsonConvert.SerializeObject(events, Formatting.Indented));
                     new LogWriter("INFO STARTED", JsonConvert.SerializeObject(raw, Formatting.Indented), "JOB_STARTED");
                     //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobStarted);
                 }
@@ -1223,9 +1228,11 @@ namespace SCSSdkClient.Demo
                 var json = JsonConvert.SerializeObject(myObject1.JobCancelled);
                 //MessageBox.Show(json, "JobCancelled");
                 var myObject = createMyJsonObject(JobCancelledEventSBAction, "JobCancelled", json);
-                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                Task variableInutilPerEvitarWarnings = SendDataToSb(myObject);
+                //Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
                 //new LogWriter("INFO CANCELLED", JsonConvert.SerializeObject(raw.GamePlay.JobCancelled, Formatting.Indented), "JOB_CANCELLED");
-                new LogWriter("INFO CANCELLED", JsonConvert.SerializeObject(json, Formatting.Indented));
+                new LogWriter("INFO CANCELLED" + (socketUdp ? " UDP" : " HTTP"), json);
+                //new LogWriter("INFO CANCELLED" + (socketUdp ? " UDP" : " HTTP"), JsonConvert.SerializeObject(json, Formatting.Indented));
                 new LogWriter("INFO CANCELLED", JsonConvert.SerializeObject(raw, Formatting.Indented), "JOB_CANCELLED");
                 //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobCancelled);
             }
@@ -1245,9 +1252,11 @@ namespace SCSSdkClient.Demo
                 var json = JsonConvert.SerializeObject(myObject1.JobDelivered);
                 //MessageBox.Show(json, "JobDelivered");
                 var myObject = createMyJsonObject(JobDeliveredEventSBAction, "JobDelivered", json);
-                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                Task variableInutilPerEvitarWarnings = SendDataToSb(myObject);
+                //Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
                 //new LogWriter("INFO DELIVERED", JsonConvert.SerializeObject(raw.GamePlay.JobDelivered, Formatting.Indented), "JOB_DELIVERED");
-                new LogWriter("INFO DELIVERED", JsonConvert.SerializeObject(json, Formatting.Indented));
+                new LogWriter("INFO DELIVERED" + (socketUdp ? " UDP" : " HTTP"), json);
+                //new LogWriter("INFO DELIVERED" + (socketUdp ? " UDP" : " HTTP"), JsonConvert.SerializeObject(json, Formatting.Indented));
                 new LogWriter("INFO DELIVERED", JsonConvert.SerializeObject(raw, Formatting.Indented), "JOB_DELIVERED");
                 //Task variableInutilPerEvitarWarnings2 = PanelColor(panelJobDelivered);
             }
@@ -1267,9 +1276,11 @@ namespace SCSSdkClient.Demo
                 var json = JsonConvert.SerializeObject(myObject1.TollgateEvent);
                 //MessageBox.Show(json, "TollgateEvent");
                 var myObject = createMyJsonObject(TollgateEventSBAction, "TollgateEvent", json);
-                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                Task variableInutilPerEvitarWarnings = SendDataToSb(myObject);
+                //Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
                 //new LogWriter("INFO TOLLGATE", JsonConvert.SerializeObject(raw.GamePlay.TollgateEvent, Formatting.Indented), "TOLLGATE");
-                new LogWriter("INFO TOLLGATE", JsonConvert.SerializeObject(json, Formatting.Indented));
+                new LogWriter("INFO TOLLGATE" + (socketUdp ? " UDP" : " HTTP"), json);
+                //new LogWriter("INFO TOLLGATE" + (socketUdp ? " UDP" : " HTTP"), JsonConvert.SerializeObject(json, Formatting.Indented));
                 new LogWriter("INFO TOLLGATE", JsonConvert.SerializeObject(raw, Formatting.Indented), "TOLLGATE");
                 //Task variableInutilPerEvitarWarnings2 = PanelColor(panelTollgate);
             }
@@ -1290,9 +1301,11 @@ namespace SCSSdkClient.Demo
                 //MessageBox.Show(json, "TrainEvent");
                 //MessageBox.Show(json, "TrainEvent");
                 var myObject = createMyJsonObject(TrainEventSBAction, "TrainEvent", json);
-                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                Task variableInutilPerEvitarWarnings = SendDataToSb(myObject);
+                //Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
                 //new LogWriter("INFO TRAIN", JsonConvert.SerializeObject(raw.GamePlay.TrainEvent, Formatting.Indented), "TRAIN");
-                new LogWriter("INFO TRAIN", JsonConvert.SerializeObject(json, Formatting.Indented));
+                new LogWriter("INFO TRAIN" + (socketUdp ? " UDP" : " HTTP"), json);
+                //new LogWriter("INFO TRAIN" + (socketUdp ? " UDP" : " HTTP"), JsonConvert.SerializeObject(json, Formatting.Indented));
                 new LogWriter("INFO TRAIN", JsonConvert.SerializeObject(raw, Formatting.Indented), "TRAIN");
                 //Task variableInutilPerEvitarWarnings2 = PanelColor(panelTrain);
             }
@@ -1312,9 +1325,11 @@ namespace SCSSdkClient.Demo
                 var json = JsonConvert.SerializeObject(myObject1.RefuelEvent);
                 //MessageBox.Show(json, "RefuelEvent");
                 var myObject = createMyJsonObject(RefuelEventSBAction, "RefuelEvent", json);
-                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                Task variableInutilPerEvitarWarnings = SendDataToSb(myObject);
+                //Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
                 //new LogWriter("INFO REFUEL", JsonConvert.SerializeObject(raw.GamePlay.RefuelEvent, Formatting.Indented), "REFUEL_PAYED");
-                new LogWriter("INFO REFUEL", JsonConvert.SerializeObject(json, Formatting.Indented));
+                new LogWriter("INFO REFUEL" + (socketUdp ? " UDP" : " HTTP"), json);
+                //new LogWriter("INFO REFUEL" + (socketUdp ? " UDP" : " HTTP"), JsonConvert.SerializeObject(json, Formatting.Indented));
                 new LogWriter("INFO REFUEL", JsonConvert.SerializeObject(raw, Formatting.Indented), "REFUEL_PAYED");
                 //panelRefuel.BackColor = Color.IndianRed;
                 //Task variableInutilPerEvitarWarnings2 = PanelColor(panelRefuel);
@@ -1673,7 +1688,7 @@ namespace SCSSdkClient.Demo
                 {
                     // Otros errores
                     new Main.LogWriter("ERROR UDP", $"Fallo general UDP: {ex.Message}");
-                    MessageBox.Show($"Fallo general UDP: {ex.Message}", messageBoxTitle);
+//                    MessageBox.Show($"Fallo general UDP: {ex.Message}", messageBoxTitle);
                 }
             }
         }
@@ -1908,7 +1923,7 @@ namespace SCSSdkClient.Demo
 
         private Task SendDataToSb(MyJsonObject eventData)
         {
-            MessageBox.Show("socketUdp: " + socketUdp);
+            //MessageBox.Show("socketUdp: " + socketUdp);
             Task variableInutilPerEvitarWarnings;
             if (socketUdp)
             {
