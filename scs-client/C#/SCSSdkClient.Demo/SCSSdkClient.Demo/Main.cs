@@ -55,7 +55,8 @@ namespace SCSSdkClient.Demo
         ///
         public ActionInfo RefuelEventSBAction = new ActionInfo();
 
-        private System.Threading.Timer conexionTimer; // El timer de System.Threading
+        private System.Threading.Timer conexionHttpTimer; // El timer de System.Threading
+        private System.Threading.Timer conexionUdpTimer; // El timer de System.Threading
 
         private System.Threading.Timer rotacionTimer; // El timer de System.Threading
 
@@ -73,6 +74,8 @@ namespace SCSSdkClient.Demo
         private string urlActual = "";
 
         private bool messageBoxShow = false;
+
+        private bool socketUdp = false;
         #endregion
 
         public string lbGeneralString;
@@ -104,8 +107,14 @@ namespace SCSSdkClient.Demo
                 0,
                 10000
             );
-            conexionTimer = new System.Threading.Timer(
+            conexionHttpTimer = new System.Threading.Timer(
                 ComprobarConexionHttp,
+                null,
+                0,
+                10000
+            );
+            conexionUdpTimer = new System.Threading.Timer(
+                ComprobarConexionUdp,
                 null,
                 0,
                 10000
@@ -740,6 +749,7 @@ namespace SCSSdkClient.Demo
         ///
         public class MyJsonObject
         {
+            public String request { get; set; }
             ///
             public ActionInfo action { get; set; }
             ///
@@ -793,6 +803,57 @@ namespace SCSSdkClient.Demo
                 {
                     // Handle the error
                     return null;
+                }
+            }
+        }
+
+        ///
+        // Nota: El tipo de retorno cambia a Task (sin valor) porque UDP no devuelve un string de respuesta.
+        public async Task SendJsonDataUdpAsync(MyJsonObject data)
+        {
+            // Verifica si la configuración de la URL está vacía (aunque para UDP necesitarás IP y Puerto)
+            if (StreamerBotConfig.ip.Equals("") || StreamerBotConfig.port.Equals(""))
+            {
+                // En un escenario real con UDP, verificarías IP y Puerto
+                return;
+            }
+            data.request = StreamerBotConfig.endpoint;
+
+            // 1. Serializar el objeto a una cadena JSON
+            var json = JsonConvert.SerializeObject(data);
+
+            // 2. Convertir la cadena JSON a un array de bytes (datagrama)
+            // UTF8 es la codificación estándar para JSON.
+            byte[] datagram = Encoding.UTF8.GetBytes(json);
+
+            // 3. Obtener el destino
+            // Asumimos que StreamerBotConfig tiene IP y Puerto definidos para UDP.
+            string serverIp = StreamerBotConfig.ip;
+            int serverPort = int.Parse(StreamerBotConfig.port);
+
+            // 4. Enviar el datagrama de forma asíncrona
+            // UdpClient se usa dentro de un bloque using para garantizar su liberación.
+            using (var client = new UdpClient())
+            {
+                try
+                {
+                    // SendAsync envía el array de bytes al host y puerto especificados
+                    // El resultado de SendAsync es el número de bytes enviados.
+                    int bytesSent = await client.SendAsync(datagram, datagram.Length, serverIp, serverPort);
+
+                    // Opcional: Escribir un log
+                    // Console.WriteLine($"Datagrama UDP enviado. {bytesSent} bytes.");
+                    return;
+                }
+                catch (SocketException ex)
+                {
+                    // Manejar errores de socket (ej. host inalcanzable, firewall)
+                    // Console.WriteLine($"Error de socket UDP: {ex.Message}");
+                }
+                catch (Exception ex)
+                {
+                    // Manejar otros errores
+                    // Console.WriteLine($"Error al enviar UDP: {ex.Message}");
                 }
             }
         }
@@ -1070,12 +1131,14 @@ namespace SCSSdkClient.Demo
                 ShowMessageBox(events, "Ferry");
                 //MessageBox.Show(events, "Ferry");
                 var myObject1 = JsonConvert.DeserializeObject<GamePlayEvents>(events);
+                //myObject1.FerryEvent.SourceName = (socketUdp ? " UDP" : " HTTP") + myObject1.FerryEvent.SourceName;
                 var json = JsonConvert.SerializeObject(myObject1.FerryEvent);
                 //MessageBox.Show(json, "FerryEvent");
                 var myObject = createMyJsonObject(FerryEventSBAction, "FerryEvent", json);
-                Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
+                Task variableInutilPerEvitarWarnings = SendDataToSb(myObject);
+                //Task variableInutilPerEvitarWarnings = PostJsonDataAsync(myObject);
                 //new LogWriter("INFO FERRY", JsonConvert.SerializeObject(raw.GamePlay.FerryEvent, Formatting.Indented), "FERRY");
-                new LogWriter("INFO FERRY", JsonConvert.SerializeObject(json, Formatting.Indented));
+                new LogWriter("INFO FERRY" + (socketUdp ? " UDP" : " HTTP"), JsonConvert.SerializeObject(json, Formatting.Indented));
                 new LogWriter("INFO FERRY", JsonConvert.SerializeObject(raw, Formatting.Indented), "FERRY");
                 //Task variableInutilPerEvitarWarnings2 = PanelColor(panelFerry);
             }
@@ -1412,14 +1475,14 @@ namespace SCSSdkClient.Demo
                     //Console.WriteLine("Connection successful");
                     //new LogWriter("INFO", "TcpClient Connection successful");
                     //new LogWriter("INFO", testUrl.ToString() + "\rTcpClient Connection successful");
-                    new Main.LogWriter("TEST CONNECTION", "Streamer.bot IP: " + server + ":" + port + "\rResult: TcpClient Connection successful");
+                    new Main.LogWriter("TEST CONNECTION HTTP", "Streamer.bot IP: " + server + ":" + port + "\rResult: TcpClient Connection successful");
 //                    MessageBox.Show($"Connection successful", messageBoxTitle);
                     //lblSBConnected.Text = "SB Connection try: ✔";
                     StreamerBotConnected = true;
                     tcpClient.Close();
 
                     HttpClient client = new HttpClient();
-                    new Main.LogWriter("INFO", testUrl.ToString());
+                    new Main.LogWriter("INFO HTTP", testUrl.ToString());
                     //new LogWriter("INFO2", testUrl.Uri.ToString());
 
                     HttpResponseMessage response = await client.GetAsync(testUrl.Uri.ToString());
@@ -1440,7 +1503,7 @@ namespace SCSSdkClient.Demo
                             //MessageBox.Show(data["count"]);
                             //new LogWriter("INFO", data.Count.ToString());
                             //new LogWriter("INFO", "data.Count ACTIONS: " + data.Count.ToString());
-                            new Main.LogWriter("INFO", "Streamer.bot Total Actions: " + data.Count.ToString());
+                            new Main.LogWriter("INFO HTTP", "Streamer.bot Total Actions: " + data.Count.ToString());
                             /*
                             if (data.Count >= 0 && data.Actions.Count >= 0)
                             {
@@ -1498,7 +1561,7 @@ namespace SCSSdkClient.Demo
                     else
                     {
                         //Console.WriteLine($"Error: {response.StatusCode}");
-                        new Main.LogWriter("ERROR", $"Error: {response.StatusCode}");
+                        new Main.LogWriter("ERROR HTTP", $"Error: {response.StatusCode}");
                         MessageBox.Show($"Error: {response.StatusCode}", messageBoxTitle);
                         //lblSBConnected.Text = "SB Connection else 2: ❌";
                     }
@@ -1509,7 +1572,7 @@ namespace SCSSdkClient.Demo
                 {
                     // Handle exception related to the HTTP request
                     //Console.WriteLine($"Request error: {ex.Message}");
-                    new Main.LogWriter("ERROR", $"Request error: {ex.Message}");
+                    new Main.LogWriter("ERROR HTTP", $"Request error: {ex.Message}");
                     MessageBox.Show($"Request error: {ex.Message}", messageBoxTitle);
                     //lblSBConnected.Text = "SB Connection HttpRequestException: ❌";
                 }
@@ -1517,14 +1580,14 @@ namespace SCSSdkClient.Demo
                 {
                     // Handle exception related to JSON deserialization
                     //Console.WriteLine($"Deserialization error: {ex.Message}");
-                    new Main.LogWriter("ERROR", $"Deserialization error: {ex.Message}");
+                    new Main.LogWriter("ERROR HTTP", $"Deserialization error: {ex.Message}");
                     MessageBox.Show($"Deserialization error: {ex.Message}", messageBoxTitle);
                     //lblSBConnected.Text = "SB Connection JsonException: ❌";
                 }
                 catch (Exception ex)
                 {
                     //Console.WriteLine($"Connection failed: {ex.Message}");
-                    new Main.LogWriter("ERROR", $"Connection failed: {ex.Message}");
+                    new Main.LogWriter("ERROR HTTP", $"Connection failed: {ex.Message}");
                     //new LogWriter("ERROR", $"Connection failed: {ex}");
 //                    MessageBox.Show($"Connection failed: {ex.Message}", messageBoxTitle);
                     //lblSBConnected.Text = "SB Connection Exception: ❌";
@@ -1532,6 +1595,86 @@ namespace SCSSdkClient.Demo
                 lblSBConnected.Text = "SB Connection: " + (StreamerBotConnected ? "✔" : "❌");
                 // Opcional: Mostrar la hora actual para comprobar que funciona
                 label1.Text = "Última ejecución: " + DateTime.Now.ToLongTimeString();
+            }
+        }
+
+        private async void TestSbConnectionUdpAsync()
+        {
+            string server = StreamerBotConfig.ip;
+            int port = int.Parse(StreamerBotConfig.port);
+            string messageBoxTitle = "StreamerBot Test Connection";
+
+            // Bandera para el estado de la conexión UDP
+            StreamerBotConnected = false;
+
+            // El cliente UDP debe estar ligado a un puerto local si esperamos una respuesta
+            // Usamos el puerto 0 para que el SO asigne automáticamente un puerto disponible.
+            using (var udpClient = new UdpClient(0))
+            {
+                // 5 segundos de timeout para la respuesta UDP
+                var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+
+                // 1. Crear el mensaje de prueba
+                string testMessage = "StreamerBotUDPTest";
+                byte[] sendBytes = Encoding.UTF8.GetBytes(testMessage);
+
+                try
+                {
+                    // 2. Intentar ENVIAR el mensaje de prueba (asíncrono)
+                    // Esto no confirma la conexión, solo intenta enviar.
+                    await udpClient.SendAsync(sendBytes, sendBytes.Length, server, port);
+
+                    // Log de envío exitoso
+                    new Main.LogWriter("TEST CONNECTION UDP", $"Streamer.bot IP: {server}:{port}\rResult: Datagrama UDP enviado.");
+
+                    // 3. Intentar RECIBIR una respuesta del servidor (asíncrono con cancelación)
+                    // UDP no tiene un método ReceiveAsync con CancellationToken directo, 
+                    // por lo que usamos Task.Run para el timeout.
+
+                    // Tarea de recepción (bloqueante en el ThreadPool)
+                    var receiveTask = udpClient.ReceiveAsync();
+
+                    // Tarea de timeout
+                    var timeoutTask = Task.Delay(TimeSpan.FromSeconds(5));
+
+                    // Esperar a que uno de los dos termine
+                    var completedTask = await Task.WhenAny(receiveTask, timeoutTask);
+
+                    if (completedTask == receiveTask)
+                    {
+                        // La recepción terminó primero (hubo respuesta)
+                        UdpReceiveResult result = await receiveTask;
+                        string response = Encoding.UTF8.GetString(result.Buffer);
+
+                        StreamerBotConnected = true;
+                        new Main.LogWriter("INFO UDP", $"Respuesta UDP recibida: {response}");
+                    }
+                    else
+                    {
+                        // Timeout ocurrió
+                        cts.Cancel(); // Cancelar la operación si todavía está pendiente
+                        throw new TimeoutException("No se recibió respuesta UDP dentro del tiempo límite.");
+                    }
+
+                }
+                catch (SocketException ex)
+                {
+                    // Error de socket (ej. Puerto no abierto en el lado del servidor/firewall)
+                    new Main.LogWriter("ERROR UDP", $"Error de socket UDP: {ex.Message}");
+//                    MessageBox.Show($"Error de socket UDP: {ex.Message}", messageBoxTitle);
+                }
+                catch (TimeoutException ex)
+                {
+                    // Error de Timeout (no hubo respuesta)
+                    new Main.LogWriter("ERROR UDP", $"Timeout: {ex.Message}");
+//                    MessageBox.Show("Conexión UDP fallida: No se recibió respuesta.", messageBoxTitle);
+                }
+                catch (Exception ex)
+                {
+                    // Otros errores
+                    new Main.LogWriter("ERROR UDP", $"Fallo general UDP: {ex.Message}");
+                    MessageBox.Show($"Fallo general UDP: {ex.Message}", messageBoxTitle);
+                }
             }
         }
 
@@ -1709,9 +1852,13 @@ namespace SCSSdkClient.Demo
             {
                 rotacionTimer.Dispose();
             }
-            if (conexionTimer != null)
+            if (conexionHttpTimer != null)
             {
-                conexionTimer.Dispose();
+                conexionHttpTimer.Dispose();
+            }
+            if (conexionUdpTimer != null)
+            {
+                conexionUdpTimer.Dispose();
             }
         }
 
@@ -1729,6 +1876,49 @@ namespace SCSSdkClient.Demo
                 // Si ya estamos en el hilo de la UI (no se necesita Invoke)
                 TestSbConnection();
             }
+        }
+
+        private void ComprobarConexionUdp(object state)
+        {
+            // Verificación CORRECTA: Usa 'this' (el formulario) para comprobar si 
+            // se requiere un cambio de hilo (Invoke).
+            if (this.InvokeRequired)
+            {
+                // Si se requiere Invoke, llama a una función delegado en el hilo de la UI
+                this.Invoke(new MethodInvoker(TestSbConnectionUdpAsync));
+            }
+            else
+            {
+                // Si ya estamos en el hilo de la UI (no se necesita Invoke)
+                TestSbConnectionUdpAsync();
+            }
+        }
+
+        private void checkBoxSocketUdp_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxSocketUdp.Checked)
+            {
+                socketUdp = true;
+            }
+            else
+            {
+                socketUdp = false;
+            }
+        }
+
+        private Task SendDataToSb(MyJsonObject eventData)
+        {
+            MessageBox.Show("socketUdp: " + socketUdp);
+            Task variableInutilPerEvitarWarnings;
+            if (socketUdp)
+            {
+                variableInutilPerEvitarWarnings = SendJsonDataUdpAsync(eventData);
+            }
+            else
+            {
+                variableInutilPerEvitarWarnings = PostJsonDataAsync(eventData);
+            }
+            return variableInutilPerEvitarWarnings;
         }
     }
 }
