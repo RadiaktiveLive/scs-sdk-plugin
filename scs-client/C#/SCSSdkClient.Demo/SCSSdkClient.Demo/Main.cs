@@ -17,6 +17,7 @@ using System.Net.Http;
 using System.Net.Sockets;
 using System.Security.Policy;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -54,7 +55,8 @@ namespace SCSSdkClient.Demo
         ///
         public ActionInfo RefuelEventSBAction = new ActionInfo();
 
-        // --- Variables de Clase ---
+        private System.Threading.Timer rotacionTimer; // El timer de System.Threading
+
         private (string Texto, string URL)[] mensajes = new (string, string)[] {
             //("Estado: Aplicación lista.", ""), // Mensaje normal
             ("© Radiaktive 2025", ""),
@@ -90,7 +92,16 @@ namespace SCSSdkClient.Demo
             ReadConfigFile();
             TelemetryRun();
             //TestSbConnection();
-            timer2_Tick(timer2, EventArgs.Empty);
+            //timer2_Tick(timer2, EventArgs.Empty);
+
+            // Inicializa el timer de threading
+            // Se ejecuta inmediatamente (0) y luego cada 10,000 milisegundos (10 segundos)
+            rotacionTimer = new System.Threading.Timer(
+                RotarMensaje,
+                null,
+                0,
+                10000
+            );
         }
 
         #region Test
@@ -1518,7 +1529,7 @@ namespace SCSSdkClient.Demo
             //TestSbConnection();
 
             // 1. Iniciar el temporizador
-            timer1.Start();
+            //timer1.Start();
         }
 
         private void Main_Shown(object sender, EventArgs e)
@@ -1535,7 +1546,7 @@ namespace SCSSdkClient.Demo
             label1.Text = "Última ejecución: " + DateTime.Now.ToLongTimeString();
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        private async void timer2_Tick(object sender, EventArgs e)
         {
             var mensajeActual = mensajes[indiceMensaje];
 
@@ -1599,6 +1610,94 @@ namespace SCSSdkClient.Demo
         {
             messageBoxShow = checkBoxEnableMessageBox.Checked;
             //MessageBox.Show("MessageBox Status: " + messageBoxShow);
+        }
+
+        private void RotarMensaje(object state)
+        {
+            // Verificación CORRECTA: Usa 'this' (el formulario) para comprobar si 
+            // se requiere un cambio de hilo (Invoke).
+            if (this.InvokeRequired)
+            {
+                // Si se requiere Invoke, llama a una función delegado en el hilo de la UI
+                this.Invoke(new MethodInvoker(ActualizarUI));
+            }
+            else
+            {
+                // Si ya estamos en el hilo de la UI (no se necesita Invoke)
+                ActualizarUI();
+            }
+        }
+
+        private void ActualizarUI()
+        {
+            /*
+            // Lógica para actualizar el texto
+            statusLabel.Text = mensajes[indiceMensaje].Texto;
+
+            // Lógica para avanzar el índice
+            indiceMensaje++;
+            if (indiceMensaje >= mensajes.Length)
+            {
+                indiceMensaje = 0;
+            }
+            */
+
+            var mensajeActual = mensajes[indiceMensaje];
+
+            // 1. Mostrar/Ocultar y Actualizar los StatusLabels
+            if (string.IsNullOrEmpty(mensajeActual.URL))
+            {
+                // Es un mensaje normal
+                statusLabel.Text = mensajeActual.Texto;
+                statusLabel.Visible = true;
+                linkStatusLabel.Visible = false;
+                urlActual = "";
+            }
+            else
+            {
+                // Es un mensaje de enlace
+                linkStatusLabel.Text = mensajeActual.Texto;
+                linkStatusLabel.Visible = true;
+                statusLabel.Visible = false;
+                urlActual = mensajeActual.URL; // Guarda la URL para usarla en el evento Click
+            }
+
+            // 2. Avanzar y resetear el índice
+            indiceMensaje++;
+            if (indiceMensaje >= mensajes.Length)
+            {
+                indiceMensaje = 0;
+            }
+
+            // Aquí también manejarías la lógica de enlace que definimos antes
+            // si quieres que el mensaje de enlace rote también.
+
+            // Ejemplo de cómo manejarías los enlaces (asumiendo que tienes 'linkStatusLabel' y 'urlActual'):
+            /*
+            var mensajeActual = mensajes[indiceMensaje];
+            if (mensajeActual.Contains("sitio")) // ejemplo simplificado
+            {
+                linkStatusLabel.Text = mensajeActual;
+                linkStatusLabel.Visible = true;
+                statusLabel.Visible = false;
+                // urlActual = "http://ejemplo.com"; 
+            }
+            else
+            {
+                statusLabel.Text = mensajeActual;
+                statusLabel.Visible = true;
+                linkStatusLabel.Visible = false;
+            }
+            */
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Detiene el timer y libera los recursos del sistema
+            if (rotacionTimer != null)
+            {
+                rotacionTimer.Dispose();
+            }
         }
     }
 }
