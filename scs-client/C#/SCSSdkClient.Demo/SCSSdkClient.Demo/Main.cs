@@ -55,6 +55,8 @@ namespace SCSSdkClient.Demo
         ///
         public ActionInfo RefuelEventSBAction = new ActionInfo();
 
+        private System.Threading.Timer conexionTimer; // El timer de System.Threading
+
         private System.Threading.Timer rotacionTimer; // El timer de System.Threading
 
         private (string Texto, string URL)[] mensajes = new (string, string)[] {
@@ -98,6 +100,12 @@ namespace SCSSdkClient.Demo
             // Se ejecuta inmediatamente (0) y luego cada 10,000 milisegundos (10 segundos)
             rotacionTimer = new System.Threading.Timer(
                 RotarMensaje,
+                null,
+                0,
+                10000
+            );
+            conexionTimer = new System.Threading.Timer(
+                ComprobarConexionHttp,
                 null,
                 0,
                 10000
@@ -1399,7 +1407,8 @@ namespace SCSSdkClient.Demo
             {
                 try
                 {
-                    tcpClient.Connect(server, port);
+                    //tcpClient.Connect(server, port);
+                    await tcpClient.ConnectAsync(server, port);
                     //Console.WriteLine("Connection successful");
                     //new LogWriter("INFO", "TcpClient Connection successful");
                     //new LogWriter("INFO", testUrl.ToString() + "\rTcpClient Connection successful");
@@ -1521,6 +1530,8 @@ namespace SCSSdkClient.Demo
                     //lblSBConnected.Text = "SB Connection Exception: ❌";
                 }
                 lblSBConnected.Text = "SB Connection: " + (StreamerBotConnected ? "✔" : "❌");
+                // Opcional: Mostrar la hora actual para comprobar que funciona
+                label1.Text = "Última ejecución: " + DateTime.Now.ToLongTimeString();
             }
         }
 
@@ -1697,6 +1708,26 @@ namespace SCSSdkClient.Demo
             if (rotacionTimer != null)
             {
                 rotacionTimer.Dispose();
+            }
+            if (conexionTimer != null)
+            {
+                conexionTimer.Dispose();
+            }
+        }
+
+        private void ComprobarConexionHttp(object state)
+        {
+            // Verificación CORRECTA: Usa 'this' (el formulario) para comprobar si 
+            // se requiere un cambio de hilo (Invoke).
+            if (this.InvokeRequired)
+            {
+                // Si se requiere Invoke, llama a una función delegado en el hilo de la UI
+                this.Invoke(new MethodInvoker(TestSbConnection));
+            }
+            else
+            {
+                // Si ya estamos en el hilo de la UI (no se necesita Invoke)
+                TestSbConnection();
             }
         }
     }
