@@ -133,7 +133,7 @@ namespace SCSSdkClient.Demo
         #endregion
 
         #region StreamerBot Methods
-        private void ReadConfigFile()
+        public void ReadConfigFile()
         {
             //MessageBox.Show("ReadConfigFile running");
             try
@@ -159,7 +159,8 @@ namespace SCSSdkClient.Demo
                 string Ip = configuration.GetSection("Connection:Ip").Value;
                 string Port = configuration.GetSection("Connection:Port").Value;
                 string Endpoint = configuration.GetSection("Connection:Endpoint").Value;
-                if (Protocol == null || Ip == null || Port == null || Endpoint == null)
+                string Type = configuration.GetSection("Connection:Type").Value;
+                if (Protocol == null || Ip == null || Port == null || Endpoint == null || Type == null)
                 {
                     MessageBox.Show("One or more Connection values are missing.");
                     //return;
@@ -172,6 +173,9 @@ namespace SCSSdkClient.Demo
                     StreamerBotConfig.port = Port;
                     StreamerBotConfig.endpoint = Endpoint;
                     StreamerBotConfig.url = uriBuilder.ToString();
+                    StreamerBotConfig.type = Type;
+                    socketUdp = Type == "udp" ? true : false;
+                    checkBoxSocketUdp.Checked = socketUdp; //To test. Remove when fully tested
                     /*
                     var uriBuilder = new UriBuilder(Protocol, Ip, int.Parse(Port), Endpoint);
                     StreamerbotUrl = uriBuilder.ToString();
@@ -393,15 +397,19 @@ namespace SCSSdkClient.Demo
         public class StreamerBot
         {
             ///
-            public string protocol { get; set; }
+            [Obsolete("The protocol will be hardcoded, not on a StreamerBotSettings.json")]
+            public string protocol { get; set; } // TODO: Will be removed
             ///
             public string ip { get; set; }
             ///
             public string port { get; set; }
             ///
-            public string endpoint { get; set; }
+            [Obsolete("The endpoint will be hardcoded, not on a StreamerBotSettings.json")]
+            public string endpoint { get; set; } // TODO: Will be removed
             ///
             public string url { get; set; }
+            ///
+            public string type { get; set; }
 
             /// Constructor
             public StreamerBot()
@@ -411,16 +419,18 @@ namespace SCSSdkClient.Demo
                 this.port = "";
                 this.endpoint = "";
                 this.url = "";
+                this.type = "";
             }
 
             /// Constructor
-            public StreamerBot(string protocol, string ip, string port, string endpoint, string url)
+            public StreamerBot(string protocol, string ip, string port, string endpoint, string url, string type)
             {
                 this.protocol = protocol;
                 this.ip = ip;
                 this.port = port;
                 this.endpoint = endpoint;
                 this.url = url;
+                this.type = type;
             }
         }
 
@@ -1771,7 +1781,7 @@ namespace SCSSdkClient.Demo
             }
             else
             {
-                notifyIcon.ShowBalloonTip(3000, "Mi Aplicación", title + " Event Fired", ToolTipIcon.Info);
+                notifyIcon.ShowBalloonTip(3000, "Mi Aplicación", title + " Event Fired\r\n" + (socketUdp ? "UDP" : "HTTP"), ToolTipIcon.Info);
             }
         }
 

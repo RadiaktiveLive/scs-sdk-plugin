@@ -18,6 +18,7 @@ using System.Windows.Forms;
 using static SCSSdkClient.Demo.Main;
 using static SCSSdkClient.Demo.SCSSdkClientDemo;
 using static SCSSdkClient.Object.SCSTelemetry;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SCSSdkClient.Demo
 {
@@ -31,6 +32,8 @@ namespace SCSSdkClient.Demo
 
         public string StreamerbotUrl = "";
 
+        private string connectionType = "";
+
         public SBConfigForm(Main mainForm)
         {
             InitializeComponent();
@@ -42,6 +45,8 @@ namespace SCSSdkClient.Demo
             // SB connection settings
             textBoxIp.Text = _mainForm.StreamerBotConfig.ip;
             textBoxPort.Text = _mainForm.StreamerBotConfig.port;
+            radioHttpServer.Checked = _mainForm.StreamerBotConfig.type == "http" ? true : false;
+            radioUdpServer.Checked = _mainForm.StreamerBotConfig.type == "udp" ? true : false;
 
             // JobStartedEventSBAction
             textBoxJobStartedId.Text = _mainForm.JobStartedEventSBAction.id;
@@ -250,7 +255,8 @@ namespace SCSSdkClient.Demo
                     Protocol = "http",
                     Ip = textBoxIp.Text,
                     Port = textBoxPort.Text,
-                    Endpoint = "DoAction"
+                    Endpoint = "DoAction",
+                    Type = connectionType
                 },
                 Actions = new
                 {
@@ -314,6 +320,7 @@ namespace SCSSdkClient.Demo
             _mainForm.StreamerBotConfig.protocol = data.Connection.Protocol;
             _mainForm.StreamerBotConfig.endpoint = data.Connection.Endpoint;
             */
+            _mainForm.ReadConfigFile();
         }
 
         private void textBoxPort_TextChanged(object sender, EventArgs e)
@@ -773,6 +780,55 @@ namespace SCSSdkClient.Demo
 
             //_mainForm.TelemetryRefuelPayed(_mainForm.raw.GamePlay, e);
             testRefuelPayedEventDemoData_Click(sender, e);
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            // 1. Convertir el remitente (sender) al control RadioButton
+            System.Windows.Forms.RadioButton radioButtonActual = sender as System.Windows.Forms.RadioButton;
+
+            // 2. Verificar si este botón está marcado
+            if (radioButtonActual != null && radioButtonActual.Checked)
+            {
+                // El botón 'Checked' está marcado, ¡ejecutamos la lógica!
+
+                if (radioButtonActual == radioHttpServer)
+                {
+                    // Lógica para la Opción A seleccionada
+                    MessageBox.Show("Opción HTTP seleccionada");
+
+                    // Llama a una función específica para A si es necesario
+                    //EjecutarAccionA();
+                    connectionType = radioHttpServer.Tag.ToString();
+                    HttpConnectionSelected(sender, e);
+                }
+                else if (radioButtonActual == radioUdpServer)
+                {
+                    // Lógica para la Opción B seleccionada
+                    MessageBox.Show("Opción UDP seleccionada");
+
+                    // Llama a una función específica para B si es necesario
+                    //EjecutarAccionB();
+                    connectionType = radioUdpServer.Tag.ToString();
+                    UdpConnectionSelected(sender, e);
+                }
+            }
+            // NOTA: Si Checked == false, significa que el botón se acaba de desmarcar, 
+            // y no necesitas hacer nada, ya que el otro botón se encargará de su lógica.
+        }
+
+        private void HttpConnectionSelected(object sender, EventArgs e)
+        {
+            textBoxIp.Text = "127.0.0.1";
+            //textBoxIp.Enabled = true;
+            textBoxPort.Text = "7474";
+        }
+
+        private void UdpConnectionSelected(object sender, EventArgs e)
+        {
+            //textBoxIp.Text = string.Empty;
+            //textBoxIp.Enabled = false;
+            textBoxPort.Text = "4242";
         }
     }
 }

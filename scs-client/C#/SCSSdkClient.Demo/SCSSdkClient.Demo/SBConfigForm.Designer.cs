@@ -108,6 +108,9 @@ namespace SCSSdkClient.Demo
             this.toolStripMenuItemFerryEvent = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemRefuelEvent = new System.Windows.Forms.ToolStripMenuItem();
             this.btnRunAllEvents = new System.Windows.Forms.Button();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.radioHttpServer = new System.Windows.Forms.RadioButton();
+            this.radioUdpServer = new System.Windows.Forms.RadioButton();
             this.groupBoxActions.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -119,6 +122,7 @@ namespace SCSSdkClient.Demo
             this.groupBox1.SuspendLayout();
             this.groupBoxConnection.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
+            this.groupBox9.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxActions
@@ -777,7 +781,7 @@ namespace SCSSdkClient.Demo
             // 
             // buttonTestConnection
             // 
-            this.buttonTestConnection.Location = new System.Drawing.Point(416, 36);
+            this.buttonTestConnection.Location = new System.Drawing.Point(474, 17);
             this.buttonTestConnection.Margin = new System.Windows.Forms.Padding(2);
             this.buttonTestConnection.Name = "buttonTestConnection";
             this.buttonTestConnection.Size = new System.Drawing.Size(120, 32);
@@ -788,7 +792,7 @@ namespace SCSSdkClient.Demo
             // 
             // buttonSaveSettings
             // 
-            this.buttonSaveSettings.Location = new System.Drawing.Point(575, 36);
+            this.buttonSaveSettings.Location = new System.Drawing.Point(598, 17);
             this.buttonSaveSettings.Margin = new System.Windows.Forms.Padding(2);
             this.buttonSaveSettings.Name = "buttonSaveSettings";
             this.buttonSaveSettings.Size = new System.Drawing.Size(120, 32);
@@ -800,7 +804,7 @@ namespace SCSSdkClient.Demo
             // buttonTriggerActions
             // 
             this.buttonTriggerActions.ContextMenuStrip = this.contextMenuStrip1;
-            this.buttonTriggerActions.Location = new System.Drawing.Point(321, 68);
+            this.buttonTriggerActions.Location = new System.Drawing.Point(474, 53);
             this.buttonTriggerActions.Margin = new System.Windows.Forms.Padding(2);
             this.buttonTriggerActions.Name = "buttonTriggerActions";
             this.buttonTriggerActions.Size = new System.Drawing.Size(120, 32);
@@ -895,7 +899,7 @@ namespace SCSSdkClient.Demo
             // 
             // btnRunAllEvents
             // 
-            this.btnRunAllEvents.Location = new System.Drawing.Point(495, 68);
+            this.btnRunAllEvents.Location = new System.Drawing.Point(599, 53);
             this.btnRunAllEvents.Name = "btnRunAllEvents";
             this.btnRunAllEvents.Size = new System.Drawing.Size(120, 32);
             this.btnRunAllEvents.TabIndex = 9;
@@ -903,11 +907,49 @@ namespace SCSSdkClient.Demo
             this.btnRunAllEvents.UseVisualStyleBackColor = true;
             this.btnRunAllEvents.Click += new System.EventHandler(this.btnRunAllEvents_Click);
             // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.radioUdpServer);
+            this.groupBox9.Controls.Add(this.radioHttpServer);
+            this.groupBox9.Location = new System.Drawing.Point(327, 20);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(141, 65);
+            this.groupBox9.TabIndex = 10;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Connection Type";
+            // 
+            // radioHttpServer
+            // 
+            this.radioHttpServer.AutoSize = true;
+            this.radioHttpServer.Location = new System.Drawing.Point(7, 18);
+            this.radioHttpServer.Name = "radioHttpServer";
+            this.radioHttpServer.Size = new System.Drawing.Size(88, 17);
+            this.radioHttpServer.TabIndex = 0;
+            this.radioHttpServer.TabStop = true;
+            this.radioHttpServer.Tag = "http";
+            this.radioHttpServer.Text = "HTTP Server";
+            this.radioHttpServer.UseVisualStyleBackColor = true;
+            this.radioHttpServer.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioUdpServer
+            // 
+            this.radioUdpServer.AutoSize = true;
+            this.radioUdpServer.Location = new System.Drawing.Point(7, 39);
+            this.radioUdpServer.Name = "radioUdpServer";
+            this.radioUdpServer.Size = new System.Drawing.Size(82, 17);
+            this.radioUdpServer.TabIndex = 1;
+            this.radioUdpServer.TabStop = true;
+            this.radioUdpServer.Tag = "udp";
+            this.radioUdpServer.Text = "UDP Server";
+            this.radioUdpServer.UseVisualStyleBackColor = true;
+            this.radioUdpServer.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
             // SBConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(730, 429);
+            this.Controls.Add(this.groupBox9);
             this.Controls.Add(this.btnRunAllEvents);
             this.Controls.Add(this.buttonTriggerActions);
             this.Controls.Add(this.buttonTestConnection);
@@ -941,6 +983,8 @@ namespace SCSSdkClient.Demo
             this.groupBoxConnection.ResumeLayout(false);
             this.groupBoxConnection.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1030,5 +1074,8 @@ namespace SCSSdkClient.Demo
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemFerryEvent;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemRefuelEvent;
         private System.Windows.Forms.Button btnRunAllEvents;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.RadioButton radioUdpServer;
+        private System.Windows.Forms.RadioButton radioHttpServer;
     }
 }
