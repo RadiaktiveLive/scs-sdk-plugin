@@ -73,7 +73,8 @@ namespace SCSSdkClient.Demo
         // La URL actual, guardada para el evento Click
         private string urlActual = "";
 
-        private bool messageBoxShow = false;
+        public bool messageBoxShow = false;
+        public bool balloonTipShow = false;
 
         private bool socketUdp = false;
         #endregion
@@ -318,6 +319,22 @@ namespace SCSSdkClient.Demo
                     RefuelEventSBAction.name = RefuelEventName;
                     //textBoxRefuelEventId.Text = RefuelEventId;
                     //textBoxRefuelEventName.Text = RefuelEventName;
+                }
+
+                string enableMessageBoxString = configuration.GetSection("Options:MessageBox").Value;
+                Boolean enableMessageBox;
+                if (Boolean.TryParse(enableMessageBoxString, out enableMessageBox))
+                {
+                    messageBoxShow = enableMessageBox;
+                    checkBoxEnableMessageBox.Checked = enableMessageBox;
+                }
+
+                string enableBalloonTipString = configuration.GetSection("Options:BalloonTip").Value;
+                Boolean enableBalloonTip;
+                if (Boolean.TryParse(enableBalloonTipString, out enableBalloonTip))
+                {
+                    balloonTipShow = enableBalloonTip;
+                    checkBoxEnableBallonTip.Checked = enableBalloonTip;
                 }
 
                 //MessageBox.Show("RefuelEventSBAction: \n{\n id = \"" + RefuelEventSBAction.id + "\",\n name = \"" + RefuelEventSBAction.name + "\"\n}");
@@ -1775,13 +1792,20 @@ namespace SCSSdkClient.Demo
 
         public void ShowMessageBox(string eventData, string title)
         {
-            if (messageBoxShow)
+            if (messageBoxShow || balloonTipShow)
             {
-                MessageBox.Show(eventData, title);
+                if (messageBoxShow)
+                {
+                    MessageBox.Show(eventData, title);
+                }
+                if (balloonTipShow)
+                {
+                    notifyIcon.ShowBalloonTip(3000, "Mi Aplicación", title + " Event Fired\r\n" + (socketUdp ? "UDP" : "HTTP"), ToolTipIcon.Info);
+                }
             }
             else
             {
-                notifyIcon.ShowBalloonTip(3000, "Mi Aplicación", title + " Event Fired\r\n" + (socketUdp ? "UDP" : "HTTP"), ToolTipIcon.Info);
+                //notifyIcon.ShowBalloonTip(3000, "Mi Aplicación", title + " Event Fired\r\n" + (socketUdp ? "UDP" : "HTTP"), ToolTipIcon.Info);
             }
         }
 
@@ -1944,6 +1968,11 @@ namespace SCSSdkClient.Demo
                 variableInutilPerEvitarWarnings = PostJsonDataAsync(eventData);
             }
             return variableInutilPerEvitarWarnings;
+        }
+
+        private void checkBoxEnableBallonTip_CheckedChanged(object sender, EventArgs e)
+        {
+            balloonTipShow = checkBoxEnableBallonTip.Checked;
         }
     }
 }

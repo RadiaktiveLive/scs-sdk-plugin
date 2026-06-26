@@ -250,9 +250,14 @@ namespace SCSSdkClient.Demo
 
             var data = new
             {
+                Options = new
+                {
+                    MessageBox = _mainForm.messageBoxShow,
+                    BalloonTip = _mainForm.balloonTipShow
+                },
                 Connection = new
                 {
-                    Protocol = "http",
+                    Protocol = radioHttpServer.Checked ? radioHttpServer.Checked : radioUdpServer.Checked,
                     Ip = textBoxIp.Text,
                     Port = textBoxPort.Text,
                     Endpoint = "DoAction",
@@ -795,7 +800,7 @@ namespace SCSSdkClient.Demo
                 if (radioButtonActual == radioHttpServer)
                 {
                     // Lógica para la Opción A seleccionada
-                    MessageBox.Show("Opción HTTP seleccionada");
+                    //MessageBox.Show("Opción HTTP seleccionada");
 
                     // Llama a una función específica para A si es necesario
                     //EjecutarAccionA();
@@ -805,7 +810,7 @@ namespace SCSSdkClient.Demo
                 else if (radioButtonActual == radioUdpServer)
                 {
                     // Lógica para la Opción B seleccionada
-                    MessageBox.Show("Opción UDP seleccionada");
+                    //MessageBox.Show("Opción UDP seleccionada");
 
                     // Llama a una función específica para B si es necesario
                     //EjecutarAccionB();

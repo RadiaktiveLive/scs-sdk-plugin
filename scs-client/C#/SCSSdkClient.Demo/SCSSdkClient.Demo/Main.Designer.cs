@@ -50,6 +50,7 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.checkBoxEnableMessageBox = new System.Windows.Forms.CheckBox();
             this.checkBoxSocketUdp = new System.Windows.Forms.CheckBox();
+            this.checkBoxEnableBallonTip = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -92,7 +93,7 @@
             // l_updateRate
             // 
             this.l_updateRate.AutoSize = true;
-            this.l_updateRate.Location = new System.Drawing.Point(175, 138);
+            this.l_updateRate.Location = new System.Drawing.Point(175, 127);
             this.l_updateRate.Name = "l_updateRate";
             this.l_updateRate.Size = new System.Drawing.Size(104, 13);
             this.l_updateRate.TabIndex = 4;
@@ -146,6 +147,7 @@
             this.lblSBConnected.Size = new System.Drawing.Size(96, 13);
             this.lblSBConnected.TabIndex = 6;
             this.lblSBConnected.Text = "SB Connection: ➖";
+            this.lblSBConnected.Visible = false;
             // 
             // ButtonTestConnection
             // 
@@ -207,7 +209,7 @@
             // checkBoxEnableMessageBox
             // 
             this.checkBoxEnableMessageBox.AutoSize = true;
-            this.checkBoxEnableMessageBox.Location = new System.Drawing.Point(175, 176);
+            this.checkBoxEnableMessageBox.Location = new System.Drawing.Point(175, 158);
             this.checkBoxEnableMessageBox.Name = "checkBoxEnableMessageBox";
             this.checkBoxEnableMessageBox.Size = new System.Drawing.Size(129, 17);
             this.checkBoxEnableMessageBox.TabIndex = 10;
@@ -218,7 +220,7 @@
             // checkBoxSocketUdp
             // 
             this.checkBoxSocketUdp.AutoSize = true;
-            this.checkBoxSocketUdp.Location = new System.Drawing.Point(175, 153);
+            this.checkBoxSocketUdp.Location = new System.Drawing.Point(175, 142);
             this.checkBoxSocketUdp.Name = "checkBoxSocketUdp";
             this.checkBoxSocketUdp.Size = new System.Drawing.Size(120, 17);
             this.checkBoxSocketUdp.TabIndex = 11;
@@ -226,11 +228,23 @@
             this.checkBoxSocketUdp.UseVisualStyleBackColor = true;
             this.checkBoxSocketUdp.CheckedChanged += new System.EventHandler(this.checkBoxSocketUdp_CheckedChanged);
             // 
+            // checkBoxEnableBallonTip
+            // 
+            this.checkBoxEnableBallonTip.AutoSize = true;
+            this.checkBoxEnableBallonTip.Location = new System.Drawing.Point(175, 173);
+            this.checkBoxEnableBallonTip.Name = "checkBoxEnableBallonTip";
+            this.checkBoxEnableBallonTip.Size = new System.Drawing.Size(112, 17);
+            this.checkBoxEnableBallonTip.TabIndex = 12;
+            this.checkBoxEnableBallonTip.Text = "Enable BallonTip?";
+            this.checkBoxEnableBallonTip.UseVisualStyleBackColor = true;
+            this.checkBoxEnableBallonTip.CheckedChanged += new System.EventHandler(this.checkBoxEnableBallonTip_CheckedChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(333, 212);
+            this.Controls.Add(this.checkBoxEnableBallonTip);
             this.Controls.Add(this.checkBoxSocketUdp);
             this.Controls.Add(this.checkBoxEnableMessageBox);
             this.Controls.Add(this.statusStrip1);
@@ -283,5 +297,6 @@
         private System.Windows.Forms.ToolStripStatusLabel linkStatusLabel;
         private System.Windows.Forms.CheckBox checkBoxEnableMessageBox;
         private System.Windows.Forms.CheckBox checkBoxSocketUdp;
+        private System.Windows.Forms.CheckBox checkBoxEnableBallonTip;
     }
 }
